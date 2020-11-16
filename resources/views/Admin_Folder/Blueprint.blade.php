@@ -42,18 +42,6 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
     </ul>
-
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3" method="post" action="">
-        <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </form>
     </nav>
     <!-- /.navbar -->
 
@@ -64,11 +52,8 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <!-- ini mau tak pasang icon admin !!!!!!-->
-            <div class="image">
-            <img src="{{ asset('/dashboard/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-            </div>
             <div class="info">
-                <a href="/Admin" class="d-block">Admin</a>
+                <a href="/Admin" class="d-block" style="font-size: 15pt;">Admin</a>
             </div>
         </div>
 
@@ -78,33 +63,27 @@
                 <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="/Admin/mCustomer" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>Customer</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/Admin/mMember" class="nav-link">
-                        <i><img class="nav-icon fas" src=" {{ asset('/image/promo.png') }}" style="width: 25px;" alt="error"></i>
-                        <p>Promo</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/Admin/mPegawai" class="nav-link">
+                    <a href="/Admin/pegawai" class="nav-link">
                         <i class="nav-icon fas fa-user-cog"></i>
                         <p>Pegawai</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/Admin/mCucian" class="nav-link">
-                        <i><img class="nav-icon fas" src=" {{ asset('/image/laundry.png') }}" style="width: 25px;" alt="error"></i>
-                        <p>Cucian</p>
+                    <a href="/Admin/kategori" class="nav-link">
+                        <i><img class="nav-icon fas" src=" {{ asset('/IMAGE/category.png') }}" style="width: 25px;" alt="error"></i>
+                        <p>Barang</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
-                        <i><img class="nav-icon fas" src=" {{ asset('/image/laporan.png') }}" style="width: 25px;" alt="error"></i>
-                        <p>Laporan</p>
+                    <a href="/Admin/promo" class="nav-link">
+                        <i><img class="nav-icon fas" src=" {{ asset('/IMAGE/coupon.png') }}" style="width: 25px;" alt="error"></i>
+                        <p>Promo</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Admin/member" class="nav-link">
+                        <i><img class="nav-icon fas" src=" {{ asset('/IMAGE/membership.png') }}" style="width: 25px;" alt="error"></i>
+                        <p>Member</p>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -119,10 +98,9 @@
     </div>
     <!-- /.sidebar -->
 </aside>
-
+@yield('table-master')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -132,38 +110,13 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
-    <!-- Main content -->
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="card">
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
-<!-- Main Footer -->
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.0.5
-        </div>
-    </footer>
 </div>
 <!-- ./wrapper -->
-</body>
-</html>
+
+
+
 <!-- jQuery -->
 <!-- <script src="{{ asset('/dashboard/plugins/jquery/jquery.min.js') }}"></script> -->
 <script src="https://kit.fontawesome.com/3a577a0a76.js" crossorigin="anonymous"></script>
@@ -171,6 +124,31 @@
 <script src="{{ asset('/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE -->
 <script src="{{ asset('/dashboard/dist/js/adminlte.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<!-- OPTIONAL SCRIPTS -->
-<script src="{{ asset('/dashboard/dist/js/demo.js') }}"></script>
+<!-- DataTables -->
+
+<script src="{{ asset('/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+</body>
+</html>
+

@@ -13,4 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/','Controller@HalAwal');
 Route::get('Admin', 'controllerAdmin@HalPageAdmin');
+Route::group(['prefix' => 'Admin'], function () {
+    Route::get('pegawai','controllerAdmin@HalPagemPegawai');
+    Route::get('barang','controllerAdmin@HalPagemBarang');
+    Route::get('promo','controllerAdmin@HalPagemPromo');
+    Route::get('member','controllerAdmin@HalPagemMember');
+    Route::get('kategori','controllerAdmin@HalPagemkategori');
+});
