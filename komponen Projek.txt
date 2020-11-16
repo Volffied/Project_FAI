@@ -1,0 +1,30 @@
+Halaman Customer:
+Home -> list gaming gear
+     -> kategori
+     -> new release list gaming gear
+     -> list gaming gear dengan promo
+     -> logout
+Login
+Register
+Cart -> list barang yg ditambah (sudah login)
+Chat (sudah login)
+Detail barang -> input review, comment 
+Profile -> detail profile user
+	-> history pembelian  (sudah login)
+	(Dikasi SideNavbar)
+News
+Member -> sistem Poin ( semakin tinggi poin, status member 
+semakin naik( silver, gold, platinum, diamond))
+Footer -> contact us
+
+Halaman Admin & kurir (template sama, halaman field beda)
+Admin :
+Master Barang
+Master Order
+Master Promo
+Master Kategori
+Master Jenis_member
+notifikasi ( chat dri user)
+
+Kurir:
+prosesUpdateOrder -> list barang yang diantar oleh kurir
