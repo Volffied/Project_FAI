@@ -1,6 +1,41 @@
 @extends("Admin_Folder.Blueprint")
 @section('container-body-page')
-
+<div class="container-form-input-admin-pegawai">
+    <form action="barangRoute" method="post">
+        @csrf
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="txtnama">Nama</label>
+            <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="nama">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="txtemail">Email</label>
+            <input type="email" class="form-control" id="txtemail" name="txtemail" placeholder="email">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="txtpass">Password</label>
+            <input type="password" class="form-control" id="txtpass" name="txtpass" placeholder="password">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="txtphone">No Telepon</label>
+            <input type="text" class="form-control" id="txtphone" name="txtphone" placeholder="nomer telepon">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="cbpilijenispegawai">Jenis Pegawai :</label>
+            <select name="cbpilijenispegawai" id="cbpilijenispegawai" class="form-control">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row" style="float: right;">
+        <input type="submit" class="btn btn-primary" name="btnadd" value="Submit">
+    </div>
+    </form>
+</div>
 @endsection
 
 @section('table-master')
@@ -45,70 +80,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                        Explorer 4.0
-                                        </td>
-                                        <td>Win 95+</td>
-                                        <td> 4</td>
-                                        <td>X</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                        Explorer 5.0
-                                        </td>
-                                        <td>Win 95+</td>
-                                        <td>5</td>
-                                        <td>C</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                        Explorer 5.5
-                                        </td>
-                                        <td>Win 95+</td>
-                                        <td>5.5</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                        Explorer 6
-                                        </td>
-                                        <td>Win 98+</td>
-                                        <td>6</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 7</td>
-                                        <td>Win XP SP2+</td>
-                                        <td>7</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>AOL browser (AOL desktop)</td>
-                                        <td>Win XP</td>
-                                        <td>6</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Gecko</td>
-                                        <td>Firefox 1.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.7</td>
-                                        <td>A</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Gecko</td>
-                                        <td>Firefox 1.5</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
