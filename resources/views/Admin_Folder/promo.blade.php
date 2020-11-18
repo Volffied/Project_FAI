@@ -7,16 +7,25 @@
         <div class="form-group col-md-6">
             <label for="txtnama">Nama</label>
             <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="nama">
+            @error('txtnama')
+                <label class="alertmessage" style="color: red;">{{$message}}</label>
+            @enderror
         </div>
     </div>
     <div class="form-row">
-    <div class="form-group col-md-6">
+        <div class="form-group col-md-6">
             <label for="tglawal">Tanggal Awal</label>
             <input type="date" class="form-control" id="tglawal" name="tglawal">
+            @error('tglawal')
+                <label class="alertmessage" style="color: red;">{{$message}}</label>
+            @enderror
         </div>
         <div class="form-group col-md-6">
             <label for="txtpotongan">Tanggal Akhir</label>
             <input type="date" class="form-control" id="tglakhir" name="tglakhir" placeholder="potongan">
+            @error('tglakhir')
+                <label class="alertmessage" style="color: red;">{{$message}}</label>
+            @enderror
         </div>
     </div>
     <div class="form-row" style="float: right;">

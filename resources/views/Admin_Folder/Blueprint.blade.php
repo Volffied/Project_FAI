@@ -70,31 +70,31 @@
                     </li>
                     <li class="nav-item">
                         <a href="/Admin/barang" class="nav-link">
-                            <i><img class="nav-icon fas" src=" {{ asset('/IMAGE/category.png') }}" style="width: 25px;" alt="error"></i>
+                            <i><img class="nav-icon fas" src=" {{ asset('/images/category.png') }}" style="width: 25px;" alt="error"></i>
                             <p>Barang</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="/Admin/kategori" class="nav-link">
-                            <i><img class="nav-icon fas" src=" {{ asset('/IMAGE/category.png') }}" style="width: 25px;" alt="error"></i>
+                            <i><img class="nav-icon fas" src=" {{ asset('/images/category.png') }}" style="width: 25px;" alt="error"></i>
                             <p>Kategori</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="/Admin/promo" class="nav-link">
-                            <i><img class="nav-icon fas" src=" {{ asset('/IMAGE/coupon.png') }}" style="width: 25px;" alt="error"></i>
+                            <i><img class="nav-icon fas" src=" {{ asset('/images/coupon.png') }}" style="width: 25px;" alt="error"></i>
                             <p>Promo</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="/Admin/member" class="nav-link">
-                            <i><img class="nav-icon fas" src=" {{ asset('/IMAGE/membership.png') }}" style="width: 25px;" alt="error"></i>
+                            <i><img class="nav-icon fas" src=" {{ asset('/images/membership.png') }}" style="width: 25px;" alt="error"></i>
                             <p>Member</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="/" class="nav-link">
-                            <i><img class="nav-icon fas" src=" {{ asset('/image/exit-door.png') }}" style="width: 25px;" alt="error"></i>
+                            <i><img class="nav-icon fas" src=" {{ asset('/images/exit-door.png') }}" style="width: 25px;" alt="error"></i>
                             <p>Log Out</p>
                         </a>
                     </li>
