@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,7 @@ Route::group(['prefix' => 'Admin'], function () {
     Route::get('member','controllerAdmin@HalPagemMember');
     Route::get('kategori','controllerAdmin@HalPagemkategori');
 });
+
+Route::get('/login','UserController@Login');
+Route::get('/register','UserController@Register');
+Route::post('/prosesLogin','UserController@prosesLogin');
