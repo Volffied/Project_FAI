@@ -22,8 +22,9 @@ Route::group(['prefix' => 'Admin'], function () {
     Route::get('promo','controllerAdmin@HalPagemPromo');
     Route::get('member','controllerAdmin@HalPagemMember');
     Route::get('kategori','controllerAdmin@HalPagemkategori');
+
+    Route::post('promoRoute','controllerAdmin@checkAddPromo');
 });
 
-Route::get('/login','UserController@Login');
 Route::get('/register','UserController@Register');
 Route::post('/prosesLogin','UserController@prosesLogin');

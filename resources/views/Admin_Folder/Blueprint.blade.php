@@ -37,83 +37,80 @@
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light d-flex justify-content-between">
     <!-- Left navbar links -->
-    <ul class="navbar-nav">
-        <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-    </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+        </ul>
     </nav>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <!-- ini mau tak pasang icon admin !!!!!!-->
-            <div class="info">
-                <a href="/Admin" class="d-block" style="font-size: 15pt;">Admin</a>
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <!-- ini mau tak pasang icon admin !!!!!!-->
+                <div class="info">
+                    <a href="/Admin" class="d-block" style="font-size: 15pt;">Admin</a>
+                </div>
             </div>
-        </div>
 
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                    with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="/Admin/pegawai" class="nav-link">
-                        <i class="nav-icon fas fa-user-cog"></i>
-                        <p>Pegawai</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/Admin/kategori" class="nav-link">
-                        <i><img class="nav-icon fas" src=" {{ asset('/IMAGE/category.png') }}" style="width: 25px;" alt="error"></i>
-                        <p>Barang</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/Admin/promo" class="nav-link">
-                        <i><img class="nav-icon fas" src=" {{ asset('/IMAGE/coupon.png') }}" style="width: 25px;" alt="error"></i>
-                        <p>Promo</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/Admin/member" class="nav-link">
-                        <i><img class="nav-icon fas" src=" {{ asset('/IMAGE/membership.png') }}" style="width: 25px;" alt="error"></i>
-                        <p>Member</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/" class="nav-link">
-                        <i><img class="nav-icon fas" src=" {{ asset('/image/exit-door.png') }}" style="width: 25px;" alt="error"></i>
-                        <p>Log Out</p>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-</aside>
-@yield('table-master')
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                        with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <a href="/Admin/pegawai" class="nav-link">
+                            <i class="nav-icon fas fa-user-cog"></i>
+                            <p>Pegawai</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Admin/barang" class="nav-link">
+                            <i><img class="nav-icon fas" src=" {{ asset('/images/category.png') }}" style="width: 25px;" alt="error"></i>
+                            <p>Barang</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Admin/kategori" class="nav-link">
+                            <i><img class="nav-icon fas" src=" {{ asset('/images/category.png') }}" style="width: 25px;" alt="error"></i>
+                            <p>Kategori</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Admin/promo" class="nav-link">
+                            <i><img class="nav-icon fas" src=" {{ asset('/images/coupon.png') }}" style="width: 25px;" alt="error"></i>
+                            <p>Promo</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Admin/member" class="nav-link">
+                            <i><img class="nav-icon fas" src=" {{ asset('/images/membership.png') }}" style="width: 25px;" alt="error"></i>
+                            <p>Member</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">
+                            <i><img class="nav-icon fas" src=" {{ asset('/images/exit-door.png') }}" style="width: 25px;" alt="error"></i>
+                            <p>Log Out</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+    @yield('table-master')
+    <div class="content-wrapper">
         <div class="container-fluid">
-            <div class="row mb-2">
-                    @yield('container-body-page')
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+            @yield('container-body-page')
+        </div>
     </div>
-    <!-- /.content-header -->
 </div>
-<!-- /.content-wrapper -->
-</div>
-<!-- ./wrapper -->
 
 
 
