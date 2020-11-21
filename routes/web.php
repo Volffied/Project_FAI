@@ -27,4 +27,6 @@ Route::group(['prefix' => 'Admin'], function () {
 });
 
 Route::get('/register','UserController@Register');
+Route::get('/login','UserController@Login');
 Route::post('/prosesLogin','UserController@prosesLogin');
+Route::post('/prosesRegister','UserController@prosesRegister');
