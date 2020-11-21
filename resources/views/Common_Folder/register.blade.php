@@ -29,7 +29,7 @@
                     error-input
                 @elseif(count($errors)>0)
                     success-input
-                @endif" id="password" placeholder="Password" value="{{old('password')}}" />
+                @endif" id="password" placeholder="Password (8 or more characters)" value="{{old('password')}}" />
                 <svg class="visibility  vis-pass" xmlns="http://www.w3.org/2000/svg" width="6%" viewBox="0 0 469.33 320">
                     <g id="Layer_2" data-name="Layer 2">
                         <g id="Capa_1" data-name="Capa 1">
@@ -105,13 +105,9 @@
         </form>
     </div>
     <div class="container-message">
-        @if($errors->has('email') && $errors->has('password'))
-            <p>- {{$errors->first('email')}}<br>- {{$errors->first('password')}}</p>
-        @elseif($errors->has('email'))
-            <p>- {{$errors->first('email')}}</p>
-        @elseif($errors->has('password'))
-            <p>- {{$errors->first('password')}}</p>
-        @endif
+        @foreach ($errors->all() as $error)
+            <p>- {{$error}}</p><br/>
+        @endforeach
     </div>
     <input type="hidden" id="image1" value="{{asset('images/bg01.jpg')}}">
     <input type="hidden" id="image2" value="{{asset('images/bg02.jpg')}}">
@@ -157,26 +153,38 @@
             }
         });
 
-        $("#password").change(function(){
-            if($("#password").val() != $("#conf_pass").val()){
+        $(document).on('input', '#conf_pass',function(){
+            if($("#password").val() != $("#conf_pass").val() || $("#password").val().length < 8){
                 $("#password").css('border-color','#FF151B');
                 $("#conf_pass").css('border-color','#FF151B');
-                // $(".container-login").css('transition','all 3s');
-                // $(".container-login").css('transform','rotateY(180deg)');
             }else{
-                $("#password").css('border-color','#82d682');
-                $("#conf_pass").css('border-color','#82d682');
+                setTimeout(function(){
+                    $("#password").css('border-color','#0a060d');
+                    $("#conf_pass").css('border-color','#0a060d');
+                },1000);
             }
         });
 
-        $("#conf_pass").change(function(){
-            if($("#password").val() != $("#conf_pass").val()){
+        $(document).on('input', '#password',function(){
+            if($("#password").val() != $("#conf_pass").val() || $("#password").val().length < 8){
                 $("#password").css('border-color','#FF151B');
                 $("#conf_pass").css('border-color','#FF151B');
             }else{
-                $("#password").css('border-color','#82d682');
-                $("#conf_pass").css('border-color','#82d682');
+                setTimeout(function(){
+                    $("#password").css('border-color','#0a060d');
+                    $("#conf_pass").css('border-color','#0a060d');
+                },1000);
             }
+        });
+
+        $(document).on('blur','input:text',function(){
+            if($(this).val() == "") $(this).css('border-color','#FF151B');
+            else $(this).css('border-color','#0a060d');
+        });
+
+        $(document).on('blur',':input[type="number"]',function(){
+            if($(this).val() == "") $(this).css('border-color','#FF151B');
+            else $(this).css('border-color','#0a060d');
         });
 
     </script>
