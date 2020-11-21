@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBarangModelsTable extends Migration
+class CreateReviewModelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateBarangModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('barang', function (Blueprint $table) {
+        Schema::create('review_models', function (Blueprint $table) {
             $table->id();
-            $table->string('nama',50);
-            $table->mediumInteger('harga');
-            $table->smallInteger('stok');
-            $table->string('gambar',255);
-            $table->smallInteger('status');
-            $table->bigInteger('kode_kategori');
+            $table->string('pesan',255);
+            $table->dateTime('waktu');
+            $table->bigInteger('kode_customer');
+            $table->bigInteger('kode_barang');
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
@@ -33,6 +31,6 @@ class CreateBarangModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('barang');
+        Schema::dropIfExists('review_models');
     }
 }
