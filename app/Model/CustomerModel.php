@@ -3,8 +3,10 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
-class CustomerModel extends Model
+class CustomerModel extends Authenticatable
 {
     public $table           = "customer";
     public $primaryKey      = "id";
@@ -26,7 +28,16 @@ class CustomerModel extends Model
         $data->save();
     }
     public function checkLogin($email,$pass){
-        $query = CustomerModel::where("email",$email)->where("password",$pass)->get();
-        return $query;
+        // $query = CustomerModel::where("email",$email)->where("password",$pass)->get();
+        // return $query;
+        $dataUser = [
+            'email' => $email,
+            'password' => $pass,
+        ];
+
+        if (Auth::guard('web')->attempt($dataUser)){
+            request()->session()->put('userLogin', Auth::user());
+            Auth::login(Auth::user());
+        }
     }
 }

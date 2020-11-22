@@ -36,8 +36,9 @@ class UserController extends Controller
             $email = $request->email;
             $pass  = $request->password;
             $user  = new CustomerModel();
-            $param = $user->checkLogin($email,$pass);
-            if (count($param) > 0) {
+            $user->checkLogin($email,$pass);
+            if(session()->has('userLogin')){
+                //dd($request->session()->get('userLogin'));
                 return redirect("/");
             }
             else{
@@ -57,9 +58,9 @@ class UserController extends Controller
 
         $message = [
             "email.required"        => "Email is still empty",
-            "password.required"     => "password is still empty",
-            "conf_pass.required"    => "confirm password is still empty",
-            "name.required"         => "name is still empty",
+            "password.required"     => "Password is still empty",
+            "conf_pass.required"    => "Confirm password is still empty",
+            "name.required"         => "Name is still empty",
             "alamat.required"      => "Address is still empty",
         ];
         if ($req->validate($rules,$message)) {

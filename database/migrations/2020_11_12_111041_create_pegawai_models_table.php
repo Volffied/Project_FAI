@@ -17,7 +17,7 @@ class CreatePegawaiModelsTable extends Migration
             $table->id();
             $table->string('nama',50);
             $table->string('email',100);
-            $table->string('password',50);
+            $table->string('password',255);
             $table->string('notlp',25);
             $table->smallInteger('jenis');
             $table->smallInteger('status');

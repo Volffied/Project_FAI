@@ -18,6 +18,7 @@ class CreatePromoModelsTable extends Migration
             $table->string('nama',50);
             $table->date('tanggal_awal');
             $table->date('tanggal_akhir');
+            $table->mediumInteger('potongan');
             $table->smallInteger('status');
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
