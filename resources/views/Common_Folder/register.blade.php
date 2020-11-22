@@ -106,7 +106,7 @@
     </div>
     <div class="container-message">
         @foreach ($errors->all() as $error)
-            {{$error}}<br/>
+            <p>- {{$error}}</p><br/>
         @endforeach
     </div>
     <input type="hidden" id="image1" value="{{asset('images/bg01.jpg')}}">

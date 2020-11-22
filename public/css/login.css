@@ -120,7 +120,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-    content: '';
+    content: "";
     content: none;
 }
 
@@ -419,7 +419,7 @@ form .message:before {
     text-rendering: auto;
     line-height: 1;
     text-transform: none !important;
-    font-family: 'Font Awesome 5 Free';
+    font-family: "Font Awesome 5 Free";
     font-weight: 900;
 }
 
@@ -436,11 +436,11 @@ form .message.visible {
 }
 
 form .message.success {
-    color: #FF151B;
+    color: #ff151b;
 }
 
 form .message.success:before {
-    content: '\f00c';
+    content: "\f00c";
 }
 
 form .message.failure {
@@ -448,7 +448,7 @@ form .message.failure {
 }
 
 form .message.failure:before {
-    content: '\f119';
+    content: "\f119";
 }
 
 label {
@@ -561,7 +561,7 @@ textarea {
     -webkit-transition: border-color 0.2s ease, background-color 0.2s ease;
     -ms-transition: border-color 0.2s ease, background-color 0.2s ease;
     transition: border-color 0.2s ease, background-color 0.2s ease;
-    background-color: #0A060D;
+    background-color: #0a060d;
     border-radius: 6px;
     border: none;
     border: solid 2px rgba(255, 255, 255, 0);
@@ -663,7 +663,7 @@ input[type="radio"]+label:before {
     text-rendering: auto;
     line-height: 1;
     text-transform: none !important;
-    font-family: 'Font Awesome 5 Free';
+    font-family: "Font Awesome 5 Free";
     font-weight: 900;
 }
 
@@ -672,7 +672,7 @@ input[type="radio"]+label:before {
     background: rgba(255, 255, 255, 0.125);
     border-radius: 6px;
     border: solid 2px rgba(255, 255, 255, 0.35);
-    content: '';
+    content: "";
     display: inline-block;
     font-size: 0.8em;
     height: 1.65em;
@@ -686,16 +686,16 @@ input[type="radio"]+label:before {
 
 input[type="checkbox"]:checked+label:before,
 input[type="radio"]:checked+label:before {
-    background: #FF151B;
-    border-color: #FF151B;
+    background: #ff151b;
+    border-color: #ff151b;
     color: #ffffff;
-    content: '\f00c';
+    content: "\f00c";
 }
 
 input[type="checkbox"]:focus+label:before,
 input[type="radio"]:focus+label:before {
-    border-color: #FF151B;
-    box-shadow: 0 0 0 2px #FF151B;
+    border-color: #ff151b;
+    box-shadow: 0 0 0 2px #ff151b;
 }
 
 input[type="checkbox"]+label:before {
@@ -708,27 +708,27 @@ input[type="radio"]+label:before {
 
 ::-webkit-input-placeholder {
     color: rgba(255, 255, 255, 0.5) !important;
-    opacity: 1.0;
+    opacity: 1;
 }
 
 :-moz-placeholder {
     color: rgba(255, 255, 255, 0.5) !important;
-    opacity: 1.0;
+    opacity: 1;
 }
 
 ::-moz-placeholder {
     color: rgba(255, 255, 255, 0.5) !important;
-    opacity: 1.0;
+    opacity: 1;
 }
 
 :-ms-input-placeholder {
     color: rgba(255, 255, 255, 0.5) !important;
-    opacity: 1.0;
+    opacity: 1;
 }
 
 .formerize-placeholder {
     color: rgba(255, 255, 255, 0.5) !important;
-    opacity: 1.0;
+    opacity: 1;
 }
 
 
@@ -747,11 +747,11 @@ button,
     -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
     -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
-    border: 2px solid #FF151B;
-    color: #FF151B;
+    border: 2px solid #ff151b;
+    color: #ff151b;
     background-color: transparent;
     border-radius: 6px;
-    font-family: 'Montserrat';
+    font-family: "Montserrat";
     cursor: pointer;
     display: inline-block;
     font-weight: 900;
@@ -768,8 +768,8 @@ input[type="reset"]:hover,
 input[type="button"]:hover,
 button:hover,
 .button:hover {
-    color: #0A060D;
-    background-color: #FF151B;
+    color: #0a060d;
+    background-color: #ff151b;
 }
 
 input[type="submit"]:active,
@@ -869,15 +869,15 @@ a {
     -ms-transition: border-bottom-color 0.2s ease, color 0.2s ease;
     transition: border-bottom-color 0.2s ease, color 0.2s ease;
     border-bottom: dotted 1px rgba(236, 43, 43, 0.25);
-    color: #FF151B;
+    color: #ff151b;
     text-decoration: none;
-    font-family: 'Montserrat';
+    font-family: "Montserrat";
     font-weight: 500;
 }
 
 a:hover {
     border-bottom-color: transparent;
-    color: #FF151B !important;
+    color: #ff151b !important;
     text-decoration: none;
 }
 
@@ -902,7 +902,7 @@ h6 {
     font-weight: 700;
     line-height: 1em;
     margin: 0 0 0.3em 0;
-    font-family: 'Montserrat';
+    font-family: "Montserrat";
     font-weight: bold;
 }
 
@@ -1018,6 +1018,15 @@ hr.major {
     margin-top: 5%;
 }
 
+#login-form p,
+#login-form a {
+    margin-top: 2%;
+}
+
+.register-button {
+    margin-top: 10% !important;
+}
+
 .a-link-forgot {
     border-bottom: none;
 }
@@ -1038,9 +1047,9 @@ hr.major {
     padding: 10px;
     right: 2%;
     bottom: 2.5%;
-    background-color: #0A060D;
-    color: #FF151B;
-    font-family: 'Montserrat';
+    background-color: #0a060d;
+    color: #ff151b;
+    font-family: "Montserrat";
     font-weight: 500;
     font-size: 1em;
     display: flex;
@@ -1051,7 +1060,7 @@ hr.major {
 }
 
 .error-input {
-    border-color: #FF151B !important;
+    border-color: #ff151b !important;
 }
 
 .success-input {
@@ -1073,12 +1082,16 @@ hr.major {
 .divider-item {
     width: 20%;
     height: 2px;
-    background-color: #FF151B;
+    background-color: #ff151b;
 }
 
 .input-container {
     width: 100%;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .visibility {
