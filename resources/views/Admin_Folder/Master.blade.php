@@ -1,62 +1,6 @@
 @extends("Admin_Folder.BlueprintMaster")
 @section('container-body-page')
-<div class="container-form-input-admin-pegawai">
-    <form action="{{ url('Master/tambahPegawai') }}" method="post">
-        @csrf
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="txtnama">Nama</label>
-                <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="Nama">
-                @error('txtnama')
-                    <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
-                @enderror
-            </div>
-            <div class="form-group col-md-6">
-                <label for="txtemail">Email</label>
-                <input type="email" class="form-control" id="txtemail" name="txtemail" placeholder="Email">
-                @error('txtemail')
-                    <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
-                @enderror
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="txtpass">Password</label>
-                <input type="password" class="form-control" id="txtpass" name="txtpass" placeholder="Password">
-                @error('txtpass')
-                    <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
-                @enderror
-            </div>
-            <div class="form-group col-md-6">
-                <label for="txtconpass">Confirm Password</label>
-                <input type="password" class="form-control" id="txtconpass" name="txtpass_confirmation" placeholder="Confirm Password">
-                @error('txtpass_confirmation')
-                    <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
-                @enderror
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="txtphone">No Telepon</label>
-                <input type="text" class="form-control" id="txtphone" name="txtphone" placeholder="nomer telepon">
-                @error('txtphone')
-                    <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
-                @enderror
-            </div>
-            <div class="form-group col-md-6">
-                <label for="cbpilijenispegawai">Jenis Pegawai :</label>
-                <select name="cbpilijenispegawai" id="cbpilijenispegawai" class="form-control">
-                    <option value="1">Admin</option>
-                    <option value="2">Kurir</option>
-                    <option value="3">Customer Service</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-row" style="float: right;">
-            <input type="submit" class="btn btn-primary" name="btnadd" value="Submit">
-        </div>
-    </form>
-</div>
+
 @endsection
 
 @section('table-master')
@@ -67,18 +11,18 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                    <h1>Pegawai</h1>
+                    <h1>Master</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ url('Master') }}">Home</a></li>
-                    <li class="breadcrumb-item">Master</li>
-                    <li class="breadcrumb-item active">Pegawai</li>
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Master</li>
                     </ol>
                 </div>
             </div>
             </div><!-- /.container-fluid -->
         </section>
+
         <?php
             $ctr = 1;
         ?>
@@ -112,7 +56,6 @@
                                         <th scope="col">Email</th>
                                         <th scope="col">No. Telp</th>
                                         <th scope="col">Role</th>
-                                        <th scope="col">Action</th>
                                       </tr>
                                     </thead>
                                     @isset($daftarPegawai)
@@ -129,11 +72,6 @@
                                                 <td>Kurir</td>
                                             @elseif($item->jenis == 3)
                                                 <td>Customer Service</td>
-                                            @endif
-                                            @if ($item->status == 1)
-                                                <td><a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Banned</a></td>
-                                            @elseif($item->status == 0)
-                                                <td><a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Unbanned</a></td>
                                             @endif
                                         </tr>
                                         <?php
