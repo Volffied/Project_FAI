@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        $seeders = array ('PegawaiSeeder','CustomerSeeder');
+        $seeders = array ('PegawaiSeeder','CustomerSeeder','KategoriSeeder','BarangSeeder');
 
         foreach ($seeders as $seeder)
         {
