@@ -25,4 +25,8 @@ class BarangModel extends Model
         $barang->updated_at       = null;
         $barang->save();
     }
+    public function getAllDataBarang(){
+        $query = BarangModel::all();
+        return $query;
+    }
 }

@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 
 $factory->define(KategoriModel::class, function (Faker $faker) {
     return [
-        'nama'=>$faker->unique()->randomElement(['gear','component','console','furniture','pc'])
+        'nama'=>$faker->unique()->randomElement(['gear','component','console','accessories','pc'])
     ];
 });
