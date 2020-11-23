@@ -30,3 +30,4 @@ Route::get('/register','UserController@Register');
 Route::get('/login','UserController@Login');
 Route::post('/prosesLogin','UserController@prosesLogin');
 Route::post('/prosesRegister','UserController@prosesRegister');
+Route::get('/index','UserController@HalAwal');
