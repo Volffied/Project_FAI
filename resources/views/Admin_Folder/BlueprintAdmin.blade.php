@@ -96,6 +96,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ url('Admin/brand') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tags" ></i>
+                            <p style="color: white;">Brand</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ url('logoutAdmin') }}" class="nav-link">
                             <i class="nav-icon fas fa-sign-out-alt" ></i>
                             <p style="color: white;">Log Out</p>
@@ -139,14 +145,19 @@
       "autoWidth": false,
     });
     $('#example2').DataTable({
-      "paging": true,
+      "paging": false,
       "lengthChange": false,
-      "searching": false,
+      "searching": true,
       "ordering": true,
       "info": true,
       "autoWidth": false,
       "responsive": true,
+      "scrollY": "500px",
+      "scrollCollapse": true,
     });
+  });
+  $(document).ready(function(){
+    $("#example2_filter").attr('style','float:right;margin-right:2%;');
   });
 </script>
 </body>

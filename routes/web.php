@@ -35,10 +35,12 @@ Route::group(['prefix' => 'Admin'], function () {
     Route::post('tambahKategori', 'controllerAdmin@addKategori');
     Route::post('tambahBarang', 'controllerAdmin@addBarang');
     Route::post('tambahJenisMember', 'controllerAdmin@addJenisMember');
+    Route::post('tambahBrand', 'controllerAdmin@addBrand');
     Route::get('barang','controllerAdmin@HalPagemBarang');
     Route::get('promo','controllerAdmin@HalPagemPromo');
     Route::get('member','controllerAdmin@HalPagemMember');
     Route::get('kategori','controllerAdmin@HalPagemkategori');
+    Route::get('brand','controllerAdmin@HalPagemBrand');
     Route::post('promoRoute','controllerAdmin@checkAddPromo');
 });
 

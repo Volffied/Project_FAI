@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\BarangModel;
+use App\Model\BrandModel;
 use App\Model\JenisMemberModel;
 use App\Model\KategoriModel;
 use App\Model\PegawaiModel;
@@ -16,9 +17,9 @@ class controllerAdmin extends Controller
     public function HalPageLogin(){return view('Admin_Folder.LoginAdmin');}
 
     public function HalPageAdmin(){
-        $dataKategori = KategoriModel::where('deleted_at',null)->get();
-        $dataJenisMember = JenisMemberModel::where('deleted_at',null)->get();
-        $dataPromo = PromoModel::where('deleted_at',null)->get();
+        $dataKategori = KategoriModel::all();
+        $dataJenisMember = JenisMemberModel::all();
+        $dataPromo = PromoModel::all();
         $ambildataBar = new BarangModel();
         $dataBarang = $ambildataBar->getAllDataBarang();
         return view('Admin_Folder.Admin',['dataKat'=>$dataKategori,'dataBarang'=>$dataBarang,'dataMember'=>$dataJenisMember,'dataPromo'=>$dataPromo]);
@@ -37,25 +38,30 @@ class controllerAdmin extends Controller
     }
 
     public function HalPagemPromo(){
-        $dataPromo = PromoModel::where('deleted_at',null)->get();
+        $dataPromo = PromoModel::all();
         return view('Admin_Folder.promo',['dataPromo'=>$dataPromo]);
     }
 
     public function HalPagemBarang(){
-        $dataKategori = KategoriModel::where('deleted_at',null)->get();
+        $dataKategori = KategoriModel::all();
         $ambildataBar = new BarangModel();
         $dataBarang = $ambildataBar->getAllDataBarang();
         return view('Admin_Folder.barang',['dataKat'=>$dataKategori, 'dataBarang'=>$dataBarang]);
     }
 
     public function HalPagemMember(){
-        $dataJenisMember = JenisMemberModel::where('deleted_at',null)->get();
+        $dataJenisMember = JenisMemberModel::all();
         return view('Admin_Folder.Member',['dataMember'=>$dataJenisMember]);
     }
 
     public function HalPagemkategori(){
-        $dataKategori = KategoriModel::where('deleted_at',null)->get();
+        $dataKategori = KategoriModel::all();
         return view('Admin_Folder.kategori',['dataKat'=>$dataKategori]);
+    }
+
+    public function HalPagemBrand(){
+        $dataBrand = BrandModel::all();
+        return view('Admin_Folder.brand',['dataBrand'=>$dataBrand]);
     }
 
     public function LogoutAdmin(Request $request)
@@ -164,6 +170,25 @@ class controllerAdmin extends Controller
         $namaKat = $request->txtnama;
         $inputKategori = new KategoriModel();
         $inputKategori->insertData($namaKat);
+        return back();
+    }
+
+    public function addBrand(Request $request)
+    {
+        $rules = [
+            'txtnama' => 'required|max:50',
+            'txtgambar' => 'required',
+            'txtdesc' => 'required'
+        ];
+        $customError = [
+            'txtnama.required' => 'Nama harus diisi!',
+            'txtgambar.required' => 'Gambar harus diisi!',
+            'txtdesc.required' => 'Deskripsi harus diisi!',
+            'max' => 'Maksimal Karakter adalah 50 Karakter!'
+        ];
+        $this->validate($request,$rules,$customError);
+        $inputBrand = new BrandModel();
+        $inputBrand->simpanData($request->txtnama,$request->txtgambar,$request->txtdesc);
         return back();
     }
 

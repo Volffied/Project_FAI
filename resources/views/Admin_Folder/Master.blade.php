@@ -37,7 +37,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-striped">
+                                <table id="example2" class="table table-striped">
                                     <style>
                                         .thead{
                                             background-color: #8F192F !important;

@@ -15,11 +15,12 @@ class BrandModel extends Model
     public $timestamps      = true;
     protected $fillable     = ['nama','gambar','desc'];
 
-    public function simpanData($nama,$gambar,$desc){
+    public function simpanData($txtnama,$txtgambar,$txtdesc){
         $brand = new BrandModel();
-        $brand->nama             = $nama;
-        $brand->gambar           = $gambar;
-        $brand->desc             = $desc;
+        $brand->nama             = $txtnama;
+        $brand->gambar           = $txtgambar;
+        $brand->desc             = $txtdesc;
+        $brand->status             = 1;
         $brand->deleted_at       = null;
         $brand->created_at       = null;
         $brand->updated_at       = null;

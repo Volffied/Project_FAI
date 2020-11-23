@@ -119,16 +119,23 @@
     $("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
+      "scrollY": "500px",
+      "scrollCollapse": true,
     });
     $('#example2').DataTable({
-      "paging": true,
+      "paging": false,
       "lengthChange": false,
-      "searching": false,
+      "searching": true,
       "ordering": true,
       "info": true,
-      "autoWidth": false,
+      "autoWidth": true,
       "responsive": true,
+      "scrollY": "500px",
+      "scrollCollapse": true
     });
+  });
+  $(document).ready(function(){
+    $("#example2_filter").attr('style','float:right;margin-right:2%;');
   });
 </script>
 </body>
