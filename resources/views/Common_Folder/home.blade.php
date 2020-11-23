@@ -294,18 +294,20 @@
                         $ctr = 0;
                     @endphp
 
-                    @for ($i = 0; $i < $count; $i++)
+                    @for ($i = 0; $i < $count+1; $i++)
 
                         @if ($i==0)
                         <div class="carousel-item active" style="height: 100%">
                             <div class="brand-grid">
+                                <div class="row row-brand">
                         @else
                         <div class="carousel-item" style="height: 100%">
                             <div class="brand-grid">
+                                <div class="row row-brand">
                         @endif
 
                         @foreach ($data['brand'] as $brand)
-                            @if($ctr%2 == 0)
+                            @if($ctr != 0 && $ctr%2 == 0)
                                 </div>
                                 <div class="row row-brand">
                             @endif
@@ -319,7 +321,7 @@
                         @endphp
 
                         @endforeach
-
+                                </div>
                             </div>
                         </div>
 

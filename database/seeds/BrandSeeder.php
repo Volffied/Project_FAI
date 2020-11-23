@@ -74,5 +74,12 @@ class BrandSeeder extends Seeder
             'desc' => 'an American computer hard disk drive manufacturer and data storage company. It designs, manufactures and sells data technology products, including storage devices, data center systems and cloud storage services.',
             'status' => 1
         ]);
+
+        BrandModel::insert([
+            'nama' =>  'MSI',
+            'gambar' => 'https://brandslogo.net/wp-content/uploads/2016/07/msi-vector-logo.png',
+            'desc' => 'a Taiwanese multinational information technology corporation headquartered in New Taipei City, Taiwan.',
+            'status' => 1
+        ]);
     }
 }

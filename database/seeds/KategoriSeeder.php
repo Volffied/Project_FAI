@@ -11,8 +11,20 @@ class KategoriSeeder extends Seeder
      */
     public function run()
     {
-        factory(KategoriModel::class,5)->make()->each(function($kategori){
-            $kategori->save();
-        });
+        KategoriModel::insert([
+            'nama' => 'Console'
+        ]);
+        KategoriModel::insert([
+            'nama' => 'Accessories'
+        ]);
+        KategoriModel::insert([
+            'nama' => 'Component'
+        ]);
+        KategoriModel::insert([
+            'nama' => 'PC'
+        ]);
+        KategoriModel::insert([
+            'nama' => 'Gear'
+        ]);
     }
 }
