@@ -16,14 +16,14 @@ class BrandModel extends Model
     protected $fillable     = ['nama','gambar','desc'];
 
     public function simpanData($nama,$gambar,$desc){
-        $barang = new BarangModel();
-        $barang->nama             = $nama;
-        $barang->gambar           = $gambar;
-        $barang->desc             = $desc;
-        $barang->deleted_at       = null;
-        $barang->created_at       = null;
-        $barang->updated_at       = null;
-        $barang->save();
+        $brand = new BrandModel();
+        $brand->nama             = $nama;
+        $brand->gambar           = $gambar;
+        $brand->desc             = $desc;
+        $brand->deleted_at       = null;
+        $brand->created_at       = null;
+        $brand->updated_at       = null;
+        $brand->save();
     }
     public function getAllDataBrand(){
         $query = BrandModel::all();

@@ -13,9 +13,9 @@ class BarangModel extends Model
     public $primaryKey      = "id";
     public $incrementing    = true;
     public $timestamps      = true;
-    protected $fillable     = ['nama','harga','stok','jenis','status','kode_kategori','deleted_at','created_at','updated_at'];
+    protected $fillable     = ['nama','harga','stok','jenis','status','kode_kategori','kode_brand','deleted_at','created_at','updated_at'];
 
-    public function simpanData($nama,$harga,$stok,$jenis,$status,$kode_kategori){
+    public function simpanData($nama,$harga,$stok,$jenis,$status,$kode_kategori,$kode_brand){
         $barang = new BarangModel();
         $barang->nama             = $nama;
         $barang->harga            = $harga;
@@ -23,6 +23,7 @@ class BarangModel extends Model
         $barang->jenis            = $jenis;
         $barang->status           = $status;
         $barang->kode_kategori    = $kode_kategori;
+        $barang->kode_brand       = $kode_brand;
         $barang->deleted_at       = null;
         $barang->created_at       = null;
         $barang->updated_at       = null;
@@ -31,8 +32,9 @@ class BarangModel extends Model
 
     public function showDataForAdmin()
     {
-        $query = BarangModel::select('barang.*','kategori.nama as nama_kat')
+        $query = BarangModel::select('barang.*','kategori.nama as nama_kat','b.nama as nama_brand')
                             ->join('kategori','id_kat','barang.kode_kategori')
+                            ->join('brand b','b.id','barang.kode_brand')
                             ->get();
         return $query;
     }

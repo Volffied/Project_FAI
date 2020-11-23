@@ -13,7 +13,7 @@ class CreateBrandModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('brand_models', function (Blueprint $table) {
+        Schema::create('brand', function (Blueprint $table) {
             $table->id();
             $table->string('nama',50);
             $table->string('gambar',255);
