@@ -46,5 +46,12 @@ class BrandSeeder extends Seeder
             'desc' => 'an American multinational corporation and technology company headquartered in Santa Clara, California, in Silicon Valley.',
             'status' => 1
         ]);
+
+        BrandModel::insert([
+            'nama' =>  'LOGITECH',
+            'gambar' => 'https://1000logos.net/wp-content/uploads/2020/05/Logitech-Logo.png',
+            'desc' => 'an American-Swiss manufacturer of computer peripherals and software, with headquarters in Lausanne, Switzerland and Newark, California.',
+            'status' => 1
+        ]);
     }
 }

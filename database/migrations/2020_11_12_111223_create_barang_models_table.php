@@ -21,7 +21,7 @@ class CreateBarangModelsTable extends Migration
             $table->string('gambar',255);
             $table->smallInteger('status');
             $table->bigInteger('kode_kategori')->constrained('kategori')->onDelete('cascade');;
-            $table->bigInteger('kode_brand')->constrained('brand')->onDelete('cascade');
+            $table->bigInteger('kode_brand')->nullable()->constrained('brand')->onDelete('cascade');
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });

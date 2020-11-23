@@ -288,92 +288,29 @@
                 <div class="carousel-inner" style="height: 100%">
                     {{-- Foreach carousel item --}}
                   <div class="carousel-item active" style="height: 100%">
+                    <div class="brand-grid">
                     @php
                         $ctr=0;
                     @endphp
                     @foreach ($data['brand'] as $brand)
-                        @if ($ctr%4==0)
-
+                        @if($ctr != 0 && $ctr%2 == 0)
+                            </div>
+                            <div class="row row-brand">
+                        @if ($ctr != 0 && $ctr%4==0)
+                            </div>
+                            </div>
+                            <div class="carousel-item" style="height: 100%">
+                            <div class="brand-grid">
                         @endif
+                        <div class="col col-brand brand">
+                            <div class="brand-bg"></div>
+                            {{-- image brand --}}
+                            <img data-lazy="{{$brand->gambar}}" class="brand-img" alt="{{$brand->nama}}">
+                        </div>
+                        @php
+                            $ctr++;
+                        @endphp
                     @endforeach
-                    <div class="brand-grid">
-                        {{-- foreach tiap item brand --}}
-                        <div class="row row-brand">
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                {{-- image brand --}}
-                                <img data-lazy="{{asset('/images/playstation.png')}}" class="brand-img" alt="playstation">
-                            </div>
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                <img data-lazy="{{asset('/images/xbox.png')}}" class="brand-img" alt="xbox">
-                            </div>
-                        </div>
-                        <div class="row row-brand">
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                <img data-lazy="{{asset('/images/intel.png')}}" class="brand-img" alt="intel">
-                            </div>
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                <img data-lazy="{{asset('/images/steelseries.png')}}" class="brand-img" alt="steelseries">
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="carousel-item" style="height: 100%">
-                    <div class="brand-grid">
-                        {{-- foreach tiap item brand --}}
-                        <div class="row row-brand">
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                {{-- image brand --}}
-                                <img data-lazy="{{asset('/images/playstation.png')}}" class="brand-img" alt="playstation">
-                            </div>
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                <img data-lazy="{{asset('/images/xbox.png')}}" class="brand-img" alt="xbox">
-                            </div>
-                        </div>
-                        <div class="row row-brand">
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                <img data-lazy="{{asset('/images/intel.png')}}" class="brand-img" alt="intel">
-                            </div>
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                <img data-lazy="{{asset('/images/steelseries.png')}}" class="brand-img" alt="steelseries">
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="carousel-item" style="height: 100%">
-                    <div class="brand-grid">
-                        {{-- foreach tiap item brand --}}
-                        <div class="row row-brand">
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                {{-- image brand --}}
-                                <img data-lazy="{{asset('/images/playstation.png')}}" class="brand-img" alt="playstation">
-                            </div>
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                <img data-lazy="{{asset('/images/xbox.png')}}" class="brand-img" alt="xbox">
-                            </div>
-                        </div>
-                        <div class="row row-brand">
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                <img data-lazy="{{asset('/images/intel.png')}}" class="brand-img" alt="intel">
-                            </div>
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                <img data-lazy="{{asset('/images/steelseries.png')}}" class="brand-img" alt="steelseries">
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                </div>
                 <a class="carousel-control-prev" style="width:5%;height: 5%; top:47.5%; left:-5%" href="#carousel-2" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
                   <span class="sr-only">Previous</span>
@@ -392,7 +329,7 @@
         @endphp
         <div class="row-products">
         @foreach ($data['barang'] as $item)
-            @if ($ctr%4==0)
+            @if ($ctr != 0 && $ctr%4==0)
                 </div>
                 <div class="row-products">
             @endif
