@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\BarangModel;
+use App\Model\BrandModel;
 use App\Model\CustomerModel;
 use App\Model\UserModel;
 use Illuminate\Http\Request;
@@ -13,8 +14,10 @@ class UserController extends Controller
     public function HalAwal()
     {
         $barang = new BarangModel();
-        $param['databarang'] = $barang->getAllDataBarang();
-        return view('Common_Folder.home')->with($param);
+        $brand = new BrandModel();
+        $param['barang'] = $barang->getAllDataBarang();
+        $param['brand'] = $brand->getAllDataBrand();
+        return view('Common_Folder.home',['data' => $param]);
     }
 
     public function Login()
@@ -81,5 +84,10 @@ class UserController extends Controller
             $user->insertData($email,$pass,$nama,$alamat,$notlp);
             return redirect("/register");
         }
+    }
+
+    public function getData()
+    {
+        # code...
     }
 }

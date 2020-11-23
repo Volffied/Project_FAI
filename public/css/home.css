@@ -6,6 +6,7 @@
     align-items: center;
     position: fixed;
     z-index: 999;
+    animation-duration: 0.5s;
 }
 
 img {
@@ -411,4 +412,28 @@ h1 {
 .title {
     opacity: 0.4;
     margin-top: 5% !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.container-products {
+    width: 78vw;
+    margin: 20% 0 10% 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-products h1 {
+    margin-bottom: 10%;
+}
+
+.row-products {
+    width: 100%;
+    display: flex;
+}
+
+.row-products .item {
+    height: 60vh;
 }

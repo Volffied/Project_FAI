@@ -3,9 +3,12 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BarangModel extends Model
 {
+    use SoftDeletes;
+
     public $table           = "barang";
     public $primaryKey      = "id";
     public $incrementing    = true;

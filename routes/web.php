@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','Controller@HalAwal');
+Route::get('/','UserController@HalAwal');
 Route::get('Admin', 'controllerAdmin@HalPageAdmin');
 Route::group(['prefix' => 'Admin'], function () {
     Route::get('pegawai','controllerAdmin@HalPagemPegawai');
@@ -30,4 +30,6 @@ Route::get('/register','UserController@Register');
 Route::get('/login','UserController@Login');
 Route::post('/prosesLogin','UserController@prosesLogin');
 Route::post('/prosesRegister','UserController@prosesRegister');
-Route::get('/index','UserController@HalAwal');
+Route::get('/index',function(){
+    return redirect('/');
+});

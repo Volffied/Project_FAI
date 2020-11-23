@@ -288,6 +288,14 @@
                 <div class="carousel-inner" style="height: 100%">
                     {{-- Foreach carousel item --}}
                   <div class="carousel-item active" style="height: 100%">
+                    @php
+                        $ctr=0;
+                    @endphp
+                    @foreach ($data['brand'] as $brand)
+                        @if ($ctr%4==0)
+
+                        @endif
+                    @endforeach
                     <div class="brand-grid">
                         {{-- foreach tiap item brand --}}
                         <div class="row row-brand">
@@ -377,10 +385,45 @@
             </div>
         </div>
     </div>
+    <div class="container-products">
+        <h1>FEATURED PRODUCTS</h1>
+        @php
+            $ctr = 0;
+        @endphp
+        <div class="row-products">
+        @foreach ($data['barang'] as $item)
+            @if ($ctr%4==0)
+                </div>
+                <div class="row-products">
+            @endif
+            <div class="item">
+                <div class="item-img">
+                    <div class="item-img-bg"></div>
+                    <img data-lazy="{{$item->barang_gambar}}" alt="item">
+                </div>
+                <div class="item-details">
+                    <div class="item-detail">
+                        <p class="title" title="{{$item->barang_nama}}|{{$item->kategori_nama}}">{{$item->barang_nama}}</p>
+                        <p class="price">{{$item->barang_harga}}</p>
+                    </div>
+                    <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
+                </div>
+            </div>
+            @php
+                $ctr++;
+            @endphp
+        @endforeach
+
+    </div>
 @endsection
 
 @push('script')
     <script>
+        $('.price').each(function(){
+            var harga = $(this).text();
+            $(this).text(formatRupiah(harga,'Rp. '));
+        });
+        $(".container-header").addClass('fadeInDown');
         const targets = document.querySelectorAll('img');
         const lazyLoad = target =>{
             const io = new IntersectionObserver((entries, observer) => {
@@ -401,6 +444,21 @@
             io.observe(target);
         };
         targets.forEach(lazyLoad);
+        function formatRupiah(angka, prefix){
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split   		= number_string.split(','),
+            sisa     		= split[0].length % 3,
+            rupiah     		= split[0].substr(0, sisa),
+            ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+            if(ribuan){
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
