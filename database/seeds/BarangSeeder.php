@@ -272,16 +272,16 @@ class BarangSeeder extends Seeder
             "nama"          =>  "RAZER SEIREN MINI",
             "harga"         =>  799000,
             "stok"          =>  50,
-            "gambar"        =>  "https://assets2.razerzone.com/images/pnx.assets/c9a89f29f2c389eeb3118121e347c36a/diagram-microphone.png",
+            "gambar"        =>  "https://cdn.mos.cms.futurecdn.net/2dz35EMcWHyakDHxiLsnU6-1200-80.png",
             "status"        =>  1,
             "kode_kategori" =>  5,
             "kode_brand"    =>  3
         ]);
         BarangModel::insert([
-            "nama"          =>  "RAZER SEIREN X MERCURY",
+            "nama"          =>  "RAZER SEIREN X",
             "harga"         =>  1849000,
             "stok"          =>  50,
-            "gambar"        =>  "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE2JLPW?ver=9dca",
+            "gambar"        =>  "https://d1k3jiaf8cocae.cloudfront.net/wp-content/uploads/microphone-razer-seiren.png",
             "status"        =>  1,
             "kode_kategori" =>  5,
             "kode_brand"    =>  3
@@ -327,7 +327,7 @@ class BarangSeeder extends Seeder
             "nama"          =>  "STEELSERIES QCK PRISM XL NEON RIDER",
             "harga"         =>  1070000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/06/QCK-PRISM-XL-NEON-RIDER.jpg",
+            "gambar"        =>  "https://media.steelseriescdn.com/thumbs/catalogue/products/01215-qck-prism-cloth-xl-neon-rider-edition/841472aebda44428b5893f0abb1475d2.png.350x280_q100_crop-fit_optimize.png",
             "status"        =>  1,
             "kode_kategori" =>  2,
             "kode_brand"    =>  4
@@ -354,7 +354,7 @@ class BarangSeeder extends Seeder
             "nama"          =>  "LOGITECH G640 LARGE CLOTH GAMING MOUSEPAD",
             "harga"         =>  599000,
             "stok"          =>  50,
-            "gambar"        =>  "https://resource.logitechg.com/e_trim/w_652,ar_4:3,c_limit,q_auto:best,f_auto/w_692,h_519,c_lpad,b_rgb:2f3132,dpr_auto/content/dam/gaming/en/products/g640/g640-gallery-1.png?v=1",
+            "gambar"        =>  "https://resource.logitechg.com/content/dam/gaming/en/products/g640/g640-gallery-1.png",
             "status"        =>  1,
             "kode_kategori" =>  2,
             "kode_brand"    =>  6
@@ -409,7 +409,7 @@ class BarangSeeder extends Seeder
             "nama"          =>  "ZOTAC GeForce GTX 1080 Ti AMP Edition",
             "harga"         =>  10850000,
             "stok"          =>  50,
-            "gambar"        =>  "https://www.zotac.com/download/files/styles/w1024/public/product_gallery/graphics_cards/1080-01_front.png?itok=A6DcNcQc",
+            "gambar"        =>  "https://teckknow.com/wp-content/uploads/2017/03/ZOTAC-GeForce%C2%AE-GTX-1080-Ti-AMP-Extreme-1-1024x480.png",
             "status"        =>  1,
             "kode_kategori" =>  3,
             "kode_brand"    =>  0
