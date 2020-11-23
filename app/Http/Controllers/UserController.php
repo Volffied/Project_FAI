@@ -14,6 +14,7 @@ class UserController extends Controller
     {
         $barang = new BarangModel();
         $param['databarang'] = $barang->getAllDataBarang();
+        $param['databycat']  = $barang->getAllDatabyCat();
         return view('Common_Folder.home')->with($param);
     }
 

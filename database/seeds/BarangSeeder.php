@@ -13,50 +13,42 @@ class BarangSeeder extends Seeder
     {
         //=========================== webcam
         BarangModel::insert([
-            "nama"          =>  "Webcam Digital Camera 1080p",
-            "harga"         =>  250000,
+            "nama"          =>  "LOGITECH C922",
+            "harga"         =>  2029000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/08/digital-cam-1-416x416.jpg",
+            "gambar"        =>  "https://assets.logitech.com/assets/65479/2/c922-pro-hd-webcam-refresh.png",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
         BarangModel::insert([
-            "nama"          =>  "Webcam Digital Camera 720p",
-            "harga"         =>  185000,
+            "nama"          =>  "LOGITECH C920 HD PRO Webcam",
+            "harga"         =>  1529000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/08/digital-cam-416x416.jpg",
+            "gambar"        =>  "https://assets.logitech.com/assets/65478/3/c920-pro-hd-webcam-refresh.png",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
         BarangModel::insert([
-            "nama"          =>  "CYBORG CW-66 HD Stream Webcam 720p",
-            "harga"         =>  350000,
+            "nama"          =>  "LOGITECH C310",
+            "harga"         =>  659000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/07/cw-66-416x416.jpg",
+            "gambar"        =>  "https://assets.logitech.com/assets/65486/4/c310-hd-webcam-refresh.png",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
         BarangModel::insert([
-            "nama"          =>  "JETE W7 Webcam 1080p",
-            "harga"         =>  500000,
+            "nama"          =>  "LOGITECH C270",
+            "harga"         =>  449000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/07/W7.png",
+            "gambar"        =>  "https://assets.logitech.com/assets/65480/3/c270-hd-webcam-refresh.png",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
         BarangModel::insert([
-            "nama"          =>  "REXUS SW-RX01 Webcam",
-            "harga"         =>  400000,
+            "nama"          =>  "LOGITECH BCC950 Webcam",
+            "harga"         =>  3699000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/07/SW-RX01-416x416.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  2
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "MAXTECH Webcam",
-            "harga"         =>  200000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/07/maxtech-416x416.jpg",
+            "gambar"        =>  "https://www.logitech.com/assets/64530/26/conferencecam-bcc950.png",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
@@ -64,112 +56,80 @@ class BarangSeeder extends Seeder
             "nama"          =>  "LOGITECH c615 Webcam 1080p",
             "harga"         =>  1350000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/07/C615.png",
+            "gambar"        =>  "https://assets.logitech.com/assets/65481/4/c615-portable-hd-webcam-refresh.png",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
         BarangModel::insert([
-            "nama"          =>  "JETE W6 Webcam 1080p",
-            "harga"         =>  500000,
+            "nama"          =>  "Webcam Jete W1 VGApx",
+            "harga"         =>  230000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/07/W6.png",
+            "gambar"        =>  "https://jete.id/wp-content/uploads/2020/06/W1-SERIES-4-510x510.png",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
         BarangModel::insert([
-            "nama"          =>  "JETE W5 Webcam 720p",
-            "harga"         =>  385000,
+            "nama"          =>  "JETE W2 Webcam 720p",
+            "harga"         =>  330000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/07/W5.png",
+            "gambar"        =>  "https://jete.id/wp-content/uploads/2020/06/W2-SERIES-4-510x510.png",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
         BarangModel::insert([
-            "nama"          =>  "NYK EVEREST A90 AutoFocus Webcam",
-            "harga"         =>  485000,
+            "nama"          =>  "LOGITECH BRIO ULTRA HD PRO Webcam",
+            "harga"         =>  3890000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/07/A90-416x416.jpg",
+            "gambar"        =>  "https://assets.logitech.com/assets/64939/7/briopictograms.png",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
         BarangModel::insert([
-            "nama"          =>  "CYBORG CW-88 HD pro Stream Webcam 1080p",
-            "harga"         =>  550000,
+            "nama"          =>  "LOGITECH C505 HD Webcam",
+            "harga"         =>  815000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/06/CW-88.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  2
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "Webcam MTECH WB-300",
-            "harga"         =>  225000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/06/MTECH-250620-416x416.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  2
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "RAZER KIYO desktop Camera Streaming",
-            "harga"         =>  1849000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2018/02/KIYO-416x416.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  2
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "LOGITECH B525 HD Webcam",
-            "harga"         =>  1150000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2019/07/B525HD-416x357.png",
-            "status"        =>  1,
-            "kode_kategori" =>  2
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "LOGITECH C525 HD Webcam",
-            "harga"         =>  1150000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2018/10/C525-416x416.jpg",
+            "gambar"        =>  "https://resource.logitech.com/w_900,h_900,c_limit,q_auto,f_auto,dpr_1.0/content/dam/logitech/en/products/video-conferencing/c505/gallery/c505-gallery-2.png?v=1",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
         //=================================== cooler
         BarangModel::insert([
-            "nama"          =>  "ABKONCORE CT408B RGB SPECTRUM",
-            "harga"         =>  590000,
+            "nama"          =>  "MASTERLIQUID ML360 SUB-ZERO",
+            "harga"         =>  2200000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/11/CT408B_main3.jpg",
+            "gambar"        =>  "https://s3-eu-west-1.amazonaws.com/cdn.coolermaster.com/assets/1030/ml360-sub-zero-gallery-1-image.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
         BarangModel::insert([
-            "nama"          =>  "DarkFlash Tracer DT-240",
-            "harga"         =>  890000,
+            "nama"          =>  "HYPER 212 EVO V2",
+            "harga"         =>  570000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/11/DT-240.jpg",
+            "gambar"        =>  "https://s3-eu-west-1.amazonaws.com/cdn.coolermaster.com/assets/1018/hyper-212-evo-v2-gallery-1-image.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
         BarangModel::insert([
-            "nama"          =>  "SILVERSTONE TUNDRA TD03 Lite V2",
-            "harga"         =>  490000,
+            "nama"          =>  "MASTERLIQUID ML240 MIRROR",
+            "harga"         =>  2000000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/11/TD03-LITE.jpg",
+            "gambar"        =>  "https://s3-eu-west-1.amazonaws.com/cdn.coolermaster.com/assets/1010/ml240-mirror-gallery-1-image.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
         BarangModel::insert([
-            "nama"          =>  "SILVERSTONE TUNDRA TD02 Slim V2",
-            "harga"         =>  750000,
+            "nama"          =>  "MASTERLIQUID ML120L V2 RGB",
+            "harga"         =>  868000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/11/TD02-SLIM-416x416.jpg",
+            "gambar"        =>  "https://s3-eu-west-1.amazonaws.com/cdn.coolermaster.com/assets/1010/masterliquid-ml120l-v2-rgb-gallery-1-image.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
         BarangModel::insert([
-            "nama"          =>  "SILVERSTONE TUNDRA TD02 Lite V2",
-            "harga"         =>  750000,
+            "nama"          =>  "MASTERLIQUID ML240L V2 RGB",
+            "harga"         =>  1060000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/11/TD02-LITE.jpg",
+            "gambar"        =>  "https://s3-eu-west-1.amazonaws.com/cdn.coolermaster.com/assets/1016/masterliquid-ml240l-v2-rgb-gallery-1-image.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
@@ -177,7 +137,7 @@ class BarangSeeder extends Seeder
             "nama"          =>  "ASUS ROG STRIX LC360 RGB",
             "harga"         =>  3750000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/10/LC360.jpg",
+            "gambar"        =>  "https://dlcdnwebimgs.asus.com/gain/0F5A6D15-E030-4EB0-84BD-3B86409C9D28/w717/h525",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
@@ -185,15 +145,7 @@ class BarangSeeder extends Seeder
             "nama"          =>  "ASUS TUF Gaming LC240 RGB",
             "harga"         =>  2050000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/10/TUF-LC240.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  3
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "ASUS ROG STRIX LC240 RGB White Edition",
-            "harga"         =>  3050000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/10/LC240-WHITE.jpg",
+            "gambar"        =>  "https://www.asus.com/media/global/products/80vilufg9yohqbe1/P_setting_xxx_0_90_end_500.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
@@ -201,7 +153,7 @@ class BarangSeeder extends Seeder
             "nama"          =>  "ASUS ROG STRIX LC240 RGB",
             "harga"         =>  2900000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/10/LC240.jpg",
+            "gambar"        =>  "https://dlcdnwebimgs.asus.com/gain/0E4EE232-39CC-4CBF-B304-C48104324F47/w717/h525",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
@@ -209,7 +161,7 @@ class BarangSeeder extends Seeder
             "nama"          =>  "ARCTIS LIQUID FREEZER ll 240",
             "harga"         =>  1650000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/10/LIQUID-FREEZER-240-416x416.jpg",
+            "gambar"        =>  "https://www.arctic.ac/media/2a/6c/fa/1597311066/Liquid_Freezer_II_240_G00_Award.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
@@ -217,7 +169,7 @@ class BarangSeeder extends Seeder
             "nama"          =>  "GIGABYTE AOURUS LIQUID Cooler 240",
             "harga"         =>  2850000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/10/AORUS-240.png",
+            "gambar"        =>  "https://static.gigabyte.com/StaticFile/Image/Global/b4cde679f02ebe609bd5c364087ac426/Product/23527/png/1000",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
@@ -225,104 +177,64 @@ class BarangSeeder extends Seeder
             "nama"          =>  "ARCTIC LIQUID FREEZER ll 360",
             "harga"         =>  1925000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/10/LIQUID-FREEZER-360.jpg",
+            "gambar"        =>  "https://www.arctic.ac/media/9b/24/e1/1583752715/Liquid_Freezer_II_360_G00.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
         //================================== ssd
         BarangModel::insert([
-            "nama"          =>  "SSD PLAYER X70 1TB NVMe M.2",
-            "harga"         =>  1650000,
+            "nama"          =>  "WD Blue™ SATA SSD 250GB",
+            "harga"         =>  6400000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/11/X70-1TB-416x416.jpg",
+            "gambar"        =>  "https://shop.westerndigital.com/content/dam/store/en-us/assets/products/internal-storage/wd-blue-3d-nand-sata-ssd/gallery/250gb/wd-blue-3d-nand-sata-ssd-250gb-right.png.thumb.1280.1280.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
         BarangModel::insert([
-            "nama"          =>  "SAMSUNG 860 PRO 1TB",
-            "harga"         =>  3850000,
+            "nama"          =>  "WD Blue™ SATA SSD 500GB",
+            "harga"         =>  1038000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/10/860-PRO-1TB.jpg",
+            "gambar"        =>  "https://shop.westerndigital.com/content/dam/store/en-us/assets/products/internal-storage/wd-blue-3d-nand-sata-ssd/gallery/250gb/wd-blue-3d-nand-sata-ssd-250gb-right.png.thumb.1280.1280.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
         BarangModel::insert([
-            "nama"          =>  "SAMSUNG 970 PRO 512GB NVMe M.2",
-            "harga"         =>  2900000,
+            "nama"          =>  "WD Blue™ SATA SSD 1TB",
+            "harga"         =>  1860000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/10/970-PRO-512GB.jpg",
+            "gambar"        =>  "https://shop.westerndigital.com/content/dam/store/en-us/assets/products/internal-storage/wd-blue-3d-nand-sata-ssd/gallery/250gb/wd-blue-3d-nand-sata-ssd-250gb-right.png.thumb.1280.1280.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
         BarangModel::insert([
-            "nama"          =>  "KLEVV NEO N400 240GB",
-            "harga"         =>  430000,
+            "nama"          =>  "WD BLACK SN750 NVMe™ SSD 250GB",
+            "harga"         =>  809000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/09/N400.png",
+            "gambar"        =>  "https://shop.westerndigital.com/content/dam/store/en-us/assets/products/internal-storage/wd-black-sn750-nvme-ssd/gallery/without-heatsink/wd-black-sn750-nvme-ssd-noheatsink1.png.thumb.1280.1280.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
         BarangModel::insert([
-            "nama"          =>  "PATRIOT P300 128GB NVMe M.2",
-            "harga"         =>  400000,
+            "nama"          =>  "WD BLACK SN750 NVMe™ SSD 500GB",
+            "harga"         =>  2140000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/09/p300-128gb.jpg",
+            "gambar"        =>  "https://shop.westerndigital.com/content/dam/store/en-us/assets/products/internal-storage/wd-black-sn750-nvme-ssd/gallery/without-heatsink/wd-black-sn750-nvme-ssd-noheatsink1.png.thumb.1280.1280.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
         BarangModel::insert([
-            "nama"          =>  "PATRIOT P210 1TB",
-            "harga"         =>  1400000,
+            "nama"          =>  "TRANSCEND SATA III 500GB SSD220Q",
+            "harga"         =>  797000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/09/P210-1TB.jpg",
+            "gambar"        =>  "https://cdn.transcend-info.com/products/images/ModelPic/1163/PP_SSD220Q.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
         BarangModel::insert([
-            "nama"          =>  "PATRIOT P210 512GB",
-            "harga"         =>  875000,
+            "nama"          =>  "TRANSCEND SATA III 1TB SSD230S",
+            "harga"         =>  2250000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/09/P210-512GB.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  3
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "PATRIOT P300 1TB NVMe M.2",
-            "harga"         =>  2000000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/08/P300-1TB.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  3
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "TRANSCEND 1105 250GB NVMe M.2",
-            "harga"         =>  645000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/11/110S-416x416.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  3
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "ACE POWER 256GB SSD",
-            "harga"         =>  460000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/07/A1-256GB.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  3
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "MIDAS SSD 1TB NVMe M.2 Lightning Max",
-            "harga"         =>  1850000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/07/LIGHTNING-MAX-3.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  3
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "MIDAS SSD 512GB NVMe M.2 Lightning Max",
-            "harga"         =>  1000000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/07/LIGHTNING-MAX-2.jpg",
+            "gambar"        =>  "https://cdn.transcend-info.com/products/images/ModelPic/756/Pp_SSD230S-01.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
@@ -331,63 +243,7 @@ class BarangSeeder extends Seeder
             "nama"          =>  "RAZER SEIREN MINI",
             "harga"         =>  799000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/10/SEIREN-MINI-416x416.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  5
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "SADES ORPHEUS MIC CONDENSER",
-            "harga"         =>  679000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/10/ORPHEUS-416x416.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  5
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "NYK NECRO MIC CLIP On MCL-01",
-            "harga"         =>  175000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/10/NECRO-416x416.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  5
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "MICROPHONE YOSSIC U200 CONDENSER",
-            "harga"         =>  425000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/09/U200-416x416.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  5
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "MICROPHONE YOSSIC SHU03",
-            "harga"         =>  490000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/09/SHU03.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  5
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "MTECH CM100 MICROPHONE CONDENSER",
-            "harga"         =>  125000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/08/MTECH-CM100.png",
-            "status"        =>  1,
-            "kode_kategori" =>  5
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "MICROPHONE CONDENSER BM800",
-            "harga"         =>  350000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/08/BM800-416x416.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  5
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "HYPERX QUADCAST",
-            "harga"         =>  2100000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/06/Microphone-Gaming-HyperX-QuadCast-Bali-416x416.jpg",
+            "gambar"        =>  "https://assets2.razerzone.com/images/pnx.assets/c9a89f29f2c389eeb3118121e347c36a/diagram-microphone.png",
             "status"        =>  1,
             "kode_kategori" =>  5
         ]);
@@ -395,56 +251,40 @@ class BarangSeeder extends Seeder
             "nama"          =>  "RAZER SEIREN X MERCURY",
             "harga"         =>  1849000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2019/12/SEIREN-X-MERCURY.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  5
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "RAZER SEIREN EMOTE",
-            "harga"         =>  2649000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2019/12/SEIREN-EMOTE-416x416.jpg",
+            "gambar"        =>  "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE2JLPW?ver=9dca",
             "status"        =>  1,
             "kode_kategori" =>  5
         ]);
         //================================== mousepad
         BarangModel::insert([
-            "nama"          =>  "RAZER GIGANTUS V2",
-            "harga"         =>  279000,
+            "nama"          =>  "STEELSERIES QCK PRISM CLOTH Medium",
+            "harga"         =>  570000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/09/GIGANTUS-V2-L-416x416.jpg",
+            "gambar"        =>  "https://media.steelseriescdn.com/thumbs/filer_public/d3/4f/d34f96e2-260a-4287-bb59-d7651342790d/1200x_buy_qck-prism_m_02.png__1920x1080_q100_crop-fit_optimize_subsampling-2.png",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
         BarangModel::insert([
-            "nama"          =>  "RAZER GIGANTUS V2 3XL",
-            "harga"         =>  929000,
+            "nama"          =>  "STEELSERIES QCK PRISM CLOTH XL",
+            "harga"         =>  850000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/08/gigantus-v2.jpg",
+            "gambar"        =>  "https://media.steelseriescdn.com/thumbs/filer_public/39/24/39247c2d-aa5f-419a-a41c-ff20cad535ef/1200x_buy_qck-prism_xl_02.png__1920x1080_q100_crop-fit_optimize_subsampling-2.png",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
         BarangModel::insert([
-            "nama"          =>  "RAZER GIGANTUS V2 MEDIUM",
-            "harga"         =>  225000,
+            "nama"          =>  "STEELSERIES QCK PRISM CLOTH 3XL",
+            "harga"         =>  1600000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/09/GIGANTUS-V2-416x416.jpg",
+            "gambar"        =>  "https://media.steelseriescdn.com/thumbs/filer_public/63/db/63db8907-a560-4439-a6a4-beae5f37bfa2/qck_prism_3xl_prism_buyimg_03.png__1920x1080_q100_crop-fit_optimize_subsampling-2.png",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
         BarangModel::insert([
-            "nama"          =>  "MOUSEPAD GAMING XXL",
-            "harga"         =>  70000,
+            "nama"          =>  "STEELSERIES QCK PRISM CLOTH 4XL",
+            "harga"         =>  1850000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/08/mousepad-black.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  2
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "NYK G-7000 RGB GAMING MOUSEPAD XXL",
-            "harga"         =>  160000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/07/G-7000-416x416.jpg",
+            "gambar"        =>  "https://media.steelseriescdn.com/thumbs/filer_public/6c/4b/6c4b99b1-8b1c-4809-a23c-727bb8c30414/qck_prism_4xl_buyimg_03.png__1920x1080_q100_crop-fit_optimize_subsampling-2.png",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
@@ -457,10 +297,10 @@ class BarangSeeder extends Seeder
             "kode_kategori" =>  2
         ]);
         BarangModel::insert([
-            "nama"          =>  "PATRIOT VIPER Gaming MOUSEPAD XL",
-            "harga"         =>  150000,
+            "nama"          =>  "Mousepad Razer Firefly Hard Gaming",
+            "harga"         =>  750000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/06/VIPER-XL-416x416.jpg",
+            "gambar"        =>  "https://ecs7.tokopedia.net/img/cache/700/product-1/2017/9/7/22377867/22377867_0fbf3e59-d652-4834-b9f2-fd1035528d30_700_525.png",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
@@ -468,23 +308,15 @@ class BarangSeeder extends Seeder
             "nama"          =>  "STEELSERIES QCK NEON RIDER",
             "harga"         =>  380000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/06/QCK-NEON-RIDER.png",
+            "gambar"        =>  "https://media.steelseriescdn.com/thumbs/filer_public/cb/4f/cb4f7c43-fd7f-4727-804b-ceac3867e010/buyimg_qck_l_neonrider_003.png__1920x1080_q100_crop-fit_optimize_subsampling-2.png",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
         BarangModel::insert([
-            "nama"          =>  "REXUS KVLAR TR@ RGB",
-            "harga"         =>  200000,
+            "nama"          =>  "LOGITECH G640 LARGE CLOTH GAMING MOUSEPAD",
+            "harga"         =>  599000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/04/TR2.jpg",
-            "status"        =>  1,
-            "kode_kategori" =>  2
-        ]);
-        BarangModel::insert([
-            "nama"          =>  "AORUS AMP900 Gaming MOUSEPAD",
-            "harga"         =>  300000,
-            "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/02/AMP900.jpg",
+            "gambar"        =>  "https://resource.logitechg.com/e_trim/w_652,ar_4:3,c_limit,q_auto:best,f_auto/w_692,h_519,c_lpad,b_rgb:2f3132,dpr_auto/content/dam/gaming/en/products/g640/g640-gallery-1.png?v=1",
             "status"        =>  1,
             "kode_kategori" =>  2
         ]);
@@ -493,7 +325,7 @@ class BarangSeeder extends Seeder
             "nama"          =>  "MSI RX5700XT Gaming X 8GB GDDR6",
             "harga"         =>  7500000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/02/AMP900.jpg",
+            "gambar"        =>  "https://asset.msi.com/resize/image/global/product/product_1_20190911133259_5d78870b2757c.png62405b38c58fe0f07fcef2367d8a9ba1/600.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
@@ -501,15 +333,87 @@ class BarangSeeder extends Seeder
             "nama"          =>  "POWERCOLOR RX5500XT RED DRAGON 4GB GDDR6",
             "harga"         =>  7500000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/02/AMP900.jpg",
+            "gambar"        =>  "https://www.powercolor.com/_upload/images//1912031642430.png",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
         BarangModel::insert([
-            "nama"          =>  "MSI RX5700XT Gaming X 8GB GDDR6",
-            "harga"         =>  7500000,
+            "nama"          =>  "MSI GEFORCE GTX 1070 TI GAMING 8G",
+            "harga"         =>  5900000,
             "stok"          =>  50,
-            "gambar"        =>  "https://blossomzones.com/wp-content/uploads/2020/02/AMP900.jpg",
+            "gambar"        =>  "https://asset.msi.com/resize/image/global/product/product_2_20171026100803_59f14383beebe.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png",
+            "status"        =>  1,
+            "kode_kategori" =>  3
+        ]);
+        BarangModel::insert([
+            "nama"          =>  "ASUS ROG STRIX GeForce RTX 2070",
+            "harga"         =>  8600000,
+            "stok"          =>  50,
+            "gambar"        =>  "https://dlcdnwebimgs.asus.com/gain/3538E379-34A2-47AE-81FD-DF72CB88A40F/w717/h525",
+            "status"        =>  1,
+            "kode_kategori" =>  3
+        ]);
+        BarangModel::insert([
+            "nama"          =>  "MSI GeForce RTX 2080 Gaming X Trio",
+            "harga"         =>  8600000,
+            "stok"          =>  50,
+            "gambar"        =>  "https://asset.msi.com/resize/image/global/product/product_2_20180919185410_5ba22ad274fa9.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png",
+            "status"        =>  1,
+            "kode_kategori" =>  3
+        ]);
+        BarangModel::insert([
+            "nama"          =>  "ZOTAC GeForce GTX 1080 Ti AMP Edition",
+            "harga"         =>  10850000,
+            "stok"          =>  50,
+            "gambar"        =>  "https://www.zotac.com/download/files/styles/w1024/public/product_gallery/graphics_cards/1080-01_front.png?itok=A6DcNcQc",
+            "status"        =>  1,
+            "kode_kategori" =>  3
+        ]);
+        BarangModel::insert([
+            "nama"          =>  "GIGABYTE Radeon RX 550 D5",
+            "harga"         =>  1950000,
+            "stok"          =>  50,
+            "gambar"        =>  "https://static.gigabyte.com/StaticFile/Image/Global/16c12c86c485990d501eb1b801d4c322/Product/17196/png/1000",
+            "status"        =>  1,
+            "kode_kategori" =>  3
+        ]);
+        BarangModel::insert([
+            "nama"          =>  "GIGABYTE GT 1030 OC",
+            "harga"         =>  1100000,
+            "stok"          =>  50,
+            "gambar"        =>  "https://static.gigabyte.com/StaticFile/Image/Global/3cbb1a7c3d25f2bf5297cad925582e3f/Product/17404/png/1000",
+            "status"        =>  1,
+            "kode_kategori" =>  3
+        ]);
+        BarangModel::insert([
+            "nama"          =>  "Radeon™ RX 560 Gaming OC 4G",
+            "harga"         =>  2000000,
+            "stok"          =>  50,
+            "gambar"        =>  "https://static.gigabyte.com/StaticFile/Image/Global/f01c77b1072781d8a5a0022115a36baf/Product/17231/png/1000",
+            "status"        =>  1,
+            "kode_kategori" =>  3
+        ]);
+        BarangModel::insert([
+            "nama"          =>  "Sapphire Nitro Radeon RX 580",
+            "harga"         =>  2350000,
+            "stok"          =>  50,
+            "gambar"        =>  "https://cdn.sapphiretech.global/assets/consumer/11265_01_20G_NITRO_RX_580/11265_01_RX580_NITRO_plus_8GB_800x500_04.png",
+            "status"        =>  1,
+            "kode_kategori" =>  3
+        ]);
+        BarangModel::insert([
+            "nama"          =>  "MSI GeForce GTX 1050 Ti",
+            "harga"         =>  2050000,
+            "stok"          =>  50,
+            "gambar"        =>  "https://asset.msi.com/resize/image/global/product/product_4_20161017104822_58043bf6c379b.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png",
+            "status"        =>  1,
+            "kode_kategori" =>  3
+        ]);
+        BarangModel::insert([
+            "nama"          =>  "GIGABYTE GeForce GTX 1060 WINDFORCE OC",
+            "harga"         =>  38650000,
+            "stok"          =>  50,
+            "gambar"        =>  "https://static.gigabyte.com/StaticFile/Image/Global/4f41cabdddac5354b336d1f758fc6102/Product/15430/png/1000",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);
@@ -551,6 +455,30 @@ class BarangSeeder extends Seeder
             "harga"         =>  1100000,
             "stok"          =>  50,
             "gambar"        =>  "https://www.intel.com/content/dam/products/hero/foreground/processor-badge-pentium-gold-1x1.png.rendition.intel.web.225.225.png",
+            "status"        =>  1,
+            "kode_kategori" =>  3
+        ]);
+        BarangModel::insert([
+            "nama"          =>  "Processor AMD Ryzen 9 3900X",
+            "harga"         =>  8200000,
+            "stok"          =>  50,
+            "gambar"        =>  "https://www.amd.com/system/files/styles/992px/private/2019-11/238593-ryzen-9-pib-left-facing-1260x709_0.png?itok=lahqo3M0",
+            "status"        =>  1,
+            "kode_kategori" =>  3
+        ]);
+        BarangModel::insert([
+            "nama"          =>  "Processor AMD Ryzen 7 3800X",
+            "harga"         =>  6300000,
+            "stok"          =>  50,
+            "gambar"        =>  "https://www.amd.com/system/files/styles/992px/private/2019-06/238593-ryzen-7-pib-left-facing-1260x709.png?itok=ACRb3hX0",
+            "status"        =>  1,
+            "kode_kategori" =>  3
+        ]);
+        BarangModel::insert([
+            "nama"          =>  "Processor AMD Ryzen 5 3600X",
+            "harga"         =>  3200000,
+            "stok"          =>  50,
+            "gambar"        =>  "https://www.amd.com/system/files/styles/992px/private/2019-06/238593-ryzen-5-pib-left-facing-1260x709.png?itok=umdtyaSy",
             "status"        =>  1,
             "kode_kategori" =>  3
         ]);

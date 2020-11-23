@@ -29,4 +29,10 @@ class BarangModel extends Model
         $query = BarangModel::all();
         return $query;
     }
+    public function getAllDatabyCat(){
+        $query = BarangModel::select(["barang.id","barang.nama as barang_nama","barang.harga as barang_harga","barang.stok as barang_stok","barang.gambar as barang_gambar","kategori.id_kat as kategori_id","kategori.nama as kategori_nama"])
+                            ->join("kategori","kategori.id_kat","barang.kode_kategori")
+                            ->orderBy("kategori.id_kat","ASC")->get();
+        return $query;
+    }
 }
