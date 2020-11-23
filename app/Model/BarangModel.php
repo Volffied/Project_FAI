@@ -30,11 +30,11 @@ class BarangModel extends Model
         $barang->save();
     }
 
-    public function showDataForAdmin()
+    public function getAllDataBarang()
     {
         $query = BarangModel::select('barang.*','kategori.nama as nama_kat','b.nama as nama_brand')
                             ->join('kategori','id_kat','barang.kode_kategori')
-                            ->join('brand b','b.id','barang.kode_brand')
+                            ->leftJoin('brand as b','id_brand','barang.kode_brand')
                             ->get();
         return $query;
     }

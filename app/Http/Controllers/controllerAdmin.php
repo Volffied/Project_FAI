@@ -20,7 +20,7 @@ class controllerAdmin extends Controller
         $dataJenisMember = JenisMemberModel::where('deleted_at',null)->get();
         $dataPromo = PromoModel::where('deleted_at',null)->get();
         $ambildataBar = new BarangModel();
-        $dataBarang = $ambildataBar->showDataForAdmin();
+        $dataBarang = $ambildataBar->getAllDataBarang();
         return view('Admin_Folder.Admin',['dataKat'=>$dataKategori,'dataBarang'=>$dataBarang,'dataMember'=>$dataJenisMember,'dataPromo'=>$dataPromo]);
     }
 
@@ -44,7 +44,7 @@ class controllerAdmin extends Controller
     public function HalPagemBarang(){
         $dataKategori = KategoriModel::where('deleted_at',null)->get();
         $ambildataBar = new BarangModel();
-        $dataBarang = $ambildataBar->showDataForAdmin();
+        $dataBarang = $ambildataBar->getAllDataBarang();
         return view('Admin_Folder.barang',['dataKat'=>$dataKategori, 'dataBarang'=>$dataBarang]);
     }
 
@@ -145,8 +145,9 @@ class controllerAdmin extends Controller
         $stokbarang = $request->txtstok;
         $statusBarang = 1;
         $kategoriBarang = $request->cbpilihkategori;
+        $kode_brand = $request->cbpilihbrand;
         $inputBarang = new BarangModel();
-        $inputBarang->simpanData($namabarang,$hargabarang,$stokbarang,$statusBarang,$kategoriBarang,$gambarbarang);
+        $inputBarang->simpanData($namabarang,$hargabarang,$stokbarang,$statusBarang,$kategoriBarang,$gambarbarang,$kode_brand);
         return back();
     }
 

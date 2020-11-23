@@ -14,10 +14,10 @@ class CreateBrandModelsTable extends Migration
     public function up()
     {
         Schema::create('brand', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_brand');
             $table->string('nama',50);
             $table->string('gambar',255);
-            $table->string('desc',255);
+            $table->text('desc');
             $table->smallInteger('status');
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
@@ -31,6 +31,6 @@ class CreateBrandModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brand_models');
+        Schema::dropIfExists('brand');
     }
 }

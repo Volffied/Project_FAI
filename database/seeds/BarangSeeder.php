@@ -584,7 +584,7 @@ class BarangSeeder extends Seeder
             "nama"          =>  "ARCTIS 7 WHITE",
             "harga"         =>  2550000,
             "stok"          =>  50,
-            "gambar"        =>  "https://media.steelseriescdn.com/thumbs/filer_public/b3/bd/b3bdb8b8-2400-4575-b874-8b25a808b820/purchase-gallery-arctis-7-2019-white-hero.png__1850x800_q100_crop-scale_optimize_subsampling-2.png",
+            "gambar"        =>  "https://media.steelseriescdn.com/thumbs/catalogue/products/00968-arctis-7-white-2019-edition/42cf75be63f84d9e871df5adb0f3da54.png.350x280_q100_crop-fit_optimize.png",
             "status"        =>  1,
             "kode_kategori" =>  5
         ]);
