@@ -3,6 +3,7 @@
 @section('links')
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/input.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/animation.css')}}" />
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
     <link rel="stylesheet" href="{{asset('css/home.css')}}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js" integrity="sha512-wK2NuxEyN/6s53M8G7c6cRUXvkeV8Uh5duYS06pAdLq4ukc72errSIyyGQGYtzWEzvVGzGSWg8l79e0VkTJYPw==" crossorigin="anonymous"></script>
@@ -87,7 +88,7 @@
                         <div class="item">
                             <div class="item-img">
                                 <div class="item-img-bg"></div>
-                                <img src="{{asset('/images/mouse1.png')}}" alt="mouse">
+                                <img data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
                             </div>
                             <div class="item-details">
                                 <div class="item-detail">
@@ -100,7 +101,7 @@
                         <div class="item">
                             <div class="item-img">
                                 <div class="item-img-bg"></div>
-                                <img src="{{asset('/images/mouse1.png')}}" alt="mouse">
+                                <img data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
                             </div>
                             <div class="item-details">
                                 <div class="item-detail">
@@ -113,7 +114,7 @@
                         <div class="item">
                             <div class="item-img">
                                 <div class="item-img-bg"></div>
-                                <img src="{{asset('/images/mouse1.png')}}" alt="mouse">
+                                <img data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
                             </div>
                             <div class="item-details">
                                 <div class="item-detail">
@@ -126,64 +127,7 @@
                         <div class="item">
                             <div class="item-img">
                                 <div class="item-img-bg"></div>
-                                <img src="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="carousel-item" style="height: 100%">
-                    <div class="item-grid">
-                        {{-- Foreach tiap item --}}
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img src="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img src="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img src="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img src="{{asset('/images/mouse1.png')}}" alt="mouse">
+                                <img data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
                             </div>
                             <div class="item-details">
                                 <div class="item-detail">
@@ -201,7 +145,7 @@
                         <div class="item">
                             <div class="item-img">
                                 <div class="item-img-bg"></div>
-                                <img src="{{asset('/images/mouse1.png')}}" alt="mouse">
+                                <img data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
                             </div>
                             <div class="item-details">
                                 <div class="item-detail">
@@ -214,7 +158,7 @@
                         <div class="item">
                             <div class="item-img">
                                 <div class="item-img-bg"></div>
-                                <img src="{{asset('/images/mouse1.png')}}" alt="mouse">
+                                <img data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
                             </div>
                             <div class="item-details">
                                 <div class="item-detail">
@@ -227,7 +171,7 @@
                         <div class="item">
                             <div class="item-img">
                                 <div class="item-img-bg"></div>
-                                <img src="{{asset('/images/mouse1.png')}}" alt="mouse">
+                                <img data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
                             </div>
                             <div class="item-details">
                                 <div class="item-detail">
@@ -240,7 +184,64 @@
                         <div class="item">
                             <div class="item-img">
                                 <div class="item-img-bg"></div>
-                                <img src="{{asset('/images/mouse1.png')}}" alt="mouse">
+                                <img data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
+                            </div>
+                            <div class="item-details">
+                                <div class="item-detail">
+                                    <p class="title">Mouse Steelseries Aerox 3</p>
+                                    <p class="price">Rp. 1.500.000</p>
+                                </div>
+                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item" style="height: 100%">
+                    <div class="item-grid">
+                        {{-- Foreach tiap item --}}
+                        <div class="item">
+                            <div class="item-img">
+                                <div class="item-img-bg"></div>
+                                <img data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
+                            </div>
+                            <div class="item-details">
+                                <div class="item-detail">
+                                    <p class="title">Mouse Steelseries Aerox 3</p>
+                                    <p class="price">Rp. 1.500.000</p>
+                                </div>
+                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item-img">
+                                <div class="item-img-bg"></div>
+                                <img data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
+                            </div>
+                            <div class="item-details">
+                                <div class="item-detail">
+                                    <p class="title">Mouse Steelseries Aerox 3</p>
+                                    <p class="price">Rp. 1.500.000</p>
+                                </div>
+                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item-img">
+                                <div class="item-img-bg"></div>
+                                <img data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
+                            </div>
+                            <div class="item-details">
+                                <div class="item-detail">
+                                    <p class="title">Mouse Steelseries Aerox 3</p>
+                                    <p class="price">Rp. 1.500.000</p>
+                                </div>
+                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item-img">
+                                <div class="item-img-bg"></div>
+                                <img data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
                             </div>
                             <div class="item-details">
                                 <div class="item-detail">
@@ -293,47 +294,21 @@
                             <div class="col col-brand brand">
                                 <div class="brand-bg"></div>
                                 {{-- image brand --}}
-                                <img src="{{asset('/images/playstation.png')}}" class="brand-img" alt="playstation">
+                                <img data-lazy="{{asset('/images/playstation.png')}}" class="brand-img" alt="playstation">
                             </div>
                             <div class="col col-brand brand">
                                 <div class="brand-bg"></div>
-                                <img src="{{asset('/images/xbox.png')}}" class="brand-img" alt="xbox">
-                            </div>
-                        </div>
-                        <div class="row row-brand">
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                <img src="{{asset('/images/intel.png')}}" class="brand-img" alt="intel">
-                            </div>
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                <img src="{{asset('/images/steelseries.png')}}" class="brand-img" alt="steelseries">
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="carousel-item" style="height: 100%">
-                    <div class="brand-grid">
-                        {{-- foreach tiap item brand --}}
-                        <div class="row row-brand">
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                {{-- image brand --}}
-                                <img src="{{asset('/images/playstation.png')}}" class="brand-img" alt="playstation">
-                            </div>
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                <img src="{{asset('/images/xbox.png')}}" class="brand-img" alt="xbox">
+                                <img data-lazy="{{asset('/images/xbox.png')}}" class="brand-img" alt="xbox">
                             </div>
                         </div>
                         <div class="row row-brand">
                             <div class="col col-brand brand">
                                 <div class="brand-bg"></div>
-                                <img src="{{asset('/images/intel.png')}}" class="brand-img" alt="intel">
+                                <img data-lazy="{{asset('/images/intel.png')}}" class="brand-img" alt="intel">
                             </div>
                             <div class="col col-brand brand">
                                 <div class="brand-bg"></div>
-                                <img src="{{asset('/images/steelseries.png')}}" class="brand-img" alt="steelseries">
+                                <img data-lazy="{{asset('/images/steelseries.png')}}" class="brand-img" alt="steelseries">
                             </div>
                         </div>
                     </div>
@@ -345,21 +320,47 @@
                             <div class="col col-brand brand">
                                 <div class="brand-bg"></div>
                                 {{-- image brand --}}
-                                <img src="{{asset('/images/playstation.png')}}" class="brand-img" alt="playstation">
+                                <img data-lazy="{{asset('/images/playstation.png')}}" class="brand-img" alt="playstation">
                             </div>
                             <div class="col col-brand brand">
                                 <div class="brand-bg"></div>
-                                <img src="{{asset('/images/xbox.png')}}" class="brand-img" alt="xbox">
+                                <img data-lazy="{{asset('/images/xbox.png')}}" class="brand-img" alt="xbox">
                             </div>
                         </div>
                         <div class="row row-brand">
                             <div class="col col-brand brand">
                                 <div class="brand-bg"></div>
-                                <img src="{{asset('/images/intel.png')}}" class="brand-img" alt="intel">
+                                <img data-lazy="{{asset('/images/intel.png')}}" class="brand-img" alt="intel">
                             </div>
                             <div class="col col-brand brand">
                                 <div class="brand-bg"></div>
-                                <img src="{{asset('/images/steelseries.png')}}" class="brand-img" alt="steelseries">
+                                <img data-lazy="{{asset('/images/steelseries.png')}}" class="brand-img" alt="steelseries">
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item" style="height: 100%">
+                    <div class="brand-grid">
+                        {{-- foreach tiap item brand --}}
+                        <div class="row row-brand">
+                            <div class="col col-brand brand">
+                                <div class="brand-bg"></div>
+                                {{-- image brand --}}
+                                <img data-lazy="{{asset('/images/playstation.png')}}" class="brand-img" alt="playstation">
+                            </div>
+                            <div class="col col-brand brand">
+                                <div class="brand-bg"></div>
+                                <img data-lazy="{{asset('/images/xbox.png')}}" class="brand-img" alt="xbox">
+                            </div>
+                        </div>
+                        <div class="row row-brand">
+                            <div class="col col-brand brand">
+                                <div class="brand-bg"></div>
+                                <img data-lazy="{{asset('/images/intel.png')}}" class="brand-img" alt="intel">
+                            </div>
+                            <div class="col col-brand brand">
+                                <div class="brand-bg"></div>
+                                <img data-lazy="{{asset('/images/steelseries.png')}}" class="brand-img" alt="steelseries">
                             </div>
                         </div>
                     </div>
@@ -380,7 +381,26 @@
 
 @push('script')
     <script>
+        const targets = document.querySelectorAll('img');
+        const lazyLoad = target =>{
+            const io = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting){
+                        const img = entry.target;
+                        const src = img.getAttribute('data-lazy');
 
+                        if(src!=null){
+                            img.setAttribute('src',src);
+                            img.classList.add('fadeInUp');
+                        }
+
+                        observer.disconnect();
+                    }
+                });
+            });
+            io.observe(target);
+        };
+        targets.forEach(lazyLoad);
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
