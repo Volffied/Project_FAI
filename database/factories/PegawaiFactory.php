@@ -5,7 +5,7 @@
 use App\Model;
 use App\Model\PegawaiModel;
 use Faker\Generator as Faker;
-
+use Illuminate\Support\Facades\Hash;
 
 $factory->define(PegawaiModel::class, function (Faker $faker) {
     return [

@@ -492,10 +492,27 @@ class BarangSeeder extends Seeder
             "kode_kategori" =>  5
         ]);
         BarangModel::insert([
+            "nama"          =>  "SENSEI TEN NEON RIDER EDITION",
+            "harga"         =>  1130000,
+            "stok"          =>  50,
+            "gambar"        =>  "https://media.steelseriescdn.com/thumbs/catalogue/products/01213-sensei-ten-neon-rider-edition/5d4e0f16e11c4e1180f0bc932de13f27.png.350x280_q100_crop-fit_optimize.png",
+            "status"        =>  1,
+            "kode_kategori" =>  5
+        ]);
+        BarangModel::insert([
             "nama"          =>  "ARCTIS 7X WIRELESS",
             "harga"         =>  2500000,
             "stok"          =>  50,
             "gambar"        =>  "https://media.steelseriescdn.com/thumbs/catalog/items/61466/06300a7492304a61b9b27d8549c519d1.png.350x280_q100_crop-fit_optimize.png",
+            "status"        =>  1,
+            "kode_kategori" =>  5
+        ]);
+
+        BarangModel::insert([
+            "nama"          =>  "ARCTIS 7 WHITE",
+            "harga"         =>  2550000,
+            "stok"          =>  50,
+            "gambar"        =>  "https://media.steelseriescdn.com/thumbs/filer_public/b3/bd/b3bdb8b8-2400-4575-b874-8b25a808b820/purchase-gallery-arctis-7-2019-white-hero.png__1850x800_q100_crop-scale_optimize_subsampling-2.png",
             "status"        =>  1,
             "kode_kategori" =>  5
         ]);
