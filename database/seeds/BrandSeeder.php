@@ -53,5 +53,26 @@ class BrandSeeder extends Seeder
             'desc' => 'an American-Swiss manufacturer of computer peripherals and software, with headquarters in Lausanne, Switzerland and Newark, California.',
             'status' => 1
         ]);
+
+        BrandModel::insert([
+            'nama' =>  'AMD',
+            'gambar' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/AMD_Logo.svg/1200px-AMD_Logo.svg.png',
+            'desc' => ' an American multinational semiconductor company based in Santa Clara, California, that develops computer processors and related technologies for business and consumer markets.',
+            'status' => 1
+        ]);
+
+        BrandModel::insert([
+            'nama' =>  'GIGABYTE',
+            'gambar' => 'https://img.pngio.com/home-gigabyte-png-2048_339.png',
+            'desc' => "a Taiwanese manufacturer and distributor of computer hardware. Gigabyte's principal business is motherboards.",
+            'status' => 1
+        ]);
+
+        BrandModel::insert([
+            'nama' =>  'WD',
+            'gambar' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Western_Digital_logo.svg/1280px-Western_Digital_logo.svg.png',
+            'desc' => 'an American computer hard disk drive manufacturer and data storage company. It designs, manufactures and sells data technology products, including storage devices, data center systems and cloud storage services.',
+            'status' => 1
+        ]);
     }
 }
