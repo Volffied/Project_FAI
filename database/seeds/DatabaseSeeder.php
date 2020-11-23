@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        //ALTER TABLE tablename AUTO_INCREMENT = 1
+        //composer dump-autoload
         Model::unguard();
         $seeders = array ('PegawaiSeeder','CustomerSeeder','KategoriSeeder','BarangSeeder');
 

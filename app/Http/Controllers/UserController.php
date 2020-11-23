@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\BarangModel;
 use App\Model\CustomerModel;
 use App\Model\UserModel;
 use Illuminate\Http\Request;
@@ -9,6 +10,13 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     ///////////////PAGE CONTROLLER////////////////
+    public function HalAwal()
+    {
+        $barang = new BarangModel();
+        $param['databarang'] = $barang->getAllDataBarang();
+        return view('Common_Folder.home')->with($param);
+    }
+
     public function Login()
     {
         return view('Common_Folder.login');
