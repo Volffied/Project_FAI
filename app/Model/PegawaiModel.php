@@ -23,4 +23,15 @@ class PegawaiModel extends Model
         'deleted_at',
     ];
 
+    public function insertData($txtnama,$txtemail,$txtpass, $txttelp,$jenis){
+        $data = new PegawaiModel();
+        $data->id            = null;
+        $data->nama          = $txtnama;
+        $data->email         = $txtemail;
+        $data->password      = $txtpass;
+        $data->notlp         = $txttelp;
+        $data->jenis         = $jenis;
+        $data->status        = 1;
+        $data->save();
+    }
 }

@@ -15,4 +15,10 @@ class KategoriModel extends Model
     public $timestamps      = true;
     protected $fillable     = ['nama'];
 
+    public function insertData($nama){
+        $data = new KategoriModel();
+        $data->id_kat        = null;
+        $data->nama          = $nama;
+        $data->save();
+    }
 }

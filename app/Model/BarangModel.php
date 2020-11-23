@@ -28,8 +28,12 @@ class BarangModel extends Model
         $barang->updated_at       = null;
         $barang->save();
     }
-    public function getAllDataBarang(){
-        $query = BarangModel::all();
+
+    public function showDataForAdmin()
+    {
+        $query = BarangModel::select('barang.*','kategori.nama as nama_kat')
+                            ->join('kategori','id_kat','barang.kode_kategori')
+                            ->get();
         return $query;
     }
 }
