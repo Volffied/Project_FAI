@@ -289,42 +289,39 @@
                     {{-- Foreach carousel item --}}
 
                     @php
-                        $count = count($data['brand'])/4;
-                        echo $count;
+                        $count = count($data['brand']);
                         $ctr = 0;
                     @endphp
 
-                    @for ($i = 0; $i < $count+1; $i++)
+                    @for ($i = 0; $ctr < $count; $i++)
 
                         @if ($i==0)
                         <div class="carousel-item active" style="height: 100%">
                             <div class="brand-grid">
-                                <div class="row row-brand">
                         @else
                         <div class="carousel-item" style="height: 100%">
                             <div class="brand-grid">
-                                <div class="row row-brand">
                         @endif
 
-                        @foreach ($data['brand'] as $brand)
-                            @if($ctr != 0 && $ctr%2 == 0)
-                                </div>
-                                <div class="row row-brand">
-                            @endif
-                            <div class="col col-brand brand">
-                                <div class="brand-bg"></div>
-                                {{-- image brand --}}
-                                <img data-lazy="{{$brand->gambar}}" class="brand-img" alt="{{$brand->nama}}">
-                            </div>
-                        @php
-                            $ctr++;
-                        @endphp
+                        @for ($j = 0; $j < 2 && $ctr < $count; $j++)
+                            <div class="row row-brand">
 
-                        @endforeach
-                                </div>
+                                @for ($k = $ctr; $k < $ctr+2 && $ctr < $count; $k++)
+                                    <div class="col col-brand brand">
+                                        <div class="brand-bg"></div>
+                                        {{-- image brand --}}
+                                        <img data-lazy="{{$data['brand'][$k]->gambar}}" class="brand-img" alt="{{$data['brand'][$k]->nama}}">
+                                    </div>
+                                @endfor
+
+                                @php
+                                    $ctr+=2;
+                                @endphp
+                            </div>
+                        @endfor
+
                             </div>
                         </div>
-
                     @endfor
                 </div>
                 <a class="carousel-control-prev" style="width:5%;height: 5%; top:47.5%; left:-5%" href="#carousel-2" role="button" data-slide="prev">
