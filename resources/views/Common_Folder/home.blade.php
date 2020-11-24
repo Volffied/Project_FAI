@@ -16,7 +16,8 @@
 
 @section('header')
 {{-- kalo udh login --}}
-    @if (isset($user))
+    @if (session()->has('userLogin'))
+        @include('Common_Folder.navbar.nav_logged')
     @else
         @include('Common_Folder.navbar.nav_normal')
     @endif

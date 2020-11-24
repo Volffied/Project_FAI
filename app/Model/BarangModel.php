@@ -13,17 +13,17 @@ class BarangModel extends Model
     public $primaryKey      = "id";
     public $incrementing    = true;
     public $timestamps      = true;
-    protected $fillable     = ['nama','harga','stok','jenis','status','kode_kategori','kode_brand','deleted_at','created_at','updated_at'];
+    protected $fillable     = ['nama','harga','stok','gambar','status','kode_kategori','kode_brand','deleted_at','created_at','updated_at'];
 
-    public function simpanData($nama,$harga,$stok,$jenis,$status,$kode_kategori,$kode_brand){
+    public function simpanData($nama,$harga,$stok,$status,$kode_kategori,$gambar,$kode_brand){
         $barang = new BarangModel();
         $barang->nama             = $nama;
         $barang->harga            = $harga;
         $barang->stok             = $stok;
-        $barang->jenis            = $jenis;
+        $barang->gambar           = $gambar;
         $barang->status           = $status;
         $barang->kode_kategori    = $kode_kategori;
-        $barang->kode_brand       = $kode_brand;
+        if($kode_brand != 0) $barang->kode_brand       = $kode_brand;
         $barang->deleted_at       = null;
         $barang->created_at       = null;
         $barang->updated_at       = null;

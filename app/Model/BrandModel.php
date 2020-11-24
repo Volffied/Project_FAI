@@ -10,7 +10,7 @@ class BrandModel extends Model
     use SoftDeletes;
 
     public $table           = "brand";
-    public $primaryKey      = "id";
+    public $primaryKey      = "id_brand";
     public $incrementing    = true;
     public $timestamps      = true;
     protected $fillable     = ['nama','gambar','desc'];

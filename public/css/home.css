@@ -283,7 +283,7 @@ h1 {
 }
 
 .brand-img {
-    width: 22%;
+    width: 50%;
     filter: invert(1) hue-rotate(180deg);
     z-index: 3;
 }

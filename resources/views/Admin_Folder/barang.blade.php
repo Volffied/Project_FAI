@@ -129,11 +129,22 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="cbpilijenispegawai">Kategori :</label>
+                    <label for="cbpilihkategori">Kategori :</label>
                     <select name="cbpilihkategori" id="cbpilihkategori" class="form-control">
                         @isset($dataKat)
                             @foreach ($dataKat as $item)
-                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                <option value="{{ $item->id_kat }}">{{ $item->nama }}</option>
+                            @endforeach
+                        @endisset
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="cbpilihbrand">Brand :</label>
+                    <select name="cbpilihbrand" id="cbpilihbrand" class="form-control">
+                        @isset($dataBrand)
+                            <option value="0">Belum Terdaftar</option>
+                            @foreach ($dataBrand as $item)
+                                <option value="{{ $item->id_brand }}">{{ $item->nama }}</option>
                             @endforeach
                         @endisset
                     </select>

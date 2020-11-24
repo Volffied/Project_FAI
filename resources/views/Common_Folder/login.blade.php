@@ -37,7 +37,7 @@
             <a href="/forgotPassword" class="a-link-forgot" style="margin: 10px 0 0 0;align-self: flex-end;">Forgot Password</a>
             <input type="submit" class="login-button" value="LOGIN" />
             <p> or </p>
-            <a href="/signup">CREATE MY ACCOUNT</a>
+            <a href="/register">CREATE MY ACCOUNT</a>
         </form>
     </div>
     <div class="container-message">

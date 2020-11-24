@@ -46,7 +46,8 @@ class controllerAdmin extends Controller
         $dataKategori = KategoriModel::all();
         $ambildataBar = new BarangModel();
         $dataBarang = $ambildataBar->getAllDataBarang();
-        return view('Admin_Folder.barang',['dataKat'=>$dataKategori, 'dataBarang'=>$dataBarang]);
+        $dataBrand = BrandModel::all();
+        return view('Admin_Folder.barang',['dataKat'=>$dataKategori, 'dataBarang'=>$dataBarang,'dataBrand' => $dataBrand]);
     }
 
     public function HalPagemMember(){

@@ -10,7 +10,7 @@ class KategoriModel extends Model
 {
     use SoftDeletes;
     public $table           = "kategori";
-    public $primaryKey      = "id";
+    public $primaryKey      = "id_kat";
     public $incrementing    = true;
     public $timestamps      = true;
     protected $fillable     = ['nama'];

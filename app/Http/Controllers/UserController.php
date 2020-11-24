@@ -7,6 +7,7 @@ use App\Model\BrandModel;
 use App\Model\CustomerModel;
 use App\Model\UserModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -22,6 +23,7 @@ class UserController extends Controller
 
     public function Login()
     {
+        session()->forget('userLogin');
         return view('Common_Folder.login');
     }
 
@@ -76,7 +78,7 @@ class UserController extends Controller
         ];
         if ($req->validate($rules,$message)) {
             $email  = $req->email;
-            $pass   = $req->password;
+            $pass   = Hash::make($req->password);
             $nama   = $req->name;
             $alamat = $req->alamat;
             $notlp  = $req->notelp;

@@ -20,12 +20,11 @@ class CreateBarangModelsTable extends Migration
             $table->smallInteger('stok');
             $table->string('gambar',255);
             $table->smallInteger('status');
-            $table->bigInteger('kode_kategori')->constrained('kategori')->onDelete('cascade');;
-            $table->bigInteger('kode_brand')->nullable()->constrained('brand')->onDelete('cascade');
+            $table->bigInteger('kode_kategori');
+            $table->bigInteger('kode_brand')->nullable();
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -35,14 +34,6 @@ class CreateBarangModelsTable extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('barang');
-        Schema::dropIfExists('barang',function(Blueprint $table){
-            $table->dropForeign('barang_kode_kategori_foreign');
-            $table->dropIndex('barang_kode_kategori_index');
-            $table->dropForeign('barang_kode_brand_foreign');
-            $table->dropIndex('barang_kode_brand_index');
-            $table->dropColumn('kode_kategori');
-            $table->dropColumn('kode_brand');
-        });
+        Schema::dropIfExists('barang');
     }
 }

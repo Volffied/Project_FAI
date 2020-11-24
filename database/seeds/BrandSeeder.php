@@ -35,7 +35,7 @@ class BrandSeeder extends Seeder
 
         BrandModel::insert([
             'nama' =>  'STEELSERIES',
-            'gambar' => 'https://upload.wikimedia.org/wikipedia/fr/thumb/6/69/SteelSeries_Logo.svg/1200px-SteelSeries_Logo.svg.png',
+            'gambar' => 'https://overclocking.com/wp-content/uploads/2019/10/logo-steelseries.png',
             'desc' => 'a Danish manufacturer of gaming peripherals and accessories, including headsets, keyboards, mice, and gaming surfaces headquartered in Frederiskberg, Denmark.',
             'status' => 1
         ]);
