@@ -153,15 +153,18 @@
                         @endisset
                     </select>
                 </div>
-                <input type="hidden" name="id_barang" id="idbarang">
             </div>
             <div class="form-row" style="float: right;">
                 <input type="submit" class="btn btn-primary" id="btnaddBarang" name="btnadd" value="Submit">
+                <input type="submit" class="btn btn-primary" id="btnupdBarang" name="btnadd" value="Update">
+                <input type="hidden" name="id_barang" id="idbarang">
             </div>
         </form>
     </div>
     <script>
         highlight_row() ;
+        document.getElementById("btnaddBarang").style.visibility = "visible";
+        document.getElementById("btnupdBarang").style.visibility = "hidden";
         function highlight_row() {
             var table = document.getElementById('example2');
             var cells = table.getElementsByTagName('td');
@@ -182,7 +185,8 @@
 
                     msg = rowSelected.cells[0].innerHTML+" "+rowSelected.cells[1].innerHTML+" "+rowSelected.cells[2].innerHTML+" "+rowSelected.cells[3].innerHTML+" "+rowSelected.cells[4].innerHTML+" "+rowSelected.cells[5].innerHTML+" "+rowSelected.cells[6].innerHTML;
                     msg += " ";
-                    document.getElementById("btnaddBarang").value = "Update";
+                    document.getElementById("btnaddBarang").style.visibility = "hidden";
+                    document.getElementById("btnupdBarang").style.visibility = "visible";
                     document.getElementById("txtgambar").value    = rowSelected.cells[1].innerHTML;
                     document.getElementById("txtnama").value   = rowSelected.cells[2].innerHTML;
                     document.getElementById("cbpilihkategori").value   = rowSelected.cells[3].innerHTML.substring(0,1);
