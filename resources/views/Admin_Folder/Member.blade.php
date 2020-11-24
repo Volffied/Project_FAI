@@ -27,6 +27,7 @@
             @enderror
         </div>
         <div class="form-row" style="float: right;">
+            <input type="submit" class="btn btn-primary" id="btnupdMember" name="btnupdate" value="Update" style="visibility: hidden;">
             <input type="submit" class="btn btn-primary" name="btnadd" id="btnaddMember" value="Submit">
             <input type="hidden" name="id_jenis_member" id="idjenismember">
         </div>
@@ -123,7 +124,6 @@
 </div>
 <script>
     highlight_row() ;
-    document.getElementById("btnaddMember").value = "Submit";
     function highlight_row() {
         var table = document.getElementById('example2');
         var cells = table.getElementsByTagName('td');
@@ -144,7 +144,8 @@
 
                 msg = rowSelected.cells[0].innerHTML+" "+rowSelected.cells[1].innerHTML+" "+rowSelected.cells[2].innerHTML+" "+rowSelected.cells[3].innerHTML;
                 msg += " ";
-                document.getElementById("btnaddMember").value = "Update";
+                document.getElementById("btnaddMember").style.visibility = "hidden";
+                document.getElementById("btnupdMember").style.visibility = "visible";
                 document.getElementById("txtnama").value    = rowSelected.cells[1].innerHTML;
                 document.getElementById("txtpoin").value   = rowSelected.cells[2].innerHTML;
                 document.getElementById("txtpotongan").value   = rowSelected.cells[3].innerHTML.substring(0,rowSelected.cells[3].innerHTML.indexOf(" "));

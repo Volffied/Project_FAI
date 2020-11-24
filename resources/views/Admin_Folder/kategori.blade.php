@@ -14,6 +14,7 @@
             </div>
         </div>
         <div class="form-row" style="float: right;">
+            <input type="submit" class="btn btn-primary" id="btnupdKategori" name="btnupdate" value="Update" style="visibility: hidden;">
             <input type="submit" class="btn btn-primary" name="btnadd" id="btnaddKategori" value="Submit">
             <input type="hidden" name="id_kategori" id="idkategori">
         </div>
@@ -106,7 +107,6 @@
 </div>
 <script>
     highlight_row() ;
-    document.getElementById("btnaddKategori").value = "Submit";
     function highlight_row() {
         var table = document.getElementById('example2');
         var cells = table.getElementsByTagName('td');
@@ -127,7 +127,8 @@
 
                 msg = rowSelected.cells[0].innerHTML+" "+rowSelected.cells[1].innerHTML;
                 msg += " ";
-                document.getElementById("btnaddKategori").value = "Update";
+                document.getElementById("btnaddKategori").style.visibility = "hidden";
+                document.getElementById("btnupdKategori").style.visibility = "visible";
                 document.getElementById("txtnama").value    = rowSelected.cells[1].innerHTML;
                 document.getElementById("idkategori").value   = rowSelected.cells[0].innerHTML;
             }

@@ -36,7 +36,8 @@
         </div>
     </div>
     <div class="form-row" style="float: right;">
-        <input type="submit" class="btn btn-primary" name="btnadd" id="btnaddPromo" value="Submit">
+        <input type="submit" class="btn btn-primary" id="btnupdPromo" name="btnupdates" value="Update" style="visibility: hidden;">
+        <input type="submit" class="btn btn-primary" id="btnaddPromo" name="btnadd"  value="Submit">
         <input type="hidden" name="id_promo" id="idpromo">
     </div>
 </form>
@@ -136,7 +137,6 @@
 </div>
 <script>
     highlight_row() ;
-    document.getElementById("btnaddPromo").value = "Submit";
     function highlight_row() {
         var table = document.getElementById('example2');
         var cells = table.getElementsByTagName('td');
@@ -157,7 +157,8 @@
 
                 msg = rowSelected.cells[0].innerHTML+" "+rowSelected.cells[1].innerHTML+" "+rowSelected.cells[2].innerHTML+" "+rowSelected.cells[3].innerHTML+" "+rowSelected.cells[4].innerHTML;
                 msg += " ";
-                document.getElementById("btnaddPromo").value = "Update";
+                document.getElementById("btnaddPromo").style.visibility = "hidden";
+                document.getElementById("btnupdPromo").style.visibility = "visible";
                 document.getElementById("txtnama").value    = rowSelected.cells[1].innerHTML;
                 document.getElementById("diskon").value    = rowSelected.cells[2].innerHTML.substring(0,rowSelected.cells[2].innerHTML.indexOf(" "));
                 document.getElementById("tglawal").value    = rowSelected.cells[3].innerHTML;

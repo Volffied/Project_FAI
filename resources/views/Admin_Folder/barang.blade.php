@@ -155,8 +155,8 @@
                 </div>
             </div>
             <div class="form-row" style="float: right;">
+                <input type="submit" class="btn btn-primary" id="btnupdBarang" name="btnupdate" value="Update">
                 <input type="submit" class="btn btn-primary" id="btnaddBarang" name="btnadd" value="Submit">
-                <input type="submit" class="btn btn-primary" id="btnupdBarang" name="btnadd" value="Update">
                 <input type="hidden" name="id_barang" id="idbarang">
             </div>
         </form>
