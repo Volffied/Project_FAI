@@ -223,15 +223,10 @@ img {
     justify-content: space-between;
 }
 
-.container-brand p {
-    font-family: "Montserrat";
-    font-size: 2em;
-    font-weight: 500;
-    color: #fff;
-}
-
+.container-brand p,
+.container-products p,
 .container-promo p {
-    font-family: "Montserrat";
+    font-family: "Source Sans Pro";
     font-size: 2em;
     font-weight: 500;
     color: #fff;
@@ -425,7 +420,7 @@ h1 {
     flex-direction: column;
 }
 
-.container-products h1 {
+.container-products p {
     margin-bottom: 10%;
 }
 
@@ -436,4 +431,16 @@ h1 {
 
 .row-products .item {
     height: 60vh;
+}
+
+span a {
+    font-size: 0.7em;
+    text-decoration: none;
+    color: #ff151b;
+    margin-left: 0.5em;
+}
+
+span a:hover {
+    color: #da141a;
+    text-decoration: none;
 }

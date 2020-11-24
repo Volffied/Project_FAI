@@ -283,7 +283,7 @@
             </g>
         </svg>
         <h1>BRANDS</h1>
-        <p>Our Beloved Official Stores</p>
+        <p>Our Beloved Official Stores <span><a href="#">See All Brands</a></span></p>
         <div class="brand-wrapper">
             <div id="carousel-2" class="carousel slide" data-interval="false" data-ride="carousel" style="height: 100%">
                 <div class="carousel-inner" style="height: 100%">
@@ -338,6 +338,7 @@
     </div>
     <div class="container-products">
         <h1>FEATURED PRODUCTS</h1>
+        <p>Our Most Bought Products <span><a href="#">See All Products</a></span></p>
         @php
             $ctr = 0;
         @endphp
@@ -374,42 +375,6 @@
             var harga = $(this).text();
             $(this).text(formatRupiah(harga,'Rp. '));
         });
-        $(".container-header").addClass('fadeInDown');
-        const targets = document.querySelectorAll('img');
-        const lazyLoad = target =>{
-            const io = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting){
-                        const img = entry.target;
-                        const src = img.getAttribute('data-lazy');
-
-                        if(src!=null){
-                            img.setAttribute('src',src);
-                            img.classList.add('fadeInUp');
-                        }
-
-                        observer.disconnect();
-                    }
-                });
-            });
-            io.observe(target);
-        };
-        targets.forEach(lazyLoad);
-        function formatRupiah(angka, prefix){
-            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-            split   		= number_string.split(','),
-            sisa     		= split[0].length % 3,
-            rupiah     		= split[0].substr(0, sisa),
-            ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-
-            if(ribuan){
-                separator = sisa ? '.' : '';
-                rupiah += separator + ribuan.join('.');
-            }
-
-            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
-        }
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
