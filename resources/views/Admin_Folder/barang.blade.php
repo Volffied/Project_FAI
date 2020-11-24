@@ -15,6 +15,8 @@
                     <li class="breadcrumb-item"><a href="{{ url('Admin') }}">Home</a></li>
                     <li class="breadcrumb-item">Admin</li>
                     <li class="breadcrumb-item active">Barang</li>
+                    <li class="breadcrumb-item"><a href="#listBarang">List Barang</a></li>
+                    <li class="breadcrumb-item"><a href="#inputBarang">Input Barang</a></li>
                     </ol>
                 </div>
             </div>
@@ -38,7 +40,7 @@
                                 <h2 class="card-title">Barang</h2>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body">
+                            <div class="card-body" id="listBarang">
                                 <table id="example2" class="table table-bordered table-hover">
                                     <style>
                                         .thead{
@@ -57,6 +59,7 @@
                                             <th scope="col">Gambar</th>
                                             <th scope="col">Nama</th>
                                             <th scope="col">kategori</th>
+                                            <th scope="col">Brand</th>
                                             <th scope="col">Harga</th>
                                             <th scope="col">Stok</th>
                                             <th scope="col">Action</th>
@@ -69,7 +72,8 @@
                                                 <td scope="row">{{ $ctr }}</td>
                                                 <td><img src="{{ $item->gambar }}" alt="" style="width: 80px; height: 80px;"></td>
                                                 <td>{{ $item->nama }}</td>
-                                                <td>{{ $item->nama_kat }}</td>
+                                                <td>{{ $item->id_kat." - ".$item->nama_kat }}</td>
+                                                <td>{{ $item->id_brand." - ".$item->nama_brand }}</td>
                                                 <td>Rp. {{ $item->harga }},00</td>
                                                 <td>{{ $item->stok }}</td>
                                                 <td><a href="#" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Delete</a></td>
@@ -92,7 +96,7 @@
 @endsection
 
 @section('container-body-page')
-    <div class="container-form-input-admin-barang">
+    <div class="container-form-input-admin-barang" id="inputBarang">
         <form action="{{ url('Admin/tambahBarang') }}" method="post">
             @csrf
             <div class="form-row">
@@ -149,10 +153,45 @@
                         @endisset
                     </select>
                 </div>
+                <input type="hidden" name="id_barang" id="idbarang">
             </div>
             <div class="form-row" style="float: right;">
-                <input type="submit" class="btn btn-primary" name="btnadd" value="Submit">
+                <input type="submit" class="btn btn-primary" id="btnaddBarang" name="btnadd" value="Submit">
             </div>
         </form>
     </div>
+    <script>
+        highlight_row() ;
+        function highlight_row() {
+            var table = document.getElementById('example2');
+            var cells = table.getElementsByTagName('td');
+
+
+            for (var i = 0; i < cells.length; i++) {
+                var cell = cells[i];
+                cell.onclick = function () {
+                    var rowId = this.parentNode.rowIndex;
+
+                    var rowsNotSelected = table.getElementsByTagName('tr');
+                    for (var row = 0; row < rowsNotSelected.length; row++) {
+                        rowsNotSelected[row].style.backgroundColor = "";
+                        rowsNotSelected[row].classList.remove('selected');
+                    }
+                    var rowSelected = table.getElementsByTagName('tr')[rowId];
+                    rowSelected.className += " selected";
+
+                    msg = rowSelected.cells[0].innerHTML+" "+rowSelected.cells[1].innerHTML+" "+rowSelected.cells[2].innerHTML+" "+rowSelected.cells[3].innerHTML+" "+rowSelected.cells[4].innerHTML+" "+rowSelected.cells[5].innerHTML+" "+rowSelected.cells[6].innerHTML;
+                    msg += " ";
+                    document.getElementById("btnaddBarang").value = "Update";
+                    document.getElementById("txtgambar").value    = rowSelected.cells[1].innerHTML;
+                    document.getElementById("txtnama").value   = rowSelected.cells[2].innerHTML;
+                    document.getElementById("cbpilihkategori").value   = rowSelected.cells[3].innerHTML.substring(0,1);
+                    document.getElementById("cbpilihbrand").value   = rowSelected.cells[4].innerHTML.substring(0,1);
+                    document.getElementById("txtharga").value   = rowSelected.cells[5].innerHTML.substring(3,rowSelected.cells[5].innerHTML.length);
+                    document.getElementById("txtstok").value   = rowSelected.cells[6].innerHTML;
+                    document.getElementById("idbarang").value   = rowSelected.cells[0].innerHTML;
+                }
+            }
+        }
+    </script>
 @endsection

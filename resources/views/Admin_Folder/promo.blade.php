@@ -1,6 +1,6 @@
 @extends("Admin_Folder.BlueprintAdmin")
 @section('container-body-page')
-<div class="container-form-input-admin-promo">
+<div class="container-form-input-admin-promo" id="inputPromo">
 <form action="{{ url('Admin/promoRoute') }}" method="post">
     @csrf
     <div class="form-row">
@@ -36,7 +36,8 @@
         </div>
     </div>
     <div class="form-row" style="float: right;">
-        <input type="submit" class="btn btn-primary" name="btnadd" value="Submit">
+        <input type="submit" class="btn btn-primary" name="btnadd" id="btnaddPromo" value="Submit">
+        <input type="hidden" name="id_promo" id="idpromo">
     </div>
 </form>
 </div>
@@ -57,6 +58,8 @@
                     <li class="breadcrumb-item"><a href="{{ url('Admin') }}">Home</a></li>
                     <li class="breadcrumb-item">Admin</li>
                     <li class="breadcrumb-item active">Promo</li>
+                    <li class="breadcrumb-item "><a href="#">List Promo</a></li>
+                    <li class="breadcrumb-item"><a href="#inputPromo">Input Promo</a></li>
                     </ol>
                 </div>
             </div>
@@ -77,7 +80,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header" id="listPromo">
                                 <h2 class="card-title">Promo</h2>
                             </div>
                             <div class="card-body">
@@ -109,7 +112,7 @@
                                             <tr>
                                                 <th scope="row">{{ $ctr }}</th>
                                                 <td>{{ $item->nama }}</td>
-                                                <td>{{ $item->diskon_potongan }} %</td>
+                                                <td>{{ $item->potongan }} %</td>
                                                 <td>{{ $item->tanggal_awal }}</td>
                                                 <td>{{ $item->tanggal_akhir }}</td>
                                                 <td><a href="#" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Delete</a></td>
@@ -131,4 +134,37 @@
         </section>
     </div>
 </div>
+<script>
+    highlight_row() ;
+    document.getElementById("btnaddPromo").value = "Submit";
+    function highlight_row() {
+        var table = document.getElementById('example2');
+        var cells = table.getElementsByTagName('td');
+
+
+        for (var i = 0; i < cells.length; i++) {
+            var cell = cells[i];
+            cell.onclick = function () {
+                var rowId = this.parentNode.rowIndex;
+
+                var rowsNotSelected = table.getElementsByTagName('tr');
+                for (var row = 0; row < rowsNotSelected.length; row++) {
+                    rowsNotSelected[row].style.backgroundColor = "";
+                    rowsNotSelected[row].classList.remove('selected');
+                }
+                var rowSelected = table.getElementsByTagName('tr')[rowId];
+                rowSelected.className += " selected";
+
+                msg = rowSelected.cells[0].innerHTML+" "+rowSelected.cells[1].innerHTML+" "+rowSelected.cells[2].innerHTML+" "+rowSelected.cells[3].innerHTML+" "+rowSelected.cells[4].innerHTML;
+                msg += " ";
+                document.getElementById("btnaddPromo").value = "Update";
+                document.getElementById("txtnama").value    = rowSelected.cells[1].innerHTML;
+                document.getElementById("diskon").value    = rowSelected.cells[2].innerHTML.substring(0,rowSelected.cells[2].innerHTML.indexOf(" "));
+                document.getElementById("tglawal").value    = rowSelected.cells[3].innerHTML;
+                document.getElementById("tglakhir").value    = rowSelected.cells[4].innerHTML;
+                document.getElementById("idpromo").value   = rowSelected.cells[0].innerHTML;
+            }
+        }
+    }
+</script>
 @endsection

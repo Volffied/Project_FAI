@@ -1,24 +1,34 @@
 @extends("Admin_Folder.BlueprintAdmin")
 @section('container-body-page')
-<div class="container-form-input-admin-member">
+<div class="container-form-input-admin-member" id="inputMember">
     <form action="{{ url('Admin/tambahJenisMember') }}" method="post">
         @csrf
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="txtnama">Nama</label>
                 <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="Nama">
+                @error('txtnama')
+                    <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
+                @enderror
             </div>
             <div class="form-group col-md-6">
                 <label for="txtpoin">Minimal Poin</label>
                 <input type="number" class="form-control" id="txtpoin" name="txtpoin" placeholder="Poin">
+                @error('txtpoin')
+                    <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
+                @enderror
             </div>
         </div>
         <div class="form-group col-md-6">
             <label for="txtpotongan">Potongan</label>
             <input type="number" class="form-control" id="txtpotongan" name="txtpotongan" placeholder="Potongan">
+            @error('txtpotongan')
+                <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
+            @enderror
         </div>
         <div class="form-row" style="float: right;">
-            <input type="submit" class="btn btn-primary" name="btnadd" value="Submit">
+            <input type="submit" class="btn btn-primary" name="btnadd" id="btnaddMember" value="Submit">
+            <input type="hidden" name="id_jenis_member" id="idjenismember">
         </div>
     </form>
 </div>
@@ -39,6 +49,8 @@
                     <li class="breadcrumb-item"><a href="{{ url('Admin') }}">Home</a></li>
                     <li class="breadcrumb-item">Admin</li>
                     <li class="breadcrumb-item active">Member</li>
+                    <li class="breadcrumb-item"><a href="#listMember">List Member</a></li>
+                    <li class="breadcrumb-item"><a href="#inputMember">Input Member</a></li>
                     </ol>
                 </div>
             </div>
@@ -59,7 +71,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header" id="listMember">
                                 <h2 class="card-title">Promo</h2>
                             </div>
                             <div class="card-body">
@@ -109,4 +121,36 @@
         </section>
     </div>
 </div>
+<script>
+    highlight_row() ;
+    document.getElementById("btnaddMember").value = "Submit";
+    function highlight_row() {
+        var table = document.getElementById('example2');
+        var cells = table.getElementsByTagName('td');
+
+
+        for (var i = 0; i < cells.length; i++) {
+            var cell = cells[i];
+            cell.onclick = function () {
+                var rowId = this.parentNode.rowIndex;
+
+                var rowsNotSelected = table.getElementsByTagName('tr');
+                for (var row = 0; row < rowsNotSelected.length; row++) {
+                    rowsNotSelected[row].style.backgroundColor = "";
+                    rowsNotSelected[row].classList.remove('selected');
+                }
+                var rowSelected = table.getElementsByTagName('tr')[rowId];
+                rowSelected.className += " selected";
+
+                msg = rowSelected.cells[0].innerHTML+" "+rowSelected.cells[1].innerHTML+" "+rowSelected.cells[2].innerHTML+" "+rowSelected.cells[3].innerHTML;
+                msg += " ";
+                document.getElementById("btnaddMember").value = "Update";
+                document.getElementById("txtnama").value    = rowSelected.cells[1].innerHTML;
+                document.getElementById("txtpoin").value   = rowSelected.cells[2].innerHTML;
+                document.getElementById("txtpotongan").value   = rowSelected.cells[3].innerHTML.substring(0,rowSelected.cells[3].innerHTML.indexOf(" "));
+                document.getElementById("idjenismember").value   = rowSelected.cells[0].innerHTML;
+            }
+        }
+    }
+</script>
 @endsection
