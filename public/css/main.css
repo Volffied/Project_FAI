@@ -34,3 +34,152 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
     -moz-appearance: textfield;
 }
+
+.container-header {
+    width: 78vw;
+    padding-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    z-index: 999;
+    animation-duration: 0.5s;
+}
+
+img {
+    filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.433));
+}
+
+.form-search {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 2%;
+}
+
+.form-search input[type="text"] {
+    width: 50%;
+    margin-left: 1%;
+}
+
+.form-search button {
+    width: 50px;
+    height: 50px;
+    margin: 0 !important;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-search button:focus {
+    border: none;
+    outline: none;
+}
+
+.container-nav {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    background-color: #ff151b;
+    border-right: solid 2px #ff151b;
+    padding: 0 0 0 1%;
+    -webkit-box-shadow: 0px 11px 17px -2px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 0px 11px 17px -2px rgba(0, 0, 0, 0.35);
+    box-shadow: 0px 11px 17px -2px rgba(0, 0, 0, 0.35);
+}
+
+.link-wrapper {
+    display: table;
+    width: 80%;
+    height: 100%;
+    position: relative;
+}
+
+.container-nav a {
+    font-family: "Montserrat";
+    font-weight: bold;
+    color: #261830;
+    text-align: center;
+    text-decoration: none;
+}
+
+.container-nav a {
+    margin: 2.5%;
+}
+
+.svg-box {
+    width: 43px;
+    height: 43px;
+    background-color: #261830;
+    border: 2px solid #261830;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin: 1%;
+    transition: all 0.5s;
+    position: relative;
+}
+
+.link-wrapper a {
+    color: #261830;
+    font-size: 1vw;
+    font-family: "Montserrat";
+    font-weight: 800;
+    transition: all 0.5s;
+    height: 100%;
+    width: 10%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+}
+
+.container-notifCart {
+    width: 60%;
+    height: 100%;
+    position: absolute;
+    left: 20%;
+    top: 0;
+    z-index: -3;
+    background-color: #160d1c;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: #ff151b;
+    font: 600 1.5em "Montserrat";
+}
+
+.link-wrapper a:hover {
+    background-color: #261830;
+    border-color: #261830;
+    color: #ff151b;
+}
+
+.svg-box p {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #ff151b;
+    font-size: 12px;
+    font-family: "Montserrat";
+    background-color: #261830;
+}
+
+.svg-box svg {
+    transition: all 0.5s;
+}
+
+.svg-box:hover {
+    background-color: #ff151b;
+    cursor: pointer;
+}
+
+.svg-box:hover .fill-svg {
+    fill: #261830;
+}

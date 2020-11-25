@@ -24,15 +24,15 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
         $(document).ready(function(){
-            if($('img[data-lazy]').hasClass('fadeFromDown')){
+            if($('img[data-lazy]').hasClass('fadeFromLeft')){
                 gsap.to('img[data-lazy]',{
-                    y:50,
+                    x:-20,
                     opacity:0,
                     duration:0
                 });
             }else{
                 gsap.to('img[data-lazy]',{
-                    x:-20,
+                    y:50,
                     opacity:0,
                     duration:0
                 });
@@ -60,16 +60,15 @@
 
                         if(src!=null){
                             img.setAttribute('src',src);
-                            if(img.classList.contains('fadeFromDown')){
+                            if(img.classList.contains('fadeFromLeft')){
                                 gsap.to(img,{
-                                    y:0,
+                                    x:0,
                                     opacity:1,
                                     duration:1
                                 });
-                            }
-                            else if(img.classList.contains('fadeFromLeft')){
+                            }else{
                                 gsap.to(img,{
-                                    x:0,
+                                    y:0,
                                     opacity:1,
                                     duration:1
                                 });

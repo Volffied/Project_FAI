@@ -59,7 +59,12 @@
             <h1>History</h1>
         </div>
     </div>
-    <div class="totalHarga"></div>
+    <div class="totalHarga">
+        <p>Total Cost</p>
+        <h1 class="totalText">Rp. 800.000</h1>
+        <p>Promo Code</p>
+        <input type="text" name="promoInput" id="promoInput">
+    </div>
 @endsection
 
 @push('script')

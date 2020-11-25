@@ -39,12 +39,12 @@ class BarangModel extends Model
         return $query;
     }
 
-    public function getAllDataByColumn($column,$id)
+    public function getAllDataByColumn($column,$value)
     {
         $query = BarangModel::select('barang.*','kategori.nama as nama_kat','b.nama as nama_brand')
                             ->join('kategori','id_kat','barang.kode_kategori')
                             ->leftJoin('brand as b','id_brand','barang.kode_brand')
-                            ->where($column,$id)
+                            ->where($column,$value)
                             ->first();
         return $query;
     }

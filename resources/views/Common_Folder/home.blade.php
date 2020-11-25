@@ -310,7 +310,7 @@
                                         <input type="hidden" class="namaBrand" value="{{$data['brand'][$k]->nama}}">
                                         <div class="brand-bg"></div>
                                     {{-- image brand --}}
-                                        <img class="fadeFromDown" data-lazy="{{$data['brand'][$k]->gambar}}" class="brand-img" alt="{{$data['brand'][$k]->nama}}">
+                                        <img data-lazy="{{$data['brand'][$k]->gambar}}" class="brand-img fadeFromDown" alt="{{$data['brand'][$k]->nama}}">
                                         <p>{{$data['brand'][$k]->jumlah_barang}} Products</p>
                                     </div>
                                 @endfor
@@ -359,6 +359,7 @@
                         <p  class="category">{{$item->nama_kat}}</p>
                         <p class="price">{{$item->harga}}</p>
                     </div>
+                    <input type="hidden" class="id_barang" value="{{$item->id}}">
                     <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
                 </div>
             </div>
@@ -372,6 +373,7 @@
 
 @push('script')
     <script>
+        ajaxCart();
         gsap.from('.banner',{
             y:-20,
             duration:2
@@ -396,6 +398,35 @@
             nama = nama.toLowerCase();
             window.location.href = "/brand/"+nama;
         });
+
+        $(".cta-cart").click(function(){
+            var id = $(this).siblings('.id_barang').val();
+            ajaxCart(id);
+        });
+        gsap.to('.container-notifCart',{
+            y:'60%',
+            delay:4,
+            duration:0.5
+        });
+
+        function ajaxCart(id=-1) {
+            $.ajax({
+                method:"post",
+                url:"/addToCart/"+id,
+                success:function (result) {
+                    gsap.to('.container-notifCart',{
+                        y:'-60%',
+                        duration:0.5
+                    });
+                    setTimeout("$('.container-notifCart').html(result);",1000);
+                    gsap.to('.container-notifCart',{
+                        y:'60%',
+                        delay:1,
+                        duration:0.5
+                    });
+                }
+            });
+        }
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

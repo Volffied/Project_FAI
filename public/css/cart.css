@@ -279,4 +279,27 @@
     transform: rotate(270deg) translateY(-10px);
 }
 
-.totalHarga {}
+.totalHarga {
+    width: 550px;
+    height: 70vh;
+    border: solid 2px #ff151b;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    padding: 2% 0 0 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+.totalHarga p {
+    font: 800 1em "Montserrat";
+    color: #fff;
+    opacity: 0.2;
+    margin-bottom: 0;
+}
+
+.totalHarga h1 {
+    color: #73be73;
+    font: 600 3em "Montserrat";
+    margin-bottom: 5%;
+}
