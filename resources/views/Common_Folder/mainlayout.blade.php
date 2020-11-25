@@ -14,6 +14,7 @@
     crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js" integrity="sha512-wK2NuxEyN/6s53M8G7c6cRUXvkeV8Uh5duYS06pAdLq4ukc72errSIyyGQGYtzWEzvVGzGSWg8l79e0VkTJYPw==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     @yield('links')
 </head>
 <body>
@@ -21,23 +22,34 @@
     @yield('content')
     @yield('footer')
     <script>
+        gsap.registerPlugin(ScrollTrigger);
         $(document).ready(function(){
-            gsap.to('img[data-lazy]',{
-                y:50,
-                opacity:0,
-                duration:0
-            });
+            if($('img[data-lazy]').hasClass('fadeFromDown')){
+                gsap.to('img[data-lazy]',{
+                    y:50,
+                    opacity:0,
+                    duration:0
+                });
+            }else{
+                gsap.to('img[data-lazy]',{
+                    x:-20,
+                    opacity:0,
+                    duration:0
+                });
+            }
             gsap.from('.container-header',{
                 y:-150,
                 opacity:0,
                 duration:2
             });
-
-            gsap.from('.banner',{
-                y:-20,
-                duration:2
-            });
         });
+
+
+        $('.price').each(function(){
+            var harga = $(this).text();
+            $(this).text(formatRupiah(harga,'Rp. '));
+        });
+
         const targets = document.querySelectorAll('img');
         const lazyLoad = target =>{
             const io = new IntersectionObserver((entries, observer) => {
@@ -48,11 +60,20 @@
 
                         if(src!=null){
                             img.setAttribute('src',src);
-                            gsap.to(img,{
-                                y:0,
-                                opacity:1,
-                                duration:1
-                            });
+                            if(img.classList.contains('fadeFromDown')){
+                                gsap.to(img,{
+                                    y:0,
+                                    opacity:1,
+                                    duration:1
+                                });
+                            }
+                            else if(img.classList.contains('fadeFromLeft')){
+                                gsap.to(img,{
+                                    x:0,
+                                    opacity:1,
+                                    duration:1
+                                });
+                            }
                         }
 
                         observer.disconnect();
@@ -77,6 +98,20 @@
 
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
             return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
+        function checkOverflow(el)
+        {
+            var curOverflow = el.style.overflow;
+
+            if ( !curOverflow || curOverflow === "visible" )
+                el.style.overflow = "hidden";
+
+            var isOverflowing = el.clientWidth < el.scrollWidth
+                || el.clientHeight < el.scrollHeight;
+
+            el.style.overflow = curOverflow;
+
+            return isOverflowing;
         }
     </script>
     @stack('script')

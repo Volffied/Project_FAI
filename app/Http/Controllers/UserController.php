@@ -17,7 +17,7 @@ class UserController extends Controller
         $barang = new BarangModel();
         $brand = new BrandModel();
         $param['barang'] = $barang->getAllDataBarang();
-        $param['brand'] = $brand->getAllDataBrand();
+        $param['brand'] = $brand->getAllDataBrandWithCount();
         return view('Common_Folder.home',['data' => $param]);
     }
 
@@ -30,6 +30,22 @@ class UserController extends Controller
     public function Register()
     {
         return view('Common_Folder.register');
+    }
+
+    public function Brand($nama)
+    {
+        $brand = new BrandModel();
+        $barang = new BarangModel();
+        $brand = $brand->where('nama',$nama)->first();
+        $barang = $barang->getAllDatabyBrand($brand->id_brand);
+        return view('Common_Folder.brands',['brand' => $brand,'barang'=>$barang]);
+    }
+
+    public function Cart()
+    {
+        $barang = new BarangModel();
+        $barang = $barang->getAllDataByAmount(5);
+        return view('Common_Folder.cart',['barang' => $barang]);
     }
 
 

@@ -324,10 +324,19 @@ class BarangSeeder extends Seeder
             "kode_brand"    =>  4
         ]);
         BarangModel::insert([
-            "nama"          =>  "STEELSERIES QCK PRISM XL NEON RIDER",
-            "harga"         =>  1070000,
+            "nama"          =>  "STEELSERIES QCK G FUEL EDITION",
+            "harga"         =>  1830000,
             "stok"          =>  50,
-            "gambar"        =>  "https://media.steelseriescdn.com/thumbs/catalogue/products/01215-qck-prism-cloth-xl-neon-rider-edition/841472aebda44428b5893f0abb1475d2.png.350x280_q100_crop-fit_optimize.png",
+            "gambar"        =>  "https://media.steelseriescdn.com/thumbs/catalogue/products/01140-qck-g-fuel-edition/f7f553d5bdd84acabebba473f57b2f66.png.350x280_q100_crop-fit_optimize.png",
+            "status"        =>  1,
+            "kode_kategori" =>  2,
+            "kode_brand"    =>  4
+        ]);
+        BarangModel::insert([
+            "nama"          =>  "STEELSERIES QCK FAZE EDITION",
+            "harga"         =>  1830000,
+            "stok"          =>  50,
+            "gambar"        =>  "https://media.steelseriescdn.com/thumbs/catalogue/products/01040-qck-4-faze-clan-edition/7a45b79d05fb4303a597b6e72bfbce26.png.350x280_q100_crop-fit_optimize.png",
             "status"        =>  1,
             "kode_kategori" =>  2,
             "kode_brand"    =>  4
@@ -345,7 +354,7 @@ class BarangSeeder extends Seeder
             "nama"          =>  "STEELSERIES QCK NEON RIDER",
             "harga"         =>  380000,
             "stok"          =>  50,
-            "gambar"        =>  "https://media.steelseriescdn.com/thumbs/filer_public/cb/4f/cb4f7c43-fd7f-4727-804b-ceac3867e010/buyimg_qck_l_neonrider_003.png__1920x1080_q100_crop-fit_optimize_subsampling-2.png",
+            "gambar"        =>  "https://media.steelseriescdn.com/thumbs/catalogue/products/01214-qck-large-neon-rider-edition/e32b574ef3fc47c8a30fc37246861cc5.png.350x280_q100_crop-fit_optimize.png",
             "status"        =>  1,
             "kode_kategori" =>  2,
             "kode_brand"    =>  4

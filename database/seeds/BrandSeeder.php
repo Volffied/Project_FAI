@@ -28,7 +28,7 @@ class BrandSeeder extends Seeder
 
         BrandModel::insert([
             'nama' =>  'RAZER',
-            'gambar' => 'https://d2o7dtsnwzl7g9.cloudfront.net/tekzone/media/image/4d/46/g0/razer-logo.png',
+            'gambar' => 'https://orbitalnexuss.tv/assets/img/affiliates/Razer.png',
             'desc' => 'a Singaporean–American multinational technology company that designs, develops, and sells consumer electronics, financial services, and gaming hardware. Founded by Min-Liang Tan and Robert Krakoff, the company is headquartered in Queenstown, Singapore and Irvine, California, United States.',
             'status' => 1
         ]);

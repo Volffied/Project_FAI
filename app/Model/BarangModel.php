@@ -38,6 +38,35 @@ class BarangModel extends Model
                             ->get();
         return $query;
     }
+
+    public function getAllDataByColumn($column,$id)
+    {
+        $query = BarangModel::select('barang.*','kategori.nama as nama_kat','b.nama as nama_brand')
+                            ->join('kategori','id_kat','barang.kode_kategori')
+                            ->leftJoin('brand as b','id_brand','barang.kode_brand')
+                            ->where($column,$id)
+                            ->first();
+        return $query;
+    }
+
+    public function getAllDataByAmount($amount)
+    {
+        $query = BarangModel::select('barang.*','kategori.nama as nama_kat','b.nama as nama_brand')
+                            ->join('kategori','id_kat','barang.kode_kategori')
+                            ->leftJoin('brand as b','id_brand','barang.kode_brand')
+                            ->paginate($amount);
+        return $query;
+    }
+
+    public function getAllDatabyBrand($brand)
+    {
+        $query = BarangModel::select('barang.*','kategori.nama as nama_kat')
+                            ->join('kategori','id_kat','barang.kode_kategori')
+                            ->where('kode_brand',$brand)
+                            ->get();
+        return $query;
+    }
+
     public function getAllDatabyCat(){
         $query = BarangModel::select(["barang.id","barang.nama as barang_nama","barang.harga as barang_harga","barang.stok as barang_stok","barang.gambar as barang_gambar","kategori.id_kat as kategori_id","kategori.nama as kategori_nama"])
                             ->join("kategori","kategori.id_kat","barang.kode_kategori")

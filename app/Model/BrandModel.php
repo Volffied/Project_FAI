@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class BrandModel extends Model
 {
@@ -28,6 +29,13 @@ class BrandModel extends Model
     }
     public function getAllDataBrand(){
         $query = BrandModel::all();
+        return $query;
+    }
+
+    public function getAllDataBrandWithCount(){
+        $query = BarangModel::select(DB::raw('count(id) as jumlah_barang'),'brand.nama as nama','brand.gambar as gambar','brand.id_brand as id')->distinct()
+                                    ->join('brand','brand.id_brand','barang.kode_brand')
+                                    ->groupBy('kode_brand','brand.nama','brand.gambar','brand.id_brand')->orderBy('kode_brand','ASC')->get();
         return $query;
     }
 }
