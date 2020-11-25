@@ -11,6 +11,7 @@ use App\Model\PromoModel;
 use App\Rules\cekEmail;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class controllerAdmin extends Controller
 {
@@ -216,7 +217,7 @@ class controllerAdmin extends Controller
         $this->validate($request,$rules,$customError);
         $namaPeg = $request->txtnama;
         $emailPeg = $request->txtemail;
-        $passPeg = $request->txtpass;
+        $passPeg = Hash::make($request->txtpass);
         $phonePeg = $request->txtphone;
         $jenisPeg = $request->cbpilijenispegawai;
         $inputPegawai = new PegawaiModel();
