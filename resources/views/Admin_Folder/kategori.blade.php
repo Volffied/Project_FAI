@@ -1,7 +1,7 @@
 @extends("Admin_Folder.BlueprintAdmin")
 
 @section('container-body-page')
-<div class="container-form-input-admin-kategori">
+<div class="container-form-input-admin-kategori" id="inputKategori">
     <form action="{{ url('Admin/tambahKategori') }}" method="post">
         @csrf
         <div class="form-row">
@@ -14,7 +14,9 @@
             </div>
         </div>
         <div class="form-row" style="float: right;">
-            <input type="submit" class="btn btn-primary" name="btnadd" value="Submit">
+            <input type="submit" class="btn btn-primary" id="btnupdKategori" name="btnupdate" value="Update" style="visibility: hidden;">
+            <input type="submit" class="btn btn-primary" name="btnadd" id="btnaddKategori" value="Submit">
+            <input type="hidden" name="id_kategori" id="idkategori">
         </div>
     </form>
 </div>
@@ -35,6 +37,8 @@
                     <li class="breadcrumb-item"><a href="{{ url('Admin') }}">Home</a></li>
                     <li class="breadcrumb-item">Admin</li>
                     <li class="breadcrumb-item active">Kategori</li>
+                    <li class="breadcrumb-item "><a href="#">List Kategori</a></li>
+                    <li class="breadcrumb-item"><a href="#inputKategori">Input Kategori</a></li>
                     </ol>
                 </div>
             </div>
@@ -101,4 +105,34 @@
         </section>
     </div>
 </div>
+<script>
+    highlight_row() ;
+    function highlight_row() {
+        var table = document.getElementById('example2');
+        var cells = table.getElementsByTagName('td');
+
+
+        for (var i = 0; i < cells.length; i++) {
+            var cell = cells[i];
+            cell.onclick = function () {
+                var rowId = this.parentNode.rowIndex;
+
+                var rowsNotSelected = table.getElementsByTagName('tr');
+                for (var row = 0; row < rowsNotSelected.length; row++) {
+                    rowsNotSelected[row].style.backgroundColor = "";
+                    rowsNotSelected[row].classList.remove('selected');
+                }
+                var rowSelected = table.getElementsByTagName('tr')[rowId];
+                rowSelected.className += " selected";
+
+                msg = rowSelected.cells[0].innerHTML+" "+rowSelected.cells[1].innerHTML;
+                msg += " ";
+                document.getElementById("btnaddKategori").style.visibility = "hidden";
+                document.getElementById("btnupdKategori").style.visibility = "visible";
+                document.getElementById("txtnama").value    = rowSelected.cells[1].innerHTML;
+                document.getElementById("idkategori").value   = rowSelected.cells[0].innerHTML;
+            }
+        }
+    }
+</script>
 @endsection

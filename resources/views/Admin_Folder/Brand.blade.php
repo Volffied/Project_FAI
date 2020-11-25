@@ -30,7 +30,9 @@
             </div>
         </div>
         <div class="form-row" style="float: right;">
-            <input type="submit" class="btn btn-primary" name="btnadd" value="Submit">
+            <input type="submit" class="btn btn-primary" id="btnupdBrand" name="btnupdate" value="Update" style="visibility: hidden;">
+            <input type="submit" class="btn btn-primary" name="btnadd" id="btnaddBrand" value="Submit">
+            <input type="hidden" name="id_brand" id="idbrand">
         </div>
     </form>
 </div>
@@ -122,4 +124,36 @@
         </section>
     </div>
 </div>
+<script>
+    highlight_row() ;
+    function highlight_row() {
+        var table = document.getElementById('example2');
+        var cells = table.getElementsByTagName('td');
+
+
+        for (var i = 0; i < cells.length; i++) {
+            var cell = cells[i];
+            cell.onclick = function () {
+                var rowId = this.parentNode.rowIndex;
+
+                var rowsNotSelected = table.getElementsByTagName('tr');
+                for (var row = 0; row < rowsNotSelected.length; row++) {
+                    rowsNotSelected[row].style.backgroundColor = "";
+                    rowsNotSelected[row].classList.remove('selected');
+                }
+                var rowSelected = table.getElementsByTagName('tr')[rowId];
+                rowSelected.className += " selected";
+
+                msg = rowSelected.cells[0].innerHTML+" "+rowSelected.cells[1].innerHTML+" "+rowSelected.cells[2].innerHTML+" "+rowSelected.cells[3].innerHTML;
+                msg += " ";
+                document.getElementById("btnaddBrand").style.visibility = "hidden";
+                document.getElementById("btnupdBrand").style.visibility = "visible";
+                document.getElementById("txtgambar").value    = rowSelected.cells[1].innerHTML;
+                document.getElementById("txtnama").value   = rowSelected.cells[2].innerHTML;
+                document.getElementById("txtdesc").value   = rowSelected.cells[3].innerHTML;
+                document.getElementById("idjenismember").value   = rowSelected.cells[0].innerHTML;
+            }
+        }
+    }
+</script>
 @endsection

@@ -12,7 +12,7 @@ class PromoModel extends Model
     public $primaryKey      = "id";
     public $incrementing    = true;
     public $timestamps      = true;
-    protected $fillable     = ['nama','tanggal_awal','tanggal_akhir','diskon_potongan','status'];
+    protected $fillable     = ['nama','tanggal_awal','tanggal_akhir','potongan','status'];
 
     public function insertData($txtnama,$tglawal,$tglakhir,$diskon){
         $data = new PromoModel();
@@ -20,7 +20,7 @@ class PromoModel extends Model
         $data->nama             = $txtnama;
         $data->tanggal_awal     = $tglawal;
         $data->tanggal_akhir    = $tglakhir;
-        $data->diskon_potongan  = $diskon;
+        $data->potongan         = $diskon;
         $data->status           = 1;
         $data->save();
     }
