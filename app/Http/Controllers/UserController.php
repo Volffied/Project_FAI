@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Model\BarangModel;
 use App\Model\BrandModel;
+use App\Model\CartModel;
 use App\Model\CustomerModel;
+use App\Model\KategoriModel;
 use App\Model\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +20,34 @@ class UserController extends Controller
         $brand = new BrandModel();
         $param['barang'] = $barang->getAllDataBarang();
         $param['brand'] = $brand->getAllDataBrandWithCount();
+
+
         return view('Common_Folder.home',['data' => $param]);
+    }
+
+    public function addToCart($id){
+        $id_user =session()->get("userLogin")->id;
+        if($id != -1){
+            $databarang = new BarangModel;
+            $databarang = $databarang->getAllDataByColumn("id",$id);
+            $datacart = new CartModel;
+            $cartinsert = new CartModel;
+
+            $datacart = $datacart->getData($databarang->id,$id_user);
+            if($datacart == null){
+                $cartinsert->simpanData($databarang->id,$id_user,$databarang->nama_kat,1);
+            }
+            else{
+                $datacart->qty+=1;
+                $datacart->save();
+            }
+        }
+        $cart = new CartModel;
+        $cart = $cart->getAllCart($id_user);
+        if($cart == null){
+            $cart = 0;
+        }
+        return json_encode(count($cart));
     }
 
     public function Login()

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{asset('css/animation.css')}}" />
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
     <link rel="stylesheet" href="{{asset('css/home.css')}}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 @section('title')
@@ -373,6 +374,9 @@
 
 @push('script')
     <script>
+        $(function( $ ){
+          console.log($.ajax);
+        });
         ajaxCart();
         gsap.from('.banner',{
             y:-20,
@@ -401,34 +405,64 @@
 
         $(".cta-cart").click(function(){
             var id = $(this).siblings('.id_barang').val();
-            ajaxCart(id);
-        });
-        gsap.to('.container-notifCart',{
-            y:'60%',
-            delay:4,
-            duration:0.5
-        });
-
-        function ajaxCart(id=-1) {
             $.ajax({
-                method:"post",
                 url:"/addToCart/"+id,
+                type:"GET",
+                data:{},
                 success:function (result) {
+                    var data = JSON.parse(result);
                     gsap.to('.container-notifCart',{
                         y:'-60%',
                         duration:0.5
                     });
-                    setTimeout("$('.container-notifCart').html(result);",1000);
+                    console.log(data);
+
+                    setTimeout(function(){
+                        $('.container-notifCart').html(data);
+                    },1000);
+
                     gsap.to('.container-notifCart',{
                         y:'60%',
                         delay:1,
                         duration:0.5
                     });
+
+                }
+            });
+        });
+        gsap.to('.container-notifCart',{
+            y:'60%',
+            delay:2 ,
+            duration:0.5
+        });
+
+        function ajaxCart(id=-1) {
+            $.ajax({
+                url:"/addToCart/"+id,
+                type:"GET",
+                data:{},
+                success:function (result) {
+                    var data = JSON.parse(result);
+                    gsap.to('.container-notifCart',{
+                        y:'-60%',
+                        duration:0.5
+                    });
+                    console.log(data);
+
+                    setTimeout(function(){
+                        $('.container-notifCart').html(data);
+                    },1000);
+
+                    gsap.to('.container-notifCart',{
+                        y:'60%',
+                        delay:1,
+                        duration:0.5
+                    });
+
                 }
             });
         }
     </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 @endpush

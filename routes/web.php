@@ -45,6 +45,7 @@ Route::group(['prefix' => 'Admin'], function () {
 });
 
 Route::get('/register','UserController@Register');
+Route::get('/addToCart/{id}','UserController@addToCart');
 Route::get('/login','UserController@Login');
 Route::get('/brand/{nama}','UserController@Brand');
 Route::get('/cart','UserController@Cart');
