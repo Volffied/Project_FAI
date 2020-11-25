@@ -73,6 +73,9 @@ class controllerAdmin extends Controller
     }
 
     public function checkAddPromo(Request $request){
+        if($request->btnupdPromo){
+
+        }
         $rules = [
             "txtnama" => "required",
             "diskon" => "required",
