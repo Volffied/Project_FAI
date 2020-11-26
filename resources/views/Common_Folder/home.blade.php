@@ -444,7 +444,7 @@
                 success:function (result) {
                     var data = JSON.parse(result);
                     gsap.to('.container-notifCart',{
-                        y:'-60%',
+                        y:0,
                         duration:0.5
                     });
                     console.log(data);

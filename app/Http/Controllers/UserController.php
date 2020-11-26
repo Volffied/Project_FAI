@@ -7,13 +7,15 @@ use App\Model\BrandModel;
 use App\Model\CartModel;
 use App\Model\CustomerModel;
 use App\Model\KategoriModel;
+use App\Model\PromoModel;
 use App\Model\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    ///////////////PAGE CONTROLLER////////////////
+    /////////////// PAGE CONTROLLER ////////////////
+
     public function HalAwal()
     {
         $barang = new BarangModel();
@@ -23,31 +25,6 @@ class UserController extends Controller
 
 
         return view('Common_Folder.home',['data' => $param]);
-    }
-
-    public function addToCart($id){
-        $id_user =session()->get("userLogin")->id;
-        if($id != -1){
-            $databarang = new BarangModel;
-            $databarang = $databarang->getAllDataByColumn("id",$id);
-            $datacart = new CartModel;
-            $cartinsert = new CartModel;
-
-            $datacart = $datacart->getData($databarang->id,$id_user);
-            if($datacart == null){
-                $cartinsert->simpanData($databarang->id,$id_user,$databarang->nama_kat,1);
-            }
-            else{
-                $datacart->qty+=1;
-                $datacart->save();
-            }
-        }
-        $cart = new CartModel;
-        $cart = $cart->getAllCart($id_user);
-        if($cart == null){
-            $cart = 0;
-        }
-        return json_encode(count($cart));
     }
 
     public function Login()
@@ -78,7 +55,8 @@ class UserController extends Controller
     }
 
 
-    ///////////////PROCCESS CONTROLLER////////////////
+    /////////////// PROCCESS CONTROLLER ////////////////
+
     public function prosesLogin(Request $request)
     {
         $rules = [
@@ -133,8 +111,48 @@ class UserController extends Controller
         }
     }
 
-    public function getData()
+    //////////////// AJAX CONTROLLER /////////////////////
+
+    public function addToCart($id){
+        $id_user =session()->get("userLogin")->id;
+        if($id != -1){
+            $databarang = new BarangModel;
+            $databarang = $databarang->getAllDataByColumn("id",$id);
+            $datacart = new CartModel;
+            $cartinsert = new CartModel;
+
+            $datacart = $datacart->getData($databarang->id,$id_user);
+            if($datacart == null){
+                $cartinsert->insertData($databarang->id,$id_user,$databarang->nama_kat,1);
+            }
+            else{
+                $datacart->qty+=1;
+                $datacart->save();
+            }
+        }
+        $cart = new CartModel;
+        $cart = $cart->getAllCart($id_user);
+        if($cart == null){
+            $cart = 0;
+        }
+        return json_encode(count($cart));
+    }
+
+    public function checkPromo($checkBy,$value)
     {
-        # code...
+        if($checkBy == "kode"){
+            $dataPromo = new PromoModel;
+            $dataPromo = $dataPromo->getDataByCode($value);
+            $response = [];
+            $response['message'] = "Promo code doesn't exist";
+            $response['potongan'] = null;
+            if($dataPromo != null){
+                $response['potongan'] = $dataPromo->potongan;
+            }
+            return json_encode($response);
+        }else{
+            $dataPromo = new PromoModel;
+            $dataPromo = $dataPromo->getDataByMember($value);
+        }
     }
 }

@@ -62,8 +62,11 @@
     <div class="totalHarga">
         <p>Total Cost</p>
         <h1 class="totalText">Rp. 800.000</h1>
-        <p>Promo Code</p>
-        <input type="text" name="promoInput" id="promoInput">
+        <label for="promoInput"><p>Promo Code</p></label>
+        <div class="container-promo">
+            <input type="text" name="promoInput" id="promoInput" maxlength="6">
+            <p class="notif-promo">Code Applied</p>
+        </div>
     </div>
 @endsection
 

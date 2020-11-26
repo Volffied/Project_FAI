@@ -19,7 +19,7 @@ class CreatePegawaiModelsTable extends Migration
             $table->string('email',100);
             $table->string('password',255);
             $table->string('notlp',25);
-            $table->smallInteger('jenis');
+            $table->smallInteger('jenis')->comment('0(Master),1(Admin),2(Kurir),3(Customer Service)');
             $table->smallInteger('status');
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();

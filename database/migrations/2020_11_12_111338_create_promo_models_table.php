@@ -14,8 +14,9 @@ class CreatePromoModelsTable extends Migration
     public function up()
     {
         Schema::create('promo', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_promo');
             $table->string('nama',50);
+            $table->string('voucher',6);
             $table->date('tanggal_awal');
             $table->date('tanggal_akhir');
             $table->mediumInteger('potongan');

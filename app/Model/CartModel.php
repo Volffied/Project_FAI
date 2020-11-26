@@ -14,7 +14,7 @@ class CartModel extends Model
     public $timestamps      = true;
     protected $fillable     = ['kode_barang','kode_user','nama_kategori','deleted_at','qty'];
 
-    public function simpanData($kode_barang,$kode_user,$nama_kategori,$qty){
+    public function insertData($kode_barang,$kode_user,$nama_kategori,$qty){
         $cart = new CartModel();
         $cart->kode_barang     = $kode_barang;
         $cart->kode_user       = $kode_user;

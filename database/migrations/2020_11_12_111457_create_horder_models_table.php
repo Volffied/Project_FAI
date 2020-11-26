@@ -14,11 +14,12 @@ class CreateHorderModelsTable extends Migration
     public function up()
     {
         Schema::create('horder', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_horder');
             $table->date('tanggal_trans');
             $table->date('tanggal_pengiriman');
-            $table->mediumInteger('grandtotal');
-            $table->smallInteger('estimasi_waktu');
+            $table->bigInteger('subtotal')->comment('Harga Bersih');
+            $table->bigInteger('grandtotal');
+            $table->smallInteger('estimasi_waktu')->comment('Dalam Detik');
             $table->string('metode_pembayaran',13);
             $table->smallInteger('status_order');
             $table->smallInteger('status');

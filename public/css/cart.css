@@ -303,3 +303,20 @@
     font: 600 3em "Montserrat";
     margin-bottom: 5%;
 }
+
+#promoInput {
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.container-promo {
+    width: 60%;
+    position: relative;
+}
+
+.notif-promo {
+    position: absolute;
+    right: -40%;
+    top: 20%;
+    color: #ff151b;
+}
