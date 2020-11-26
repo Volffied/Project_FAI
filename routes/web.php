@@ -46,6 +46,8 @@ Route::group(['prefix' => 'Admin'], function () {
 
 Route::get('/register','UserController@Register');
 Route::get('/addToCart/{id}','UserController@addToCart');
+Route::get('/updateCart/{id_user}_{id_barang}_{qty?}','UserController@updateCart');
+Route::get('/checkPromo/{checkBy}_{value}','UserController@checkPromo');
 Route::get('/login','UserController@Login');
 Route::get('/brand/{nama}','UserController@Brand');
 Route::get('/cart','UserController@Cart');

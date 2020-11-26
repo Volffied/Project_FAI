@@ -14,7 +14,7 @@ class CreateJenisMemberModelsTable extends Migration
     public function up()
     {
         Schema::create('jenis_member', function (Blueprint $table) {
-            $table->bigIncrements('id_member')->start_from(0);
+            $table->bigIncrements('id_member');
             $table->string('nama',50);
             $table->integer('minimal_poin');
             $table->integer('potongan');

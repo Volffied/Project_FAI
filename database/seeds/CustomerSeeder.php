@@ -21,7 +21,7 @@ class CustomerSeeder extends Seeder
             'notlp' => '081231894694',
             'alamat' => 'Jl Raya',
             'status' => 1,
-            'kode_jenis_member' => 0
+            'kode_member' => 2
         ]);
         factory(CustomerModel::class,10)->make()->each(function($customer){
             $customer->save();

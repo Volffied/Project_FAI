@@ -280,28 +280,43 @@
 }
 
 .totalHarga {
-    width: 550px;
-    height: 70vh;
-    border: solid 2px #ff151b;
+    width: 450px;
+    min-height: 55vh;
     position: fixed;
-    right: 0;
-    bottom: 0;
-    padding: 2% 0 0 2%;
+    right: 100px;
+    bottom: 10vh;
+    padding: 2% 0 2% 2%;
     display: flex;
     flex-direction: column;
+    -webkit-box-shadow: 4px 5px 9px 3px rgba(0, 0, 0, 0.65);
+    box-shadow: 4px 5px 9px 3px rgba(0, 0, 0, 0.65);
+    transition: all 0.5s;
+    z-index: 10;
+    background-color: #261830;
 }
 
 .totalHarga p {
-    font: 800 1em "Montserrat";
+    font: 600 1em "Montserrat";
     color: #fff;
-    opacity: 0.2;
+    opacity: 0.4;
     margin-bottom: 0;
+    transition: all 0.5s;
 }
 
 .totalHarga h1 {
-    color: #73be73;
     font: 600 3em "Montserrat";
-    margin-bottom: 5%;
+    margin-bottom: 7%;
+    transition: all 0.5s;
+}
+
+.totalText {
+    color: #ff151b;
+    font-size: 2.5em !important;
+}
+
+.grandTotalText {
+    color: #73be73;
+    font-size: 2.5em !important;
 }
 
 #promoInput {
@@ -310,13 +325,37 @@
 }
 
 .container-promo {
-    width: 60%;
+    width: 70%;
     position: relative;
 }
 
 .notif-promo {
+    vertical-align: middle;
     position: absolute;
-    right: -40%;
-    top: 20%;
-    color: #ff151b;
+    right: 5%;
+    top: 25%;
+    margin: 0 !important;
+    opacity: 0;
+    font-weight: 500 !important;
+    font-size: 1em !important;
+    transition: all 0.5s;
+}
+
+.memberPromo {
+    margin: 1% 0 7% 0 !important;
+    font: 500 1em "Montserrat" !important;
+    color: #73be73 !important;
+    opacity: 1 !important;
+}
+
+.success {
+    color: #73be73 !important;
+}
+
+.failed {
+    color: #ff151b !important;
+}
+
+.buttonCheckout {
+    width: 50%;
 }

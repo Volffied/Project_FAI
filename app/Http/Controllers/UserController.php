@@ -6,6 +6,7 @@ use App\Model\BarangModel;
 use App\Model\BrandModel;
 use App\Model\CartModel;
 use App\Model\CustomerModel;
+use App\Model\JenisMemberModel;
 use App\Model\KategoriModel;
 use App\Model\PromoModel;
 use App\Model\UserModel;
@@ -49,9 +50,13 @@ class UserController extends Controller
 
     public function Cart()
     {
-        $barang = new BarangModel();
-        $barang = $barang->getAllDataByAmount(5);
-        return view('Common_Folder.cart',['barang' => $barang]);
+        // $barang = new BarangModel();
+        // $barang = $barang->getAllDataByAmount(5);
+        $potonganMember = new JenisMemberModel;
+        $potonganMember = $potonganMember->getPotonganByID(session()->get('userLogin')->kode_member);
+        $allCart = new CartModel;
+        $allCart = $allCart->getAllCart(session()->get('userLogin')->id);
+        return view('Common_Folder.cart',['barang' => $allCart,'potongan'=>$potonganMember->potongan]);
     }
 
 
@@ -144,15 +149,37 @@ class UserController extends Controller
             $dataPromo = new PromoModel;
             $dataPromo = $dataPromo->getDataByCode($value);
             $response = [];
-            $response['message'] = "Promo code doesn't exist";
+            $response['message'] = "Invalid Code";
             $response['potongan'] = null;
+            $response['status'] = false;
             if($dataPromo != null){
                 $response['potongan'] = $dataPromo->potongan;
+                $response['message'] = "Discount ".$dataPromo->potongan."%";
+                $response['status'] = true;
             }
             return json_encode($response);
+        }else if($checkBy == "member"){
+            $dataPromo = new JenisMemberModel;
+            $dataPromo = $dataPromo->getPotonganByID($value);
+            // $dataPromo = $dataPromo->getMemberFromSucceededPoint($value);
+            $response = [];
+            $response['member'] = $dataPromo->nama;
+            $response['potongan'] = $dataPromo->potongan;
+            return json_encode($response);
+        }
+    }
+
+    public function updateCart($id_user,$id_barang,$qty=null)
+    {
+        if($qty==null){
+            CartModel::where('kode_user',$id_user)->where('kode_barang',$id_barang)->delete();
+            return "Product removed";
         }else{
-            $dataPromo = new PromoModel;
-            $dataPromo = $dataPromo->getDataByMember($value);
+            $cart = new CartModel;
+            $cart = $cart->getData($id_barang,$id_user);
+            $cart->qty = $qty;
+            $cart->save();
+            return "Product Updated";
         }
     }
 }

@@ -13,6 +13,7 @@
 @endsection
 
 @section('content')
+    <input type="hidden" name="id_user" id="id_user" value="{{session()->get('userLogin')->id}}">
     <input type="hidden" name="backUrl" id="backUrl" value="{{url()->previous()}}">
     <div class="container-backNav">
         <div class="navbar-wrapper">
@@ -43,17 +44,20 @@
                     <div class="jumlah-harga">
                         <div class="container-input">
                             <div class="button-min">-</div>
-                            <input type="number" name="jumlah_{{$item->id}}" id="jumlah_{{$item->id}}" class="input-jumlah" value="1">
+                            <input type="number" name="jumlah_{{$item->id}}" id="jumlah_{{$item->id}}" class="input-jumlah" value="{{$item->qty}}">
                             <div class="button-plus">+</div>
                         </div>
                         <input type="hidden" name="harga" class="harga-hidden" value="{{$item->harga}}">
                         <p class="harga">0</p>
                     </div>
+                    <input type="hidden" name="" class="id_barang" value="{{$item->id}}">
                     <div class="removeButton">
                         <svg aria-hidden="true" width="20%" focusable="false" data-prefix="fas" data-icon="trash" class="svg-inline--fa fa-trash fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#ff151b" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path></svg>
                     </div>
                 </div>
             @endforeach
+
+            <p class="continue"><- Continue Shopping</p>
         </div>
         <div id="container-history">
             <h1>History</h1>
@@ -65,14 +69,69 @@
         <label for="promoInput"><p>Promo Code</p></label>
         <div class="container-promo">
             <input type="text" name="promoInput" id="promoInput" maxlength="6">
-            <p class="notif-promo">Code Applied</p>
+            <p class="notif-promo">6 Characters Code</p>
+            <input type="hidden" name="potonganBiasa" id="potonganBiasa">
+            <input type="hidden" name="potonganMember" id="potonganMember" value="{{$potongan}}">
         </div>
+        <p class="memberPromo"></p>
+        <p>Grand Total</p>
+        <h1 class="grandTotalText">Rp. 600.000</h1>
+        <button class="buttonCheckout">CHECKOUT</button>
     </div>
 @endsection
 
 @push('script')
 
     <script>
+
+        function checkDiscount() {
+            var discount = 0;
+            if($('#potonganMember').val() != ""){
+                discount += parseInt($('#potonganMember').val());
+                $('.memberPromo').html('+ Member Discount '+discount+"%");
+            }
+            if($('#potonganBiasa').val() != ""){
+                discount += parseInt($('#potonganBiasa').val());
+            }
+            return discount;
+        }
+
+        function updateHarga() {
+            $(".harga").each(function(){
+                var harga = $(this).siblings('.harga-hidden').val();
+                var jumlah = $(this).siblings('.container-input').children('.input-jumlah').val();
+                $(this).html(formatRupiah((harga*jumlah).toString(),'Rp. '));
+            });
+            updateTotal();
+        }
+
+        function updateTotal() {
+            var total = 0;
+            $('.harga-hidden').each(function(){
+                var harga = $(this).val();
+                var jumlah = $(this).siblings('.container-input').children('.input-jumlah').val();
+                total += harga*jumlah;
+            });
+            $('.totalText').html(formatRupiah(total.toString(),'Rp. '));
+            var discount = checkDiscount();
+            var grandtotal = total-total*(discount/100);
+            console.log('total: '+total+' | grandtotal: '+grandtotal+" | Discount: "+discount);
+            $('.grandTotalText').html(formatRupiah((grandtotal).toString(),'Rp. '));
+
+        }
+
+        function ajaxCart(kodeBarang,qty=null) {
+            var kodeUser = $('#id_user').val();
+            if(qty != null){
+                qty = "_"+qty;
+            }
+            $.ajax({
+                url:"/updateCart/"+kodeUser+"_"+kodeBarang+qty,
+                type:"GET",
+                data:{}
+            });
+        }
+
         $("#logo").click(function(){
             window.location.href="/index";
         });
@@ -81,14 +140,6 @@
             updateHarga();
             $('body').css('overflow-y','hidden');
         });
-
-        function updateHarga() {
-            $(".harga").each(function(){
-                var harga = $(this).siblings('.harga-hidden').val();
-                var jumlah = $(this).siblings('.container-input').children('.input-jumlah').val();
-                $(this).html(formatRupiah((harga*jumlah).toString(),'Rp. '));
-            });
-        }
 
         $(".backButton").mouseover(function(){
             gsap.to('.svg-back',{
@@ -119,6 +170,7 @@
             if(jumlah != 0){
                 jumlah--;
                 $(this).siblings('input').val(jumlah);
+                $(this).siblings('input').trigger("change");
                 updateHarga();
             }
         });
@@ -127,6 +179,7 @@
             var jumlah = $(this).siblings('input').val();
             jumlah++;
             $(this).siblings('input').val(jumlah);
+            $(this).siblings('input').trigger("change");
             updateHarga();
 
         });
@@ -139,8 +192,17 @@
 
         $(document).on('blur','.input-jumlah',function(){
             var jumlah = $(this).val();
-            if(jumlah == "")$(this).val(1);
+            if(jumlah == ""){
+                $(this).val(1);
+            }
             updateHarga();
+            $(this).trigger('change');
+        });
+
+        $(document).on('change','.input-jumlah',function(){
+            var jumlah = $(this).val();
+            var kodeBarang = $(this).attr('id').replace('jumlah_','');
+            ajaxCart(kodeBarang,jumlah);
         });
 
         $("#container-cart").carousel({
@@ -169,6 +231,17 @@
                     opacity:1,
                     duration:0.5
                 });
+                $(".totalHarga *").show();
+                $(".totalHarga").css('box-shadow','4px 5px 9px 3px rgba(0, 0, 0, 0.65)');
+                gsap.to('.totalHarga *',{
+                    opacity:1,
+                    delay:1,
+                    duration:0.5
+                });
+                gsap.to('.totalHarga',{
+                    opacity:1,
+                    duration:0.5
+                });
                 carousel = 1;
             }
         });
@@ -194,8 +267,73 @@
                     opacity:0,
                     duration:0.5
                 });
+                $(".totalHarga").css('box-shadow','none');
+                gsap.to('.totalHarga *',{
+                    opacity:0,
+                    duration:0.5
+                });
+                gsap.to('.totalHarga',{
+                    opacity:0,
+                    delay:0.5,
+                    duration:0.5
+                });
+                setTimeout(function(){
+                    $(".totalHarga *").hide();
+                },1500);
                 carousel = 2;
             }
+        });
+
+        $("#promoInput").change(function(){
+            var kode = $(this).val();
+            if(kode.length == 6){
+                $.ajax({
+                    url:"/checkPromo/kode_"+kode,
+                    type:"GET",
+                    data:{},
+                    success:function (result) {
+                        var data = JSON.parse(result);
+                        $('.notif-promo').css('opacity',0);
+
+                        setTimeout(function(){
+                            $('.notif-promo').html(data['message']);
+                            $('.notif-promo').attr('class','notif-promo');
+                            if(data['status']){
+                                $('.notif-promo').addClass('success');
+                                var potongan = data['potongan'];
+                                $('#potonganBiasa').val(potongan);
+                                updateTotal();
+                            }
+                            else{
+                                $('.notif-promo').addClass('failed');
+                                $('#potonganBiasa').val("");
+                                updateTotal();
+                            }
+                            $('.notif-promo').css('opacity',1);
+                        },200);
+
+                    }
+                });
+            }else if(kode.length == 0){
+                $('.notif-promo').attr('class','notif-promo');
+                $('.notif-promo').html('6 Characters Code');
+                $('.notif-promo').css('opacity',0.4);
+                $('#potonganBiasa').val("");
+                updateTotal();
+            }else{
+                $('.notif-promo').addClass('failed');
+                $('.notif-promo').html('Invalid Code');
+                $('.notif-promo').css('opacity',1);
+                $('#potonganBiasa').val("");
+                updateTotal();
+            }
+        });
+
+        $('.removeButton').click(function(){
+            var kodeBarang = $(this).siblings('.id_barang').val();
+            $(this).parent().remove();
+            ajaxCart(kodeBarang);
+            updateHarga();
         });
     </script>
 

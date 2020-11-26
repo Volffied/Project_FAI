@@ -14,7 +14,7 @@ class CustomerModel extends Authenticatable
     public $primaryKey      = "id";
     public $incrementing    = true;
     public $timestamps      = true;
-    protected $fillable     = ['id','nama','email','password','poin','notlp','alamat','status','kode_jenis_member'];
+    protected $fillable     = ['id','nama','email','password','poin','notlp','alamat','status','kode_member'];
 
     public function insertData($email,$pass,$nama,$alamat,$notlp){
         $data   = new CustomerModel();

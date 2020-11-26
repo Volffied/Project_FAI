@@ -25,7 +25,7 @@ class CartModel extends Model
 
     public function getAllCart($user_id)
     {
-        $query = CartModel::select('cart.*')
+        $query = CartModel::select('barang.*','qty')
                             ->join('barang','id','kode_barang')
                             ->where('kode_user',$user_id)
                             ->get();

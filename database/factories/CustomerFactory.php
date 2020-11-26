@@ -16,6 +16,6 @@ $factory->define(CustomerModel::class, function (Faker $faker) {
         'notlp'=>$faker->unique()->PhoneNumber,
         'alamat'=>$faker->unique()->address,
         'status'=>1,
-        'kode_jenis_member'=>$faker->numberBetween($min = 1, $max = 3)
+        'kode_member'=>$faker->numberBetween($min = 1, $max = 3)
     ];
 });

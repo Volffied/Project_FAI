@@ -20,19 +20,19 @@ class MemberSeeder extends Seeder
 
         JenisMemberModel::insert([
             'nama' => 'warrior',
-            'potongan' => 5,
+            'potongan' => 2,
             'minimal_poin' => 150
         ]);
 
         JenisMemberModel::insert([
             'nama' => 'warlock',
-            'potongan' => 8,
+            'potongan' => 5,
             'minimal_poin' => 250
         ]);
 
         JenisMemberModel::insert([
             'nama' => 'demigod',
-            'potongan' => 10,
+            'potongan' => 8,
             'minimal_poin' => 500
         ]);
     }

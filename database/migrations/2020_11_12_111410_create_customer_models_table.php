@@ -22,7 +22,7 @@ class CreateCustomerModelsTable extends Migration
             $table->string('notlp',25);
             $table->string('alamat',100);
             $table->smallInteger('status');
-            $table->bigInteger('kode_jenis_member')->comment('0(Amateur),1(Warrior),2(Warlock),3(Demigod)');
+            $table->bigInteger('kode_member')->comment('0(Amateur),1(Warrior),2(Warlock),3(Demigod)');
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
