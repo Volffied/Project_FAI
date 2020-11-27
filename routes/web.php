@@ -62,3 +62,9 @@ Route::post('/prosesRegister','UserController@prosesRegister');
 Route::get('/index',function(){
     return redirect('/');
 });
+
+
+//midtrans
+Route::post('dataPayment', 'midtransController@dataPayment');
+Route::post('saveData', 'midtransController@saveData');
+Route::get('pagePayment', 'midtransController@pagePayment');

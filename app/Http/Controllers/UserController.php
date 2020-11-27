@@ -163,6 +163,7 @@ class UserController extends Controller
                 $response['potongan'] = $dataPromo->potongan;
                 $response['message'] = "Discount ".$dataPromo->potongan."%";
                 $response['status'] = true;
+                $response['kodepotongan'] = $dataPromo->id_promo;
             }
             return json_encode($response);
         }else if($checkBy == "member"){
