@@ -199,9 +199,16 @@ class controllerAdmin extends Controller
 
     public function DeleteBarang(Request $request)
     {
-        $idbarangDel = $request->idbaranghid;
-        $delBarang = BarangModel::find($idbarangDel)->delete();
-        return back();
+        if($request->btnDel == "Recover"){
+            $idbarangDel = $request->idbaranghid;
+            $delBarang = BarangModel::withTrashed()->where('id',$idbarangDel)->restore();
+            return back();
+        }else if($request->btnDel == "Delete"){
+            $idbarangDel = $request->idbaranghid;
+            $delBarang = BarangModel::find($idbarangDel)->delete();
+            return back();
+        }
+
     }
 
     public function addKategori(Request $request)

@@ -88,7 +88,15 @@
                                             <tr>
                                                 <th scope="row">{{ $ctr }}</th>
                                                 <td>{{ $item->nama }}</td>
-                                                <td><a href="#" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Delete</a></td>
+                                                <td><form action="{{ url('Admin/delkategori') }}" method="post">
+                                                        @csrf
+                                                        <input class="idkategorihidden" type="hidden" name="idkategorihid" value="{{ $item->id }}">
+                                                        @if ($item->deleted_at != null)
+                                                            <input class="btn btn-primary" type="submit" value="Recover" name="btnDel"></td>
+                                                        @else
+                                                            <input class="btn btn-danger" type="submit" value="Delete" name="btnDel"></td>
+                                                        @endif
+                                                    </form></td>
                                             </tr>
                                             <?php
                                                 $ctr = $ctr + 1;
