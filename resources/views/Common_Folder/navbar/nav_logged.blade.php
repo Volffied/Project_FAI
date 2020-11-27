@@ -20,7 +20,7 @@
                 <input type="text" name="search" id="search" placeholder="Search your item">
             </form>
             <a href="/">HOME</a>
-            <a href="/cart">CART
+            <a class="cart-nav" href="/cart">CART
                 <div class="container-notifCart"></div>
             </a>
             <a href="#">PROFILE</a>

@@ -407,10 +407,25 @@
             var id = $(this).siblings('.id_barang').val();
             ajaxCart(id);
         });
+
         gsap.to('.container-notifCart',{
             y:'60%',
             delay:2 ,
             duration:0.5
+        });
+
+        $(".cart-nav").mouseenter(function(){
+            gsap.to('.container-notifCart',{
+                y:'80%',
+                duration:0.5
+            });
+        });
+
+        $(".cart-nav").mouseleave(function(){
+            gsap.to('.container-notifCart',{
+                y:'60%',
+                duration:0.5
+            });
         });
 
         function ajaxCart(id=-1) {
@@ -421,7 +436,7 @@
                 success:function (result) {
                     var data = JSON.parse(result);
                     gsap.to('.container-notifCart',{
-                        y:0,
+                        y:"5%",
                         duration:0.5
                     });
                     console.log(data);
