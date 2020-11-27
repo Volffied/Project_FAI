@@ -148,7 +148,7 @@
                 msg += " ";
                 document.getElementById("btnaddBrand").style.visibility = "hidden";
                 document.getElementById("btnupdBrand").style.visibility = "visible";
-                document.getElementById("txtgambar").value    = rowSelected.cells[1].innerHTML;
+                document.getElementById("txtgambar").value    = rowSelected.cells[1].childNodes[0].getAttribute("src");
                 document.getElementById("txtnama").value   = rowSelected.cells[2].innerHTML;
                 document.getElementById("txtdesc").value   = rowSelected.cells[3].innerHTML;
                 document.getElementById("idjenismember").value   = rowSelected.cells[0].innerHTML;
