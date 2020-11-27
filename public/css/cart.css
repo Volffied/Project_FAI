@@ -359,3 +359,18 @@
 .buttonCheckout {
     width: 50%;
 }
+
+.continue p {
+    color: #ff151b;
+    font: 600 1em "Montserrat";
+    margin-left: 2%;
+}
+
+.continue {
+    width: 50%;
+    display: flex;
+}
+
+.continue:hover {
+    cursor: pointer;
+}

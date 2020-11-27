@@ -12,7 +12,7 @@ class CartModel extends Model
     public $primaryKey      = "id_cart";
     public $incrementing    = true;
     public $timestamps      = true;
-    protected $fillable     = ['kode_barang','kode_user','nama_kategori','deleted_at','qty'];
+    protected $fillable     = ['kode_barang','kode_user','nama_kategori','qty'];
 
     public function insertData($kode_barang,$kode_user,$nama_kategori,$qty){
         $cart = new CartModel();

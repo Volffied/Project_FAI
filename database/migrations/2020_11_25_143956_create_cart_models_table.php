@@ -19,7 +19,6 @@ class CreateCartModelsTable extends Migration
             $table->bigInteger('kode_user');
             $table->string('nama_kategori',255);
             $table->bigInteger('qty');
-            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class PegawaiSeeder extends Seeder
             'nama' => 'Master',
             'notlp' => '081231894694',
             'email' => 'masteradmin@gmail.com',
-            'password' => 'masteradmin',
+            'password' => Hash::make('masteradmin'),
             'jenis' => 0,
             'status' => 1
         ]);

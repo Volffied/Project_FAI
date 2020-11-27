@@ -240,17 +240,18 @@ class controllerAdmin extends Controller
         $this->validate($request,$rules,$customError);
         $emailLog = $request->email;
         $passwordLog = $request->password;
-        $userAvail = PegawaiModel::where('email',$emailLog)->where('password',$passwordLog)->first();
-
-        if($userAvail->jenis === 0){
-            $request->session()->put('adminLog', $userAvail);
-            return redirect("Master");
-        }else if($userAvail->jenis === 1){
-            $request->session()->put('adminLog', $userAvail);
-            return redirect("Admin");
-        }else if($userAvail->jenis === 2){
-            $request->session()->put('adminLog', $userAvail);
-            return redirect("Kurir");
+        $userAvail = PegawaiModel::where('email',$emailLog)->first();
+        if(Hash::check($passwordLog, $userAvail->password)){
+            if($userAvail->jenis === 0){
+                $request->session()->put('adminLog', $userAvail);
+                return redirect("Master");
+            }else if($userAvail->jenis === 1){
+                $request->session()->put('adminLog', $userAvail);
+                return redirect("Admin");
+            }else if($userAvail->jenis === 2){
+                $request->session()->put('adminLog', $userAvail);
+                return redirect("Kurir");
+            }
         }
     }
 }
