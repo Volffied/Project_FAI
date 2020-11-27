@@ -130,7 +130,7 @@
 #container-history {
     width: 100vw;
     height: 100vh;
-    padding-bottom: 10%;
+    padding-bottom: 5%;
     display: flex;
     flex-direction: column;
     padding-left: 15vh;
@@ -363,12 +363,13 @@
 .continue p {
     color: #ff151b;
     font: 600 1em "Montserrat";
-    margin-left: 2%;
+    margin-left: 4%;
 }
 
 .continue {
-    width: 50%;
+    width: 15%;
     display: flex;
+    margin-left: 1%;
 }
 
 .continue:hover {

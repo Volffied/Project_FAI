@@ -58,7 +58,7 @@
             @endforeach
             <div class="continue">
                 <svg aria-hidden="true" focusable="false" data-prefix="fas" height="1.2em" data-icon="long-arrow-alt-left" class="svg-inline--fa fa-long-arrow-alt-left fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#ff151b" d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"></path></svg>
-                <p class="continue">Continue Shopping</p>
+                <p>Continue Shopping</p>
             </div>
         </div>
         <div id="container-history">
@@ -85,7 +85,6 @@
 @push('script')
 
     <script>
-
         function checkDiscount() {
             var discount = 0;
             if($('#potonganMember').val() != ""){
@@ -134,9 +133,28 @@
             });
         }
 
+        function isElementInViewport (el) {
+            if (typeof jQuery === "function" && el instanceof jQuery) {
+                el = el[0];
+            }
+
+            var rect = el.getBoundingClientRect();
+
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
+            );
+        }
+
         $("#logo").click(function(){
             window.location.href="/index";
         });
+        $(".continue").click(function(){
+            window.location.href="/index";
+        });
+
         var carousel = 1;
         $(document).ready(function(){
             updateHarga();
