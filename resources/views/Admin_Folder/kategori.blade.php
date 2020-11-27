@@ -14,9 +14,9 @@
             </div>
         </div>
         <div class="form-row" style="float: right;">
+            <input type="hidden" name="id_kategori" id="idkategori">
             <input type="submit" class="btn btn-primary" id="btnupdKategori" name="btnupdate" value="Update" style="visibility: hidden;">
             <input type="submit" class="btn btn-primary" name="btnadd" id="btnaddKategori" value="Submit">
-            <input type="hidden" name="id_kategori" id="idkategori">
         </div>
     </form>
 </div>
@@ -88,9 +88,9 @@
                                             <tr>
                                                 <th scope="row">{{ $ctr }}</th>
                                                 <td>{{ $item->nama }}</td>
-                                                <td><form action="{{ url('Admin/delkategori') }}" method="post">
+                                                <td><form action="{{ url('Admin/delKategori') }}" method="post">
                                                         @csrf
-                                                        <input class="idkategorihidden" type="hidden" name="idkategorihid" value="{{ $item->id }}">
+                                                        <input class="idkategorihidden" type="hidden" name="idkategorihid" value="{{ $item->id_kat }}">
                                                         @if ($item->deleted_at != null)
                                                             <input class="btn btn-primary" type="submit" value="Recover" name="btnDel"></td>
                                                         @else

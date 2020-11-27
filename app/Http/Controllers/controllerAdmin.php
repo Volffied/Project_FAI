@@ -39,7 +39,7 @@ class controllerAdmin extends Controller
     }
 
     public function HalPagemPromo(){
-        $dataPromo = PromoModel::all();
+        $dataPromo = PromoModel::withTrashed()->get();
         return view('Admin_Folder.promo',['dataPromo'=>$dataPromo]);
     }
 
@@ -52,17 +52,17 @@ class controllerAdmin extends Controller
     }
 
     public function HalPagemMember(){
-        $dataJenisMember = JenisMemberModel::all();
+        $dataJenisMember = JenisMemberModel::withTrashed()->get();
         return view('Admin_Folder.Member',['dataMember'=>$dataJenisMember]);
     }
 
     public function HalPagemkategori(){
-        $dataKategori = KategoriModel::all();
+        $dataKategori = KategoriModel::withTrashed()->get();
         return view('Admin_Folder.kategori',['dataKat'=>$dataKategori]);
     }
 
     public function HalPagemBrand(){
-        $dataBrand = BrandModel::all();
+        $dataBrand = BrandModel::withTrashed()->get();
         return view('Admin_Folder.brand',['dataBrand'=>$dataBrand]);
     }
 
@@ -73,63 +73,132 @@ class controllerAdmin extends Controller
     }
 
     public function checkAddPromo(Request $request){
-        if($request->btnupdPromo){
-
-        }
-        $rules = [
-            "txtnama" => "required",
-            "diskon" => "required",
-            "tglawal" => "required",
-            "tglakhir"=> "required"
-        ];
-        $message = [
-            "txtnama.required" => "Nama harus di isi",
-            "tglawal.required" => "Tanggal Awal harus di isi",
-            "diskon.required" => "Diskon harus di isi",
-            "tglakhir.required" => "Tanggal Akhir harus di isi",
-        ];
-        if ($request->validate($rules,$message)) {
-            $namaPromo = $request->txtnama;
-            $dateAw = $request->tglawal;
-            $dateAk = $request->tglakhir;
-            $diskonPot = $request->diskon;
-            $datetime1 = new DateTime($dateAw);
-            $datetime2 = new DateTime($dateAk);
-            $interval = $datetime1->diff($datetime2);
-            $days = $interval->format('%a');
-            if($days >= 0){
-                $promo = new PromoModel();
-                $promo->insertData($namaPromo,$dateAw,$dateAk,$diskonPot);
-                return back();
-            }else if($days < 0){
+        if($request->btnadd){
+            $rules = [
+                "txtnama" => "required",
+                "diskon" => "required",
+                "tglawal" => "required",
+                "tglakhir"=> "required",
+                "txtvoucher"=> "required|max:6"
+            ];
+            $message = [
+                "txtnama.required" => "Nama harus di isi",
+                "tglawal.required" => "Tanggal Awal harus di isi",
+                "diskon.required" => "Diskon harus di isi",
+                "tglakhir.required" => "Tanggal Akhir harus di isi",
+                "txtvoucher.required" => "Kode Voucher harus di isi",
+                "txtvoucher.max" => "Kode Voucher Max 6 karakter!",
+            ];
+            if ($request->validate($rules,$message)) {
+                $namaPromo = $request->txtnama;
+                $voucherPromo = strtoupper($request->txtvoucher);
+                $dateAw = $request->tglawal;
+                $dateAk = $request->tglakhir;
+                $diskonPot = $request->diskon;
+                $datetime1 = new DateTime($dateAw);
+                $datetime2 = new DateTime($dateAk);
+                $interval = $datetime1->diff($datetime2);
+                $days = $interval->format('%a');
+                if($datetime1 < $datetime2){
+                    $promo = new PromoModel();
+                    $promo->insertData($namaPromo,$dateAw,$dateAk,$diskonPot,$voucherPromo);
+                    return back();
+                }else if($datetime1 > $datetime2){
+                    return back();
+                }
+            }else{
                 return back();
             }
-        }else{
-            return back();
+        }else if($request->btnupdates){
+            $rules = [
+                "txtnama" => "required",
+                "diskon" => "required",
+                "tglawal" => "required",
+                "tglakhir"=> "required"
+            ];
+            $message = [
+                "txtnama.required" => "Nama harus di isi",
+                "tglawal.required" => "Tanggal Awal harus di isi",
+                "diskon.required" => "Diskon harus di isi",
+                "tglakhir.required" => "Tanggal Akhir harus di isi",
+            ];
+            if ($request->validate($rules,$message)) {
+                $idPromo = $request->id_promo;
+                $namaPromo = $request->txtnama;
+                $voucherPromo = strtoupper($request->txtvoucher);
+                $dateAw = $request->tglawal;
+                $dateAk = $request->tglakhir;
+                $diskonPot = $request->diskon;
+                $datetime1 = new DateTime($dateAw);
+                $datetime2 = new DateTime($dateAk);
+                $interval = $datetime1->diff($datetime2);
+                $days = $interval->format('%a');
+                if($datetime1 < $datetime2){
+                    $updatePromo = PromoModel::find($idPromo);
+                    $updatePromo->nama             = $namaPromo;
+                    $updatePromo->tanggal_awal     = $dateAw;
+                    $updatePromo->tanggal_akhir    = $dateAk;
+                    $updatePromo->potongan         = $diskonPot;
+                    $updatePromo->voucher         = $voucherPromo;
+                    $updatePromo->save();
+                    return back();
+                }else if($datetime1 > $datetime2){
+                    return back();
+                }
+            }else{
+                return back();
+            }
         }
     }
 
     public function addJenisMember(Request $request)
     {
-        $rules = [
-            'txtnama' => 'required|max:50',
-            'txtpoin' => 'required|numeric',
-            'txtpotongan' => 'required|numeric'
-        ];
-        $customError = [
-            'txtnama.required' => 'Nama harus diisi!',
-            'txtpoin.required' => 'Poin harus diisi!',
-            'txtpotongan.required' => 'Potongan harus diisi!',
-            'max' => 'Maksimal Karakter adalah 50 Karakter!',
-            'numeric' => 'Inputan Harus berupa angka!'
-        ];
-        $this->validate($request,$rules,$customError);
-        $namaJenis = $request->txtnama;
-        $poinMinJenis = $request->txtpoin;
-        $potonganJenis = $request->txtpotongan;
-        $inputJenisMember = new JenisMemberModel();
-        $inputJenisMember->insertData($namaJenis,$poinMinJenis,$potonganJenis);
-        return back();
+        if($request->btnadd){
+            $rules = [
+                'txtnama' => 'required|max:50',
+                'txtpoin' => 'required|numeric',
+                'txtpotongan' => 'required|numeric'
+            ];
+            $customError = [
+                'txtnama.required' => 'Nama harus diisi!',
+                'txtpoin.required' => 'Poin harus diisi!',
+                'txtpotongan.required' => 'Potongan harus diisi!',
+                'max' => 'Maksimal Karakter adalah 50 Karakter!',
+                'numeric' => 'Inputan Harus berupa angka!'
+            ];
+            $this->validate($request,$rules,$customError);
+            $namaJenis = $request->txtnama;
+            $poinMinJenis = $request->txtpoin;
+            $potonganJenis = $request->txtpotongan;
+            $inputJenisMember = new JenisMemberModel();
+            $inputJenisMember->insertData($namaJenis,$poinMinJenis,$potonganJenis);
+            return back();
+        }else if($request->btnupdate){
+            $rules = [
+                'txtnama' => 'required|max:50',
+                'txtpoin' => 'required|numeric',
+                'txtpotongan' => 'required|numeric'
+            ];
+            $customError = [
+                'txtnama.required' => 'Nama harus diisi!',
+                'txtpoin.required' => 'Poin harus diisi!',
+                'txtpotongan.required' => 'Potongan harus diisi!',
+                'max' => 'Maksimal Karakter adalah 50 Karakter!',
+                'numeric' => 'Inputan Harus berupa angka!'
+            ];
+            $this->validate($request,$rules,$customError);
+            $idjenmember = $request->id_jenis_member;
+            $namaJenis = $request->txtnama;
+            $poinMinJenis = $request->txtpoin;
+            $potonganJenis = $request->txtpotongan;
+            $updateMember = JenisMemberModel::find($idjenmember);
+            $updateMember->nama             = $namaJenis;
+            $updateMember->minimal_poin     = $poinMinJenis;
+            $updateMember->potongan         = $potonganJenis;
+            $updateMember->save();
+            return back();
+        }
+
     }
 
     public function addBarang(Request $request)
@@ -197,6 +266,32 @@ class controllerAdmin extends Controller
         }
     }
 
+    public function DeletePromo(Request $request)
+    {
+        if($request->btnDel == "Recover"){
+            $idpromoDel = $request->idpromohid;
+            $delPromo = PromoModel::withTrashed()->where('id_promo',$idpromoDel)->restore();
+            return back();
+        }else if($request->btnDel == "Delete"){
+            $idpromoDel = $request->idpromohid;
+            $delPromo = PromoModel::find($idpromoDel)->delete();
+            return back();
+        }
+    }
+
+    public function DeleteJenisMember(Request $request)
+    {
+        if($request->btnDel == "Recover"){
+            $idmemberDel = $request->idmemberhid;
+            $delMember = JenisMemberModel::withTrashed()->where('id_member',$idmemberDel)->restore();
+            return back();
+        }else if($request->btnDel == "Delete"){
+            $idmemberDel = $request->idmemberhid;
+            $delMember = JenisMemberModel::find($idmemberDel)->delete();
+            return back();
+        }
+    }
+
     public function DeleteBarang(Request $request)
     {
         if($request->btnDel == "Recover"){
@@ -208,42 +303,108 @@ class controllerAdmin extends Controller
             $delBarang = BarangModel::find($idbarangDel)->delete();
             return back();
         }
+    }
 
+    public function DeleteKategori(Request $request)
+    {
+        if($request->btnDel == "Recover"){
+            $idkategoriDel = $request->idkategorihid;
+            $delKategori = KategoriModel::withTrashed()->where('id_kat',$idkategoriDel)->restore();
+            return back();
+        }else if($request->btnDel == "Delete"){
+            $idkategoriDel = $request->idkategorihid;
+            $delKategori = KategoriModel::find($idkategoriDel)->delete();
+            return back();
+        }
+    }
+
+    public function DeleteBrand(Request $request)
+    {
+        if($request->btnDel == "Recover"){
+            $idbrandDel = $request->idbrandhid;
+            $delBrand = BrandModel::withTrashed()->where('id_brand',$idbrandDel)->restore();
+            return back();
+        }else if($request->btnDel == "Delete"){
+            $idbrandDel = $request->idbrandhid;
+            $delBrand = BrandModel::find($idbrandDel)->delete();
+            return back();
+        }
     }
 
     public function addKategori(Request $request)
     {
-        $rules = [
-            'txtnama' => 'required|max:50'
-        ];
-        $customError = [
-            'txtnama.required' => 'Nama harus diisi!',
-            'max' => 'Maksimal Karakter adalah 50 Karakter!'
-        ];
-        $this->validate($request,$rules,$customError);
-        $namaKat = $request->txtnama;
-        $inputKategori = new KategoriModel();
-        $inputKategori->insertData($namaKat);
-        return back();
+        if($request->btnadd){
+            $rules = [
+                'txtnama' => 'required|max:50'
+            ];
+            $customError = [
+                'txtnama.required' => 'Nama harus diisi!',
+                'max' => 'Maksimal Karakter adalah 50 Karakter!'
+            ];
+            $this->validate($request,$rules,$customError);
+            $namaKat = $request->txtnama;
+            $inputKategori = new KategoriModel();
+            $inputKategori->insertData($namaKat);
+            return back();
+        }else if($request->btnupdate){
+            $rules = [
+                'txtnama' => 'required|max:50'
+            ];
+            $customError = [
+                'txtnama.required' => 'Nama harus diisi!',
+                'max' => 'Maksimal Karakter adalah 50 Karakter!'
+            ];
+            $this->validate($request,$rules,$customError);
+            $namaKat = $request->txtnama;
+            $idKategori = $request->id_kategori;
+            $updateKategori = KategoriModel::find($idKategori);
+            $updateKategori->nama = $namaKat;
+            $updateKategori->save();
+            return back();
+        }
+
     }
 
     public function addBrand(Request $request)
     {
-        $rules = [
-            'txtnama' => 'required|max:50',
-            'txtgambar' => 'required',
-            'txtdesc' => 'required'
-        ];
-        $customError = [
-            'txtnama.required' => 'Nama harus diisi!',
-            'txtgambar.required' => 'Gambar harus diisi!',
-            'txtdesc.required' => 'Deskripsi harus diisi!',
-            'max' => 'Maksimal Karakter adalah 50 Karakter!'
-        ];
-        $this->validate($request,$rules,$customError);
-        $inputBrand = new BrandModel();
-        $inputBrand->simpanData($request->txtnama,$request->txtgambar,$request->txtdesc);
-        return back();
+        if($request->btnadd){
+            $rules = [
+                'txtnama' => 'required|max:50',
+                'txtgambar' => 'required',
+                'txtdesc' => 'required'
+            ];
+            $customError = [
+                'txtnama.required' => 'Nama harus diisi!',
+                'txtgambar.required' => 'Gambar harus diisi!',
+                'txtdesc.required' => 'Deskripsi harus diisi!',
+                'max' => 'Maksimal Karakter adalah 50 Karakter!'
+            ];
+            $this->validate($request,$rules,$customError);
+            $inputBrand = new BrandModel();
+            $inputBrand->simpanData($request->txtnama,$request->txtgambar,$request->txtdesc);
+            return back();
+        }else if($request->btnupdate){
+            $rules = [
+                'txtnama' => 'required|max:50',
+                'txtgambar' => 'required',
+                'txtdesc' => 'required'
+            ];
+            $customError = [
+                'txtnama.required' => 'Nama harus diisi!',
+                'txtgambar.required' => 'Gambar harus diisi!',
+                'txtdesc.required' => 'Deskripsi harus diisi!',
+                'max' => 'Maksimal Karakter adalah 50 Karakter!'
+            ];
+            $this->validate($request,$rules,$customError);
+            $idbrand = $request->id_brand;
+            $updateBrand = BrandModel::find($idbrand);
+            $updateBrand->nama      = $request->txtnama;
+            $updateBrand->gambar    = $request->txtgambar;
+            $updateBrand->desc      = $request->txtdesc;
+            $updateBrand->save();
+            return back();
+        }
+
     }
 
     public function addPegawai(Request $request)

@@ -30,9 +30,9 @@
             </div>
         </div>
         <div class="form-row" style="float: right;">
+            <input type="hidden" name="id_brand" id="idbrand">
             <input type="submit" class="btn btn-primary" id="btnupdBrand" name="btnupdate" value="Update" style="visibility: hidden;">
             <input type="submit" class="btn btn-primary" name="btnadd" id="btnaddBrand" value="Submit">
-            <input type="hidden" name="id_brand" id="idbrand">
         </div>
     </form>
 </div>
@@ -107,7 +107,15 @@
                                                 <td><img style="width: 100px;" src="{{ $item->gambar }}" alt=""></td>
                                                 <td>{{ $item->nama }}</td>
                                                 <td>{{ $item->desc }}</td>
-                                                <td><a href="#" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Delete</a></td>
+                                                <td><form action="{{ url('Admin/delBrand') }}" method="post">
+                                                    @csrf
+                                                    <input class="idbrandhidden" type="hidden" name="idbrandhid" value="{{ $item->id_brand }}">
+                                                    @if ($item->deleted_at != null)
+                                                        <input class="btn btn-primary" type="submit" value="Recover" name="btnDel"></td>
+                                                    @else
+                                                        <input class="btn btn-danger" type="submit" value="Delete" name="btnDel"></td>
+                                                    @endif
+                                                </form></td>
                                             </tr>
                                             <?php
                                                 $ctr = $ctr + 1;
@@ -151,7 +159,7 @@
                 document.getElementById("txtgambar").value    = rowSelected.cells[1].childNodes[0].getAttribute("src");
                 document.getElementById("txtnama").value   = rowSelected.cells[2].innerHTML;
                 document.getElementById("txtdesc").value   = rowSelected.cells[3].innerHTML;
-                document.getElementById("idjenismember").value   = rowSelected.cells[0].innerHTML;
+                document.getElementById("idbrand").value   = rowSelected.cells[0].innerHTML;
             }
         }
     }
