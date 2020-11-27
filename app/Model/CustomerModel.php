@@ -26,7 +26,7 @@ class CustomerModel extends Authenticatable
         $data->notlp            = $notlp;
         $data->status           = 1;
         $data->poin             = 0;
-        $data->kode_member      = 0;
+        $data->kode_jenis_member= 0;
         $data->save();
     }
     public function checkLogin($email,$pass){
