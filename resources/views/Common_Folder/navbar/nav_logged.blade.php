@@ -29,3 +29,47 @@
         </div>
     </div>
 </div>
+
+@push('script')
+    <script>
+        ajaxCart();
+        $(".cart-nav").mouseenter(function(){
+            gsap.to('.container-notifCart',{
+                y:'80%',
+                duration:0.5
+            });
+        });
+
+        $(".cart-nav").mouseleave(function(){
+            gsap.to('.container-notifCart',{
+                y:'60%',
+                duration:0.5
+            });
+        });
+        function ajaxCart(id=-1) {
+            $.ajax({
+                url:"/addToCart/"+id,
+                type:"GET",
+                data:{},
+                success:function (result) {
+                    var data = JSON.parse(result);
+                    gsap.to('.container-notifCart',{
+                        y:"5%",
+                        duration:0.5
+                    });
+                    console.log(data);
+
+                    setTimeout(function(){
+                        $('.container-notifCart').html(data);
+                    },1000);
+
+                    gsap.to('.container-notifCart',{
+                        y:'60%',
+                        delay:1,
+                        duration:0.5
+                    });
+                }
+            });
+        }
+    </script>
+@endpush
