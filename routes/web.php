@@ -56,6 +56,7 @@ Route::get('/checkPromo/{checkBy}_{value}','UserController@checkPromo');
 Route::get('/login','UserController@Login');
 Route::get('/brand/{nama}','UserController@Brand');
 Route::get('/cart','UserController@Cart');
+Route::get('/product/{nama}','UserController@Product');
 Route::post('/prosesLogin','UserController@prosesLogin');
 Route::post('/prosesRegister','UserController@prosesRegister');
 Route::get('/index',function(){

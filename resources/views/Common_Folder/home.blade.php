@@ -383,6 +383,11 @@
             duration:2
         });
 
+        $('.item-img').click(function(){
+            var url = $(this).siblings('.item-details').children().children('.title').html();
+            window.location.href="/product/"+url;
+        });
+
         $('.item-img').mouseenter(function(){
             gsap.to($(this).children('img'),{
                 y:-10,
@@ -407,52 +412,6 @@
             var id = $(this).siblings('.id_barang').val();
             ajaxCart(id);
         });
-
-        gsap.to('.container-notifCart',{
-            y:'60%',
-            delay:2 ,
-            duration:0.5
-        });
-
-        $(".cart-nav").mouseenter(function(){
-            gsap.to('.container-notifCart',{
-                y:'80%',
-                duration:0.5
-            });
-        });
-
-        $(".cart-nav").mouseleave(function(){
-            gsap.to('.container-notifCart',{
-                y:'60%',
-                duration:0.5
-            });
-        });
-
-        function ajaxCart(id=-1) {
-            $.ajax({
-                url:"/addToCart/"+id,
-                type:"GET",
-                data:{},
-                success:function (result) {
-                    var data = JSON.parse(result);
-                    gsap.to('.container-notifCart',{
-                        y:"5%",
-                        duration:0.5
-                    });
-                    console.log(data);
-
-                    setTimeout(function(){
-                        $('.container-notifCart').html(data);
-                    },1000);
-
-                    gsap.to('.container-notifCart',{
-                        y:'60%',
-                        delay:1,
-                        duration:0.5
-                    });
-                }
-            });
-        }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

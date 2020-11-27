@@ -59,6 +59,13 @@ class UserController extends Controller
         return view('Common_Folder.cart',['barang' => $allCart,'potongan'=>$potonganMember->potongan]);
     }
 
+    public function Product($nama)
+    {
+        $barang = new BarangModel();
+        $barang = $barang->getAllDataByColumn('barang.nama',$nama);
+        return view('Common_Folder.product',['barang' => $barang]);
+    }
+
 
     /////////////// PROCCESS CONTROLLER ////////////////
 
