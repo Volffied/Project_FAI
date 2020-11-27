@@ -32,9 +32,11 @@ class BarangModel extends Model
 
     public function getAllDataBarang()
     {
-        $query = BarangModel::select('barang.*','kategori.nama as nama_kat', 'kategori.id_kat','b.nama as nama_brand','b.id_brand')
+        $query = BarangModel::withTrashed()
+                            ->select('barang.*','kategori.nama as nama_kat', 'kategori.id_kat','b.nama as nama_brand','b.id_brand')
                             ->join('kategori','id_kat','barang.kode_kategori')
                             ->leftJoin('brand as b','id_brand','barang.kode_brand')
+                            ->orderBy('barang.id','asc')
                             ->get();
         return $query;
     }

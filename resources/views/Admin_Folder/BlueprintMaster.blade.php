@@ -126,6 +126,7 @@
       "paging": false,
       "lengthChange": false,
       "searching": true,
+      "filtering": true,
       "ordering": true,
       "info": true,
       "autoWidth": true,

@@ -134,31 +134,73 @@ class controllerAdmin extends Controller
 
     public function addBarang(Request $request)
     {
-        $rules = [
-            'txtnama' => 'required|max:50',
-            'txtharga' => 'required|numeric',
-            'txtstok' => 'required|numeric|min:0',
-            'txtgambar' => 'required'
-        ];
-        $customError = [
-            'txtnama.required' => 'Nama harus diisi!',
-            'txtharga.required' => 'Harga harus diisi!',
-            'txtstok.required' => 'Stok harus diisi!',
-            'txtgambar.required' => 'Gambar harus diisi!',
-            'max' => 'Maksimal Karakter adalah 50 Karakter!',
-            'min' => 'Tidak boleh dibawah 0!',
-            'numeric' => ':attribute harus berisikan angka!'
-        ];
-        $this->validate($request,$rules,$customError);
-        $namabarang = $request->txtnama;
-        $gambarbarang = $request->txtgambar;
-        $hargabarang = $request->txtharga;
-        $stokbarang = $request->txtstok;
-        $statusBarang = 1;
-        $kategoriBarang = $request->cbpilihkategori;
-        $kode_brand = $request->cbpilihbrand;
-        $inputBarang = new BarangModel();
-        $inputBarang->simpanData($namabarang,$hargabarang,$stokbarang,$statusBarang,$kategoriBarang,$gambarbarang,$kode_brand);
+        if($request->btnadd){
+            $rules = [
+                'txtnama' => 'required|max:50',
+                'txtharga' => 'required|numeric',
+                'txtstok' => 'required|numeric|min:0',
+                'txtgambar' => 'required'
+            ];
+            $customError = [
+                'txtnama.required' => 'Nama harus diisi!',
+                'txtharga.required' => 'Harga harus diisi!',
+                'txtstok.required' => 'Stok harus diisi!',
+                'txtgambar.required' => 'Gambar harus diisi!',
+                'max' => 'Maksimal Karakter adalah 50 Karakter!',
+                'min' => 'Tidak boleh dibawah 0!',
+                'numeric' => ':attribute harus berisikan angka!'
+            ];
+            $this->validate($request,$rules,$customError);
+            $namabarang = $request->txtnama;
+            $gambarbarang = $request->txtgambar;
+            $hargabarang = $request->txtharga;
+            $stokbarang = $request->txtstok;
+            $statusBarang = 1;
+            $kategoriBarang = $request->cbpilihkategori;
+            $kode_brand = $request->cbpilihbrand;
+            $inputBarang = new BarangModel();
+            $inputBarang->simpanData($namabarang,$hargabarang,$stokbarang,$statusBarang,$kategoriBarang,$gambarbarang,$kode_brand);
+            return back();
+        }else if($request->btnupdate){
+            $rules = [
+                'txtnama' => 'required|max:50',
+                'txtharga' => 'required|numeric',
+                'txtstok' => 'required|numeric|min:0',
+                'txtgambar' => 'required'
+            ];
+            $customError = [
+                'txtnama.required' => 'Nama harus diisi!',
+                'txtharga.required' => 'Harga harus diisi!',
+                'txtstok.required' => 'Stok harus diisi!',
+                'txtgambar.required' => 'Gambar harus diisi!',
+                'max' => 'Maksimal Karakter adalah 50 Karakter!',
+                'min' => 'Tidak boleh dibawah 0!',
+                'numeric' => ':attribute harus berisikan angka!'
+            ];
+            $this->validate($request,$rules,$customError);
+            $idbarang = $request->id_barang;
+            $namabarang = $request->txtnama;
+            $gambarbarang = $request->txtgambar;
+            $hargabarang = $request->txtharga;
+            $stokbarang = $request->txtstok;
+            $kategoriBarang = $request->cbpilihkategori;
+            $kode_brand = $request->cbpilihbrand;
+            $updateBarang = BarangModel::find($idbarang);
+            $updateBarang->nama             = $namabarang;
+            $updateBarang->harga            = $hargabarang;
+            $updateBarang->stok             = $stokbarang;
+            $updateBarang->gambar           = $gambarbarang;
+            $updateBarang->kode_kategori    = $kategoriBarang;
+            if($kode_brand != 0) $updateBarang->kode_brand       = $kode_brand;
+            $updateBarang->save();
+            return back();
+        }
+    }
+
+    public function DeleteBarang(Request $request)
+    {
+        $idbarangDel = $request->idbaranghid;
+        $delBarang = BarangModel::find($idbarangDel)->delete();
         return back();
     }
 

@@ -69,14 +69,22 @@
                                     @isset($dataBarang)
                                         @foreach ($dataBarang as $item)
                                             <tr>
-                                                <td scope="row">{{ $ctr }}</td>
+                                                <td scope="row">{{ $ctr }} </td>
                                                 <td><img src="{{ $item->gambar }}" alt="" style="width: 80px; height: 80px;"></td>
                                                 <td>{{ $item->nama }}</td>
                                                 <td>{{ $item->id_kat." - ".$item->nama_kat }}</td>
                                                 <td>{{ $item->id_brand." - ".$item->nama_brand }}</td>
                                                 <td>Rp. {{ $item->harga }},00</td>
                                                 <td>{{ $item->stok }}</td>
-                                                <td><a href="#" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Delete</a></td>
+                                                <td><form action="{{ url('Admin/delBarang') }}" method="post">
+                                                        @csrf
+                                                        <input class="idbaranghidden" type="hidden" name="idbaranghid" value="{{ $item->id }}">
+                                                        @if ($item->deleted_at != null)
+                                                            <input class="btn btn-primary" type="submit" value="Recover" name="btnDel"></td>
+                                                        @else
+                                                            <input class="btn btn-danger" type="submit" value="Delete" name="btnDel"></td>
+                                                        @endif
+                                                     </form>
                                             </tr>
                                             <?php
                                                 $ctr = $ctr + 1;
@@ -153,11 +161,11 @@
                         @endisset
                     </select>
                 </div>
+                <input type="hidden" name="id_barang" id="idbarang">
             </div>
             <div class="form-row" style="float: right;">
                 <input type="submit" class="btn btn-primary" id="btnupdBarang" name="btnupdate" value="Update">
                 <input type="submit" class="btn btn-primary" id="btnaddBarang" name="btnadd" value="Submit">
-                <input type="hidden" name="id_barang" id="idbarang">
             </div>
         </form>
     </div>
@@ -175,6 +183,7 @@
                 cell.onclick = function () {
                     var rowId = this.parentNode.rowIndex;
 
+
                     var rowsNotSelected = table.getElementsByTagName('tr');
                     for (var row = 0; row < rowsNotSelected.length; row++) {
                         rowsNotSelected[row].style.backgroundColor = "";
@@ -187,11 +196,11 @@
                     msg += " ";
                     document.getElementById("btnaddBarang").style.visibility = "hidden";
                     document.getElementById("btnupdBarang").style.visibility = "visible";
-                    document.getElementById("txtgambar").value    = rowSelected.cells[1].innerHTML;
+                    document.getElementById("txtgambar").value    = rowSelected.cells[1].childNodes[0].getAttribute("src");
                     document.getElementById("txtnama").value   = rowSelected.cells[2].innerHTML;
                     document.getElementById("cbpilihkategori").value   = rowSelected.cells[3].innerHTML.substring(0,1);
                     document.getElementById("cbpilihbrand").value   = rowSelected.cells[4].innerHTML.substring(0,1);
-                    document.getElementById("txtharga").value   = rowSelected.cells[5].innerHTML.substring(3,rowSelected.cells[5].innerHTML.length);
+                    document.getElementById("txtharga").value   = rowSelected.cells[5].innerHTML.substring(3,rowSelected.cells[5].innerHTML.indexOf(","));
                     document.getElementById("txtstok").value   = rowSelected.cells[6].innerHTML;
                     document.getElementById("idbarang").value   = rowSelected.cells[0].innerHTML;
                 }
