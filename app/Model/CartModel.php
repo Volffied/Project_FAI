@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CartModel extends Model
 {
-    use SoftDeletes;
+    //use SoftDeletes;
     public $table           = "cart";
     public $primaryKey      = "id_cart";
     public $incrementing    = true;
