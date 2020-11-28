@@ -35,10 +35,19 @@
             @enderror
         </div>
     </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="txtnama">Kode Voucher</label>
+            <input type="text" class="form-control" id="txtvoucher" name="txtvoucher" placeholder="Kode Voucher">
+            @error('txtvoucher')
+                <label class="alertmessage" style="color: red;">{{$message}}</label>
+            @enderror
+        </div>
+    </div>
     <div class="form-row" style="float: right;">
+        <input type="hidden" name="id_promo" id="idpromo">
         <input type="submit" class="btn btn-primary" id="btnupdPromo" name="btnupdates" value="Update" style="visibility: hidden;">
         <input type="submit" class="btn btn-primary" id="btnaddPromo" name="btnadd"  value="Submit">
-        <input type="hidden" name="id_promo" id="idpromo">
     </div>
 </form>
 </div>
@@ -102,6 +111,7 @@
                                             <th scope="col">ID</th>
                                             <th scope="col">Nama</th>
                                             <th scope="col">Potongan</th>
+                                            <th scope="col">Kode Voucher</th>
                                             <th scope="col">Tanggal Awal</th>
                                             <th scope="col">Tanggal Akhir</th>
                                             <th scope="col">Action</th>
@@ -114,9 +124,18 @@
                                                 <th scope="row">{{ $ctr }}</th>
                                                 <td>{{ $item->nama }}</td>
                                                 <td>{{ $item->potongan }} %</td>
+                                                <td>{{ $item->voucher }}</td>
                                                 <td>{{ $item->tanggal_awal }}</td>
                                                 <td>{{ $item->tanggal_akhir }}</td>
-                                                <td><a href="#" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Delete</a></td>
+                                                <td><form action="{{ url('Admin/delPromo') }}" method="post">
+                                                    @csrf
+                                                    <input class="idpromohidden" type="hidden" name="idpromohid" value="{{ $item->id_promo }}">
+                                                    @if ($item->deleted_at != null)
+                                                        <input class="btn btn-primary" type="submit" value="Recover" name="btnDel"></td>
+                                                    @else
+                                                        <input class="btn btn-danger" type="submit" value="Delete" name="btnDel"></td>
+                                                    @endif
+                                                </form></td>
                                             </tr>
                                             <?php
                                                 $ctr = $ctr + 1;
@@ -155,14 +174,15 @@
                 var rowSelected = table.getElementsByTagName('tr')[rowId];
                 rowSelected.className += " selected";
 
-                msg = rowSelected.cells[0].innerHTML+" "+rowSelected.cells[1].innerHTML+" "+rowSelected.cells[2].innerHTML+" "+rowSelected.cells[3].innerHTML+" "+rowSelected.cells[4].innerHTML;
+                msg = rowSelected.cells[0].innerHTML+" "+rowSelected.cells[1].innerHTML+" "+rowSelected.cells[2].innerHTML+" "+rowSelected.cells[3].innerHTML+" "+rowSelected.cells[4].innerHTML+" "+rowSelected.cells[5].innerHTML;
                 msg += " ";
                 document.getElementById("btnaddPromo").style.visibility = "hidden";
                 document.getElementById("btnupdPromo").style.visibility = "visible";
                 document.getElementById("txtnama").value    = rowSelected.cells[1].innerHTML;
                 document.getElementById("diskon").value    = rowSelected.cells[2].innerHTML.substring(0,rowSelected.cells[2].innerHTML.indexOf(" "));
-                document.getElementById("tglawal").value    = rowSelected.cells[3].innerHTML;
-                document.getElementById("tglakhir").value    = rowSelected.cells[4].innerHTML;
+                document.getElementById("txtvoucher").value    = rowSelected.cells[3].innerHTML;
+                document.getElementById("tglawal").value    = rowSelected.cells[4].innerHTML;
+                document.getElementById("tglakhir").value    = rowSelected.cells[5].innerHTML;
                 document.getElementById("idpromo").value   = rowSelected.cells[0].innerHTML;
             }
         }

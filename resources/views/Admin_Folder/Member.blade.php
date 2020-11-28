@@ -27,9 +27,9 @@
             @enderror
         </div>
         <div class="form-row" style="float: right;">
+            <input type="hidden" name="id_jenis_member" id="idjenismember">
             <input type="submit" class="btn btn-primary" id="btnupdMember" name="btnupdate" value="Update" style="visibility: hidden;">
             <input type="submit" class="btn btn-primary" name="btnadd" id="btnaddMember" value="Submit">
-            <input type="hidden" name="id_jenis_member" id="idjenismember">
         </div>
     </form>
 </div>
@@ -105,7 +105,15 @@
                                                 <td>{{ $item->nama }}</td>
                                                 <td>{{ $item->minimal_poin }}</td>
                                                 <td>{{ $item->potongan }} %</td>
-                                                <td><a href="#" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Delete</a></td>
+                                                <td><form action="{{ url('Admin/delMember') }}" method="post">
+                                                    @csrf
+                                                    <input class="idmemberhidden" type="hidden" name="idmemberhid" value="{{ $item->id_member }}">
+                                                    @if ($item->deleted_at != null)
+                                                        <input class="btn btn-primary" type="submit" value="Recover" name="btnDel"></td>
+                                                    @else
+                                                        <input class="btn btn-danger" type="submit" value="Delete" name="btnDel"></td>
+                                                    @endif
+                                                </form></td>
                                             </tr>
                                             <?php
                                                 $ctr = $ctr + 1;

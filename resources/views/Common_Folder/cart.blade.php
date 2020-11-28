@@ -13,6 +13,8 @@
 @endsection
 
 @section('content')
+<form id="ajaxcart">
+    @csrf
     <input type="hidden" name="id_user" id="id_user" value="{{session()->get('userLogin')->id}}">
     <input type="hidden" name="backUrl" id="backUrl" value="{{url()->previous()}}">
     <div class="container-backNav">
@@ -65,26 +67,97 @@
             <h1>History</h1>
         </div>
     </div>
-    <div class="totalHarga">
-        <p>Total Cost</p>
-        <h1 class="totalText">Rp. 800.000</h1>
-        <label for="promoInput"><p>Promo Code</p></label>
-        <div class="container-promo">
-            <input type="text" name="promoInput" id="promoInput" maxlength="6">
-            <p class="notif-promo">6 Characters Code</p>
-            <input type="hidden" name="potonganBiasa" id="potonganBiasa">
-            <input type="hidden" name="potonganMember" id="potonganMember" value="{{$potongan}}">
+        <div class="totalHarga">
+            <p>Total Cost</p>
+            <h1 class="totalText">Rp. 800.000</h1>
+            <input type="hidden" name="total" id="total">
+            <label for="promoInput"><p>Promo Code</p></label>
+            <div class="container-promo">
+                <input type="text" name="promoInput" id="promoInput" maxlength="6">
+                <p class="notif-promo">6 Characters Code</p>
+                <input type="hidden" name="potonganBiasa" id="potonganBiasa">
+                <input type="hidden" name="potonganMember" id="potonganMember" value="{{$potongan}}">
+                <input type="hidden" name="idpotongan" id="idpotongan">
+            </div>
+            <p class="memberPromo"></p>
+            <p>Grand Total</p>
+            <h1 class="grandTotalText">Rp. 600.000</h1>
+            <input type="hidden" name="grandTotal" id="grandTotal">
+            <input class="buttonCheckout" id="btnCheckout" type="submit" value="CHECKOUT">
+
         </div>
-        <p class="memberPromo"></p>
-        <p>Grand Total</p>
-        <h1 class="grandTotalText">Rp. 600.000</h1>
-        <button class="buttonCheckout">CHECKOUT</button>
-    </div>
+</form>
 @endsection
 
 @push('script')
-
     <script>
+        $("#ajaxcart").submit(function (e) {
+            e.preventDefault();
+            var kode_customer = $("input[name=id_user]").val();
+            var grandtotal    = $("input[name=grandTotal]").val();
+            var subtotal      = $("input[name=total]").val();
+            var kode_promo    = $("input[name=idpotongan]").val();
+            var _token        = $("input[name=_token]").val();
+            $.ajax({
+                url:"/dataPayment/",
+                type:"POST",
+                data:{
+                    kode_customer   : kode_customer,
+                    grandtotal      : grandtotal,
+                    subtotal        : subtotal,
+                    kode_promo      : kode_promo,
+                    _token          : _token,
+                },
+                success:function(response){
+                    console.log(response);
+                    paymentku(response);
+                },
+                error:function(response){
+                    alert(response);
+                },
+            });
+        });
+        function paymentku(response) {
+            snap.pay(response, {
+                // Optional
+                onSuccess: function(result) {
+
+                },
+                // Optional
+                onPending: function(result) {
+                    var arrjson = JSON.stringify(result);
+                    var parsejson =JSON.parse(arrjson);
+                    getDataSession(parsejson);
+                },
+                // Optional
+                onError: function(result) {
+                    console.log(result);
+                },
+                onClose: function(){
+                    console.log('customer closed the popup without finishing the payment');
+                }
+            });
+        }
+        function getDataSession(arrjson){
+            var _token      = $("input[name=_token]").val();
+            // arrjson.push(_token);
+            var arr = {
+                "data"      : arrjson,
+                "_token"    : _token
+            };
+            $.ajax({
+                url:"/saveData/",
+                type:"POST",
+                data:arr,
+                success:function(res){
+                    window.location.replace("/pagePayment/");
+                    console.log(res);
+                },
+                error:function(res){
+                    alert("error :"+res);
+                }
+            });
+        }
         function checkDiscount() {
             var discount = 0;
             if($('#potonganMember').val() != ""){
@@ -114,12 +187,15 @@
                 total += harga*jumlah;
             });
             $('.totalText').html(formatRupiah(total.toString(),'Rp. '));
+            $('#total').val(total);
             var discount = checkDiscount();
             var grandtotal = total-total*(discount/100);
             console.log('total: '+total+' | grandtotal: '+grandtotal+" | Discount: "+discount);
             $('.grandTotalText').html(formatRupiah((grandtotal).toString(),'Rp. '));
+            $('#grandTotal').val(grandtotal);
 
         }
+
 
         function ajaxCart(kodeBarang,qty=null) {
             var kodeUser = $('#id_user').val();
@@ -331,7 +407,6 @@
                     success:function (result) {
                         var data = JSON.parse(result);
                         $('.notif-promo').css('opacity',0);
-
                         setTimeout(function(){
                             $('.notif-promo').html(data['message']);
                             $('.notif-promo').attr('class','notif-promo');
@@ -339,11 +414,13 @@
                                 $('.notif-promo').addClass('success');
                                 var potongan = data['potongan'];
                                 $('#potonganBiasa').val(potongan);
+                                $('#idpotongan').val(data["kodepotongan"]);
                                 updateTotal();
                             }
                             else{
                                 $('.notif-promo').addClass('failed');
                                 $('#potonganBiasa').val("");
+                                $('#idpotongan').val("");
                                 updateTotal();
                             }
                             $('.notif-promo').css('opacity',1);
@@ -373,5 +450,4 @@
             updateHarga();
         });
     </script>
-
 @endpush

@@ -26,7 +26,9 @@ Route::group(['prefix' => 'Master'], function () {
     Route::post('tambahPegawai', 'controllerAdmin@addPegawai');
 });
 Route::group(['prefix' => 'Kurir'], function () {
-
+    Route::get('changeAntarHorder', 'controllerAdmin@HalPagemAntarHorder');
+    Route::get('laporanPenjualan', 'controllerAdmin@HalPagemLaporanPenjualan');
+    Route::get('laporanBarangLaris', 'controllerAdmin@HalPagemLaporanBarangLaris');
 });
 Route::group(['prefix' => 'Cservice'], function () {
 
@@ -35,6 +37,10 @@ Route::group(['prefix' => 'Admin'], function () {
     Route::post('tambahKategori', 'controllerAdmin@addKategori');
     Route::post('tambahBarang', 'controllerAdmin@addBarang');
     Route::post('delBarang', 'controllerAdmin@DeleteBarang');
+    Route::post('delMember', 'controllerAdmin@DeleteJenisMember');
+    Route::post('delBrand', 'controllerAdmin@DeleteBrand');
+    Route::post('delKategori', 'controllerAdmin@DeleteKategori');
+    Route::post('delPromo', 'controllerAdmin@DeletePromo');
     Route::post('tambahJenisMember', 'controllerAdmin@addJenisMember');
     Route::post('tambahBrand', 'controllerAdmin@addBrand');
     Route::get('barang','controllerAdmin@HalPagemBarang');
@@ -62,3 +68,8 @@ Route::get('/index',function(){
 Route::get('/home',function(){
     return redirect('/');
 });
+
+//midtrans
+Route::post('dataPayment', 'midtransController@dataPayment');
+Route::post('saveData', 'midtransController@saveData');
+Route::get('pagePayment', 'midtransController@pagePayment');

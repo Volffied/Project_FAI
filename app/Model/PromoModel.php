@@ -12,13 +12,14 @@ class PromoModel extends Model
     public $primaryKey      = "id_promo";
     public $incrementing    = true;
     public $timestamps      = true;
-    protected $fillable     = ['nama','tanggal_awal','tanggal_akhir','potongan','status'];
+    protected $fillable     = ['nama','tanggal_awal','voucher','tanggal_akhir','potongan','status'];
 
-    public function insertData($txtnama,$tglawal,$tglakhir,$diskon){
+    public function insertData($txtnama,$tglawal,$tglakhir,$diskon,$voucher){
         $data = new PromoModel;
         $data->nama             = $txtnama;
         $data->tanggal_awal     = $tglawal;
         $data->tanggal_akhir    = $tglakhir;
+        $data->voucher          = $voucher;
         $data->potongan         = $diskon;
         $data->status           = 1;
         $data->save();
