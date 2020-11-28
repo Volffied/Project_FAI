@@ -46,15 +46,16 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #8F192F;">
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <!-- ini mau tak pasang icon admin !!!!!!-->
-                <div class="info">
-                    <a href="/Admin" class="d-block" style="font-size: 15pt;">Admin</a>
-                </div>
+            <div class="info">
+                <img src="{{ asset('/images/logo.svg') }}" alt="" style="width: 50px; height: 50px;">
+            </div>
+            <a href="{{ url('Kurir') }}" class="d-block" style="color: white; font-size: 15pt; margin-left: 20px; margin-top: 15px;">Kurir</a>
             </div>
 
             <!-- Sidebar Menu -->
@@ -62,40 +63,36 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                         with font-awesome or any other icon font library -->
+                        <style>
+                            .nav-icon{
+                                color: white;
+                            }
+                            .nav-link:hover .nav-icon{
+                                color: #311D3F;
+                            }
+                        </style>
                     <li class="nav-item">
-                        <a href="{{ url('Admin/pegawai') }}" class="nav-link">
+                        <a href="{{ url('Kurir/changeAntarHorder') }}" class="nav-link">
                             <i class="nav-icon fas fa-user-cog"></i>
-                            <p>Pegawai</p>
+                            <p style="color: white;">Pengantaran Order</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('Admin/barang') }}" class="nav-link">
-                            <i><img class="nav-icon fas" src=" {{ asset('/images/category.png') }}" style="width: 25px;" alt="error"></i>
-                            <p>Barang</p>
+                        <a href="{{ url('Kurir/laporanPenjualan') }}" class="nav-link">
+                            <i class="nav-icon fas fa-file-invoice"></i>
+                            <p style="color: white;">Laporan Penjualan</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('Admin/kategori') }}" class="nav-link">
-                            <i><img class="nav-icon fas" src=" {{ asset('/images/category.png') }}" style="width: 25px;" alt="error"></i>
-                            <p>Kategori</p>
+                        <a href="{{ url('Kurir/laporanBarangLaris') }}" class="nav-link">
+                            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+                            <p style="color: white;">Laporan Barang Terlaris</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('Admin/promo') }}" class="nav-link">
-                            <i><img class="nav-icon fas" src=" {{ asset('/images/coupon.png') }}" style="width: 25px;" alt="error"></i>
-                            <p>Promo</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url('Admin/member') }}" class="nav-link">
-                            <i><img class="nav-icon fas" src=" {{ asset('/images/membership.png') }}" style="width: 25px;" alt="error"></i>
-                            <p>Member</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/" class="nav-link">
-                            <i><img class="nav-icon fas" src=" {{ asset('/images/exit-door.png') }}" style="width: 25px;" alt="error"></i>
-                            <p>Log Out</p>
+                        <a href="{{ url('logoutAdmin') }}" class="nav-link">
+                            <i class="nav-icon fas fa-sign-out-alt" ></i>
+                            <p style="color: white;">Log Out</p>
                         </a>
                     </li>
                 </ul>
@@ -136,14 +133,19 @@
       "autoWidth": false,
     });
     $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
+        "paging": false,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": false,
+        "autoWidth": true,
+        "responsive": true,
+        "scrollY": "500px",
+        "scrollCollapse": true
     });
+  });
+  $(document).ready(function(){
+    $("#example2_filter").attr('style','float:right;margin-right:2%;');
   });
 </script>
 </body>

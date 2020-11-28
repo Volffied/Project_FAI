@@ -38,6 +38,21 @@ class controllerAdmin extends Controller
         return view('Admin_Folder.pegawai',['daftarPegawai'=>$dataPegawai]);
     }
 
+    public function HalPagemAntarHorder()
+    {
+        return view('Admin_Folder.pengantaranHorder');
+    }
+
+    public function HalPagemLaporanPenjualan()
+    {
+        return view('Admin_Folder.laporanjual');
+    }
+
+    public function HalPagemLaporanBarangLaris()
+    {
+        return view('Admin_Folder.laporanbaranglaris');
+    }
+
     public function HalPagemPromo(){
         $dataPromo = PromoModel::withTrashed()->get();
         return view('Admin_Folder.promo',['dataPromo'=>$dataPromo]);

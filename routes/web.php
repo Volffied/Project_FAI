@@ -26,7 +26,9 @@ Route::group(['prefix' => 'Master'], function () {
     Route::post('tambahPegawai', 'controllerAdmin@addPegawai');
 });
 Route::group(['prefix' => 'Kurir'], function () {
-
+    Route::get('changeAntarHorder', 'controllerAdmin@HalPagemAntarHorder');
+    Route::get('laporanPenjualan', 'controllerAdmin@HalPagemLaporanPenjualan');
+    Route::get('laporanBarangLaris', 'controllerAdmin@HalPagemLaporanBarangLaris');
 });
 Route::group(['prefix' => 'Cservice'], function () {
 
