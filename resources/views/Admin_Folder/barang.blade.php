@@ -71,7 +71,7 @@
                                             <tr>
                                                 <td scope="row">{{ $ctr }} </td>
                                                 <td><img src="{{ $item->gambar }}" alt="" style="width: 80px; height: 80px;"></td>
-                                                <td>{{ $item->nama }}</td>
+                                                <td>{{ $item->nama_barang }}</td>
                                                 <td>{{ $item->id_kat." - ".$item->nama_kat }}</td>
                                                 <td>{{ $item->id_brand." - ".$item->nama_brand }}</td>
                                                 <td>Rp. {{ $item->harga }},00</td>
@@ -145,7 +145,7 @@
                     <select name="cbpilihkategori" id="cbpilihkategori" class="form-control">
                         @isset($dataKat)
                             @foreach ($dataKat as $item)
-                                <option value="{{ $item->id_kat }}">{{ $item->nama }}</option>
+                                <option value="{{ $item->id_kat }}">{{ $item->nama_kategori }}</option>
                             @endforeach
                         @endisset
                     </select>
@@ -154,9 +154,8 @@
                     <label for="cbpilihbrand">Brand :</label>
                     <select name="cbpilihbrand" id="cbpilihbrand" class="form-control">
                         @isset($dataBrand)
-                            <option value="0">Belum Terdaftar</option>
                             @foreach ($dataBrand as $item)
-                                <option value="{{ $item->id_brand }}">{{ $item->nama }}</option>
+                                <option value="{{ $item->id_brand }}">{{ $item->nama_brand }}</option>
                             @endforeach
                         @endisset
                     </select>

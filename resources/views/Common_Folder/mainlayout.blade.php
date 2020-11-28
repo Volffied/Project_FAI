@@ -13,16 +13,20 @@
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
         crossorigin="anonymous">
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js" integrity="sha512-wK2NuxEyN/6s53M8G7c6cRUXvkeV8Uh5duYS06pAdLq4ukc72errSIyyGQGYtzWEzvVGzGSWg8l79e0VkTJYPw==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
 
     @yield('links')
 </head>
 <body>
     @yield('header')
+    @if (session()->has('userLogin'))
+        <input type="hidden" name="id_user" id="id_user" value="{{session()->get('userLogin')->id}}">
+    @endif
     @yield('content')
+    <div class="container-msg">Please Verify Your Email</div>
     @yield('footer')
     <script>
         gsap.registerPlugin(ScrollTrigger);
@@ -47,44 +51,92 @@
             });
         });
 
-
-        $('.price').each(function(){
-            var harga = $(this).text();
-            $(this).text(formatRupiah(harga,'Rp. '));
-        });
-
-        const targets = document.querySelectorAll('img');
-        const lazyLoad = target =>{
-            const io = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting){
-                        const img = entry.target;
-                        const src = img.getAttribute('data-lazy');
-
-                        if(src!=null){
-                            img.setAttribute('src',src);
-                            if(img.classList.contains('fadeFromLeft')){
-                                gsap.to(img,{
-                                    x:0,
-                                    opacity:1,
-                                    duration:1
-                                });
-                            }else{
-                                gsap.to(img,{
-                                    y:0,
-                                    opacity:1,
-                                    duration:1
-                                });
-                            }
-                        }
-
-                        observer.disconnect();
-                    }
+        $(document).on({
+            mouseenter: function(){
+                gsap.to($(this).children('.fadeFromDown'),{
+                    y:-10,
+                    duration:1
                 });
+            },
+            mouseleave: function(){
+                gsap.to($(this).children('.fadeFromDown'),{
+                    y:0,
+                    duration:1
+                });
+            }
+        }, '.item-img');
+
+        function reformatPrice() {
+            $('.price').each(function(){
+                var harga = $(this).text();
+                $(this).text(formatRupiah(harga,'Rp. '));
             });
-            io.observe(target);
-        };
-        targets.forEach(lazyLoad);
+        }
+
+        function ajaxCart(id=-1,qty=1) {
+            $.ajax({
+                url:"/addToCart/"+id+"_"+qty,
+                type:"GET",
+                data:{},
+                success:function (result) {
+                    var response = JSON.parse(result);
+                    gsap.to('.container-notifCart',{
+                        y:"5%",
+                        duration:0.5
+                    });
+                    console.log(response);
+
+                    setTimeout(function(){
+                        $('.container-notifCart').html(response['data']);
+                    },1000);
+
+                    gsap.to('.container-notifCart',{
+                        y:'60%',
+                        delay:1,
+                        duration:0.5
+                    });
+                    if(response['msg'] != null)
+                    message(response['msg']);
+                },error:function(){
+                    alert('gagal');
+                }
+            });
+        }
+        lazyLoading();
+        function lazyLoading() {
+            const targets = document.querySelectorAll('img');
+            const lazyLoad = target =>{
+                const io = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting){
+                            const img = entry.target;
+                            const src = img.getAttribute('data-lazy');
+
+                            if(src!=null){
+                                img.setAttribute('src',src);
+                                if(img.classList.contains('fadeFromLeft')){
+                                    gsap.to(img,{
+                                        x:0,
+                                        opacity:1,
+                                        duration:1
+                                    });
+                                }else{
+                                    gsap.to(img,{
+                                        y:0,
+                                        opacity:1,
+                                        duration:1
+                                    });
+                                }
+                            }
+
+                            observer.disconnect();
+                        }
+                    });
+                });
+                io.observe(target);
+            };
+            targets.forEach(lazyLoad);
+        }
 
         function formatRupiah(angka, prefix){
             var number_string = angka.replace(/[^,\d]/g, '').toString(),
@@ -114,6 +166,37 @@
             el.style.overflow = curOverflow;
 
             return isOverflowing;
+        }
+
+        $(document).on('click','.cta-cart',function(){
+            if($("#id_user").length != 0){
+                var id = $(this).siblings('.id_barang').val();
+                if($(this).siblings('.jumlah_barang').length != 0){
+                    var qty = $(this).siblings('.jumlah_barang').val();
+                    ajaxCart(id,qty);
+                }else{
+                    ajaxCart(id);
+                }
+            }else window.location.href = "/login";
+        });
+
+        $(document).on('click','.item-img',function(){
+            var url = $(this).siblings('.item-details').children().children('.title').children().html();
+            url = url.replace(/\s+/g,'-').toLowerCase();
+            window.location.href="/product/"+url;
+        });
+
+        function message(msg) {
+            $('.container-msg').html(msg);
+            gsap.to('.container-msg',{
+                y:-120,
+                duration:0.8
+            });
+            gsap.to('.container-msg',{
+                y:100,
+                delay:5,
+                duration:0.8
+            });
         }
     </script>
     @stack('script')

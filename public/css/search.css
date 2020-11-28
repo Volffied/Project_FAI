@@ -1,0 +1,130 @@
+.container-search {
+    width: 78vw;
+    display: flex;
+    margin-top: 7%;
+}
+
+.container-filter {
+    width: 25%;
+}
+
+.container-filter h1,
+.container-items h1 {
+    font: 700 1.5em "Montserrat";
+    z-index: 99;
+    color: #fff;
+    letter-spacing: 0.05em;
+}
+
+.filter-wrapper {
+    width: 90%;
+    height: 100vh;
+    margin-top: 15%;
+}
+
+.container-items {
+    width: 75%;
+    padding-bottom: 5%;
+}
+
+.inner-items {
+    margin-top: -5%;
+}
+
+.item {
+    width: 23%;
+    height: 55vh !important;
+}
+
+.cta-cart {
+    width: 40px;
+    height: 40px;
+}
+
+.cta-cart svg {
+    width: 65% !important;
+}
+
+.item-detail p {
+    font-size: 0.9em;
+}
+
+.price {
+    font-size: 1em !important;
+}
+
+.pagination {
+    justify-content: flex-end;
+}
+
+.page-link {
+    background-color: transparent !important;
+    border: none !important;
+    color: #ff151d75;
+    font: 500 1.2em "Montserrat";
+}
+
+.page-link:hover {
+    color: #ff151b;
+}
+
+.page-item.disabled .page-link {
+    color: #261830;
+}
+
+.page-item.active .page-link {
+    color: #ff151b;
+}
+
+.container-filter-items {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: solid 1px #ff151d48;
+    padding-bottom: 2%;
+}
+
+.container-filter-items:not(:first-child) {
+    padding-top: 5%;
+}
+
+.container-filter-items a {
+    font: 700 1.1em "Montserrat";
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 2%;
+}
+
+.filter-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.filter-links a {
+    font: 500 1em "Montserrat";
+    margin: 0 0 2% 3%;
+    opacity: 0.6;
+    padding: 4% 0 4% 2%;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.link-active {
+    opacity: 1 !important;
+    font-weight: 600 !important;
+}
+
+.link-active:hover {
+    cursor: pointer;
+}
+
+.filter-links a:not(.link-active):hover {
+    background-color: #ff151d65;
+    cursor: pointer;
+}
+
+.gambar-brand {
+    width: 35% !important;
+}

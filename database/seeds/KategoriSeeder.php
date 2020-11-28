@@ -12,19 +12,19 @@ class KategoriSeeder extends Seeder
     public function run()
     {
         KategoriModel::insert([
-            'nama' => 'Console'
+            'nama_kategori' => 'Console'
         ]);
         KategoriModel::insert([
-            'nama' => 'Accessories'
+            'nama_kategori' => 'Accessories'
         ]);
         KategoriModel::insert([
-            'nama' => 'Component'
+            'nama_kategori' => 'Component'
         ]);
         KategoriModel::insert([
-            'nama' => 'PC'
+            'nama_kategori' => 'PC'
         ]);
         KategoriModel::insert([
-            'nama' => 'Gear'
+            'nama_kategori' => 'Gear'
         ]);
     }
 }

@@ -87,7 +87,7 @@
                                         @foreach ($dataKat as $item)
                                             <tr>
                                                 <th scope="row">{{ $ctr }}</th>
-                                                <td>{{ $item->nama }}</td>
+                                                <td>{{ $item->nama_kategori }}</td>
                                                 <td><form action="{{ url('Admin/delkategori') }}" method="post">
                                                         @csrf
                                                         <input class="idkategorihidden" type="hidden" name="idkategorihid" value="{{ $item->id }}">

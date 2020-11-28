@@ -105,7 +105,7 @@
                                             <tr>
                                                 <th scope="row">{{ $ctr }}</th>
                                                 <td><img style="width: 100px;" src="{{ $item->gambar }}" alt=""></td>
-                                                <td>{{ $item->nama }}</td>
+                                                <td>{{ $item->nama_brand }}</td>
                                                 <td>{{ $item->desc }}</td>
                                                 <td><a href="#" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Delete</a></td>
                                             </tr>

@@ -33,13 +33,13 @@
         <div id="container-mycart" >
             @foreach ($barang as $item)
                 <div class="cart-item">
-                    <div class="item-img">
+                    <div class="container-img">
                         <div class="item-img-bg"></div>
                         <img class="fadeFromLeft" data-lazy="{{$item->gambar}}" alt="">
                     </div>
                     <div class="item-detail">
                         <p>{{$item->nama_kat}}</p>
-                        <h1>{{$item->nama}}</h1>
+                        <h1>{{$item->nama_barang}}</h1>
                     </div>
                     <div class="jumlah-harga">
                         <div class="container-input">
@@ -195,8 +195,15 @@
             else window.location.href=url;
         });
 
+        $(".continue").click(function(){
+            var url =$("#backUrl").val();
+            if(url.indexOf('cart') > -1) window.location.href='/';
+            else window.location.href=url;
+        });
+
         $(".item-detail").click(function(){
-            window.location.href="/";
+            var name = $(this).children('h1').html();
+            window.location.href="/product/"+name;
         });
 
         $(".button-min").click(function(){
@@ -237,10 +244,6 @@
             var jumlah = $(this).val();
             var kodeBarang = $(this).attr('id').replace('jumlah_','');
             ajaxCart(kodeBarang,jumlah);
-        });
-
-        $("#container-cart").carousel({
-            interval: false
         });
 
         $(".mycart").click(function(){

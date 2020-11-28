@@ -21,8 +21,9 @@ class UserController extends Controller
     {
         $barang = new BarangModel();
         $brand = new BrandModel();
-        $param['barang'] = $barang->getAllDataBarang();
+        $param['barang'] = $barang->getAllDataBarangPaginate(16,'barang.deleted_at',null);
         $param['brand'] = $brand->getAllDataBrandWithCount();
+        // dd($param['brand']);
 
 
         return view('Common_Folder.home',['data' => $param]);
@@ -43,7 +44,7 @@ class UserController extends Controller
     {
         $brand = new BrandModel();
         $barang = new BarangModel();
-        $brand = $brand->where('nama',$nama)->first();
+        $brand = $brand->where('nama_brand',$nama)->first();
         $barang = $barang->getAllDatabyBrand($brand->id_brand);
         return view('Common_Folder.brands',['brand' => $brand,'barang'=>$barang]);
     }
@@ -61,11 +62,20 @@ class UserController extends Controller
 
     public function Product($nama)
     {
+        $nama = str_replace('-',' ',$nama);
         $barang = new BarangModel();
-        $barang = $barang->getAllDataByColumn('barang.nama',$nama);
+        $barang = $barang->getAllDataByColumn('barang.nama_barang',$nama);
         return view('Common_Folder.product',['barang' => $barang]);
     }
 
+    public function Search(Request $request)
+    {
+        $barang = new BarangModel;
+        $barang['barang'] = $barang->getAllDataBarangPaginateArray(48,$request->all());
+        $barang['kategori'] = KategoriModel::all();
+        $barang['brand'] = BrandModel::all();
+        return view('Common_Folder.search',['data'=>$barang]);
+    }
 
     /////////////// PROCCESS CONTROLLER ////////////////
 
@@ -125,8 +135,9 @@ class UserController extends Controller
 
     //////////////// AJAX CONTROLLER /////////////////////
 
-    public function addToCart($id){
+    public function addToCart($id,$qty){
         $id_user =session()->get("userLogin")->id;
+        $response = [];
         if($id != -1){
             $databarang = new BarangModel;
             $databarang = $databarang->getAllDataByColumn("id",$id);
@@ -135,19 +146,22 @@ class UserController extends Controller
 
             $datacart = $datacart->getData($databarang->id,$id_user);
             if($datacart == null){
-                $cartinsert->insertData($databarang->id,$id_user,$databarang->nama_kat,1);
+                $cartinsert->insertData($databarang->id,$id_user,$databarang->nama_kat,$qty);
+                $response['msg'] = "Added To Your Cart";
             }
             else{
-                $datacart->qty+=1;
+                $datacart->qty+=$qty;
                 $datacart->save();
+                $response['msg'] = "Quantity Updated";
             }
         }
         $cart = new CartModel;
         $cart = $cart->getAllCart($id_user);
         if($cart == null){
-            $cart = 0;
+            $cart = [];
         }
-        return json_encode(count($cart));
+        $response['data'] = count($cart);
+        return json_encode($response);
     }
 
     public function checkPromo($checkBy,$value)

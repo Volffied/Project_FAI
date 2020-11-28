@@ -150,7 +150,7 @@
     margin-bottom: 3%;
 }
 
-.item-img {
+.container-img {
     width: 130px;
     height: 150px;
     display: flex;
@@ -180,7 +180,7 @@
     cursor: pointer;
 }
 
-.item-img img {
+.container-img img {
     width: 80%;
 }
 

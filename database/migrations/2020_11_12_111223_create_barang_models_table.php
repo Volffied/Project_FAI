@@ -15,13 +15,13 @@ class CreateBarangModelsTable extends Migration
     {
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
-            $table->string('nama',50);
+            $table->string('nama_barang',100);
             $table->bigInteger('harga');
             $table->smallInteger('stok');
             $table->string('gambar',255);
             $table->smallInteger('status');
             $table->bigInteger('kode_kategori');
-            $table->bigInteger('kode_brand')->nullable();
+            $table->bigInteger('kode_brand');
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });

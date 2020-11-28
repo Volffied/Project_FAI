@@ -13,12 +13,12 @@ class KategoriModel extends Model
     public $primaryKey      = "id_kat";
     public $incrementing    = true;
     public $timestamps      = true;
-    protected $fillable     = ['nama'];
+    protected $fillable     = ['nama_kategori'];
 
     public function insertData($nama){
         $data = new KategoriModel();
         $data->id_kat        = null;
-        $data->nama          = $nama;
+        $data->nama_kategori = $nama;
         $data->save();
     }
 }

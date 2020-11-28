@@ -13,11 +13,11 @@ class BarangModel extends Model
     public $primaryKey      = "id";
     public $incrementing    = true;
     public $timestamps      = true;
-    protected $fillable     = ['nama','harga','stok','gambar','status','kode_kategori','kode_brand','deleted_at','created_at','updated_at'];
+    protected $fillable     = ['nama_barang','harga','stok','gambar','status','kode_kategori','kode_brand','deleted_at','created_at','updated_at'];
 
     public function simpanData($nama,$harga,$stok,$status,$kode_kategori,$gambar,$kode_brand){
         $barang = new BarangModel();
-        $barang->nama             = $nama;
+        $barang->nama_barang      = $nama;
         $barang->harga            = $harga;
         $barang->stok             = $stok;
         $barang->gambar           = $gambar;
@@ -33,7 +33,7 @@ class BarangModel extends Model
     public function getAllDataBarang()
     {
         $query = BarangModel::withTrashed()
-                            ->select('barang.*','kategori.nama as nama_kat', 'kategori.id_kat','b.nama as nama_brand','b.id_brand')
+                            ->select('barang.*','nama_kategori as nama_kat', 'kategori.id_kat','nama_brand as nama_brand','b.id_brand','b.gambar as gambar_brand')
                             ->join('kategori','id_kat','barang.kode_kategori')
                             ->leftJoin('brand as b','id_brand','barang.kode_brand')
                             ->orderBy('barang.id','asc')
@@ -41,9 +41,37 @@ class BarangModel extends Model
         return $query;
     }
 
+    public function getAllDataBarangPaginateArray($range,$array)
+    {
+        $result = BarangModel::withTrashed()
+                            ->select('barang.*','nama_kategori as nama_kat', 'kategori.id_kat','nama_brand as nama_brand','b.id_brand','b.gambar as gambar_brand')
+                            ->join('kategori','id_kat','barang.kode_kategori')
+                            ->leftJoin('brand as b','id_brand','barang.kode_brand');
+        foreach ($array as $key => $value) {
+            if($key != 'page'){
+                $column_value = '%'.$value.'%';
+                $result = $result->where('nama_'.$key,'like',$column_value);
+            }
+        }
+        $result = $result->orderBy('id','ASC')->paginate($range);
+        return $result;
+    }
+
+    public function getAllDataBarangPaginate($range,$column,$value)
+    {
+        $query = BarangModel::withTrashed()
+                            ->select('barang.*','nama_kategori as nama_kat', 'kategori.id_kat','nama_brand as nama_brand','b.id_brand','b.gambar as gambar_brand')
+                            ->join('kategori','id_kat','barang.kode_kategori')
+                            ->leftJoin('brand as b','id_brand','barang.kode_brand')
+                            ->orderBy('barang.id','asc')
+                            ->where($column,$value)
+                            ->paginate($range);
+        return $query;
+    }
+
     public function getAllDataByColumn($column,$value)
     {
-        $query = BarangModel::select('barang.*','kategori.nama as nama_kat','b.nama as nama_brand')
+        $query = BarangModel::select('barang.*','nama_kategori as nama_kat','nama_brand','b.gambar as gambar_brand')
                             ->join('kategori','id_kat','barang.kode_kategori')
                             ->leftJoin('brand as b','id_brand','barang.kode_brand')
                             ->where($column,$value)
@@ -53,7 +81,7 @@ class BarangModel extends Model
 
     public function getAllDataByAmount($amount)
     {
-        $query = BarangModel::select('barang.*','kategori.nama as nama_kat','b.nama as nama_brand')
+        $query = BarangModel::select('barang.*','nama_kategori as nama_kat','nama_brand as nama_brand')
                             ->join('kategori','id_kat','barang.kode_kategori')
                             ->leftJoin('brand as b','id_brand','barang.kode_brand')
                             ->paginate($amount);
@@ -62,7 +90,7 @@ class BarangModel extends Model
 
     public function getAllDatabyBrand($brand)
     {
-        $query = BarangModel::select('barang.*','kategori.nama as nama_kat')
+        $query = BarangModel::select('barang.*','nama_kategori as nama_kat')
                             ->join('kategori','id_kat','barang.kode_kategori')
                             ->where('kode_brand',$brand)
                             ->get();
@@ -70,7 +98,7 @@ class BarangModel extends Model
     }
 
     public function getAllDatabyCat(){
-        $query = BarangModel::select(["barang.id","barang.nama as barang_nama","barang.harga as barang_harga","barang.stok as barang_stok","barang.gambar as barang_gambar","kategori.id_kat as kategori_id","kategori.nama as kategori_nama"])
+        $query = BarangModel::select(["barang.id","barang.nama_barang as barang_nama","barang.harga as barang_harga","barang.stok as barang_stok","barang.gambar as barang_gambar","kategori.id_kat as kategori_id","nama_kategori as kategori_nama"])
                             ->join("kategori","kategori.id_kat","barang.kode_kategori")
                             ->orderBy("kategori.id_kat","ASC")->get();
         return $query;

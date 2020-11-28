@@ -26,12 +26,12 @@
     position: relative;
 }
 
-.item-img {
+.container-img {
     width: 80vh;
     height: 80vh;
     position: absolute;
     left: 30vh;
-    top: 5vh;
+    top: 8vh;
     z-index: 2;
     display: flex;
     justify-content: center;
@@ -63,6 +63,7 @@
     justify-content: center;
     align-items: flex-start;
     padding-left: 10%;
+    padding-right: 2%;
 }
 
 .container-inputJumlah input[type="number"] {

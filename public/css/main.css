@@ -60,7 +60,7 @@ img {
 }
 
 .form-search input[type="text"] {
-    width: 50%;
+    width: 80%;
     margin-left: 1%;
 }
 
@@ -126,7 +126,7 @@ img {
     position: relative;
 }
 
-.link-wrapper a {
+.link-wrapper a:not(#searchButton) {
     color: #261830;
     font-size: 1vw;
     font-family: "Montserrat";
@@ -155,10 +155,16 @@ img {
     font: 600 1.5em "Montserrat";
 }
 
-.link-wrapper a:hover {
+.link-wrapper a:not(#searchButton):hover {
     background-color: #261830;
     border-color: #261830;
     color: #ff151b;
+}
+
+.active-link {
+    background-color: #261830;
+    border-color: #261830;
+    color: #ff151b !important;
 }
 
 .svg-box p {
@@ -182,4 +188,25 @@ img {
 
 .svg-box:hover .fill-svg {
     fill: #261830;
+}
+
+.container-msg {
+    min-height: 10vh;
+    background-color: #ff151b;
+    position: fixed;
+    right: 2%;
+    bottom: -100px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5%;
+    font: 700 1.3em "Montserrat";
+    color: #160d1c;
+    z-index: 999;
+}
+
+#searchButton:hover {
+    cursor: pointer;
 }

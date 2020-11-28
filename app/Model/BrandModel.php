@@ -14,11 +14,11 @@ class BrandModel extends Model
     public $primaryKey      = "id_brand";
     public $incrementing    = true;
     public $timestamps      = true;
-    protected $fillable     = ['nama','gambar','desc'];
+    protected $fillable     = ['nama_brand','gambar','desc'];
 
     public function simpanData($txtnama,$txtgambar,$txtdesc){
         $brand = new BrandModel();
-        $brand->nama             = $txtnama;
+        $brand->nama_brand       = $txtnama;
         $brand->gambar           = $txtgambar;
         $brand->desc             = $txtdesc;
         $brand->status             = 1;
@@ -33,9 +33,9 @@ class BrandModel extends Model
     }
 
     public function getAllDataBrandWithCount(){
-        $query = BarangModel::select(DB::raw('count(id) as jumlah_barang'),'brand.nama as nama','brand.gambar as gambar','brand.id_brand as id')->distinct()
+        $query = BarangModel::select(DB::raw('count(id) as jumlah_barang'),'brand.nama_brand as nama','brand.gambar as gambar','brand.id_brand as id')->distinct()
                                     ->join('brand','brand.id_brand','barang.kode_brand')
-                                    ->groupBy('kode_brand','brand.nama','brand.gambar','brand.id_brand')->orderBy('kode_brand','ASC')->get();
+                                    ->groupBy('kode_brand','brand.nama_brand','brand.gambar','brand.id_brand')->orderBy('kode_brand','ASC')->get();
         return $query;
     }
 }

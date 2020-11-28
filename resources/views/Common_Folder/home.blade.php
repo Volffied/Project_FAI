@@ -75,183 +75,35 @@
     </div>
     {{-- Promo --}}
     <div class="container-promo">
-        <h1>DAILY DISCOUNT</h1>
-        <p class="subtitle">Until <span style="color: #ff151b">05:21:00</span></p>
+        <h1>Category</h1>
+        <p class="subtitle"></span></p>
         <div class="item-wrapper">
             {{-- Carousel Promo --}}
             <div id="carousel-1" class="carousel slide" data-interval="false" data-ride="carousel" style="height: 100%">
                 <div class="carousel-inner" style="height: 100%">
-                    {{-- Foreach tiap 4 item mulai dari sini (untuk class active kalau bisa dikasih yang pertama) --}}
-                  <div class="carousel-item active" style="height: 100%">
-                    <div class="item-grid">
-                        {{-- Foreach tiap item --}}
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img class="fadeFromDown" data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img class="fadeFromDown" data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img class="fadeFromDown" data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img class="fadeFromDown" data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
+                  <div class="carousel-item active" style="height: 100%; flex-direction:column; align-items:center;">
+                    <style>
+                        .col-promo{
+                            background-color: #f00;
+                            margin: 1%;
+                        }
+                    </style>
+                    <div class="row" style="width: 100%; height:50%;">
+                        <div class="col col-promo"></div>
+                        <div class="col col-promo"></div>
+                        <div class="col col-promo"></div>
+                    </div>
+                    <div class="row" style="width: 100%; height:50%;">
+                        <div class="col col-promo"></div>
+                        <div class="col col-promo"></div>
+                        <div class="col col-promo"></div>
                     </div>
                   </div>
                   <div class="carousel-item" style="height: 100%">
-                    <div class="item-grid">
-                        {{-- Foreach tiap item --}}
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img class="fadeFromDown" data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img class="fadeFromDown" data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img class="fadeFromDown" data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img class="fadeFromDown" data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
-                    </div>
+
                   </div>
                   <div class="carousel-item" style="height: 100%">
-                    <div class="item-grid">
-                        {{-- Foreach tiap item --}}
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img class="fadeFromDown" data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img class="fadeFromDown" data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img class="fadeFromDown" data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="item-img">
-                                <div class="item-img-bg"></div>
-                                <img class="fadeFromDown" data-lazy="{{asset('/images/mouse1.png')}}" alt="mouse">
-                            </div>
-                            <div class="item-details">
-                                <div class="item-detail">
-                                    <p class="title">Mouse Steelseries Aerox 3</p>
-                                    <p class="price">Rp. 1.500.000</p>
-                                </div>
-                                <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                            </div>
-                        </div>
-                    </div>
+
                   </div>
                 </div>
                 <a class="carousel-control-prev" style="width:5%;height: 5%; top:47.5%; left:-5%" href="#carousel-1" role="button" data-slide="prev">
@@ -306,14 +158,17 @@
                         @for ($j = 0; $j < 2 && $ctr < $count; $j++)
                             <div class="row row-brand">
 
-                                @for ($k = $ctr; $k < $ctr+2 && $ctr < $count; $k++)
+                                @for ($k = $ctr; $k < $ctr+2 && $ctr < $count && $k < $count; $k++)
                                     <div class="col col-brand brand">
                                         <input type="hidden" class="namaBrand" value="{{$data['brand'][$k]->nama}}">
                                         <div class="brand-bg"></div>
                                     {{-- image brand --}}
-                                        <img data-lazy="{{$data['brand'][$k]->gambar}}" class="brand-img fadeFromDown" alt="{{$data['brand'][$k]->nama}}">
+                                        <img data-lazy="{{$data['brand'][$k]->gambar}}" class="brand-img fadeFromDown" alt="{{$data['brand'][$k]->nama_brand}}">
                                         <p>{{$data['brand'][$k]->jumlah_barang}} Products</p>
                                     </div>
+                                    @if ($k == $count - 1 && $k%2 == 0)
+                                        <div class="col"></div>
+                                    @endif
                                 @endfor
 
                                 @php
@@ -339,67 +194,68 @@
     </div>
     <div class="container-products">
         <h1>FEATURED PRODUCTS</h1>
-        <p class="subtitle">Our Most Bought Products <span><a href="#">See All Products</a></span></p>
+        <p class="subtitle">Our Most Bought Products <span><a href="/search">See All Products</a></span></p>
         @php
             $ctr = 0;
         @endphp
-        <div class="row-products">
-        @foreach ($data['barang'] as $item)
-            @if ($ctr != 0 && $ctr%4==0)
-                </div>
-                <div class="row-products">
-            @endif
-            <div class="item">
-                <div class="item-img" title="{{$item->nama}} | {{$item->nama_kat}}">
-                    <div class="item-img-bg"></div>
-                    <img class="fadeFromDown" data-lazy="{{$item->gambar}}" alt="item">
-                </div>
-                <div class="item-details">
-                    <div class="item-detail">
-                        <p class="title" title="{{$item->nama}} | {{$item->nama_kat}}">{{$item->nama}}</p>
-                        <p  class="category">{{$item->nama_kat}}</p>
-                        <p class="price">{{$item->harga}}</p>
+        <div class="container-items">
+            <div class="row-products">
+                @foreach ($data['barang'] as $item)
+                    @if ($ctr != 0 && $ctr%4==0)
+                        </div>
+                        <div class="row-products">
+                    @endif
+                    <div class="item">
+                        <div class="item-img" title="{{$item->nama_barang}} | {{$item->nama_kat}}">
+                            <div class="item-img-bg"></div>
+                            <img class="fadeFromDown" data-lazy="{{$item->gambar}}" alt="item">
+                            <img src="{{$item->gambar_brand}}" class="gambar-brand" alt="brand">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-detail">
+                                <div class="title line-clamp">
+                                    <p title="{{$item->nama_barang}} | {{$item->nama_kat}}">{{$item->nama_barang}}</p>
+                                </div>
+                                <p  class="category">{{$item->nama_kat}}</p>
+                                <p class="price">{{$item->harga}}</p>
+                            </div>
+                            <input type="hidden" class="id_barang" value="{{$item->id}}">
+                            <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
+                        </div>
                     </div>
-                    <input type="hidden" class="id_barang" value="{{$item->id}}">
-                    <div class="cta-cart"><svg aria-hidden="true" focusable="false" style="width: 30px" data-prefix="fas" data-icon="shopping-cart" class="svg-inline--fa fa-shopping-cart fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="#261830" d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path></svg></div>
-                </div>
+                    @php
+                        $ctr++;
+                    @endphp
+                @endforeach
             </div>
-            @php
-                $ctr++;
-            @endphp
-        @endforeach
+            {{$data['barang']->links()}}
         </div>
     </div>
 @endsection
 
 @push('script')
     <script>
+        reformatPrice();
+        $('ul.pagination').hide();
+        $(function() {
+            $('.container-items').jscroll({
+                autoTrigger: true,
+                padding: 0,
+                nextSelector: '.pagination li.active + li a',
+                contentSelector: 'div.container-items',
+                callback: function() {
+                    $('ul.pagination').remove();
+                    lazyLoading();
+                    reformatPrice();
+                }
+            });
+        });
         $(function( $ ){
           console.log($.ajax);
         });
-        ajaxCart();
         gsap.from('.banner',{
             y:-20,
             duration:2
-        });
-
-        $('.item-img').click(function(){
-            var url = $(this).siblings('.item-details').children().children('.title').html();
-            window.location.href="/product/"+url;
-        });
-
-        $('.item-img').mouseenter(function(){
-            gsap.to($(this).children('img'),{
-                y:-10,
-                duration:1
-            });
-        });
-
-        $('.item-img').mouseleave(function(){
-            gsap.to($(this).children('img'),{
-                y:0,
-                duration:1
-            });
         });
 
         $('.brand').click(function(){
@@ -407,12 +263,5 @@
             nama = nama.toLowerCase();
             window.location.href = "/brand/"+nama;
         });
-
-        $(".cta-cart").click(function(){
-            var id = $(this).siblings('.id_barang').val();
-            ajaxCart(id);
-        });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 @endpush
