@@ -29,7 +29,7 @@ class BrandSeeder extends Seeder
         //3
         BrandModel::insert([
             'nama_brand' =>  'RAZER',
-            'gambar' => 'https://o.remove.bg/downloads/d13d16f8-c9ff-4623-9d3a-aaad43a9ab95/141-1419530_razer-logo-png-transparent-png-removebg-preview.png',
+            'gambar' => 'https://d2o7dtsnwzl7g9.cloudfront.net/tekzone/media/image/4d/46/g0/razer-logo.png',
             'desc' => 'a Singaporean–American multinational technology company that designs, develops, and sells consumer electronics, financial services, and gaming hardware. Founded by Min-Liang Tan and Robert Krakoff, the company is headquartered in Queenstown, Singapore and Irvine, California, United States.',
             'status' => 1
         ]);
@@ -43,7 +43,7 @@ class BrandSeeder extends Seeder
         //5
         BrandModel::insert([
             'nama_brand' =>  'INTEL',
-            'gambar' => 'https://cdn.freelogovectors.net/wp-content/uploads/2020/09/intelnewlogo.png',
+            'gambar' => 'https://assets.stickpng.com/images/58568d224f6ae202fedf2720.png',
             'desc' => 'an American multinational corporation and technology company headquartered in Santa Clara, California, in Silicon Valley.',
             'status' => 1
         ]);
@@ -64,7 +64,7 @@ class BrandSeeder extends Seeder
         //8
         BrandModel::insert([
             'nama_brand' =>  'GIGABYTE',
-            'gambar' => 'https://img.pngio.com/home-gigabyte-png-2048_339.png',
+            'gambar' => 'https://cdn.freebiesupply.com/logos/large/2x/gigabyte-1-logo-png-transparent.png',
             'desc' => "a Taiwanese manufacturer and distributor of computer hardware. Gigabyte's principal business is motherboards.",
             'status' => 1
         ]);
@@ -78,14 +78,14 @@ class BrandSeeder extends Seeder
         //10
         BrandModel::insert([
             'nama_brand' =>  'MSI',
-            'gambar' => 'https://media.msi.com/main.php?g2_view=core.DownloadItem&g2_itemId=118393&g2_serialNumber=2',
+            'gambar' => 'https://cdn.freebiesupply.com/logos/large/2x/msi-5-logo-png-transparent.png',
             'desc' => 'a Taiwanese multinational information technology corporation headquartered in New Taipei City, Taiwan.',
             'status' => 1
         ]);
         //11
         BrandModel::insert([
             'nama_brand' =>  'CORSAIR',
-            'gambar' => 'https://1000logos.net/wp-content/uploads/2020/09/Corsair-logo.png',
+            'gambar' => 'https://i.dlpng.com/static/png/6809724_preview.png',
             'desc' => 'an American computer peripherals and hardware company headquartered in Fremont, California.',
             'status' => 1
         ]);

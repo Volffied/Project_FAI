@@ -65,7 +65,7 @@
                 <div class="item-img" title="{{$item->nama_barang}} | {{$item->nama_kat}}">
                     <div class="item-img-bg"></div>
                     <img data-lazy="{{$item->gambar}}" class="fadeFromDown" alt="item">
-                    <img src="{{$item->gambar_brand}}" class="gambar-brand" alt="brand">
+                    <img src="{{$brand->gambar}}" class="gambar-brand" alt="brand">
                 </div>
                 <div class="item-details">
                     <div class="item-detail">

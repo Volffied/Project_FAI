@@ -160,7 +160,7 @@
 
                                 @for ($k = $ctr; $k < $ctr+2 && $ctr < $count && $k < $count; $k++)
                                     <div class="col col-brand brand">
-                                        <input type="hidden" class="namaBrand" value="{{$data['brand'][$k]->nama}}">
+                                        <input type="hidden" class="namaBrand" value="{{$data['brand'][$k]->nama_brand}}">
                                         <div class="brand-bg"></div>
                                     {{-- image brand --}}
                                         <img data-lazy="{{$data['brand'][$k]->gambar}}" class="brand-img fadeFromDown" alt="{{$data['brand'][$k]->nama_brand}}">
@@ -209,7 +209,10 @@
                         <div class="item-img" title="{{$item->nama_barang}} | {{$item->nama_kat}}">
                             <div class="item-img-bg"></div>
                             <img class="fadeFromDown" data-lazy="{{$item->gambar}}" alt="item">
-                            <img src="{{$item->gambar_brand}}" class="gambar-brand" alt="brand">
+                            <img src="{{$item->gambar_brand}}" class="gambar-brand
+                            @if ($item->nama_brand == "INTEL")
+                                gambar-intel
+                            @endif" alt="brand">
                         </div>
                         <div class="item-details">
                             <div class="item-detail">
