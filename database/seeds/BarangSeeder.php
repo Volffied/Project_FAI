@@ -58,7 +58,7 @@ class BarangSeeder extends Seeder
             "kode_brand"    =>  6
         ]);
         BarangModel::insert([
-            "nama_barang"   =>  "c615 1080p Webcam",
+            "nama_barang"   =>  "C615 1080p Webcam",
             "harga"         =>  1350000,
             "stok"          =>  50,
             "gambar"        =>  "https://assets.logitech.com/assets/65481/4/c615-portable-hd-webcam-refresh.png",
@@ -132,7 +132,7 @@ class BarangSeeder extends Seeder
             "kode_brand"    =>  8
         ]);
         BarangModel::insert([
-            "nama_barang"   =>  "Hydro Series™ H115i RGB  Liquid CPU Cooler",
+            "nama_barang"   =>  "Hydro Series™ H115i RGB Liquid CPU Cooler",
             "harga"         =>  2489000,
             "stok"          =>  50,
             "gambar"        =>  "https://www.corsair.com/medias/sys_master/images/images/hd4/h36/9120710492190/-CW-9060038-WW-Gallery-H115i-RGB-PLATINUM-01.png",
@@ -391,7 +391,7 @@ class BarangSeeder extends Seeder
         ]);
         //========================== processor
         BarangModel::insert([
-            "nama_barang"          =>  "Core™ i9-10980XE Extreme Edition Processor",
+            "nama_barang"          =>  "Core™ i9 10980XE Extreme Edition Processor",
             "harga"         =>  13400000,
             "stok"          =>  50,
             "gambar"        =>  "https://www.intel.com/content/dam/products/hero/foreground/processor-box-core-i9-extreme-edition-1x1.png.rendition.intel.web.225.225.png",
@@ -400,7 +400,7 @@ class BarangSeeder extends Seeder
             "kode_brand"    =>  5
         ]);
         BarangModel::insert([
-            "nama_barang"          =>  "Core™ i9-10900 Processor",
+            "nama_barang"          =>  "Core™ i9 10900 Processor",
             "harga"         =>  7600000,
             "stok"          =>  50,
             "gambar"        =>  "https://www.intel.com/content/dam/products/hero/foreground/badge-corei9-10thgen-rwd.png.rendition.intel.web.225.225.png",
@@ -418,7 +418,7 @@ class BarangSeeder extends Seeder
             "kode_brand"    =>  7
         ]);
         BarangModel::insert([
-            "nama_barang"          =>  "Core™ i7-10700 Processor",
+            "nama_barang"          =>  "Core™ i7 10700 Processor",
             "harga"         =>  4500000,
             "stok"          =>  50,
             "gambar"        =>  "https://www.intel.com/content/dam/products/hero/foreground/badge-10th-gen-core-i7-1x1.png.rendition.intel.web.225.225.png",
@@ -510,7 +510,7 @@ class BarangSeeder extends Seeder
             "kode_brand"    =>  3
         ]);
         BarangModel::insert([
-            "nama_barang"          =>  "Ornata V2 - US Keyboard",
+            "nama_barang"          =>  "Ornata V2 US Keyboard",
             "harga"         =>  1400000,
             "stok"          =>  50,
             "gambar"        =>  "https://assets3.razerzone.com/9q2HK0XP35dBKD9g3XOAJD-TZrI=/300x300/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fhb1%2Fh86%2F9020512993310%2FOrnata-V2-Base-500x500.png",
@@ -528,7 +528,7 @@ class BarangSeeder extends Seeder
             "kode_brand"    =>  11
         ]);
         BarangModel::insert([
-            "nama_barang"          =>  "Kraken Kitty - Quartz Headset",
+            "nama_barang"          =>  "Kraken Kitty Quartz Headset",
             "harga"         =>  2100000,
             "stok"          =>  50,
             "gambar"        =>  "https://assets3.razerzone.com/djHVzhcNM-4CDUH10OYt3G5U1nM=/300x300/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fhb6%2Fh38%2F9004166381598%2F9263550005278.png",
