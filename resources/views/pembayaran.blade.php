@@ -38,7 +38,7 @@
                 echo "<p id='txtstatus'>$status</p>";
                 echo "<p id='txtstatus1'>Status Pemesanan :</p>";
             ?>
-            <input type="text" name="txtsimpan" id="" value="<?php echo $id;?>">
+            <input type="hidden" name="txtsimpan" id="" value="<?php echo $id;?>">
             <a href="{{URL::to('deleteSessionorder')}}"><button id="buttonback" disabled style="margin-left: 38%; width: 20%; height: 5vh; border: 3px solid #07BDE0; background-color: none; border-radius: 2em; font-weight: bold;">Back</button></a>
         </div>
     </div>
@@ -63,10 +63,10 @@
             success : function(response) {
                 var data = JSON.stringify(response);
                 var dataparse = JSON.parse(data);
-                console.log(data);
+                console.log(dataparse);
                 if (dataparse["transaction_status"] == "settlement") {
                     $("#txtstatus1").text("Status Pemesanan : Berhasil");
-                    //simpanData();
+                    simpanData();
                     $("#buttonback").animate({opacity: '1'},{duration: 1000});
                     $("#buttonback").attr("disabled", false);
                     clearInterval(timer);
@@ -77,6 +77,19 @@
             },
             error:function(response){
                 alert("error :" +response);
+            }
+        });
+    }
+    function simpanData(){
+        $.ajax({
+            url:"/insertOrder/",
+            type: 'GET',
+            success : function(response) {
+                var data = JSON.parse(response);
+
+            },
+            error:function(response){
+                console.log(response);
             }
         });
     }

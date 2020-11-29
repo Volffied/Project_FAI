@@ -16,6 +16,12 @@ class CustomerModel extends Authenticatable
     public $timestamps      = true;
     protected $fillable     = ['id','nama','email','password','poin','notlp','alamat','status','kode_member'];
 
+    public function barang(){
+        return $this->belongsToMany(BarangModel::class,'cart','kode_user','kode_barang')
+                    ->withPivot("qty","nama_kategori")
+                    ->as("cart");
+    }
+
     public function insertData($email,$pass,$nama,$alamat,$notlp){
         $data   = new CustomerModel();
         $data->id               = null;
