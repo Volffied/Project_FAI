@@ -72,7 +72,7 @@
                                             <tr>
                                                 <td scope="row">{{ $ctr }}</td>
                                                 <td><img src="{{ $item->gambar }}" alt="" style="width: 80px; height: 80px;"></td>
-                                                <td>{{ $item->nama }}</td>
+                                                <td>{{ $item->nama_barang }}</td>
                                                 <td>{{ $item->nama_kat }}</td>
                                                 <td>Rp. {{ $item->harga }},00</td>
                                                 <td>{{ $item->stok }}</td>
@@ -95,7 +95,7 @@
                                 <h2 class="card-title">Kategori</h2>
                             </div>
                             <div class="card-body">
-                                <table id="example2" class="table table-bordered table-hover">
+                                <table id="example3" class="table table-bordered table-hover">
                                     <style>
                                         .thead{
                                             background-color: #8F192F !important;
@@ -118,7 +118,7 @@
                                         @foreach ($dataKat as $item)
                                             <tr>
                                                 <th scope="row">{{ $ctr1 }}</th>
-                                                <td>{{ $item->nama }}</td>
+                                                <td>{{ $item->nama_kategori }}</td>
                                             </tr>
                                             <?php
                                                 $ctr1 = $ctr1 + 1;
@@ -138,7 +138,7 @@
                                 <h2 class="card-title">Promo</h2>
                             </div>
                             <div class="card-body">
-                                <table id="example2" class="table table-bordered table-hover">
+                                <table id="example4" class="table table-bordered table-hover">
                                     <style>
                                         .thead{
                                             background-color: #8F192F !important;
@@ -187,7 +187,7 @@
                                 <h2 class="card-title">Member</h2>
                             </div>
                             <div class="card-body">
-                                <table id="example2" class="table table-bordered table-hover">
+                                <table id="example5" class="table table-bordered table-hover">
                                     <style>
                                         .thead{
                                             background-color: #8F192F !important;

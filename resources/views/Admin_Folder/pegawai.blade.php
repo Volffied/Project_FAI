@@ -53,7 +53,9 @@
             </div>
         </div>
         <div class="form-row" style="float: right;">
-            <input type="submit" class="btn btn-primary" name="btnadd" value="Submit">
+            <input type="hidden" name="id_pegawai" id="idpegawai">
+            <input type="submit" class="btn btn-primary" id="btnupdPegawai" name="btnupdate" value="Update" style="visibility: hidden;">
+            <input type="submit" class="btn btn-primary" name="btnadd" id="btnaddPegawai" value="Submit">
         </div>
     </form>
 </div>
@@ -120,7 +122,7 @@
                                         @foreach ($daftarPegawai as $item)
                                         <tr>
                                             <th scope="row">{{ $ctr }}</th>
-                                            <td>{{ $item->nama }}</td>
+                                            <td>{{ $item->nama."-".$item->id }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->notlp }}</td>
                                             @if ($item->jenis == 1)
@@ -130,11 +132,15 @@
                                             @elseif($item->jenis == 3)
                                                 <td>Customer Service</td>
                                             @endif
-                                            @if ($item->status == 1)
-                                                <td><a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Banned</a></td>
-                                            @elseif($item->status == 0)
-                                                <td><a href="#" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Unbanned</a></td>
-                                            @endif
+                                            <td><form action="{{ url('Master/delPegawai') }}" method="post">
+                                                @csrf
+                                                <input class="idpegawaihidden" type="hidden" name="idpegawaihid" value="{{ $item->id }}">
+                                                @if ($item->deleted_at != null)
+                                                    <input class="btn btn-primary" type="submit" value="Unbanned" name="btnDel"></td>
+                                                @else
+                                                    <input class="btn btn-danger" type="submit" value="Banned" name="btnDel"></td>
+                                                @endif
+                                            </form></td>
                                         </tr>
                                         <?php
                                             $ctr = $ctr + 1;
@@ -153,4 +159,44 @@
         </section>
     </div>
 </div>
+<script>
+    highlight_row() ;
+    function highlight_row() {
+        var table = document.getElementById('example2');
+        var cells = table.getElementsByTagName('td');
+
+
+        for (var i = 0; i < cells.length; i++) {
+            var cell = cells[i];
+            cell.onclick = function () {
+                var rowId = this.parentNode.rowIndex;
+
+
+                var rowsNotSelected = table.getElementsByTagName('tr');
+                for (var row = 0; row < rowsNotSelected.length; row++) {
+                    rowsNotSelected[row].style.backgroundColor = "";
+                    rowsNotSelected[row].classList.remove('selected');
+                }
+                var rowSelected = table.getElementsByTagName('tr')[rowId];
+                rowSelected.className += " selected";
+
+                msg = rowSelected.cells[0].innerHTML+" "+rowSelected.cells[1].innerHTML+" "+rowSelected.cells[2].innerHTML+" "+rowSelected.cells[3].innerHTML+" "+rowSelected.cells[4].innerHTML;
+                msg += " ";
+                document.getElementById("btnaddPegawai").style.visibility = "hidden";
+                document.getElementById("btnupdPegawai").style.visibility = "visible";
+                document.getElementById("txtemail").value    = rowSelected.cells[2].innerHTML;
+                document.getElementById("txtnama").value   = rowSelected.cells[1].innerHTML.substring(0,rowSelected.cells[1].innerHTML.indexOf("-"));
+                document.getElementById("txtphone").value   = rowSelected.cells[3].innerHTML;
+                if(rowSelected.cells[4].innerHTML == "Admin"){
+                    document.getElementById("cbpilijenispegawai").value   =  1;
+                }else if(rowSelected.cells[4].innerHTML == "Kurir"){
+                    document.getElementById("cbpilijenispegawai").value   =  2;
+                }else if(rowSelected.cells[4].innerHTML == "Customer Service"){
+                    document.getElementById("cbpilijenispegawai").value   =  3;
+                }
+                document.getElementById("idpegawai").value   = rowSelected.cells[1].innerHTML.substring(rowSelected.cells[1].innerHTML.indexOf("-"),rowSelected.cells[1].length);
+            }
+        }
+    }
+</script>
 @endsection

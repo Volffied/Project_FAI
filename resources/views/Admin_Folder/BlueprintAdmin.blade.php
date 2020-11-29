@@ -155,9 +155,45 @@
       "scrollY": "500px",
       "scrollCollapse": true,
     });
+    $('#example3').DataTable({
+      "paging": false,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+      "scrollY": "500px",
+      "scrollCollapse": true,
+    });
+    $('#example4').DataTable({
+      "paging": false,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+      "scrollY": "500px",
+      "scrollCollapse": true,
+    });
+    $('#example5').DataTable({
+      "paging": false,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+      "scrollY": "500px",
+      "scrollCollapse": true,
+    });
   });
   $(document).ready(function(){
     $("#example2_filter").attr('style','float:right;margin-right:2%;');
+    $("#example3_filter").attr('style','float:right;margin-right:2%;');
+    $("#example4_filter").attr('style','float:right;margin-right:2%;');
+    $("#example5_filter").attr('style','float:right;margin-right:2%;');
   });
 </script>
 </body>
