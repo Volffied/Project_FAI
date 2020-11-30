@@ -6,6 +6,7 @@ use App\Model\BarangModel;
 use App\Model\BrandModel;
 use App\Model\CartModel;
 use App\Model\CustomerModel;
+use App\Model\HchatModel;
 use App\Model\JenisMemberModel;
 use App\Model\KategoriModel;
 use App\Model\PegawaiModel;
@@ -111,7 +112,6 @@ class UserController extends Controller
             $user  = new CustomerModel();
             $user->checkLogin($email,$pass);
             if(session()->has('userLogin')){
-                //dd($request->session()->get('userLogin'));
                 return redirect("/");
             }
             else{
@@ -144,6 +144,12 @@ class UserController extends Controller
             $notlp  = $req->notelp;
             $user   = new CustomerModel();
             $user->insertData($email,$pass,$nama,$alamat,$notlp);
+            //========================================
+            $paramdata = CustomerModel::where("email",$email)->first();
+            HchatModel::insert([
+                "kode_customer" =>  $paramdata->id
+            ]);
+            //========================================
             return redirect("/register");
         }
     }

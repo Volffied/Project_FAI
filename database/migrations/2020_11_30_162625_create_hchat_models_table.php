@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateChatModelsTable extends Migration
+class CreateHchatModelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateChatModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('chat', function (Blueprint $table) {
-            $table->id();
-            $table->string('pesan',255);
-            $table->dateTime('waktu');
+        Schema::create('hchat', function (Blueprint $table) {
+            $table->bigIncrements('id_hchat');
             $table->bigInteger('kode_customer');
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
@@ -30,6 +28,6 @@ class CreateChatModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chat');
+        Schema::dropIfExists('hchat');
     }
 }

@@ -37,6 +37,7 @@
             </div>
             <div class="container-subprofile" style="left: 0;">
                 <div class="slider-poin {{$user->nama_member}}-border">
+                <a href="/chatGameBox"><button class="btn btn-primary" style="z-index: 1000;">Chat</button></a>
                     @php
                         //now-start/end-start
                         // 700
