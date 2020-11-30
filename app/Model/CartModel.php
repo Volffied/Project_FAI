@@ -23,6 +23,10 @@ class CartModel extends Model
         $cart->save();
     }
 
+    public function barang($kode){
+        return $this->hasMany(BarangModel::class,'id','kode_barang')->where('kode_user',$kode);
+    }
+
     public function getAllCart($user_id)
     {
         $query = CartModel::select('barang.*','qty','nama_kategori as nama_kat')

@@ -74,3 +74,4 @@ Route::get('/home',function(){
 Route::post('dataPayment', 'midtransController@dataPayment');
 Route::post('saveData', 'midtransController@saveData');
 Route::get('pagePayment', 'midtransController@pagePayment');
+Route::get('insertOrder', 'midtransController@insertOrder');

@@ -93,11 +93,12 @@
     <script>
         $("#ajaxcart").submit(function (e) {
             e.preventDefault();
-            var kode_customer = $("input[name=id_user]").val();
-            var grandtotal    = $("input[name=grandTotal]").val();
-            var subtotal      = $("input[name=total]").val();
-            var kode_promo    = $("input[name=idpotongan]").val();
-            var _token        = $("input[name=_token]").val();
+            var kode_customer   = $("input[name=id_user]").val();
+            var grandtotal      = $("input[name=grandTotal]").val();
+            var subtotal        = $("input[name=total]").val();
+            var kode_promo      = $("input[name=idpotongan]").val();
+            var potongan_member = $("input[name=potonganMember]").val();
+            var _token          = $("input[name=_token]").val();
             $.ajax({
                 url:"/dataPayment/",
                 type:"POST",
@@ -106,6 +107,7 @@
                     grandtotal      : grandtotal,
                     subtotal        : subtotal,
                     kode_promo      : kode_promo,
+                    potongan_member : potongan_member,
                     _token          : _token,
                 },
                 success:function(response){
