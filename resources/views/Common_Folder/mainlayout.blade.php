@@ -31,6 +31,10 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
         $(document).ready(function(){
+            gsap.to('body',{
+                opacity:1,
+                duration:1.5
+            });
             if($('img[data-lazy]').hasClass('fadeFromLeft')){
                 gsap.to('img[data-lazy]',{
                     x:-20,
@@ -47,6 +51,7 @@
             gsap.from('.container-header',{
                 y:-150,
                 opacity:0,
+                delay:0.5,
                 duration:2
             });
         });

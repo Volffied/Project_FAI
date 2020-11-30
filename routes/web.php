@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','UserController@HalAwal');
+Route::get('/','UserController@Profile');
 Route::get('Admin', 'controllerAdmin@HalPageAdmin');
 Route::get('Master', 'controllerAdmin@HalPageMaster');
 Route::get('Kurir', 'controllerAdmin@HalPageKurir');
@@ -59,6 +59,7 @@ Route::get('/login','UserController@Login');
 Route::get('/brand/{nama}','UserController@Brand');
 Route::get('/cart','UserController@Cart');
 Route::get('/search','UserController@Search');
+Route::get('/profile','UserController@Profile');
 Route::get('/product/{nama}','UserController@Product');
 Route::post('/prosesLogin','UserController@prosesLogin');
 Route::post('/prosesRegister','UserController@prosesRegister');

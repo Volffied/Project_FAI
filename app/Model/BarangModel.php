@@ -71,11 +71,10 @@ class BarangModel extends Model
 
     public function getAllDataByColumn($column,$value)
     {
-        $query = BarangModel::select('barang.*','nama_kategori as nama_kat','nama_brand','b.gambar as gambar_brand')
+        $query = BarangModel::select('barang.*','nama_kategori as nama_kat','b.nama_brand','b.gambar as gambar_brand')
                             ->join('kategori','id_kat','barang.kode_kategori')
-                            ->leftJoin('brand as b','id_brand','barang.kode_brand')
-                            ->where($column,$value)
-                            ->first();
+                            ->leftJoin('brand as b','id_brand','barang.kode_brand','left outer')
+                            ->where($column,$value);
         return $query;
     }
 
@@ -84,15 +83,18 @@ class BarangModel extends Model
         $query = BarangModel::select('barang.*','nama_kategori as nama_kat','nama_brand as nama_brand')
                             ->join('kategori','id_kat','barang.kode_kategori')
                             ->leftJoin('brand as b','id_brand','barang.kode_brand')
-                            ->paginate($amount);
+                            ->get()
+                            ->take($amount);
         return $query;
     }
 
     public function getAllDatabyBrand($brand)
     {
-        $query = BarangModel::select('barang.*','nama_kategori as nama_kat')
+        $query = BarangModel::select('barang.*','nama_kategori as nama_kat','brand.gambar as gambar_brand')
                             ->join('kategori','id_kat','barang.kode_kategori')
-                            ->where('kode_brand',$brand)
+                            ->join('brand','id_brand','kode_brand')
+                            ->where('brand.id_brand',$brand)
+                            ->orWhere('brand.nama_brand',$brand)
                             ->get();
         return $query;
     }

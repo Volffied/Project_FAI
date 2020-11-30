@@ -160,10 +160,14 @@
 
                                 @for ($k = $ctr; $k < $ctr+2 && $ctr < $count && $k < $count; $k++)
                                     <div class="col col-brand brand">
-                                        <input type="hidden" class="namaBrand" value="{{$data['brand'][$k]->nama_brand}}">
+                                        <input type="hidden" class="namaBrand" value="{{$data['brand'][$k]->nama}}">
                                         <div class="brand-bg"></div>
                                     {{-- image brand --}}
-                                        <img data-lazy="{{$data['brand'][$k]->gambar}}" class="brand-img fadeFromDown" alt="{{$data['brand'][$k]->nama_brand}}">
+                                        <img data-lazy="{{$data['brand'][$k]->gambar}}" class="brand-img fadeFromDown"
+                                            @if ($data['brand'][$k]->nama == "INTEL")
+                                                 style="width:30%;"
+                                            @endif
+                                        alt="{{$data['brand'][$k]->nama_brand}}">
                                         <p>{{$data['brand'][$k]->jumlah_barang}} Products</p>
                                     </div>
                                     @if ($k == $count - 1 && $k%2 == 0)

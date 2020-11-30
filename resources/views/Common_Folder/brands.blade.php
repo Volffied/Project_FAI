@@ -10,7 +10,7 @@
 @endsection
 
 @section('title')
-    <title>{{ucfirst(strtolower($brand->nama))}} | GameBox</title>
+    <title>{{ucfirst(strtolower($brand->nama_brand))}} | GameBox</title>
 @endsection
 
 @section('header')

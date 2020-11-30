@@ -13,27 +13,33 @@ class MemberSeeder extends Seeder
     public function run()
     {
         JenisMemberModel::insert([
-            'nama' => 'amateur',
+            'nama' => 'newborn',
             'potongan' => 0,
             'minimal_poin' => 0
         ]);
 
         JenisMemberModel::insert([
-            'nama' => 'warrior',
+            'nama' => 'knight',
             'potongan' => 2,
             'minimal_poin' => 150
         ]);
 
         JenisMemberModel::insert([
-            'nama' => 'warlock',
+            'nama' => 'sorcerer',
             'potongan' => 5,
-            'minimal_poin' => 250
+            'minimal_poin' => 400
+        ]);
+
+        JenisMemberModel::insert([
+            'nama' => 'king',
+            'potongan' => 8,
+            'minimal_poin' => 950
         ]);
 
         JenisMemberModel::insert([
             'nama' => 'demigod',
-            'potongan' => 8,
-            'minimal_poin' => 500
+            'potongan' => 10,
+            'minimal_poin' => 1700
         ]);
     }
 }

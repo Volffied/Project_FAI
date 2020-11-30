@@ -1,7 +1,6 @@
 .container-backNav {
     width: 100vh;
     height: 8vh;
-    background-color: #ff151b;
     transform: rotate(90deg);
     transform-origin: 0 0;
     display: flex;
@@ -12,7 +11,8 @@
     top: 0;
     z-index: 99;
     padding: 0 2.5%;
-    box-shadow: 8px 1px 8px 2px rgba(0, 0, 0, 0.91);
+    background: #261830;
+    box-shadow: 10px -10px 20px #201429, -10px 10px 20px #2c1c37;
 }
 
 .navbar-wrapper {
@@ -27,7 +27,7 @@
     font-size: 1.8em;
     margin: 0;
     margin-left: 20px;
-    color: #261830;
+    color: #ff151b;
     font-family: "Montserrat";
     font-weight: 600;
 }
@@ -288,11 +288,11 @@
     padding: 2% 0 2% 2%;
     display: flex;
     flex-direction: column;
-    -webkit-box-shadow: 4px 5px 9px 3px rgba(0, 0, 0, 0.65);
-    box-shadow: 4px 5px 9px 3px rgba(0, 0, 0, 0.65);
     transition: all 0.5s;
     z-index: 10;
-    background-color: #261830;
+    border-radius: 22px;
+    background: #261830;
+    box-shadow: inset -27px -27px 54px #201428, inset 27px 27px 54px #2c1c38;
 }
 
 .totalHarga p {

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerModel extends Authenticatable
 {
@@ -38,8 +39,20 @@ class CustomerModel extends Authenticatable
         ];
 
         if (Auth::guard('web')->attempt($dataUser)){
-            request()->session()->put('userLogin', Auth::user());
+            $user = new CustomerModel;
+            $user = $user->getUser($dataUser['email']);
+            session()->put('userLogin', $user);
+            session()->put('authUser', Auth::user());
             Auth::login(Auth::user());
         }
+    }
+
+    public function getUser($email)
+    {
+        $query = CustomerModel::select('customer.*','jenis_member.nama as nama_member','potongan')
+                                ->join('jenis_member','id_member','kode_member')
+                                ->where('email',$email)
+                                ->first();
+        return $query;
     }
 }

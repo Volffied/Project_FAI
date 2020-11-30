@@ -32,6 +32,7 @@ class UserController extends Controller
     public function Login()
     {
         session()->forget('userLogin');
+        session()->forget('authUser');
         return view('Common_Folder.login');
     }
 
@@ -64,8 +65,12 @@ class UserController extends Controller
     {
         $nama = str_replace('-',' ',$nama);
         $barang = new BarangModel();
-        $barang = $barang->getAllDataByColumn('barang.nama_barang',$nama);
-        return view('Common_Folder.product',['barang' => $barang]);
+        $barang = $barang->getAllDataByColumn('barang.nama_barang',$nama)->first();
+        $listBarang = new BarangModel;
+        $listBarang = $listBarang->getAllDatabyBrand($barang->nama_brand);
+        $listKatBarang = new BarangModel;
+        $listKatBarang = $listKatBarang->getAllDataByColumn('kategori.id_kat',$barang->kode_kategori)->get();
+        return view('Common_Folder.product',['barang' => $barang,'listBarang' => $listBarang,'listKat' =>$listKatBarang]);
     }
 
     public function Search(Request $request)
@@ -75,6 +80,15 @@ class UserController extends Controller
         $barang['kategori'] = KategoriModel::all();
         $barang['brand'] = BrandModel::all();
         return view('Common_Folder.search',['data'=>$barang]);
+    }
+
+    public function Profile()
+    {
+        $kode_member = session()->get('userLogin')->kode_member;
+        if($kode_member != 5) $nextMember = JenisMemberModel::find($kode_member+1);
+        else $nextMember = JenisMemberModel::find(5);
+        $myMember = JenisMemberModel::find($kode_member);
+        return view('Common_Folder.profile',['nextMember' => $nextMember,'myMember' => $myMember]);
     }
 
     /////////////// PROCCESS CONTROLLER ////////////////
@@ -140,7 +154,7 @@ class UserController extends Controller
         $response = [];
         if($id != -1){
             $databarang = new BarangModel;
-            $databarang = $databarang->getAllDataByColumn("id",$id);
+            $databarang = $databarang->getAllDataByColumn("id",$id)->first();
             $datacart = new CartModel;
             $cartinsert = new CartModel;
 

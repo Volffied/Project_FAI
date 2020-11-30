@@ -18,8 +18,11 @@
 
 .filter-wrapper {
     width: 90%;
-    height: 100vh;
     margin-top: 15%;
+    padding: 5%;
+    border-radius: 15px;
+    background: #261830;
+    box-shadow: 41px 41px 45px #22162b, -41px -41px 45px #2a1a35;
 }
 
 .container-items {
