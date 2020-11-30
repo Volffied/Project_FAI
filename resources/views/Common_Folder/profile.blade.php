@@ -64,6 +64,7 @@
                         <h1>{{$user->email}}</h1>
                         @if ($user->status == 0)
                             <p class="verifyEmail">Verify My Email</p>
+                            <input type="hidden" name="txthiddenid" id="" value="{{$user->id}}">
                         @endif
                     </div>
                 </div>
@@ -139,7 +140,29 @@
 
         $(".verifyEmail").click(function(){
             message("We've sent an email to you.<br>Please click the link inside the email to continue");
+            updateData();
         });
+        function updateData(){
+            var id = $("input[name=txthiddenid]").val();
+            // alert(id);
+            $.ajax({
+                url:"/updateEmail/"+id,
+                type:"GET",
+                data:{},
+                success:function(response){
+                    if (response == 0) {
+                        alert("aku nol");
+                    }
+                    else{
+                        alert("aku satu");
+                    }
+
+                },
+                error:function(response){
+                    // console.log(response);
+                }
+            });
+        }
     </script>
 
 @endpush

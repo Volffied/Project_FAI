@@ -28,6 +28,8 @@ class sendEmailVerification extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        $iduser = session()->get("iduser");
+        return $this->subject('Game Box')->view("Common_Folder.email",["id" => $iduser]);
+        session()->forget("iduser");
     }
 }

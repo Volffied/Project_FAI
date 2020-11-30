@@ -58,4 +58,8 @@ class CustomerModel extends Authenticatable
                                 ->first();
         return $query;
     }
+    public function getDataEmailByid($id){
+        $query = CustomerModel::where("id",$id)->first();
+        return $query;
+    }
 }
