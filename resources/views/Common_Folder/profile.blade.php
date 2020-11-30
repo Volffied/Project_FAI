@@ -35,14 +35,14 @@
                 <p>+{{$user->potongan}}% Discount</p>
             </div>
             <div class="container-subprofile" style="left: 0;">
-                <div class="slider-poin">
+                <div class="slider-poin {{$user->nama_member}}-border">
                     @php
                         //now-start/end-start
                         // 700
                         $minPoin = $myMember->minimal_poin;
                         $maxPoin = $nextMember->minimal_poin;
                         $myPoin = $user->poin;
-                        if($myPoin-$maxPoin != 0) $percent = ($myPoin-$minPoin)/($maxPoin-$minPoin)*100;
+                        if($maxPoin-$myPoin > 0) $percent = ($myPoin-$minPoin)/($maxPoin-$minPoin)*100;
                         else $percent = 100;
                         // dd("Min:".$minPoin."\nMax:".$maxPoin."\nMy:".$myPoin."\nPercent:".$percent);
                     @endphp
@@ -52,7 +52,7 @@
                     @else
                         <p>MAXED OUT</p>
                     @endif
-                    <div class="fill-poin" style="width: {{$percent}}%;"></div>
+                    <div class="fill-poin {{$user->nama_member}}-bg" style="width: {{$percent}}%;"></div>
                 </div>
                 <div class="container-bio">
                     <div class="bio">

@@ -79,6 +79,46 @@
     color: #fcd770;
 }
 
+.knight-bg {
+    background-color: #afaab4;
+}
+
+.newborn-bg {
+    background-color: #38648c;
+}
+
+.sorcerer-bg {
+    background-color: #707dd3;
+}
+
+.king-bg {
+    background-color: #da4a54;
+}
+
+.demigod-bg {
+    background-color: #fcd770;
+}
+
+.knight-border {
+    border: solid 1px #afaab4;
+}
+
+.newborn-border {
+    border: solid 1px #38648c;
+}
+
+.sorcerer-border {
+    border: solid 1px #707dd3;
+}
+
+.king-border {
+    border: solid 1px #da4a54;
+}
+
+.demigod-border {
+    border: solid 1px #fcd770;
+}
+
 .title {
     font: 800 2em "Montserrat";
     color: #ff151b;
@@ -104,7 +144,6 @@
 .slider-poin {
     width: 75%;
     height: 40px;
-    border: solid 1px #833177;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -116,7 +155,6 @@
 
 .fill-poin {
     height: 100%;
-    background-color: #833177;
     /* background-color: #73be73; */
     position: absolute;
     left: 0;
