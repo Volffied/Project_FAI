@@ -42,7 +42,7 @@
                         $minPoin = $myMember->minimal_poin;
                         $maxPoin = $nextMember->minimal_poin;
                         $myPoin = $user->poin;
-                        if($myPoin-$minPoin != 0) $percent = ($myPoin-$minPoin)/($maxPoin-$minPoin)*100;
+                        if($myPoin-$maxPoin != 0) $percent = ($myPoin-$minPoin)/($maxPoin-$minPoin)*100;
                         else $percent = 100;
                         // dd("Min:".$minPoin."\nMax:".$maxPoin."\nMy:".$myPoin."\nPercent:".$percent);
                     @endphp
