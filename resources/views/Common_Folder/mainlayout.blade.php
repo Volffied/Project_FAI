@@ -19,12 +19,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
 
     @yield('links')
+    <link rel="stylesheet" href="{{asset('css/chat.css')}}" />
 </head>
 <body>
     @yield('header')
     @if (session()->has('userLogin'))
         <input type="hidden" name="id_user" id="id_user" value="{{session()->get('userLogin')->id}}">
     @endif
+
+    @include('Common_Folder.chat')
     @yield('content')
     <div class="container-msg">Please Verify Your Email</div>
     @yield('footer')
@@ -53,6 +56,10 @@
                 opacity:0,
                 delay:0.5,
                 duration:2
+            });
+            gsap.to('.container-chat',{
+                y:'80vh',
+                duration:0
             });
         });
 
