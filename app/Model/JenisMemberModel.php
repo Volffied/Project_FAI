@@ -26,7 +26,7 @@ class JenisMemberModel extends Model
 
     public function getPotonganByID($id)
     {
-        $query = JenisMemberModel::where('id_member',$id+1)->first();
+        $query = JenisMemberModel::where('id_member',$id)->first();
 
         return $query;
     }

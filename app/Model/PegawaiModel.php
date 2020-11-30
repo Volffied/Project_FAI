@@ -34,4 +34,18 @@ class PegawaiModel extends Model
         $data->status        = 1;
         $data->save();
     }
+
+    public function getPegawaiNganggur()
+    {
+        $pegawai = PegawaiModel::select('id')->where('jenis',2)->get();
+        $nganggur = [];
+        foreach ($pegawai as $value) {
+            $query = HorderModel::where('kode_pegawai',$value->id)
+                                ->where('status_order',0)
+                                ->orWhere('status_order',1)->first();
+            if($query==null) array_push($nganggur,$value);
+        }
+        $idx = rand(0,count($nganggur)-1);
+        return $nganggur[$idx];
+    }
 }

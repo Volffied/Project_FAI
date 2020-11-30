@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         //ALTER TABLE tablename AUTO_INCREMENT = 1
         //composer dump-autoload
         Model::unguard();
-        $seeders = array ('PegawaiSeeder','CustomerSeeder','KategoriSeeder','BarangSeeder','BrandSeeder','PromoSeeder','MemberSeeder');
+        $seeders = array ('PegawaiSeeder','CustomerSeeder','KategoriSeeder','BarangSeeder','BrandSeeder','PromoSeeder','MemberSeeder','HorderSeeder');
 
         foreach ($seeders as $seeder)
         {

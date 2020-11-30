@@ -8,6 +8,7 @@ use App\Model\CartModel;
 use App\Model\CustomerModel;
 use App\Model\JenisMemberModel;
 use App\Model\KategoriModel;
+use App\Model\PegawaiModel;
 use App\Model\PromoModel;
 use App\Model\UserModel;
 use Illuminate\Http\Request;

@@ -25,6 +25,7 @@
     @php
         $user = session()->get('userLogin');
     @endphp
+    <input type="hidden" id="sukses" value="{{session()->get('berhasil')}}">
     <h1 class="page-title">My Profile</h1>
     <div class="outer-container">
         <div class="container-profile">
@@ -65,6 +66,8 @@
                         @if ($user->status == 0)
                             <p class="verifyEmail">Verify My Email</p>
                             <input type="hidden" name="txthiddenid" id="" value="{{$user->id}}">
+                        @else
+                            <p class="verifyEmail sukses" style="color:#73be73;">Mighty Email</p>
                         @endif
                     </div>
                 </div>
@@ -136,11 +139,14 @@
                 opacity:0,
                 duration:1
             });
+            if($("#sukses").val() != "") message('Your email is considered mighty');
         });
 
         $(".verifyEmail").click(function(){
-            message("We've sent an email to you.<br>Please click the link inside the email to continue");
-            updateData();
+            if(!$(this).hasClass('sukses')){
+                message("We've sent an email to you.<br>Please click the link inside the email to continue");
+                updateData();
+            }
         });
         function updateData(){
             var id = $("input[name=txthiddenid]").val();
@@ -150,16 +156,11 @@
                 type:"GET",
                 data:{},
                 success:function(response){
-                    if (response == 0) {
-                        alert("aku nol");
-                    }
-                    else{
-                        alert("aku satu");
-                    }
+                    console.log('email(success):'+response);
 
                 },
                 error:function(response){
-                    // console.log(response);
+                    console.log('email(failed):'+response);
                 }
             });
         }

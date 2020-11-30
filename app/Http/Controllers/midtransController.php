@@ -7,6 +7,7 @@ use App\Model\CartModel;
 use App\Model\CustomerModel;
 use App\Model\DorderModel;
 use App\Model\HorderModel;
+use App\Model\PegawaiModel;
 use App\Model\PromoModel;
 use Illuminate\Http\Request;
 use Midtrans\Config;
@@ -20,8 +21,6 @@ class midtransController extends Controller
         $grandtotal = $request->grandtotal;
         $kode_promo = $request->kode_promo;
         $potongan_member = $request->potongan_member;
-
-
 
         //$datacart = CartModel::where('kode_customer',$kode_customer)->get();
         // $databarang = CartModel::select('cart.*','barang.nama_barang as nama_barang','barang.harga as harga_barang')
@@ -169,6 +168,8 @@ class midtransController extends Controller
 
         $replace_data = str_replace("//","",$datasession);
         $datasession = json_decode($replace_data[0],true);
+        // $dataPegawai = HorderModel::select('kode_pegawai','')
+        //$pegawaiNganggur = select kode pegawai, count(kode_pegawai) from horder where status = 0 orWhere status = 1 and where role = kurir orderBy count asc -> first
         HorderModel::create([
             'tanggal_trans'     => date("Y-m-d",strtotime($datasession["transaction_time"])),
             'subtotal'          => $dataorder["subtotal"],
@@ -176,6 +177,7 @@ class midtransController extends Controller
             'metode_pembayaran' => $datasession["payment_type"],
             'kode_promo'        => $dataorder["kode_promo"],
             'kode_customer'     => $dataorder["kode_customer"]
+            //'kode_pegawai' => $pegawaiNganggur->id_pegawai
         ]);
         $databarang = CustomerModel::find($dataorder["kode_customer"]);
         $databarang = $databarang->barang;

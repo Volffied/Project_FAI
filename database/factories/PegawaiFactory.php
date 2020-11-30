@@ -13,7 +13,7 @@ $factory->define(PegawaiModel::class, function (Faker $faker) {
         'email'=>$faker->unique()->freeEmail,
         'notlp'=>$faker->unique()->PhoneNumber,
         'password'=>Hash::make('123'),
-        'jenis'=>$faker->numberBetween($min = 1, $max = 2),
+        'jenis'=>$faker->numberBetween($min = 1, $max = 3),
         'status'=>1
     ];
 });

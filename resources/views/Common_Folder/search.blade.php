@@ -77,7 +77,7 @@
         <div class="container-items">
             <h1>Showing {{$data['barang']->count()}} out of {{$data['barang']->total()}} items
             @isset($_GET['barang'])
-                for search "{{$_GET['barang']}}"
+                for "{{$_GET['barang']}}"
             @endisset </h1>
             @php
                 $ctr = 0;

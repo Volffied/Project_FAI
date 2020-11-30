@@ -20,7 +20,12 @@ class controllerEmail extends Controller
         return $status;
     }
     public function updatedataEmail($id){
-        CustomerModel::find($id)->update(["status" => 1]);
+        $userUpdate = CustomerModel::find($id);
+        $userUpdate->status = 1;
+        $userUpdate->save();
+        $userBaru= CustomerModel::find($id);
+        session()->put('userLogin',$userBaru);
+        session()->flash('berhasil','Test');
         return redirect("/profile");
     }
 }

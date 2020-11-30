@@ -220,7 +220,7 @@
     transition: all 0.5s;
 }
 
-.verifyEmail:hover {
+.verifyEmail:not(.sukses):hover {
     cursor: pointer;
     text-decoration: underline;
 }

@@ -47,10 +47,15 @@ class BarangModel extends Model
                             ->select('barang.*','nama_kategori as nama_kat', 'kategori.id_kat','nama_brand as nama_brand','b.id_brand','b.gambar as gambar_brand')
                             ->join('kategori','id_kat','barang.kode_kategori')
                             ->leftJoin('brand as b','id_brand','barang.kode_brand');
+        $ctr=0;
         foreach ($array as $key => $value) {
-            if($key != 'page'){
-                $column_value = '%'.$value.'%';
+            $column_value = '%'.$value.'%';
+            if($key != 'page' && $key != 'barang'){
                 $result = $result->where('nama_'.$key,'like',$column_value);
+            }if($key == 'barang'){
+                $result = $result->orWhere('nama_brand','like',$column_value);
+                $result = $result->orWhere('nama_kategori','like',$column_value);
+                $result = $result->orWhere('nama_barang','like',$column_value);
             }
         }
         $result = $result->orderBy('id','ASC')->paginate($range);
