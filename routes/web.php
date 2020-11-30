@@ -77,3 +77,5 @@ Route::get('pagePayment', 'midtransController@pagePayment');
 Route::get('insertOrder', 'midtransController@insertOrder');
 Route::get("updateEmail/{id}","controllerEmail@updateEmail");
 Route::get("verifikasiEmail/{id}","controllerEmail@updatedataEmail");
+Route::get("chatGameBox","Controller@HalChat");
+Route::post("chatsend",'Controller@checkChat');
