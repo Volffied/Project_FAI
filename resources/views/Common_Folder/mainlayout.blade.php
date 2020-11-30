@@ -173,6 +173,21 @@
             return isOverflowing;
         }
 
+
+
+        function message(msg) {
+            $('.container-msg').html(msg);
+            gsap.to('.container-msg',{
+                y:-120,
+                duration:0.8
+            });
+            gsap.to('.container-msg',{
+                y:100,
+                delay:5,
+                duration:0.8
+            });
+        }
+
         $(document).on('click','.cta-cart',function(){
             if($("#id_user").length != 0){
                 var id = $(this).siblings('.id_barang').val();
@@ -191,18 +206,12 @@
             window.location.href="/product/"+url;
         });
 
-        function message(msg) {
-            $('.container-msg').html(msg);
-            gsap.to('.container-msg',{
-                y:-120,
-                duration:0.8
+        $(window).on('beforeunload',function(){
+            gsap.to('body',{
+                opacity:0,
+                duration:0.2
             });
-            gsap.to('.container-msg',{
-                y:100,
-                delay:5,
-                duration:0.8
-            });
-        }
+        });
     </script>
     @stack('script')
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-7TpgxSciwX7rsj1A"></script>

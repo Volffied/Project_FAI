@@ -42,11 +42,16 @@
                         $minPoin = $myMember->minimal_poin;
                         $maxPoin = $nextMember->minimal_poin;
                         $myPoin = $user->poin;
-                        $percent = ($myPoin-$minPoin)/($maxPoin-$minPoin)*100;
+                        if($myPoin-$minPoin != 0) $percent = ($myPoin-$minPoin)/($maxPoin-$minPoin)*100;
+                        else $percent = 100;
                         // dd("Min:".$minPoin."\nMax:".$maxPoin."\nMy:".$myPoin."\nPercent:".$percent);
                     @endphp
                     <p>{{$myPoin}} Points</p>
-                    <p>{{$maxPoin-$myPoin}} more for {{ucfirst($nextMember->nama)}}</p>
+                    @if ($myMember->id_member != 5)
+                        <p>{{$maxPoin-$myPoin}} more for {{ucfirst($nextMember->nama)}}</p>
+                    @else
+                        <p>MAXED OUT</p>
+                    @endif
                     <div class="fill-poin" style="width: {{$percent}}%;"></div>
                 </div>
                 <div class="container-bio">
@@ -57,6 +62,9 @@
                     <div class="bio">
                         <p>Email</p>
                         <h1>{{$user->email}}</h1>
+                        @if ($user->status == 0)
+                            <p class="verifyEmail">Verify My Email</p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -127,6 +135,10 @@
                 opacity:0,
                 duration:1
             });
+        });
+
+        $(".verifyEmail").click(function(){
+            message("We've sent an email to you.<br>Please click the link inside the email to continue");
         });
     </script>
 

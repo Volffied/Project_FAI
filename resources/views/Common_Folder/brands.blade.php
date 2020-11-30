@@ -90,34 +90,36 @@
 @push('script')
 
     <script>
-        gsap.from('.official',{
-            x:-30,
-            opacity:0,
-            duration:1
-        });
-        gsap.from('.stores',{
-            x:30,
-            opacity:0,
-            duration:1
-        });
+        $(document).ready(function(){
+            gsap.from('.official',{
+                x:-30,
+                opacity:0,
+                duration:1
+            });
+            gsap.from('.stores',{
+                x:30,
+                opacity:0,
+                duration:1
+            });
 
-        gsap.from('.bg-block',{
-            x:-100,
-            opacity:0,
-            duration:1
-        });
+            gsap.from('.bg-block',{
+                x:-100,
+                opacity:0,
+                duration:1
+            });
 
-        gsap.from('.container-title img',{
-            y:-50,
-            opacity:0,
-            duration:1
-        });
+            gsap.from('.container-title img',{
+                y:-50,
+                opacity:0,
+                duration:1
+            });
 
-        gsap.from('.container-desc p',{
-            y:100,
-            opacity:0,
-            scrollTrigger:".scrolltrigger",
-            duration:1
+            gsap.from('.container-desc p',{
+                y:100,
+                opacity:0,
+                scrollTrigger:".scrolltrigger",
+                duration:1
+            });
         });
 
         $('.item-img').mouseenter(function(){

@@ -50,7 +50,7 @@ class CustomerSeeder extends Seeder
             'password' => Hash::make('123'),
             'notlp' => '081231894694',
             'alamat' => 'Jl Raya',
-            'status' => 1,
+            'status' => 0,
             'kode_member' => 4
         ]);
         CustomerModel::insert([

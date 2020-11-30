@@ -206,6 +206,7 @@ img {
     font: 700 1.3em "Montserrat";
     color: #160d1c;
     z-index: 999;
+    text-align: center;
 }
 
 #searchButton:hover {

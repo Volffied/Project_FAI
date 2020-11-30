@@ -16,13 +16,13 @@ class CreateCustomerModelsTable extends Migration
         Schema::create('customer', function (Blueprint $table) {
             $table->id();
             $table->string('nama',50);
-            $table->integer('poin');
+            $table->integer('poin')->default(0);
             $table->string('email',100);
             $table->string('password',255);
             $table->string('notlp',25);
             $table->string('alamat',100);
-            $table->smallInteger('status');
-            $table->bigInteger('kode_member')->comment('1(Newborn),2(Knight),3(Sorcerer),4(King),5(Demigod)');
+            $table->smallInteger('status')->default(0)->comment('0: Belum, 1:Verified');
+            $table->bigInteger('kode_member')->default(1)->comment('1(Newborn),2(Knight),3(Sorcerer),4(King),5(Demigod)');
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','UserController@Profile');
+Route::get('/','UserController@HalAwal');
 Route::get('Admin', 'controllerAdmin@HalPageAdmin');
 Route::get('Master', 'controllerAdmin@HalPageMaster');
 Route::get('Kurir', 'controllerAdmin@HalPageKurir');
