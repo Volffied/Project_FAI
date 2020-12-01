@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','UserController@HalAwal');
 Route::get('Admin', 'controllerAdmin@HalPageAdmin');
 Route::get('Master', 'controllerAdmin@HalPageMaster');
+Route::get('CustomerService', 'controllerAdmin@HalPageCS');
 Route::get('Kurir', 'controllerAdmin@HalPageKurir');
 Route::get('loginAdmin', 'controllerAdmin@HalPageLogin');
 Route::post('prosesloginAdmin', 'controllerAdmin@LoginAdmin');

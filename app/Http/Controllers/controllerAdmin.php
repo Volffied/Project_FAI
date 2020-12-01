@@ -31,6 +31,10 @@ class controllerAdmin extends Controller
         return view('Admin_Folder.Master',['daftarPegawai'=>$dataPegawai]);
     }
 
+    public function HalPageCS(){
+        return view('Admin_Folder.CustomerService');
+    }
+
     public function HalPageKurir(){return view('Admin_Folder.Kurir');}
 
     public function HalPagemPegawai(){
@@ -476,6 +480,9 @@ class controllerAdmin extends Controller
             }else if($userAvail->jenis === 2){
                 $request->session()->put('adminLog', $userAvail);
                 return redirect("Kurir");
+            }else if($userAvail->jenis === 3){
+                $request->session()->put('adminLog', $userAvail);
+                return redirect("CustomerService");
             }
         }
     }

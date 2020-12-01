@@ -59,8 +59,6 @@
                                         <th scope="col">Kode Pegawai</th>
                                         <th scope="col">Kode Promo</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Action</th>
-                                        <th scope="col">Action</th>
                                       </tr>
                                     </thead>
                                     @isset($daftarPenjualan)
@@ -84,17 +82,6 @@
                                             @elseif($item->status_order == 2)
                                                 <td>Terkirim</td>
                                             @endif
-                                            <td><form action="{{ url('Kurir/changeStat') }}" method="post">
-                                                @csrf
-                                                <input class="idpromohidden" type="hidden" name="idpromohid" value="{{ $item->id_horder }}">
-                                                @if ($item->status_order == 0)
-                                                    <input class="btn btn-warning" id="btnkirim" type="submit" value="Confirm" name="btnDel"></td>
-                                                @elseif($item->status_order == 1)
-                                                    <input class="btn btn-secondary" id="btnselesai" type="submit" value="Sent" name="btnDel"></td>
-                                                @elseif($item->status_order == 2)
-                                                    <span style="color: lightgreen">Terkirim</span></td>
-                                                @endif
-                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -107,5 +94,8 @@
             </div>
         </section>
     </div>
+</div>
+<div class="form-row" style="float: right;">
+    <input type="submit" class="btn btn-primary" id="btnMake" name="btnreport" value="Report" disabled>
 </div>
 @endsection
