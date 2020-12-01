@@ -8,6 +8,7 @@ use App\Model\CartModel;
 use App\Model\CustomerModel;
 use App\Model\DchatModel;
 use App\Model\HchatModel;
+use App\Model\HorderModel;
 use App\Model\JenisMemberModel;
 use App\Model\KategoriModel;
 use App\Model\PegawaiModel;
@@ -63,6 +64,11 @@ class UserController extends Controller
         $potonganMember = new JenisMemberModel;
         $potonganMember = $potonganMember->getPotonganByID(session()->get('userLogin')->kode_member);
         $allCart = new CartModel;
+        $horder = new HorderModel();
+        $datahistory = $horder->getAllDataBy(session()->get('userLogin')->id);
+        // $datahistory = HorderModel::where("kode_customer",session()->get('userLogin')->id)->first();
+        // $data = $datahistory->history;
+        dd($datahistory);
         $allCart = $allCart->getAllCart(session()->get('userLogin')->id);
         return view('Common_Folder.cart',['barang' => $allCart,'potongan'=>$potonganMember->potongan]);
     }
