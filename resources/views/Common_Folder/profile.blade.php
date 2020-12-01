@@ -23,7 +23,7 @@
 
 @section('content')
     @php
-        $user = session()->get('userLogin');
+       // $user = session()->get('userLogin');
     @endphp
     <input type="hidden" id="sukses" value="{{session()->get('berhasil')}}">
     <h1 class="page-title">My Profile</h1>
