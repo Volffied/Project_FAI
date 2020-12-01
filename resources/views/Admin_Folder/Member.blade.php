@@ -19,12 +19,14 @@
                 @enderror
             </div>
         </div>
-        <div class="form-group col-md-6">
-            <label for="txtpotongan">Potongan</label>
-            <input type="number" class="form-control" id="txtpotongan" name="txtpotongan" placeholder="Potongan">
-            @error('txtpotongan')
-                <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
-            @enderror
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="txtpotongan">Potongan</label>
+                <input type="number" class="form-control" id="txtpotongan" name="txtpotongan" placeholder="Potongan">
+                @error('txtpotongan')
+                    <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
+                @enderror
+            </div>
         </div>
         <div class="form-row" style="float: right;">
             <input type="hidden" name="id_jenis_member" id="idjenismember">
@@ -73,7 +75,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header" id="listMember">
-                                <h2 class="card-title">Promo</h2>
+                                <h2 class="card-title">Member</h2>
                             </div>
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-hover">
