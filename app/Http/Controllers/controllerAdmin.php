@@ -274,7 +274,7 @@ class controllerAdmin extends Controller
             $kategoriBarang = $request->cbpilihkategori;
             $kode_brand = $request->cbpilihbrand;
             $updateBarang = BarangModel::find($idbarang);
-            $updateBarang->nama             = $namabarang;
+            $updateBarang->nama_barang      = $namabarang;
             $updateBarang->harga            = $hargabarang;
             $updateBarang->stok             = $stokbarang;
             $updateBarang->gambar           = $gambarbarang;
@@ -377,7 +377,7 @@ class controllerAdmin extends Controller
             $namaKat = $request->txtnama;
             $idKategori = $request->id_kategori;
             $updateKategori = KategoriModel::find($idKategori);
-            $updateKategori->nama = $namaKat;
+            $updateKategori->nama_kategori = $namaKat;
             $updateKategori->save();
             return back();
         }
@@ -417,9 +417,9 @@ class controllerAdmin extends Controller
             $this->validate($request,$rules,$customError);
             $idbrand = $request->id_brand;
             $updateBrand = BrandModel::find($idbrand);
-            $updateBrand->nama      = $request->txtnama;
-            $updateBrand->gambar    = $request->txtgambar;
-            $updateBrand->desc      = $request->txtdesc;
+            $updateBrand->nama_brand        = $request->txtnama;
+            $updateBrand->gambar            = $request->txtgambar;
+            $updateBrand->desc              = $request->txtdesc;
             $updateBrand->save();
             return back();
         }
