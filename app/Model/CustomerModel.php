@@ -58,6 +58,14 @@ class CustomerModel extends Authenticatable
                                 ->first();
         return $query;
     }
+    public function getProfile($id)
+    {
+        $query = CustomerModel::select('customer.*','jenis_member.nama as nama_member','potongan')
+                                ->join('jenis_member','id_member','kode_member')
+                                ->where('id',$id)
+                                ->first();
+        return $query;
+    }
     public function getDataEmailByid($id){
         $query = CustomerModel::where("id",$id)->first();
         return $query;

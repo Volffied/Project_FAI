@@ -29,7 +29,9 @@ class UserController extends Controller
         $chat = new HchatModel();
         $param['barang'] = $barang->getAllDataBarangPaginate(16,'barang.deleted_at',null);
         $param['brand'] = $brand->getAllDataBrandWithCount();
-        $param['chat'] = $chat->getDataMessage(session()->get('userLogin')->id);
+        if(session()->has('userLogin')){
+            $param['chat'] = $chat->getDataMessage(session()->get('userLogin')->id);
+        }
         // dd($param['brand']);
 
 
@@ -66,9 +68,15 @@ class UserController extends Controller
         $allCart = new CartModel;
         $horder = new HorderModel();
         $datahistory = $horder->getAllDataBy(session()->get('userLogin')->id);
-        // $datahistory = HorderModel::where("kode_customer",session()->get('userLogin')->id)->first();
-        // $data = $datahistory->history;
-        dd($datahistory);
+        $datahistory = HorderModel::where("kode_customer",session()->get('userLogin')->id)->get();
+        //$data = $datahistory->history;
+        //dd($datahistory->pivot);
+        // foreach ($datahistory as $key => $value) {
+        //    foreach ($value->history as $key2 => $data) {
+        //         //dd($data);// buat dpet barang
+        //         //dd($data->dorder);// buat dpet dorder
+        //    }
+        // }
         $allCart = $allCart->getAllCart(session()->get('userLogin')->id);
         return view('Common_Folder.cart',['barang' => $allCart,'potongan'=>$potonganMember->potongan]);
     }
@@ -97,10 +105,14 @@ class UserController extends Controller
     public function Profile()
     {
         $kode_member = session()->get('userLogin')->kode_member;
+        $datalogin = session()->get('userLogin')->id;
+        //$user = CustomerModel::find($datalogin);
+        $user = new CustomerModel();
+        $user = $user->getProfile($datalogin);
         if($kode_member != 5) $nextMember = JenisMemberModel::find($kode_member+1);
         else $nextMember = JenisMemberModel::find(5);
         $myMember = JenisMemberModel::find($kode_member);
-        return view('Common_Folder.profile',['nextMember' => $nextMember,'myMember' => $myMember]);
+        return view('Common_Folder.profile',['nextMember' => $nextMember,'myMember' => $myMember,'user'=>$user]);
     }
 
     /////////////// PROCCESS CONTROLLER ////////////////

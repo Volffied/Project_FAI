@@ -191,7 +191,9 @@
             $('.totalText').html(formatRupiah(total.toString(),'Rp. '));
             $('#total').val(total);
             var discount = checkDiscount();
-            var grandtotal = total-total*(discount/100);
+            discount = discount/100;
+            var grandtotal = total-total*discount;
+            grandtotal = grandtotal.toFixed(0);
             console.log('total: '+total+' | grandtotal: '+grandtotal+" | Discount: "+discount);
             $('.grandTotalText').html(formatRupiah((grandtotal).toString(),'Rp. '));
             $('#grandTotal').val(grandtotal);

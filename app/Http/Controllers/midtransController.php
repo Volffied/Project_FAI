@@ -180,6 +180,8 @@ class midtransController extends Controller
             //'kode_pegawai' => $pegawaiNganggur->id_pegawai
         ]);
         $databarang = CustomerModel::find($dataorder["kode_customer"]);
+        $poin = $databarang->poin;
+        CustomerModel::find($dataorder["kode_customer"])->update(['poin'=>$poin+$dataorder["grandtotal"]*0.0005/100]);
         $databarang = $databarang->barang;
         $datatmp = array();
         foreach ($databarang as $key => $value) {
@@ -193,7 +195,7 @@ class midtransController extends Controller
             );
             array_push($datatmp,$datadorder);
         }
-		DorderModel::insert($datatmp);
+		DorderModel::create($datatmp);
         return json_encode($dataorder);
     }
 }
