@@ -60,18 +60,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @isset($dataMember)
-                                        @foreach ($dataMember as $item)
+                                    {{-- @isset($dataChat)
+                                        @foreach ($dataChat as $item) --}}
                                             <tr>
-                                                <th scope="row">{{ $ctr3 }}</th>
-                                                <td>{{ $item->nama }}</td>
-                                                <td>{{ $item->minimal_poin }}</td>
+
                                             </tr>
-                                            <?php
-                                                $ctr3 = $ctr3 + 1;
-                                            ?>
-                                        @endforeach
-                                    @endisset
+                                        {{-- @endforeach
+                                    @endisset --}}
                                     </tbody>
                                 </table>
                             </div>

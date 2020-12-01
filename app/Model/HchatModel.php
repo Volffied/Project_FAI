@@ -19,4 +19,25 @@ class HchatModel extends Model
                             ->get();
         return $query;
     }
+
+    public function getDataMessageForAdmin(){
+        $query  = HchatModel::select(["hchat.*","customer.nama as nama_cust"])
+                            ->join('customer','id','kode_customer')
+                            ->where("occupied",0)
+                            ->get();
+        return $query;
+    }
+
+    public function getCountMessage()
+    {
+        $response = [];
+        $dataHchat = new HchatModel();
+        $dataCheckChat = $dataHchat->getDataMessageForAdmin();
+        foreach ($dataCheckChat as $key) {
+            $response[$key->id_hchat]['namacust'] = $key->nama_cust;
+            $response[$key->id_hchat]['dchat'] = DchatModel::where('kode_hchat',$key->id_hchat)->where('status',0)->where('jenis',0)->count();
+        }
+
+        dd($response);
+    }
 }

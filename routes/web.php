@@ -19,7 +19,8 @@ Route::get('Admin', 'controllerAdmin@HalPageAdmin');
 Route::get('Master', 'controllerAdmin@HalPageMaster');
 Route::get('CustomerService', 'controllerAdmin@HalPageCS');
 Route::get('Kurir', 'controllerAdmin@HalPageKurir');
-Route::get('loginAdmin', 'controllerAdmin@HalPageLogin');
+// Route::get('loginAdmin', 'controllerAdmin@HalPageLogin');
+Route::get('loginAdmin', 'controllerAdmin@UpdateTabelCS');
 Route::post('prosesloginAdmin', 'controllerAdmin@LoginAdmin');
 Route::get('logoutAdmin', 'ControllerAdmin@LogoutAdmin');
 Route::group(['prefix' => 'Master'], function () {
@@ -32,7 +33,7 @@ Route::group(['prefix' => 'Kurir'], function () {
     Route::get('laporanBarangLaris', 'controllerAdmin@HalPagemLaporanBarangLaris');
 });
 Route::group(['prefix' => 'Cservice'], function () {
-
+    Route::get('updateTabelCS', 'controllerAdmin@UpdateTabelCS');
 });
 Route::group(['prefix' => 'Admin'], function () {
     Route::post('tambahKategori', 'controllerAdmin@addKategori');

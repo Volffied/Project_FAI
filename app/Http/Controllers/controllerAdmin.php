@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Model\BarangModel;
 use App\Model\BrandModel;
+use App\Model\DchatModel;
+use App\Model\HchatModel;
 use App\Model\JenisMemberModel;
 use App\Model\KategoriModel;
 use App\Model\PegawaiModel;
@@ -381,7 +383,13 @@ class controllerAdmin extends Controller
             $updateKategori->save();
             return back();
         }
+    }
 
+    public function UpdateTabelCS()
+    {
+        $dataHChat = new HchatModel();
+        $dataChat = $dataHChat->getCountMessage();
+        return view('Admin_Folder.tabelChatAjax',['dataChat'=>$dataChat]);
     }
 
     public function addBrand(Request $request)

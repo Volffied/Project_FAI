@@ -27,7 +27,8 @@ class CustomerSeeder extends Seeder
             'kode_member' => 1
         ]);
         HchatModel::insert([
-            "kode_customer" =>  1
+            "kode_customer" =>  1,
+            "occupied" => 0
         ]);
             //========================================
         DchatModel::insert([
@@ -52,7 +53,8 @@ class CustomerSeeder extends Seeder
         ]);
 
         HchatModel::insert([
-            "kode_customer" =>  2
+            "kode_customer" =>  2,
+            "occupied" => 0
         ]);
             //========================================
         DchatModel::insert([
@@ -77,7 +79,8 @@ class CustomerSeeder extends Seeder
         ]);
 
         HchatModel::insert([
-            "kode_customer" =>  3
+            "kode_customer" =>  3,
+            "occupied" => 0
         ]);
             //========================================
         DchatModel::insert([
@@ -102,7 +105,8 @@ class CustomerSeeder extends Seeder
         ]);
 
         HchatModel::insert([
-            "kode_customer" =>  4
+            "kode_customer" =>  4,
+            "occupied" => 0
         ]);
             //========================================
         DchatModel::insert([
@@ -127,7 +131,8 @@ class CustomerSeeder extends Seeder
         ]);
 
         HchatModel::insert([
-            "kode_customer" =>  5
+            "kode_customer" =>  5,
+            "occupied" => 0
         ]);
             //========================================
         DchatModel::insert([

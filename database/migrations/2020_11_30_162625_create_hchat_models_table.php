@@ -16,6 +16,7 @@ class CreateHchatModelsTable extends Migration
         Schema::create('hchat', function (Blueprint $table) {
             $table->bigIncrements('id_hchat');
             $table->bigInteger('kode_customer');
+            $table->smallInteger('occupied')->default(0);
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
