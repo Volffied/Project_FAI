@@ -197,8 +197,8 @@
                     document.getElementById("btnupdBarang").style.visibility = "visible";
                     document.getElementById("txtgambar").value    = rowSelected.cells[1].childNodes[0].getAttribute("src");
                     document.getElementById("txtnama").value   = rowSelected.cells[2].innerHTML;
-                    document.getElementById("cbpilihkategori").value   = rowSelected.cells[3].innerHTML.substring(0,1);
-                    document.getElementById("cbpilihbrand").value   = rowSelected.cells[4].innerHTML.substring(0,1);
+                    document.getElementById("cbpilihkategori").value   = 1;
+                    document.getElementById("cbpilihbrand").value   = 1;
                     document.getElementById("txtharga").value   = rowSelected.cells[5].innerHTML.substring(3,rowSelected.cells[5].innerHTML.indexOf(","));
                     document.getElementById("txtstok").value   = rowSelected.cells[6].innerHTML;
                     document.getElementById("idbarang").value   = rowSelected.cells[0].innerHTML;
