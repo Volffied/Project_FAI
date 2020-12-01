@@ -19,8 +19,7 @@ Route::get('Admin', 'controllerAdmin@HalPageAdmin');
 Route::get('Master', 'controllerAdmin@HalPageMaster');
 Route::get('CustomerService', 'controllerAdmin@HalPageCS');
 Route::get('Kurir', 'controllerAdmin@HalPageKurir');
-// Route::get('loginAdmin', 'controllerAdmin@HalPageLogin');
-Route::get('loginAdmin', 'controllerAdmin@UpdateTabelCS');
+Route::get('loginAdmin', 'controllerAdmin@HalPageLogin');
 Route::post('prosesloginAdmin', 'controllerAdmin@LoginAdmin');
 Route::get('logoutAdmin', 'ControllerAdmin@LogoutAdmin');
 Route::group(['prefix' => 'Master'], function () {
@@ -80,4 +79,4 @@ Route::get('insertOrder', 'midtransController@insertOrder');
 Route::get("updateEmail/{id}","controllerEmail@updateEmail");
 Route::get("verifikasiEmail/{id}","controllerEmail@updatedataEmail");
 Route::post("chatsend",'Controller@checkChat');
-Route::get("getChat",'Controller@getChat');
+Route::get("getChat/{jenis?}",'Controller@getChat');

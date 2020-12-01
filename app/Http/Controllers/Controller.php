@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\CustomerModel;
 use App\Model\DchatModel;
 use App\Model\HchatModel;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -20,7 +21,8 @@ class Controller extends BaseController
             $sender = session()->get('userLogin')->nama;
             $id_cust = session()->get('userLogin')->id;
         }else{
-            $id_cust= $req->id_cust;
+            $datanama = CustomerModel::where('nama',$req->namacust)->first();
+            $id_cust= $datanama->id;
             $sender =  $req->namasender;
         }
         $kode_hchat = HchatModel::where("kode_customer",$id_cust)->first();
@@ -34,10 +36,24 @@ class Controller extends BaseController
         return json_encode($param);
     }
 
-    public function getChat()
+    public function getChat($jenis = null)
     {
         $chat = new HchatModel();
-        $chats = $chat->getDataMessage(session()->get('userLogin')->id);
-        return view('Common_Folder.chat',['chats'=>$chats]);
+        if($jenis == null){
+            $updateHchat = HchatModel::where('kode_customer',session()->get('userLogin')->id)->first();
+            $updateHchat->occupied = 0;
+            $updateHchat->save();
+            $chats = $chat->getDataMessage(session()->get('userLogin')->id);
+            return view('Common_Folder.chat',['chats'=>$chats]);
+        }
+        else{
+            $dataAdminLogin = session()->get('adminLog');
+            $dataCust = CustomerModel::where('nama',$jenis)->first();
+            $updateHchat = HchatModel::where('kode_customer',$dataCust->id)->first();
+            $updateHchat->occupied = 1;
+            $updateHchat->save();
+            $chats = $chat->getDataMessage($dataCust->id);
+            return view('Admin_Folder.chatAdmin',['chats'=>$chats,'name'=>$dataAdminLogin->nama]);
+        }
     }
 }

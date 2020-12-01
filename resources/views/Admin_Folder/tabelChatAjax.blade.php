@@ -1,19 +1,18 @@
+
 <?php
     $ctr = 1;
 ?>
 @foreach ($dataChat as $item)
-    <tr>
-        <th scope="row">{{ $ctr }}</th>
-        <td>{{ $item->nama_cust }}</td>
-        @foreach ($dataChat as $item)
-
-        @endforeach
-        <td><button type="button" class="btn btn-primary">
-            <a href="{{ url('') }}" >Chat</a><span class="badge badge-light">9</span>
-            <span class="sr-only">unread messages</span>
-          </button></td>
-    </tr>
-    @php
-        $ctr = $ctr + 1;
-    @endphp
+    @if ($item['count'] > 0)
+        <tr>
+            <th scope="row">{{ $ctr }}</th>
+            <td>{{ $item['namacust'] }}</td>
+            <td><button type="button" id="{{ $item['namacust'] }}" class="btn btn-primary">
+               <span class="badge badge-light">{{ $item['count'] }}</span> Unread Messages
+            </button></td>
+        </tr>
+        @php
+            $ctr = $ctr + 1;
+        @endphp
+    @endif
 @endforeach

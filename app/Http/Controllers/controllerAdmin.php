@@ -34,7 +34,8 @@ class controllerAdmin extends Controller
     }
 
     public function HalPageCS(){
-        return view('Admin_Folder.CustomerService');
+        $namaPeg = session()->get('adminLog');
+        return view('Admin_Folder.CustomerService',['namaPeg'=>$namaPeg]);
     }
 
     public function HalPageKurir(){return view('Admin_Folder.Kurir');}

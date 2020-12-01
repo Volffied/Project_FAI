@@ -35,9 +35,9 @@ class HchatModel extends Model
         $dataCheckChat = $dataHchat->getDataMessageForAdmin();
         foreach ($dataCheckChat as $key) {
             $response[$key->id_hchat]['namacust'] = $key->nama_cust;
-            $response[$key->id_hchat]['dchat'] = DchatModel::where('kode_hchat',$key->id_hchat)->where('status',0)->where('jenis',0)->count();
+            $response[$key->id_hchat]['count'] = DchatModel::where('kode_hchat',$key->id_hchat)->where('status',0)->where('jenis',0)->count();
         }
 
-        dd($response);
+        return $response;
     }
 }
