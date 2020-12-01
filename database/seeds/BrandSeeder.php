@@ -85,7 +85,7 @@ class BrandSeeder extends Seeder
         //11
         BrandModel::insert([
             'nama_brand' =>  'CORSAIR',
-            'gambar' => 'https://i.dlpng.com/static/png/6809724_preview.png',
+            'gambar' => 'https://www.topmarket.co.il/images/feature_variant/14/corsair.png',
             'desc' => 'an American computer peripherals and hardware company headquartered in Fremont, California.',
             'status' => 1
         ]);

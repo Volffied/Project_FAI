@@ -34,6 +34,7 @@
         <div class="display-detail">
             <h1 class="item-title">{{$barang->nama_barang}}</h1>
             <h1 class="item-kat">{{$barang->nama_kat}}</h1>
+            <h1 class="item-price price">{{$barang->harga}}</h1>
             <div class="container-inputJumlah">
                 <input type="hidden" class="id_barang" value="{{$barang->id}}">
                 <input type="number" name="jumlah" class="jumlah_barang" value="1">

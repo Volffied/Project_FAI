@@ -49,7 +49,12 @@
 }
 
 .item-kat {
-    font: 500 3em "Montserrat";
+    font: 500 2em "Montserrat";
+}
+
+.item-price {
+    font: 500 2.5em "Montserrat";
+    color: #73be73;
 }
 
 .display-detail {

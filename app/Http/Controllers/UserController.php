@@ -6,6 +6,7 @@ use App\Model\BarangModel;
 use App\Model\BrandModel;
 use App\Model\CartModel;
 use App\Model\CustomerModel;
+use App\Model\DchatModel;
 use App\Model\HchatModel;
 use App\Model\JenisMemberModel;
 use App\Model\KategoriModel;
@@ -14,6 +15,7 @@ use App\Model\PromoModel;
 use App\Model\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -23,8 +25,10 @@ class UserController extends Controller
     {
         $barang = new BarangModel();
         $brand = new BrandModel();
+        $chat = new HchatModel();
         $param['barang'] = $barang->getAllDataBarangPaginate(16,'barang.deleted_at',null);
         $param['brand'] = $brand->getAllDataBrandWithCount();
+        $param['chat'] = $chat->getDataMessage(session()->get('userLogin')->id);
         // dd($param['brand']);
 
 
@@ -147,9 +151,19 @@ class UserController extends Controller
             //========================================
             $paramdata = CustomerModel::where("email",$email)->first();
             HchatModel::insert([
-                "kode_customer" =>  $paramdata->id
+                "kode_customer" =>  $paramdata->id,
+                "created_at"    => Carbon::now()
             ]);
             //========================================
+            $kode_hchat = HchatModel::where("kode_customer",$paramdata->id)->first();
+            DchatModel::insert([
+                "kode_hchat"    => $kode_hchat->id_hchat,
+                "pesan"         => "Halo, ".ucwords(strtolower($nama))."!<br>Ada yang bisa kami bantu?",
+                "sender"        => "Admin",
+                "jenis"         => 1,
+                "status"        => 0,
+                "created_at"    => Carbon::now()
+            ]);
             return redirect("/register");
         }
     }

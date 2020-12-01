@@ -14,24 +14,30 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function HalChat(){
-        $user = session()->get('userLogin');
-        $data = new HchatModel();
-        $param['datachat'] = $data->getDataMessage($user->id);
-        return view("Common_Folder.chatmockup");
-    }
     public function checkChat(Request $req){
         $pesan  = $req->pesan;
-        $id_cust= $req->id_cust;
-        $sender =  $req->namasender;
+        if($req->jenis == 0){
+            $sender = session()->get('userLogin')->nama;
+            $id_cust = session()->get('userLogin')->id;
+        }else{
+            $id_cust= $req->id_cust;
+            $sender =  $req->namasender;
+        }
         $kode_hchat = HchatModel::where("kode_customer",$id_cust)->first();
-        $param = DchatModel::insert([
-            "kode_hchat"    => $kode_hchat->id_hchat,
-            "pesan"         => $pesan,
-            "sender"        => $sender,
-            "jenis"         => 0,
-            "status"        => 0
-        ]);
+        $param = new DchatModel;
+        $param->kode_hchat = $kode_hchat->id_hchat;
+        $param->pesan = $pesan;
+        $param->sender = $sender;
+        $param->jenis = $req->jenis;
+        $param->status = 0;
+        $param->save();
         return json_encode($param);
+    }
+
+    public function getChat()
+    {
+        $chat = new HchatModel();
+        $chats = $chat->getDataMessage(session()->get('userLogin')->id);
+        return view('Common_Folder.chat',['chats'=>$chats]);
     }
 }

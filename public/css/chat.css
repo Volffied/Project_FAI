@@ -85,7 +85,11 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 2%;
+    margin-top: 5%;
+}
+
+.chat-customer .pesan-wrapper {
+    background-color: #ff151d3b;
 }
 
 .chat-name {
