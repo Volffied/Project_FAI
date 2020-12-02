@@ -1,7 +1,7 @@
 @foreach ($chats as $chat)
     @if ($chat->jenis == 1)
         <div class="isiChat-wrapper chat-pegawai">
-        <p class="chat-name">{{ $name }}</p>
+            <p class="chat-name">{{ucwords(strtolower($chat->sender))}}</p>
     @else
         <div class="isiChat-wrapper chat-customer">
         <p class="chat-name">{{ucwords(strtolower($chat->sender))}} (Customer)</p>

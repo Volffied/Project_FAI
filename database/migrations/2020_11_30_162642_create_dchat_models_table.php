@@ -17,7 +17,7 @@ class CreateDchatModelsTable extends Migration
             $table->bigIncrements("id_chat");
             $table->bigInteger('kode_hchat');
             $table->text('pesan');
-            $table->string("sender",100);
+            $table->string("sender",255);
             $table->smallInteger('jenis')->default(0)->comment('0: Customer, 1:Pegawai');
             $table->bigInteger('status')->default(0)->comment('0: unread, 1: read');
             $table->dateTime('deleted_at')->nullable();

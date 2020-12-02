@@ -8,15 +8,15 @@
     z-index: 9999;
     display: flex;
     justify-content: center;
-    border-left: solid 2px #8F192F;
-    border-top: solid 2px #8F192F;
+    border-left: solid 2px #8f192f;
+    border-top: solid 2px #8f192f;
     border-top-left-radius: 10px;
 }
 
 .button-toggle {
     width: 10vh;
     height: 10vh;
-    background-color: #8F192F;
+    background-color: #8f192f;
     border-radius: 50%;
     position: absolute;
     right: 5%;
@@ -57,11 +57,11 @@
     overflow-y: scroll;
 }
 
-input[type="text"]{
+input[type="text"] {
     height: 2em;
 }
 
-input[type="text"]{
+input[type="text"] {
     -moz-appearance: none;
     -webkit-appearance: none;
     -ms-appearance: none;
@@ -87,7 +87,7 @@ input[type="text"]{
     width: 100%;
 }
 
-input[type="text"]{
+input[type="text"] {
     color: #000;
     font-family: "Roboto", sans-serif;
     font-size: 1.1em;
@@ -135,10 +135,14 @@ input[type="text"]{
 }
 
 .pesan-wrapper {
-    width: 50%;
+    max-width: 50%;
     border-radius: 8px;
     padding: 1% 2% 0 2%;
     background-color: #212529;
+}
+
+.pesan-wrapper a {
+    word-break: break-all;
 }
 
 .pesan-wrapper p {

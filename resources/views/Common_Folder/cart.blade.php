@@ -28,7 +28,7 @@
     </div>
     <div class="container-navbar">
         <h1 class="mycart active-link">My Cart</h1>
-        <h1 class="history">History</h1>
+        <h1 class="history">Order</h1>
     </div>
     <h1 class="page-title">My Cart</h1>
     <div class="container-carousel">
@@ -64,7 +64,10 @@
             </div>
         </div>
         <div id="container-history">
-            <h1>History</h1>
+            <div class="cart-item" style="background-color: red;">
+            </div>
+            <div class="cart-item" style="background-color: red;">
+            </div>
         </div>
     </div>
         <div class="totalHarga">
@@ -375,7 +378,7 @@
                 $(this).addClass('active-link');
                 $(".page-title").css('opacity',0);
                 setTimeout(function(){
-                    $(".page-title").html('History');
+                    $(".page-title").html('Order');
                     $(".page-title").css('opacity',0.4);
                 },300);
                 gsap.to('.container-carousel',{

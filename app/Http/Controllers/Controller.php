@@ -24,6 +24,9 @@ class Controller extends BaseController
             $datanama = CustomerModel::where('nama',$req->namacust)->first();
             $id_cust= $datanama->id;
             $sender =  $req->namasender;
+            $depanSender = explode(' ',trim($sender));
+            $depanSender = $depanSender[0];
+            $pesan = $pesan."<br>- <i>".$depanSender."<i>";
         }
         $kode_hchat = HchatModel::where("kode_customer",$id_cust)->first();
         $param = new DchatModel;
@@ -52,6 +55,7 @@ class Controller extends BaseController
             $updateHchat = HchatModel::where('kode_customer',$dataCust->id)->first();
             $updateHchat->occupied = 1;
             $updateHchat->save();
+            DchatModel::where('kode_hchat',$updateHchat->id_hchat)->where('jenis',0)->update(['status'=>1]);
             $chats = $chat->getDataMessage($dataCust->id);
             return view('Admin_Folder.chatAdmin',['chats'=>$chats,'name'=>$dataAdminLogin->nama]);
         }

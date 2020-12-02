@@ -14,13 +14,13 @@
 }
 
 .button-toggle {
-    width: 10vh;
-    height: 10vh;
+    width: 8vh;
+    height: 8vh;
     background-color: #ff151b;
     border-radius: 50%;
     position: absolute;
-    right: 5%;
-    top: -15%;
+    right: 3%;
+    top: -13%;
     display: flex;
     justify-content: center;
     align-items: center;
