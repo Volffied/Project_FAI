@@ -98,6 +98,7 @@
             }
         });
         $(document).ready(function(){
+            lazyLoading();
             gsap.to('body',{
                 opacity:1,
                 duration:1.5
@@ -179,7 +180,6 @@
                 }
             });
         }
-        lazyLoading();
         function lazyLoading() {
             const targets = document.querySelectorAll('img');
             const lazyLoad = target =>{
@@ -305,7 +305,7 @@
                     $(".container-isiChat").html(response);
                     formatChat();
                 }
-            })
+            });
         }
 
         function autoScrollChat() {

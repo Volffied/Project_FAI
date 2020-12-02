@@ -10,6 +10,6 @@ class DorderModel extends Model
     public $primaryKey      = "id";
     public $incrementing    = true;
     public $timestamps      = true;
-    protected $fillable     = ['qty','total','kode_horder','kode_barang'];
+    protected $fillable     = ['qty','total','kode_horder','kode_barang','created_at'];
 
 }

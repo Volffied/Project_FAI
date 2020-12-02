@@ -11,7 +11,7 @@ class HorderModel extends Model
     public $primaryKey      = "id_horder";
     public $incrementing    = true;
     public $timestamps      = true;
-    protected $fillable     = ['tanggal_trans','subtotal','grandtotal','metode_pembayaran','kode_customer','kode_promo'];
+    protected $fillable     = ['tanggal_trans','subtotal','grandtotal','metode_pembayaran','kode_customer','kode_promo','order_id'];
 
     public function getAllDataBy($id){
         $query = HorderModel::select(["horder.*","dorder.*"])

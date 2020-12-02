@@ -66,11 +66,7 @@ class UserController extends Controller
         $potonganMember = new JenisMemberModel;
         $potonganMember = $potonganMember->getPotonganByID(session()->get('userLogin')->kode_member);
         $allCart = new CartModel;
-        $horder = new HorderModel();
-        $datahistory = $horder->getAllDataBy(session()->get('userLogin')->id);
-        $datahistory = HorderModel::where("kode_customer",session()->get('userLogin')->id)->get();
-        //$data = $datahistory->history;
-        //dd($datahistory->pivot);
+        $datahistory = HorderModel::where("kode_customer",session()->get('userLogin')->id)->orderBy('id_horder','desc')->get();
         // foreach ($datahistory as $key => $value) {
         //    foreach ($value->history as $key2 => $data) {
         //         //dd($data);// buat dpet barang
@@ -78,7 +74,7 @@ class UserController extends Controller
         //    }
         // }
         $allCart = $allCart->getAllCart(session()->get('userLogin')->id);
-        return view('Common_Folder.cart',['barang' => $allCart,'potongan'=>$potonganMember->potongan]);
+        return view('Common_Folder.cart',['barang' => $allCart,'potongan'=>$potonganMember->potongan,'history' => $datahistory]);
     }
 
     public function Product($nama)

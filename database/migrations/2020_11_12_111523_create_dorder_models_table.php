@@ -15,8 +15,8 @@ class CreateDorderModelsTable extends Migration
     {
         Schema::create('dorder', function (Blueprint $table) {
             $table->id();
-            $table->smallInteger('qty');
-            $table->mediumInteger('total');
+            $table->bigInteger('qty');
+            $table->bigInteger('total');
             $table->bigInteger('kode_horder');
             $table->bigInteger('kode_barang');
             $table->dateTime('deleted_at')->nullable();

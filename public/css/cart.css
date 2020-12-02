@@ -289,7 +289,7 @@
     display: flex;
     flex-direction: column;
     transition: all 0.5s;
-    z-index: 10;
+    z-index: 1;
     border-radius: 22px;
     background: #261830;
     box-shadow: inset -27px -27px 54px #201428, inset 27px 27px 54px #2c1c38;
@@ -374,4 +374,85 @@
 
 .continue:hover {
     cursor: pointer;
+}
+
+.history-item {
+    width: 85%;
+    padding-bottom: 3%;
+    margin-bottom: 3%;
+}
+
+
+/* .table-horder td,
+.table-barang td {
+    font: 500 1.2em "Source Sans Pro" !important;
+}
+
+.table-horder th,
+.table-barang th {
+    font: 600 1.3em "Montserrat" !important;
+} */
+
+.table-horder td,
+.table-horder th {
+    border: none;
+}
+
+.table-horder td a {
+    background-color: #ff151dd2;
+    padding: 5% 10%;
+    text-decoration: none;
+    color: #fff;
+    transition: background-color 0.5s;
+}
+
+.cancelButton:hover {
+    background-color: #ff151d93;
+}
+
+.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+    background-color: #ff151dd2;
+}
+
+.table-horder thead th {
+    border-bottom: solid 2px #ff151d60;
+}
+
+.table-horder th {
+    color: #fff;
+}
+
+.table-barang {
+    background-color: #201429 !important;
+}
+
+.tr-horder:hover {
+    cursor: pointer;
+    background-color: #23172b;
+}
+
+.status {
+    font-weight: 500;
+}
+
+.status_-1 {
+    color: #f1353b;
+}
+
+.status_0 {
+    color: #9b8dff;
+}
+
+.status_1 {
+    color: #ff8b3d;
+}
+
+.status_2 {
+    color: #59bfff;
+}
+
+.status_3 {
+    color: #73be73;
 }

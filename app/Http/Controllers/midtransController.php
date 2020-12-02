@@ -12,6 +12,7 @@ use App\Model\PromoModel;
 use Illuminate\Http\Request;
 use Midtrans\Config;
 use Midtrans\Snap;
+use Carbon\Carbon;
 
 class midtransController extends Controller
 {
@@ -141,31 +142,6 @@ class midtransController extends Controller
         if (session()->has('dataOrder')) {
             $dataorder = session()->get("dataOrder");
         }
-        // $replace_data = str_replace("//","",$datasession);
-        // $datasession = json_decode($replace_data[0],true);
-        // dd($datasession);
-        //dd(date("Y-m-d",strtotime($datasession["transaction_time"])));
-        // foreach ($datasession as $key => $value) {
-        //     var_dump($value['transaction_time']);
-        // }
-        //$cust = CustomerModel::find($dataorder["kode_customer"]);
-        //$barang = $cust->barang;
-        //dd($barang);
-        //echo $cust->nama;
-        // foreach ($barang as $key => $value) {
-        //    var_dump($value->nama);
-        // }
-        // exit;
-        return view("pembayaran",["datasession"=>$datasession]);
-    }
-    public function insertOrder(){
-        if (session()->has('dataMidtrans')) {
-            $datasession = session()->get("dataMidtrans");
-        }
-        if (session()->has('dataOrder')) {
-            $dataorder = session()->get("dataOrder");
-        }
-
         $replace_data = str_replace("//","",$datasession);
         $datasession = json_decode($replace_data[0],true);
         // $dataPegawai = HorderModel::select('kode_pegawai','')
@@ -176,7 +152,8 @@ class midtransController extends Controller
             'grandtotal'        => $dataorder["grandtotal"],
             'metode_pembayaran' => $datasession["payment_type"],
             'kode_promo'        => $dataorder["kode_promo"],
-            'kode_customer'     => $dataorder["kode_customer"]
+            'kode_customer'     => $dataorder["kode_customer"],
+            'order_id'          => $datasession["order_id"]
             //'kode_pegawai' => $pegawaiNganggur->id_pegawai
         ]);
         $databarang = CustomerModel::find($dataorder["kode_customer"]);
@@ -192,10 +169,31 @@ class midtransController extends Controller
                 "kode_barang"   => $value->id,
                 "qty"           => $value->cart->qty,
                 "total"         => $total,
+                "created_at"    => Carbon::now()
             );
             array_push($datatmp,$datadorder);
         }
-		DorderModel::create($datatmp);
+        DorderModel::insert($datatmp);
+        CartModel::where('kode_user',$dataorder["kode_customer"])->delete();
+        session()->forget('dataMidtrans');
+        return redirect('/cart?msg=success');
+    }
+    public function insertOrder(){
+        if (session()->has('dataMidtrans')) {
+            $datasession = session()->get("dataMidtrans");
+        }
+        if (session()->has('dataOrder')) {
+            $dataorder = session()->get("dataOrder");
+        }
         return json_encode($dataorder);
+    }
+
+    public function updateStatus($id,$jenis)
+    {
+        $horder = HorderModel::find($id);
+        if($jenis == "cancel") $horder->status_order = -1;
+        else if($jenis == "bayar") $horder->status_order = 1;
+        $horder->save();
+        return true;
     }
 }

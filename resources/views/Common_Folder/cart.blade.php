@@ -64,9 +64,84 @@
             </div>
         </div>
         <div id="container-history">
-            <div class="cart-item" style="background-color: red;">
-            </div>
-            <div class="cart-item" style="background-color: red;">
+            <div class="history-item">
+                <table class="table table-borderless table-horder">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Transaction Date</th>
+                        <th scope="col">Delivery Date</th>
+                        <th style="width: 10%" scope="col">Estimation Time</th>
+                        <th scope="col">Payment Method</th>
+                        <th scope="col">Grand Total</th>
+                        <th scope="col">Status</th>
+                        <th scope="col" style="width: 10%">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($history as $key => $item)
+                            @php
+                                $tgl_kirim = 'N/A';
+                                $estimasi = 'N/A';
+                                $metode = 'N/A';
+                                if($item->tanggal_pengiriman != null) $tgl_kirim = $item->tanggal_pengiriman;
+                                if($item->estimasi_waktu != null) $estimasi = $item->estimasi_waktu;
+                                if($item->metode_pembayaran != null) $metode = $item->metode_pembayaran;
+                                $status = "Waiting for payment";
+                                if($item->status_order == -1) $status = "Cancelled";
+                                else if($item->status_order == 1) $status = "Waiting for confirmation";
+                                else if($item->status_order == 2) $status = "On the way";
+                                else if($item->status_order == 3) $status = "Success";
+                            @endphp
+                            <tr class="tr-horder" id="horder-{{$key}}">
+                                <th scope="row">{{$key+1}}</th>
+                                <td>{{date('d/m/Y H:i T',strtotime($item->created_at))}}</td>
+                                <td>{{$tgl_kirim}}</td>
+                                <td>{{$estimasi}}</td>
+                                <td>{{$metode}}</td>
+                                <td class="price">{{$item->grandtotal}}</td>
+                                <td class="status status_{{$item->status_order}}">{{$status}}</td>
+                                <td colspan="2">
+                                    {{-- "/cancelOrder?id={{$item->id_horder}}" --}}
+                                    @if ($item->status_order==0)
+                                        <a id="{{$item->id_horder}}" class="cancelButton">Cancel</a>
+                                        <input type="hidden" class="orderid" value="{{$item->order_id}}">
+                                    @else
+                                        <a class="disabled" disabled>Cancel</a>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr class="row-tablebarang">
+                                <td colspan="8">
+                                    <div id="dorder-{{$key}}" class="collapse">
+                                        <table class="table table-barang" >
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col">Qty</th>
+                                                    <th scope="col">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($item->history as $key2 => $item2)
+                                                    <tr>
+                                                        <th scope="row">{{$key2+1}}</th>
+                                                        <td>{{$item2->nama_barang}}</td>
+                                                        <td class="price">{{$item2->harga}}</td>
+                                                        <td>{{$item2->dorder->qty}}</td>
+                                                        <td class="price">{{$item2->dorder->total}}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                  </table>
             </div>
         </div>
     </div>
@@ -90,10 +165,20 @@
 
         </div>
 </form>
+@if (isset($_GET['msg']) && $_GET['msg'] == 'success')
+
+    <script>
+        $(document).ready(function(){
+            $('.history').trigger('click');
+        });
+    </script>
+
+@endif
 @endsection
 
 @push('script')
     <script>
+        reformatPrice();
         $("#ajaxcart").submit(function (e) {
             e.preventDefault();
             var kode_customer   = $("input[name=id_user]").val();
@@ -122,6 +207,13 @@
                 },
             });
         });
+
+        $(".tr-horder").click(function(){
+            var id = $(this).attr('id');
+            id = id.replace('horder-','');
+            $('#dorder-'+id).collapse('toggle');
+        });
+
         function paymentku(response) {
             snap.pay(response, {
                 // Optional
@@ -242,6 +334,7 @@
         $(document).ready(function(){
             updateHarga();
             $('body').css('overflow-y','hidden');
+            checkStatus();
         });
 
         $(".continue").mouseover(function(){
@@ -351,7 +444,7 @@
                     opacity:1,
                     duration:0.5
                 });
-                $(".totalHarga *").show();
+                $(".totalHarga").css('display','flex');
                 $(".totalHarga").css('box-shadow','inset -27px -27px 54px #201428, inset 27px 27px 54px #2c1c38');
                 gsap.to('.totalHarga *',{
                     opacity:1,
@@ -370,6 +463,7 @@
                     duration:0.5
                 });
                 carousel = 1;
+                // clearInterval(timer);
             }
         });
         $(".history").click(function(){
@@ -405,9 +499,10 @@
                     duration:0.5
                 });
                 setTimeout(function(){
-                    $(".totalHarga *").hide();
+                    $(".totalHarga").css('display','none');
                 },1500);
                 carousel = 2;
+                // timer = setInterval(checkStatus,60000);
             }
         });
 
@@ -463,5 +558,102 @@
             ajaxCart(kodeBarang);
             updateHarga();
         });
+
+        $(".cancelButton").click(function(e){
+            e.stopPropagation();
+            var id = $(this).attr('id');
+            $.ajax({
+                url: "/updateStatus/"+id+"_cancel",
+                type: "GET",
+                data:{},
+                success:function(){
+                    $('#'+id).parent().siblings('.status').html('Cancelled');
+                    $('#'+id).parent().siblings('.status').attr('class','status status_-1');
+                    $('#'+id).prop('disabled',true);
+                    $('#'+id).attr('class','disabled');
+                }
+            })
+        });
+
+        // var timer = setInterval(checkStatus,60000);
+        function checkStatus(){
+            $('.orderid').each(function(){
+                var order_id = $(this).val();
+                var id = $(this).siblings('.cancelButton').attr('id');
+                console.log('order_id : '+order_id);
+                $.ajax({
+                    url:"https://cors-anywhere.herokuapp.com/https://api.sandbox.midtrans.com/v2/"+order_id+"/status",
+                    type: 'GET',
+                    headers: {
+                        "Accept" : "application/json",
+                        "Content-Type": "application/json",
+                        "Authorization": "Basic U0ItTWlkLXNlcnZlci1uaGZrUjJlN1JRWVBCeHV6SkxYVElZR1I="
+                    },
+                    success : function(response) {
+                        var data = JSON.stringify(response);
+                        var dataparse = JSON.parse(data);
+                        console.log(response);
+                        console.log(dataparse);
+                        if (dataparse["transaction_status"] == "settlement") {
+                            $('#'+id).prop('disabled',true);
+                            $('#'+id).attr('class','disabled');
+                            $('#'+id).parent().siblings('.status').html('Waiting for confirmation');
+                            $('#'+id).parent().siblings('.status').attr('class','status status_1');
+                            $.ajax({
+                                url:"/updateStatus/"+id+"_bayar",
+                                type: 'GET',
+                                success : function(response) {
+                                    var data = JSON.parse(response);
+                                    console.log(data);
+                                },
+                                error:function(response){
+                                    console.log(response);
+                                }
+                            });
+                        }
+                    },
+                    error:function(response){
+                        console.log("error :" +response);
+                    }
+                })
+            });
+            // var order_id = $(this).siblings('.orderid').val();
+            // console.log('order_id : '+order_id);
+            // $.ajax({
+            //     url:"https://cors-anywhere.herokuapp.com/https://api.sandbox.midtrans.com/v2/"+order_id+"/status",
+            //     type: 'GET',
+            //     headers: {
+            //         "Accept" : "application/json",
+            //         "Content-Type": "application/json",
+            //         "Authorization": "Basic U0ItTWlkLXNlcnZlci1uaGZrUjJlN1JRWVBCeHV6SkxYVElZR1I="
+            //     },
+            //     success : function(response) {
+            //         var data = JSON.stringify(response);
+            //         var dataparse = JSON.parse(data);
+            //         console.log(response);
+            //         console.log(dataparse);
+            //         if (dataparse["transaction_status"] == "settlement") {
+            //             $('#'+id).prop('disabled',true);
+            //             $('#'+id).attr('class','disabled');
+            //             $('#'+id).parent().siblings('.status').html('Waiting Confirmation');
+            //             $('#'+id).parent().siblings('.status').attr('class','status status_1');
+            //             $.ajax({
+            //                 url:"/updateStatus/"+id+"_bayar",
+            //                 type: 'GET',
+            //                 success : function(response) {
+            //                     var data = JSON.parse(response);
+            //                     console.log(data);
+            //                 },
+            //                 error:function(response){
+            //                     console.log(response);
+            //                 }
+            //             });
+            //         }
+            //     },
+            //     error:function(response){
+            //         console.log("error :" +response);
+            //     }
+            // })
+        }
     </script>
 @endpush
