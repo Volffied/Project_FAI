@@ -25,7 +25,7 @@
                     </div>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="inputGroupFile01" name="imgupload"
-                        aria-describedby="inputGroupFileAddon01" >
+                        aria-describedby="inputGroupFileAddon01" disabled>
                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                     </div>
                     @error('imgupload')
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="form-row" style="float: right;">
-                <input type="submit" class="btn btn-primary" id="btnupdhorder" name="btnupd" value="Submit">
+                <input type="submit" class="btn btn-primary" id="btnupdhorder" name="btnupd" value="Submit" disabled>
             </div>
 
         </form>
