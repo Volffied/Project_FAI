@@ -22,11 +22,13 @@
         </form>
     </div>
     <script>
-        highlight_row() ;
+        $(document).ready(function(){
+            setInterval(updateTabel,1000);
+            highlight_row() ;
+        });
         function highlight_row() {
             var table = document.getElementById('example2');
             var cells = table.getElementsByTagName('td');
-
 
             for (var i = 0; i < cells.length; i++) {
                 var cell = cells[i];
@@ -47,7 +49,16 @@
                 }
             }
         }
-
+        function updateTabel() {
+            $.ajax({
+                url: "/Kurir/updateTabelKurir",
+                type: "GET",
+                data:{},
+                success:function(response){
+                    $(".tabelKurir").html(response);
+                }
+            })
+        }
     </script>
 @endsection
 
@@ -109,54 +120,9 @@
                                         <th scope="col">Status</th>
                                       </tr>
                                     </thead>
-                                    @isset($daftarPenjualan)
-                                    <tbody>
-                                        @foreach ($daftarPenjualan as $item)
-                                        <tr>
-                                            <th scope="row">{{ $item->id_horder }}</th>
-                                            <td>{{ $item->tanggal_trans }}</td>
-                                            @if ($item->tanggal_pengiriman == null)
-                                                <td><i>NONE</i></td>
-                                            @else
-                                                <td>{{ $item->tanggal_pengiriman }}</td>
-                                            @endif
-                                            <td>{{ $item->subtotal }}</td>
-                                            <td>{{ $item->grandtotal }}</td>
-                                            @if ($item->estimasi_waktu == null)
-                                                <td><i>NONE</i></td>
-                                            @else
-                                                <td>{{ $item->estimasi_waktu }}</td>
-                                            @endif
-                                            <td>{{ $item->metode_pembayaran }}</td>
-                                            <td>{{ $item->kode_customer }}</td>
-                                            @if ($item->kode_pegawai == null)
-                                                <td><i>NONE</i></td>
-                                            @else
-                                                <td>{{ $item->kode_pegawai }}</td>
-                                            @endif
-                                            <td>{{ $item->kode_promo }}</td>
-                                            @if ($item->status_order == 1)
-                                                <td>Menunggu Konfirmasi</td>
-                                            @elseif($item->status_order == 2)
-                                                <td>Sedang Dikirim</td>
-                                            @elseif($item->status_order == 3)
-                                                <td>Terkirim</td>
-                                            @endif
-                                            {{-- <td><form action="{{ url('Kurir/changeStat') }}" method="post">
-                                                @csrf
-                                                <input class="idpromohidden" type="hidden" name="idpromohid" value="{{ $item->id_horder }}">
-                                                @if ($item->status_order == 0)
-                                                    <input class="btn btn-warning" id="btnkirim" type="submit" value="Confirm" name="btnDel"></td>
-                                                @elseif($item->status_order == 1)
-                                                    <input class="btn btn-secondary" id="btnselesai" type="submit" value="Sent" name="btnDel"></td>
-                                                @elseif($item->status_order == 2)
-                                                    <span style="color: lightgreen">Terkirim</span></td>
-                                                @endif
-                                            </td> --}}
-                                        </tr>
-                                        @endforeach
+                                    <tbody class="tabelKurir">
+
                                     </tbody>
-                                    @endisset
                                 </table>
                             </div>
                         </div>
@@ -167,3 +133,49 @@
     </div>
 </div>
 @endsection
+{{-- @isset($daftarPenjualan)
+    @foreach ($daftarPenjualan as $item)
+    <tr>
+        <th scope="row">{{ $item->id_horder }}</th>
+        <td>{{ $item->tanggal_trans }}</td>
+        @if ($item->tanggal_pengiriman == null)
+            <td><i>NONE</i></td>
+        @else
+            <td>{{ $item->tanggal_pengiriman }}</td>
+        @endif
+        <td>{{ $item->subtotal }}</td>
+        <td>{{ $item->grandtotal }}</td>
+        @if ($item->estimasi_waktu == null)
+            <td><i>NONE</i></td>
+        @else
+            <td>{{ $item->estimasi_waktu }}</td>
+        @endif
+        <td>{{ $item->metode_pembayaran }}</td>
+        <td>{{ $item->kode_customer }}</td>
+        @if ($item->kode_pegawai == null)
+            <td><i>NONE</i></td>
+        @else
+            <td>{{ $item->kode_pegawai }}</td>
+        @endif
+        <td>{{ $item->kode_promo }}</td>
+        @if ($item->status_order == 1)
+            <td>Menunggu Konfirmasi</td>
+        @elseif($item->status_order == 2)
+            <td>Sedang Dikirim</td>
+        @elseif($item->status_order == 3)
+            <td>Terkirim</td>
+        @endif
+        {{-- <td><form action="{{ url('Kurir/changeStat') }}" method="post">
+            @csrf
+            <input class="idpromohidden" type="hidden" name="idpromohid" value="{{ $item->id_horder }}">
+            @if ($item->status_order == 0)
+                <input class="btn btn-warning" id="btnkirim" type="submit" value="Confirm" name="btnDel"></td>
+            @elseif($item->status_order == 1)
+                <input class="btn btn-secondary" id="btnselesai" type="submit" value="Sent" name="btnDel"></td>
+            @elseif($item->status_order == 2)
+                <span style="color: lightgreen">Terkirim</span></td>
+            @endif
+         </td>
+    </tr>
+    @endforeach
+@endisset --}}
