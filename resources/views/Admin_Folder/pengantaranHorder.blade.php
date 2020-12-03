@@ -1,7 +1,7 @@
 @extends("Admin_Folder.BlueprintKurir")
 @section('container-body-page')
     <div class="container-form-input-admin-barang" id="inputBarang">
-        <form action="{{ url('Kurir/updateStatKirim') }}" method="post">
+        <form action="{{ url('Kurir/updateStatKirim') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -16,9 +16,24 @@
                     @enderror
                 </div>
             </div>
+            <!-- <div class="form-row" style="float: left;"> -->
+            <div class="form-group col-md-4">
+                <img id="previewHolder" src="{{ asset('images/invoice_png_kurir.png') }}" alt="Uploaded Image Preview Holder" width="200px" height="200px">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="imgupload"
+                        aria-describedby="inputGroupFileAddon01" disabled>
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
+                </div>
+            </div>
             <div class="form-row" style="float: right;">
                 <input type="submit" class="btn btn-primary" id="btnupdhorder" name="btnupd" value="Submit" disabled>
             </div>
+
         </form>
     </div>
     <script>
@@ -59,6 +74,20 @@
                 }
             })
         }
+        //preview image
+        function readUrl(input){
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e){
+                    $('#previewHolder').attr('src',e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#inputGroupFile01").change(function(){
+            readUrl(this);
+        })
     </script>
 @endsection
 
