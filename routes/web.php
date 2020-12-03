@@ -31,11 +31,11 @@ Route::group(['prefix' => 'Kurir'], function () {
     Route::get('laporanPenjualan', 'controllerAdmin@HalPagemLaporanPenjualan');
     Route::get('laporanBarangLaris', 'controllerAdmin@HalPagemLaporanBarangLaris');
 
-    Route::post("updatePengiriman","controllerAdmin@updateTransaksi");
+    Route::post('updateStatKirim', 'controllerAdmin@UpdateStatusKirim');
 });
 Route::group(['prefix' => 'Cservice'], function () {
     Route::get('updateTabelCS', 'controllerAdmin@UpdateTabelCS');
-    Route::post('updateStatKirim', 'controllerAdmin@UpdateStatusKirim');
+
 });
 Route::group(['prefix' => 'Admin'], function () {
     Route::post('tambahKategori', 'controllerAdmin@addKategori');

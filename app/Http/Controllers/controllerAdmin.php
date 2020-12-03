@@ -508,27 +508,4 @@ class controllerAdmin extends Controller
             }
         }
     }
-    public function updateTransaksi(Request $request){
-        $rules = [
-            "imgupload" => "required|mimes:png,jpg,jpeg|max:2048"      // max 2mb
-        ];
-        $message = [
-            "imgupload.mimes"       => "format image png | jpg | jpeg ",
-            "imgupload.required"    => "harus di isi",
-            "imgupload.max"         => "ukuran maximal 2mb"
-        ];
-
-        if ($request->validate($rules,$message)) {
-            //  bisa di lihat di storage/app/images
-            //  getClientOriginalExtension    -> untuk mendapatkan format photo yang diupload
-            //  getClientOriginalName         -> untuk mendapatkan nama photo yang diupload
-            //  untuk akses path             ->"images/mask_cyborg_robot_142919_1920x1080.jpg" dd($path);
-            $namaImage =  $request->file("imgupload")->getClientOriginalName();
-            $path = $request->file("imgupload")->storeAs("images",$namaImage,"local");
-            return redirect("Kurir/changeAntarHorder");
-        }
-        else{
-            return redirect("Kurir/changeAntarHorder");
-        }
-    }
 }
