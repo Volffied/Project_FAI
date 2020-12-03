@@ -399,7 +399,8 @@ class controllerAdmin extends Controller
     {
         $dataPegawaiMasuk = session()->get('adminLog');
         if($dataPegawaiMasuk->status == 1){
-            $dataHorder = HorderModel::where('status_order',1)->get();
+            $dHorder = new HorderModel();
+            $dataHorder = $dHorder->getDataForKurir();
         }else{
             $dataHorder = HorderModel::where('kode_pegawai',$dataPegawaiMasuk->id)->where('status_order',1)->get();
         }
@@ -409,12 +410,15 @@ class controllerAdmin extends Controller
     public function UpdateStatusKirim(Request $request)
     {
         $rules = [
+            "txtwaktu"=>"required|numeric",
             "imgupload" => "required|mimes:png,jpg,jpeg|max:2048"      // max 2mb
         ];
         $message = [
             "imgupload.mimes"       => "format image png | jpg | jpeg ",
             "imgupload.required"    => "harus di isi",
-            "imgupload.max"         => "ukuran maximal 2mb"
+            "imgupload.max"         => "ukuran maximal 2mb",
+            "txtwaktu.required"     => "Estimasi Waktu harus diisi!",
+            "txtwaktu.numeric"     => "Harus berupa angka!"
         ];
 
         if ($request->validate($rules,$message)) {
@@ -424,6 +428,10 @@ class controllerAdmin extends Controller
             //  untuk akses path             ->"images/mask_cyborg_robot_142919_1920x1080.jpg" dd($path);
             $namaImage =  $request->file("imgupload")->getClientOriginalName();
             $path = $request->file("imgupload")->storeAs("images",$namaImage,"local");
+            $dateNow = Carbon::now();
+            $idHorder = $request->txtId;
+            $estimasiWaktu = $request->txtwaktu;
+
             return redirect("Kurir/changeAntarHorder");
         }
         else{

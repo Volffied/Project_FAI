@@ -41,33 +41,8 @@
     </div>
     <script>
         $(document).ready(function(){
-            setInterval(updateTabel,5000);
+            setInterval(updateTabel,1000);
         });
-        highlight_row();
-        function highlight_row() {
-            var table = document.getElementById('example2');
-            var cells = table.getElementsByTagName('td');
-
-            for (var i = 0; i < cells.length; i++) {
-                var cell = cells[i];
-                cell.onclick = function () {
-                    clearInterval()
-                    document.getElementById("btnupdhorder").disabled = false;
-                    var rowId = this.parentNode.rowIndex;
-                    var rowsNotSelected = table.getElementsByTagName('tr');
-                    for (var row = 0; row < rowsNotSelected.length; row++) {
-                        rowsNotSelected[row].style.backgroundColor = "";
-                        rowsNotSelected[row].classList.remove('selected');
-                    }
-                    var rowSelected = table.getElementsByTagName('tr')[rowId];
-                    rowSelected.className += " selected";
-
-                    msg = rowSelected.cells[0].innerHTML+" "+rowSelected.cells[1].innerHTML+" "+rowSelected.cells[2].innerHTML+" "+rowSelected.cells[3].innerHTML+" "+rowSelected.cells[4].innerHTML+" "+rowSelected.cells[5].innerHTML+" "+rowSelected.cells[6].innerHTML+" "+rowSelected.cells[7].innerHTML+" "+rowSelected.cells[8].innerHTML+" "+rowSelected.cells[9].innerHTML;
-                    msg += " ";
-                    document.getElementById("txtId").value   = rowSelected.cells[0].innerHTML;
-                }
-            }
-        }
         function updateTabel() {
             $.ajax({
                 url: "/Kurir/updateTabelKurir",
@@ -147,9 +122,9 @@
                                         <th scope="col">Grandtotal</th>
                                         <th scope="col">Estimasi</th>
                                         <th scope="col">Metode</th>
-                                        <th scope="col">Kode Customer</th>
+                                        <th scope="col">Nama Customer</th>
                                         <th scope="col">Kode Pegawai</th>
-                                        <th scope="col">Kode Promo</th>
+                                        <th scope="col">Nama Promo</th>
                                         <th scope="col">Status</th>
                                       </tr>
                                     </thead>
