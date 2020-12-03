@@ -28,9 +28,8 @@ class HorderModel extends Model
 
     public function getDataForKurir()
     {
-        $query = HorderModel::select(["horder.*","customer.nama as nama_cust","promo.nama as nama_promo"])
+        $query = HorderModel::select(["horder.*","customer.nama as nama_cust",'customer.alamat as alamat_cust'])
                             ->join("customer","id","kode_customer")
-                            ->join("promo","id","kode_promo")
                             ->where("horder.status_order",1)
                             ->get();
         return $query;

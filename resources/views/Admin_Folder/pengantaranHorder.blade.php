@@ -39,35 +39,6 @@
 
         </form>
     </div>
-    <script>
-        $(document).ready(function(){
-            setInterval(updateTabel,1000);
-        });
-        function updateTabel() {
-            $.ajax({
-                url: "/Kurir/updateTabelKurir",
-                type: "GET",
-                data:{},
-                success:function(response){
-                    $(".tabelKurir").html(response);
-                }
-            })
-        }
-        //preview image
-        function readUrl(input){
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e){
-                    $('#previewHolder').attr('src',e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        $("#inputGroupFile01").change(function(){
-            readUrl(this);
-        })
-    </script>
 @endsection
 
 @section('table-master')
@@ -107,25 +78,17 @@
                                             background-color: #8F192F !important;
                                             color:white;
                                         }
-
-                                        .table td{
-                                            padding-left: .75rem;
-                                            vertical-align: middle;
-                                        }
                                     </style>
                                     <thead class="thead">
                                       <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Tanggal Transaksi</th>
-                                        <th scope="col">Tanggal Pengiriman</th>
-                                        <th scope="col">Subtotal</th>
-                                        <th scope="col">Grandtotal</th>
-                                        <th scope="col">Estimasi</th>
-                                        <th scope="col">Metode</th>
-                                        <th scope="col">Nama Customer</th>
-                                        <th scope="col">Kode Pegawai</th>
-                                        <th scope="col">Nama Promo</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col" style="width: 2%">ID</th>
+                                        <th scope="col" style="width: 10%">Tanggal Transaksi</th>
+                                        <th scope="col" style="width: 10%">Nama Customer</th>
+                                        <th scope="col" style="width: 10%">Alamat</th>
+                                        <th scope="col" style="width: 8%">Grandtotal</th>
+                                        <th scope="col" style="width: 5%">Estimasi</th>
+                                        <th scope="col" style="width: 10%">Tanggal Pengiriman</th>
+                                        <th scope="col" style="width: 10%">Status</th>
                                       </tr>
                                     </thead>
                                     <tbody class="tabelKurir">
@@ -140,6 +103,35 @@
         </section>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        setInterval(updateTabel,1000);
+    });
+    function updateTabel() {
+        $.ajax({
+            url: "/Kurir/updateTabelKurir",
+            type: "GET",
+            data:{},
+            success:function(response){
+                $(".tabelKurir").html(response);
+            }
+        })
+    }
+    //preview image
+    function readUrl(input){
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e){
+                $('#previewHolder').attr('src',e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#inputGroupFile01").change(function(){
+        readUrl(this);
+    })
+</script>
 @endsection
 {{-- @isset($daftarPenjualan)
     @foreach ($daftarPenjualan as $item)
@@ -187,3 +179,4 @@
     </tr>
     @endforeach
 @endisset --}}
+

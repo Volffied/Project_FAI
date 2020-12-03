@@ -1,28 +1,21 @@
 @isset($daftarPenjualan)
     @foreach ($daftarPenjualan as $item)
     <tr>
-        <td style="font-weight: bold;">{{ $item->id_horder }}</td>
+        <th scope="row">{{ $item->id_horder }}</th>
         <td>{{ $item->tanggal_trans }}</td>
-        @if ($item->tanggal_pengiriman == null)
-            <td><i>NONE</i></td>
-        @else
-            <td>{{ $item->tanggal_pengiriman }}</td>
-        @endif
-        <td>{{ $item->subtotal }}</td>
+        <td>{{ $item->nama_cust }}</td>
+        <td>{{ $item->alamat_cust }}</td>
         <td>{{ $item->grandtotal }}</td>
         @if ($item->estimasi_waktu == null)
             <td><i>NONE</i></td>
         @else
             <td>{{ $item->estimasi_waktu }}</td>
         @endif
-        <td>{{ $item->metode_pembayaran }}</td>
-        <td>{{ $item->nama_cust }}</td>
-        @if ($item->kode_pegawai == null)
+        @if ($item->tanggal_pengiriman == null)
             <td><i>NONE</i></td>
         @else
-            <td>{{ $item->kode_pegawai }}</td>
+            <td>{{ $item->tanggal_pengiriman }}</td>
         @endif
-        <td>{{ $item->nama_promo }}</td>
         @if ($item->status_order == 1)
             <td>Menunggu Konfirmasi</td>
         @elseif($item->status_order == 2)
@@ -51,7 +44,8 @@
                 var rowSelected = table.getElementsByTagName('tr')[rowId];
                 rowSelected.className += " selected";
 
-                msg = rowSelected.cells[0].innerHTML+" "+rowSelected.cells[1].innerHTML+" "+rowSelected.cells[2].innerHTML+" "+rowSelected.cells[3].innerHTML+" "+rowSelected.cells[4].innerHTML+" "+rowSelected.cells[5].innerHTML+" "+rowSelected.cells[6].innerHTML+" "+rowSelected.cells[7].innerHTML+" "+rowSelected.cells[8].innerHTML+" "+rowSelected.cells[9].innerHTML;
+                console.log(rowSelected.cells);
+                msg = rowSelected.cells[0].innerHTML+" "+rowSelected.cells[1].innerHTML+" "+rowSelected.cells[2].innerHTML+" "+rowSelected.cells[3].innerHTML+" "+rowSelected.cells[4].innerHTML+" "+rowSelected.cells[5].innerHTML+" "+rowSelected.cells[6].innerHTML+" "+rowSelected.cells[7].innerHTML;
                 msg += " ";
                 document.getElementById("txtId").value   = rowSelected.cells[0].innerHTML;
             }
