@@ -14,13 +14,12 @@
 }
 
 .button-toggle {
-    width: 8vh;
-    height: 8vh;
+    width: 7vh;
+    height: 7vh;
     background-color: #ff151b;
-    border-radius: 50%;
     position: absolute;
     right: 3%;
-    top: -13%;
+    top: -12%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,6 +30,26 @@
 .button-toggle:hover {
     cursor: pointer;
     background-color: #ec7276;
+}
+
+.button-toggle:hover .notif-chat {
+    width: 65%;
+}
+
+.notif-chat {
+    width: 45%;
+    height: 60%;
+    padding: 1% 15%;
+    position: absolute;
+    top: 20%;
+    right: 100%;
+    background-color: #160d1c;
+    font: 500 0.8em "Montserrat";
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: all 0.5s;
 }
 
 .chatIcon {

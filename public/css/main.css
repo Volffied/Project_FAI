@@ -51,35 +51,6 @@ img {
     filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.433));
 }
 
-.form-search {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 2%;
-}
-
-.form-search input[type="text"] {
-    width: 80%;
-    margin-left: 1%;
-}
-
-.form-search button {
-    width: 50px;
-    height: 50px;
-    margin: 0 !important;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.form-search button:focus {
-    border: none;
-    outline: none;
-}
-
 .container-nav {
     width: 100%;
     height: 60px;
@@ -110,7 +81,7 @@ img {
 }
 
 .container-nav a {
-    margin: 2.5%;
+    margin: 0 2.5%;
 }
 
 .svg-box {
@@ -127,7 +98,7 @@ img {
     position: relative;
 }
 
-.link-wrapper a:not(#searchButton) {
+.link-wrapper a {
     color: #261830;
     font-size: 1vw;
     font-family: "Montserrat";
@@ -205,10 +176,80 @@ img {
     padding: 0 5%;
     font: 700 1.3em "Montserrat";
     color: #160d1c;
-    z-index: 999;
+    z-index: 99999;
     text-align: center;
+}
+
+#searchButton {
+    height: 100%;
+    padding-top: 1%;
 }
 
 #searchButton:hover {
     cursor: pointer;
+}
+
+#search {
+    display: inline-block;
+}
+
+.container-notif {
+    width: 15%;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    display: none;
+}
+
+.notif-item {
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3%;
+    border-bottom: solid 1px #ff151d67;
+    background-color: #160d1c;
+    transition: border 0.5s;
+    opacity: 0;
+}
+
+.notif-item:not(:last-child):hover {
+    border-bottom: solid 3px #ff151d;
+    cursor: pointer;
+}
+
+.notif-item:last-child {
+    background-color: #a31015;
+    border: solid 2px #160d1c;
+}
+
+.notif-item:last-child:hover {
+    border-bottom: solid 3px #160d1c;
+    cursor: pointer;
+}
+
+.notif-title {
+    width: 100%;
+    font: 500 0.8em "Source Sans Pro" !important;
+    color: #fff;
+    margin: 0 !important;
+    text-align: center;
+}
+
+a.notif-title {
+    color: #fff !important;
+}
+
+.notif-link:hover {
+    cursor: pointer;
+}
+
+.bell {
+    transition: all 0.5s;
+}
+
+.notif-link:hover .bell {
+    fill: #ff151d !important;
+    color: #ff151d;
 }

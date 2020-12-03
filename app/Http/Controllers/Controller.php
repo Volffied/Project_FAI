@@ -60,4 +60,14 @@ class Controller extends BaseController
             return view('Admin_Folder.chatAdmin',['chats'=>$chats,'name'=>$dataAdminLogin->nama]);
         }
     }
+
+    public function getNotifChat($jenis=null)
+    {
+        $updateHchat = HchatModel::where('kode_customer',session()->get('userLogin')->id)->first();
+        if($jenis=="update"){
+            DchatModel::where('kode_hchat',$updateHchat->id_hchat)->where('jenis',1)->update(['status'=>1]);
+        }
+        $getUnread = DchatModel::where('kode_hchat',$updateHchat->id_hchat)->where('jenis',1)->where('status',0)->count();
+        return $getUnread;
+    }
 }

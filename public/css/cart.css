@@ -70,7 +70,7 @@
 
 .container-navbar h1:hover {
     cursor: pointer;
-    border-bottom: solid 2px #ff151b;
+    border-bottom: solid 2px #ff151d67;
 }
 
 .container-navbar h1:not(:first-child) {
@@ -437,7 +437,7 @@
     font-weight: 500;
 }
 
-.status_-1 {
+.status_4 {
     color: #f1353b;
 }
 

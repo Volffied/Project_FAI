@@ -65,83 +65,87 @@
         </div>
         <div id="container-history">
             <div class="history-item">
-                <table class="table table-borderless table-horder">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Transaction Date</th>
-                        <th scope="col">Delivery Date</th>
-                        <th style="width: 10%" scope="col">Estimation Time</th>
-                        <th scope="col">Payment Method</th>
-                        <th scope="col">Grand Total</th>
-                        <th scope="col">Status</th>
-                        <th scope="col" style="width: 10%">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($history as $key => $item)
-                            @php
-                                $tgl_kirim = 'N/A';
-                                $estimasi = 'N/A';
-                                $metode = 'N/A';
-                                if($item->tanggal_pengiriman != null) $tgl_kirim = $item->tanggal_pengiriman;
-                                if($item->estimasi_waktu != null) $estimasi = $item->estimasi_waktu;
-                                if($item->metode_pembayaran != null) $metode = $item->metode_pembayaran;
-                                $status = "Waiting for payment";
-                                if($item->status_order == -1) $status = "Cancelled";
-                                else if($item->status_order == 1) $status = "Waiting for confirmation";
-                                else if($item->status_order == 2) $status = "On the way";
-                                else if($item->status_order == 3) $status = "Success";
-                            @endphp
-                            <tr class="tr-horder" id="horder-{{$key}}">
-                                <th scope="row">{{$key+1}}</th>
-                                <td>{{date('d/m/Y H:i T',strtotime($item->created_at))}}</td>
-                                <td>{{$tgl_kirim}}</td>
-                                <td>{{$estimasi}}</td>
-                                <td>{{$metode}}</td>
-                                <td class="price">{{$item->grandtotal}}</td>
-                                <td class="status status_{{$item->status_order}}">{{$status}}</td>
-                                <td colspan="2">
-                                    {{-- "/cancelOrder?id={{$item->id_horder}}" --}}
-                                    @if ($item->status_order==0)
-                                        <a id="{{$item->id_horder}}" class="cancelButton">Cancel</a>
-                                        <input type="hidden" class="orderid" value="{{$item->order_id}}">
-                                    @else
-                                        <a class="disabled" disabled>Cancel</a>
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr class="row-tablebarang">
-                                <td colspan="8">
-                                    <div id="dorder-{{$key}}" class="collapse">
-                                        <table class="table table-barang" >
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">Price</th>
-                                                    <th scope="col">Qty</th>
-                                                    <th scope="col">Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($item->history as $key2 => $item2)
+                @if (count($history) != 0)
+                    <table class="table table-borderless table-horder">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Transaction Date</th>
+                            <th scope="col">Delivery Date</th>
+                            <th style="width: 10%" scope="col">Estimation Time</th>
+                            <th scope="col">Payment Method</th>
+                            <th scope="col">Grand Total</th>
+                            <th scope="col">Status</th>
+                            <th scope="col" style="width: 10%">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($history as $key => $item)
+                                @php
+                                    $tgl_kirim = 'N/A';
+                                    $estimasi = 'N/A';
+                                    $metode = 'N/A';
+                                    if($item->tanggal_pengiriman != null) $tgl_kirim = $item->tanggal_pengiriman;
+                                    if($item->estimasi_waktu != null) $estimasi = $item->estimasi_waktu;
+                                    if($item->metode_pembayaran != null) $metode = $item->metode_pembayaran;
+                                    $status = "Waiting for payment";
+                                    if($item->status_order == 4) $status = "Cancelled";
+                                    else if($item->status_order == 1) $status = "Waiting for confirmation";
+                                    else if($item->status_order == 2) $status = "On the way";
+                                    else if($item->status_order == 3) $status = "Success";
+                                @endphp
+                                <tr class="tr-horder" id="horder-{{$key}}">
+                                    <th scope="row">{{$key+1}}</th>
+                                    <td>{{date('d/m/Y H:i T',strtotime($item->created_at))}}</td>
+                                    <td>{{$tgl_kirim}}</td>
+                                    <td>{{$estimasi}}</td>
+                                    <td>{{$metode}}</td>
+                                    <td class="price">{{$item->grandtotal}}</td>
+                                    <td class="status status_{{$item->status_order}}">{{$status}}</td>
+                                    <td colspan="2">
+                                        {{-- "/cancelOrder?id={{$item->id_horder}}" --}}
+                                        @if ($item->status_order==0)
+                                            <a id="{{$item->id_horder}}" class="cancelButton">Cancel</a>
+                                            <input type="hidden" class="orderid" value="{{$item->order_id}}">
+                                        @else
+                                            <a class="disabled" disabled>Cancel</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr class="row-tablebarang">
+                                    <td colspan="8">
+                                        <div id="dorder-{{$key}}" class="collapse">
+                                            <table class="table table-barang" >
+                                                <thead>
                                                     <tr>
-                                                        <th scope="row">{{$key2+1}}</th>
-                                                        <td>{{$item2->nama_barang}}</td>
-                                                        <td class="price">{{$item2->harga}}</td>
-                                                        <td>{{$item2->dorder->qty}}</td>
-                                                        <td class="price">{{$item2->dorder->total}}</td>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">Price</th>
+                                                        <th scope="col">Qty</th>
+                                                        <th scope="col">Total</th>
                                                     </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                  </table>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($item->history as $key2 => $item2)
+                                                        <tr>
+                                                            <th scope="row">{{$key2+1}}</th>
+                                                            <td>{{$item2->nama_barang}}</td>
+                                                            <td class="price">{{$item2->harga}}</td>
+                                                            <td>{{$item2->dorder->qty}}</td>
+                                                            <td class="price">{{$item2->dorder->total}}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @else
+                    <h1 style="font: 500 1.3em 'Montserrat' !important;color:#ff151b;">No history</h1>
+                @endif
             </div>
         </div>
     </div>
@@ -326,9 +330,6 @@
         $("#logo").click(function(){
             window.location.href="/index";
         });
-        $(".continue").click(function(){
-            window.location.href="/index";
-        });
 
         var carousel = 1;
         $(document).ready(function(){
@@ -372,9 +373,7 @@
         });
 
         $(".continue").click(function(){
-            var url =$("#backUrl").val();
-            if(url.indexOf('cart') > -1) window.location.href='/';
-            else window.location.href=url;
+            window.location.href='/search';
         });
 
         $(".item-detail").click(function(){

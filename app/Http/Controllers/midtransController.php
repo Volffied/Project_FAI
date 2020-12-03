@@ -191,7 +191,7 @@ class midtransController extends Controller
     public function updateStatus($id,$jenis)
     {
         $horder = HorderModel::find($id);
-        if($jenis == "cancel") $horder->status_order = -1;
+        if($jenis == "cancel") $horder->status_order = 4;
         else if($jenis == "bayar") $horder->status_order = 1;
         $horder->save();
         return true;

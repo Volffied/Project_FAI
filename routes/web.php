@@ -80,3 +80,4 @@ Route::get("updateEmail/{id}","controllerEmail@updateEmail");
 Route::get("verifikasiEmail/{id}","controllerEmail@updatedataEmail");
 Route::post("chatsend",'Controller@checkChat');
 Route::get("getChat/{jenis?}",'Controller@getChat');
+Route::get("getNotifChat/{jenis?}",'Controller@getNotifChat');

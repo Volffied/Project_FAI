@@ -66,7 +66,7 @@ class UserController extends Controller
         $potonganMember = new JenisMemberModel;
         $potonganMember = $potonganMember->getPotonganByID(session()->get('userLogin')->kode_member);
         $allCart = new CartModel;
-        $datahistory = HorderModel::where("kode_customer",session()->get('userLogin')->id)->orderBy('id_horder','desc')->get();
+        $datahistory = HorderModel::where("kode_customer",session()->get('userLogin')->id)->orderBy('status_order','asc')->orderBy('id_horder','desc')->get();
         // foreach ($datahistory as $key => $value) {
         //    foreach ($value->history as $key2 => $data) {
         //         //dd($data);// buat dpet barang
