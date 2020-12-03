@@ -21,7 +21,7 @@ class CreateHorderModelsTable extends Migration
             $table->bigInteger('grandtotal');
             $table->smallInteger('estimasi_waktu')->nullable()->comment('Dalam Detik');
             $table->string('metode_pembayaran',13);
-            $table->smallInteger('status_order')->default(0)->comment('-1:batal, 0:Belum Bayar, 1:Belum diterima, 2:terkirim, 3:selesai');
+            $table->smallInteger('status_order')->default(0)->comment('0:Belum Bayar, 1:Belum diterima, 2:terkirim, 3:selesai, 4:batal');
             $table->bigInteger('kode_pegawai')->nullable();
             $table->bigInteger('kode_promo')->nullable();
             $table->bigInteger('kode_customer');
