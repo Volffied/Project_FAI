@@ -30,6 +30,8 @@ Route::group(['prefix' => 'Kurir'], function () {
     Route::get('changeAntarHorder', 'controllerAdmin@HalPagemAntarHorder');
     Route::get('laporanPenjualan', 'controllerAdmin@HalPagemLaporanPenjualan');
     Route::get('laporanBarangLaris', 'controllerAdmin@HalPagemLaporanBarangLaris');
+
+    Route::post("updatePengiriman","controllerAdmin@updateTransaksi");
 });
 Route::group(['prefix' => 'Cservice'], function () {
     Route::get('updateTabelCS', 'controllerAdmin@UpdateTabelCS');
