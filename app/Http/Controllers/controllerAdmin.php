@@ -6,11 +6,13 @@ use App\Model\BarangModel;
 use App\Model\BrandModel;
 use App\Model\DchatModel;
 use App\Model\HchatModel;
+use App\Model\HorderModel;
 use App\Model\JenisMemberModel;
 use App\Model\KategoriModel;
 use App\Model\PegawaiModel;
 use App\Model\PromoModel;
 use App\Rules\cekEmail;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -47,7 +49,13 @@ class controllerAdmin extends Controller
 
     public function HalPagemAntarHorder()
     {
-        return view('Admin_Folder.pengantaranHorder');
+        $dataPegawaiMasuk = session()->get('adminLog');
+        if($dataPegawaiMasuk->status == 1){
+            $dataHorder = HorderModel::where('status_order',1)->get();
+        }else{
+            $dataHorder = HorderModel::where('kode_pegawai',$dataPegawaiMasuk->id)->where('status_order',1)->get();
+        }
+        return view('Admin_Folder.pengantaranHorder',['daftarPenjualan'=>$dataHorder]);
     }
 
     public function HalPagemLaporanPenjualan()
@@ -391,6 +399,11 @@ class controllerAdmin extends Controller
         $dataHChat = new HchatModel();
         $dataChat = $dataHChat->getCountMessage();
         return view('Admin_Folder.tabelChatAjax',['dataChat'=>$dataChat]);
+    }
+
+    public function UpdateStatusKirim(Request $request)
+    {
+
     }
 
     public function addBrand(Request $request)

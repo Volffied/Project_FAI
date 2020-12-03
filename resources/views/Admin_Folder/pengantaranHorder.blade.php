@@ -1,29 +1,19 @@
 @extends("Admin_Folder.BlueprintKurir")
 @section('container-body-page')
     <div class="container-form-input-admin-barang" id="inputBarang">
-        <form action="{{ url('Kurir/updatePengiriman') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ url('Kurir/updateStatKirim') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="txtId">ID</label>
                     <input type="text" class="form-control" id="txtId" name="txtId" placeholder="ID" disabled>
-                    {{-- @error('txtnama')
-                        <label class="alertmessage" style="color: red;">{{$message}}</label>
-                    @enderror --}}
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="txtwaktu">Estimasi Waktu</label>
-                    <input type="text" class="form-control" id="txtwaktu" name="txtwaktu" placeholder="Estimasi Waktu">
-                    {{-- @error('txtnama')
+                    <input type="number" class="form-control" id="txtwaktu" name="txtwaktu" placeholder="Estimasi Waktu">
+                    @error('txtwaktu')
                         <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
-                    @enderror --}}
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="txtkirim">Tanggal Pengiriman</label>
-                    <input type="date" class="form-control" id="tglkirim" name="tglkirim" placeholder="Tanggal Pengiriman">
-                    {{-- @error('tglakhir')
-                        <label class="alertmessage" style="color: red;">{{$message}}</label>
-                    @enderror --}}
+                    @enderror
                 </div>
             </div>
             <!-- <div class="form-row" style="float: left;"> -->
@@ -56,9 +46,8 @@
             for (var i = 0; i < cells.length; i++) {
                 var cell = cells[i];
                 cell.onclick = function () {
+                    document.getElementById("btnupdhorder").disabled = false;
                     var rowId = this.parentNode.rowIndex;
-
-
                     var rowsNotSelected = table.getElementsByTagName('tr');
                     for (var row = 0; row < rowsNotSelected.length; row++) {
                         rowsNotSelected[row].style.backgroundColor = "";
@@ -146,7 +135,6 @@
                                         <th scope="col">Kode Pegawai</th>
                                         <th scope="col">Kode Promo</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Action</th>
                                       </tr>
                                     </thead>
                                     @isset($daftarPenjualan)
@@ -155,22 +143,34 @@
                                         <tr>
                                             <th scope="row">{{ $item->id_horder }}</th>
                                             <td>{{ $item->tanggal_trans }}</td>
-                                            <td>{{ $item->tanggal_pengiriman }}</td>
+                                            @if ($item->tanggal_pengiriman == null)
+                                                <td><i>NONE</i></td>
+                                            @else
+                                                <td>{{ $item->tanggal_pengiriman }}</td>
+                                            @endif
                                             <td>{{ $item->subtotal }}</td>
                                             <td>{{ $item->grandtotal }}</td>
-                                            <td>{{ $item->estimasi_waktu }}</td>
+                                            @if ($item->estimasi_waktu == null)
+                                                <td><i>NONE</i></td>
+                                            @else
+                                                <td>{{ $item->estimasi_waktu }}</td>
+                                            @endif
                                             <td>{{ $item->metode_pembayaran }}</td>
                                             <td>{{ $item->kode_customer }}</td>
-                                            <td>{{ $item->kode_pegawai }}</td>
+                                            @if ($item->kode_pegawai == null)
+                                                <td><i>NONE</i></td>
+                                            @else
+                                                <td>{{ $item->kode_pegawai }}</td>
+                                            @endif
                                             <td>{{ $item->kode_promo }}</td>
-                                            @if ($item->status_order == 0)
+                                            @if ($item->status_order == 1)
                                                 <td>Menunggu Konfirmasi</td>
-                                            @elseif($item->status_order == 1)
-                                                <td>Sedang Dikirim</td>
                                             @elseif($item->status_order == 2)
+                                                <td>Sedang Dikirim</td>
+                                            @elseif($item->status_order == 3)
                                                 <td>Terkirim</td>
                                             @endif
-                                            <td><form action="{{ url('Kurir/changeStat') }}" method="post">
+                                            {{-- <td><form action="{{ url('Kurir/changeStat') }}" method="post">
                                                 @csrf
                                                 <input class="idpromohidden" type="hidden" name="idpromohid" value="{{ $item->id_horder }}">
                                                 @if ($item->status_order == 0)
@@ -180,7 +180,7 @@
                                                 @elseif($item->status_order == 2)
                                                     <span style="color: lightgreen">Terkirim</span></td>
                                                 @endif
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                         @endforeach
                                     </tbody>
