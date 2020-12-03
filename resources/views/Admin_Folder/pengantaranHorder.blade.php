@@ -38,9 +38,9 @@
     </div>
     <script>
         $(document).ready(function(){
-            setInterval(updateTabel,1000);
-            highlight_row() ;
+            setInterval(updateTabel,5000);
         });
+        highlight_row();
         function highlight_row() {
             var table = document.getElementById('example2');
             var cells = table.getElementsByTagName('td');
@@ -48,6 +48,7 @@
             for (var i = 0; i < cells.length; i++) {
                 var cell = cells[i];
                 cell.onclick = function () {
+                    clearInterval()
                     document.getElementById("btnupdhorder").disabled = false;
                     var rowId = this.parentNode.rowIndex;
                     var rowsNotSelected = table.getElementsByTagName('tr');
