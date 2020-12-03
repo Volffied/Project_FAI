@@ -49,13 +49,7 @@ class controllerAdmin extends Controller
 
     public function HalPagemAntarHorder()
     {
-        $dataPegawaiMasuk = session()->get('adminLog');
-        if($dataPegawaiMasuk->status == 1){
-            $dataHorder = HorderModel::where('status_order',1)->get();
-        }else{
-            $dataHorder = HorderModel::where('kode_pegawai',$dataPegawaiMasuk->id)->where('status_order',1)->get();
-        }
-        return view('Admin_Folder.pengantaranHorder',['daftarPenjualan'=>$dataHorder]);
+        return view('Admin_Folder.pengantaranHorder');
     }
 
     public function HalPagemLaporanPenjualan()
@@ -399,6 +393,17 @@ class controllerAdmin extends Controller
         $dataHChat = new HchatModel();
         $dataChat = $dataHChat->getCountMessage();
         return view('Admin_Folder.tabelChatAjax',['dataChat'=>$dataChat]);
+    }
+
+    public function UpdateTabelKurir()
+    {
+        $dataPegawaiMasuk = session()->get('adminLog');
+        if($dataPegawaiMasuk->status == 1){
+            $dataHorder = HorderModel::where('status_order',1)->get();
+        }else{
+            $dataHorder = HorderModel::where('kode_pegawai',$dataPegawaiMasuk->id)->where('status_order',1)->get();
+        }
+        return view('Admin_Folder.tabelKurirAjax',['daftarPenjualan'=>$dataHorder]);
     }
 
     public function UpdateStatusKirim(Request $request)
