@@ -402,7 +402,8 @@ class controllerAdmin extends Controller
             $dHorder = new HorderModel();
             $dataHorder = $dHorder->getDataForKurir();
         }else{
-            $dataHorder = HorderModel::where('kode_pegawai',$dataPegawaiMasuk->id)->where('status_order',1)->get();
+            $dHorder = new HorderModel();
+            $dataHorder = $dHorder->getDataForKurirs($dataPegawaiMasuk->id);
         }
         return view('Admin_Folder.tabelKurirAjax',['daftarPenjualan'=>$dataHorder]);
     }
