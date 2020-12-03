@@ -59,7 +59,9 @@ class controllerAdmin extends Controller
 
     public function HalPagemAntarHorder()
     {
-        return view('Admin_Folder.pengantaranHorder');
+        $dataPegawaiMasuk = session()->get('adminLog');
+        $datapegawai = PegawaiModel::find($dataPegawaiMasuk->id);
+        return view('Admin_Folder.pengantaranHorder', ["status_pegawai" => $datapegawai]);
     }
 
     public function HalPagemLaporanPenjualan()
@@ -417,46 +419,66 @@ class controllerAdmin extends Controller
         if ($dataPegawaiMasuk->status == 1) {
             $dHorder = new HorderModel();
             $dataHorder = $dHorder->getDataForKurir();
-        }else{
+            $datapegawai = PegawaiModel::find($dataPegawaiMasuk->id);
+        } else {
             $dHorder = new HorderModel();
             $dataHorder = $dHorder->getDataForKurirs($dataPegawaiMasuk->id);
         }
-        return view('Admin_Folder.tabelKurirAjax', ['daftarPenjualan' => $dataHorder]);
+        return view('Admin_Folder.tabelKurirAjax', ['daftarPenjualan' => $dataHorder, 'status_pegawai' => $datapegawai]);
     }
 
     public function UpdateStatusKirim(Request $request)
     {
-        //$dataadmin = session()->get("adminLog");
-        // $status = PegawaiModel::find($dataadmin->id);
-        // if($status->id == 1){
+        //
 
-        // }
-        $rules = [
+        $rules_input = [
             "txtwaktu" => "required|numeric",
+        ];
+        $message_input = [
+            "txtwaktu.required"     => "Estimasi Waktu harus diisi!",
+            "txtwaktu.numeric"     => "Harus berupa angka!"
+        ];
+        $rules = [
             "imgupload" => "required|mimes:png,jpg,jpeg|max:2048"      // max 2mb
         ];
         $message = [
             "imgupload.mimes"       => "format image png | jpg | jpeg ",
             "imgupload.required"    => "harus di isi",
             "imgupload.max"         => "ukuran maximal 2mb",
-            "txtwaktu.required"     => "Estimasi Waktu harus diisi!",
-            "txtwaktu.numeric"     => "Harus berupa angka!"
         ];
-
-        if ($request->validate($rules, $message)) {
-            //  bisa di lihat di storage/app/images
-            //  getClientOriginalExtension    -> untuk mendapatkan format photo yang diupload
-            //  getClientOriginalName         -> untuk mendapatkan nama photo yang diupload
-            //  untuk akses path             ->"images/mask_cyborg_robot_142919_1920x1080.jpg" dd($path);
-            $namaImage =  $request->file("imgupload")->getClientOriginalName();
-            $path = $request->file("imgupload")->storeAs("images", $namaImage, "local");
-            $dateNow = Carbon::now();
-            $idHorder = $request->txtId;
-            $estimasiWaktu = $request->txtwaktu;
-
-            return redirect("Kurir/changeAntarHorder");
-        } else {
-            return redirect("Kurir/changeAntarHorder");
+        $dataadmin = session()->get("adminLog");
+        $status = PegawaiModel::find($dataadmin->id);
+        if ($status->status == 1) {
+            if ($request->validate($rules_input, $message_input)) {
+                $dateNow = Carbon::now();
+                $idHorder = $request->txtIdsimpan;
+                $estimasiWaktu = $request->txtwaktu;
+                //=================================
+                HorderModel::where("id_horder", $idHorder)->update([
+                    "tanggal_pengiriman"    => $dateNow,
+                    "estimasi_waktu"        => $estimasiWaktu,
+                    "status_order"          => 2
+                ]);
+                //=================================
+                PegawaiModel::where("id", $dataadmin->id)->update(["status" => 0]);
+                $param["status_pegawai"] = PegawaiModel::find($dataadmin->id);
+                return view("Kurir/changeAntarHorder")->with($param);
+                // return redirect("Kurir/changeAntarHorder");
+            } else {
+                return redirect("Kurir/changeAntarHorder");
+            }
+        } else if ($status->status == 0) {
+            //     //  bisa di lihat di storage/app/images
+            //     //  getClientOriginalExtension    -> untuk mendapatkan format photo yang diupload
+            //     //  getClientOriginalName         -> untuk mendapatkan nama photo yang diupload
+            //     //  untuk akses path             ->"images/mask_cyborg_robot_142919_1920x1080.jpg" dd($path);
+            if ($request->validate($rules, $message)) {
+                $namaImage =  $request->file("imgupload")->getClientOriginalName();
+                $path = $request->file("imgupload")->storeAs("images", $namaImage, "local");
+                return redirect("Kurir/changeAntarHorder");
+            } else {
+                return redirect("Kurir/changeAntarHorder");
+            }
         }
     }
 
