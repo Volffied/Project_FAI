@@ -28,8 +28,10 @@ Route::group(['prefix' => 'Master'], function () {
 });
 Route::group(['prefix' => 'Kurir'], function () {
     Route::get('changeAntarHorder', 'controllerAdmin@HalPagemAntarHorder');
+    Route::get('updateTabelKurir', 'controllerAdmin@UpdateTabelKurir');
     Route::get('laporanPenjualan', 'controllerAdmin@HalPagemLaporanPenjualan');
     Route::get('laporanBarangLaris', 'controllerAdmin@HalPagemLaporanBarangLaris');
+    Route::post('updateStatKirim', 'controllerAdmin@UpdateStatusKirim');
 });
 Route::group(['prefix' => 'Cservice'], function () {
     Route::get('updateTabelCS', 'controllerAdmin@UpdateTabelCS');

@@ -25,4 +25,14 @@ class HorderModel extends Model
                     ->withPivot("qty","total")
                     ->as("dorder");
     }
+
+    public function getDataForKurir()
+    {
+        $query = HorderModel::select(["horder.*","customer.nama as nama_cust","promo.nama as nama_promo"])
+                            ->join("customer","id","kode_customer")
+                            ->join("promo","id","kode_promo")
+                            ->where("horder.status_order",1)
+                            ->get();
+        return $query;
+    }
 }
