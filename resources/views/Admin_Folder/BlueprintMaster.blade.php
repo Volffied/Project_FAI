@@ -78,6 +78,18 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ url('Master/laporanPenjualan') }}" class="nav-link">
+                            <i class="nav-icon fas fa-file-invoice"></i>
+                            <p style="color: white;">Laporan Penjualan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('Master/laporanBarangLaris') }}" class="nav-link">
+                            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+                            <p style="color: white;">Laporan Barang Terlaris</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ url('logoutAdmin') }}" class="nav-link">
                             <i class="nav-icon fas fa-sign-out-alt" ></i>
                             <p style="color: white;">Log Out</p>

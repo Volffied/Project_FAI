@@ -49,39 +49,19 @@
                                     <thead class="thead">
                                       <tr>
                                         <th scope="col">ID</th>
-                                        <th scope="col">Tanggal Transaksi</th>
-                                        <th scope="col">Tanggal Pengiriman</th>
-                                        <th scope="col">Subtotal</th>
-                                        <th scope="col">Grandtotal</th>
-                                        <th scope="col">Estimasi</th>
-                                        <th scope="col">Metode</th>
-                                        <th scope="col">Kode Customer</th>
-                                        <th scope="col">Kode Pegawai</th>
-                                        <th scope="col">Kode Promo</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">Nama Barang</th>
+                                        <th scope="col">Harga Barang</th>
+                                        <th scope="col">Total Terjual</th>
                                       </tr>
                                     </thead>
-                                    @isset($daftarPenjualan)
+                                    @isset($daftarBarang)
                                     <tbody>
-                                        @foreach ($daftarPenjualan as $item)
+                                        @foreach ($daftarBarang as $item)
                                         <tr>
                                             <th scope="row">{{ $item->id_horder }}</th>
                                             <td>{{ $item->tanggal_trans }}</td>
                                             <td>{{ $item->tanggal_pengiriman }}</td>
                                             <td>{{ $item->subtotal }}</td>
-                                            <td>{{ $item->grandtotal }}</td>
-                                            <td>{{ $item->estimasi_waktu }}</td>
-                                            <td>{{ $item->metode_pembayaran }}</td>
-                                            <td>{{ $item->kode_customer }}</td>
-                                            <td>{{ $item->kode_pegawai }}</td>
-                                            <td>{{ $item->kode_promo }}</td>
-                                            @if ($item->status_order == 0)
-                                                <td>Menunggu Konfirmasi</td>
-                                            @elseif($item->status_order == 1)
-                                                <td>Sedang Dikirim</td>
-                                            @elseif($item->status_order == 2)
-                                                <td>Terkirim</td>
-                                            @endif
                                         </tr>
                                         @endforeach
                                     </tbody>

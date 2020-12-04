@@ -47,19 +47,16 @@
                                         }
                                     </style>
                                     <thead class="thead">
-                                      <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Tanggal Transaksi</th>
-                                        <th scope="col">Tanggal Pengiriman</th>
-                                        <th scope="col">Subtotal</th>
-                                        <th scope="col">Grandtotal</th>
-                                        <th scope="col">Estimasi</th>
-                                        <th scope="col">Metode</th>
-                                        <th scope="col">Kode Customer</th>
-                                        <th scope="col">Kode Pegawai</th>
-                                        <th scope="col">Kode Promo</th>
-                                        <th scope="col">Status</th>
-                                      </tr>
+                                        <tr>
+                                            <th scope="col" style="width: 2%">ID</th>
+                                            <th scope="col" style="width: 10%">Tanggal Transaksi</th>
+                                            <th scope="col" style="width: 10%">Nama Customer</th>
+                                            <th scope="col" style="width: 10%">Alamat</th>
+                                            <th scope="col" style="width: 8%">Grandtotal</th>
+                                            <th scope="col" style="width: 5%">Estimasi</th>
+                                            <th scope="col" style="width: 10%">Tanggal Pengiriman</th>
+                                            <th scope="col" style="width: 10%">Status</th>
+                                        </tr>
                                     </thead>
                                     @isset($daftarPenjualan)
                                     <tbody>
@@ -67,20 +64,25 @@
                                         <tr>
                                             <th scope="row">{{ $item->id_horder }}</th>
                                             <td>{{ $item->tanggal_trans }}</td>
-                                            <td>{{ $item->tanggal_pengiriman }}</td>
-                                            <td>{{ $item->subtotal }}</td>
+                                            <td>{{ $item->nama_cust }}</td>
+                                            <td>{{ $item->alamat_cust }}</td>
                                             <td>{{ $item->grandtotal }}</td>
+                                            @if ($item->estimasi_waktu == null)
+                                            <td><i>NONE</i></td>
+                                            @else
                                             <td>{{ $item->estimasi_waktu }}</td>
-                                            <td>{{ $item->metode_pembayaran }}</td>
-                                            <td>{{ $item->kode_customer }}</td>
-                                            <td>{{ $item->kode_pegawai }}</td>
-                                            <td>{{ $item->kode_promo }}</td>
-                                            @if ($item->status_order == 0)
-                                                <td>Menunggu Konfirmasi</td>
-                                            @elseif($item->status_order == 1)
-                                                <td>Sedang Dikirim</td>
+                                            @endif
+                                            @if ($item->tanggal_pengiriman == null)
+                                            <td><i>NONE</i></td>
+                                            @else
+                                            <td>{{ $item->tanggal_pengiriman }}</td>
+                                            @endif
+                                            @if ($item->status_order == 1)
+                                            <td>Menunggu Konfirmasi</td>
                                             @elseif($item->status_order == 2)
-                                                <td>Terkirim</td>
+                                            <td>Sedang Dikirim</td>
+                                            @elseif($item->status_order == 3)
+                                            <td>Terkirim</td>
                                             @endif
                                         </tr>
                                         @endforeach
