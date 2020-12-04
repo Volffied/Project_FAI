@@ -423,14 +423,13 @@ class controllerAdmin extends Controller
         } else {
             $dHorder = new HorderModel();
             $dataHorder = $dHorder->getDataForKurirs($dataPegawaiMasuk->id);
+            $datapegawai = PegawaiModel::find($dataPegawaiMasuk->id);
         }
         return view('Admin_Folder.tabelKurirAjax', ['daftarPenjualan' => $dataHorder, 'status_pegawai' => $datapegawai]);
     }
 
     public function UpdateStatusKirim(Request $request)
     {
-        //
-
         $rules_input = [
             "txtwaktu" => "required|numeric",
         ];
@@ -462,8 +461,7 @@ class controllerAdmin extends Controller
                 //=================================
                 PegawaiModel::where("id", $dataadmin->id)->update(["status" => 0]);
                 $param["status_pegawai"] = PegawaiModel::find($dataadmin->id);
-                return view("Kurir/changeAntarHorder")->with($param);
-                // return redirect("Kurir/changeAntarHorder");
+                return view('Admin_Folder.pengantaranHorder')->with($param);
             } else {
                 return redirect("Kurir/changeAntarHorder");
             }

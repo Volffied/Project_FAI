@@ -22,7 +22,8 @@
             <input type="submit" class="btn btn-primary" id="btnupdhorder" name="btnupd" value="Submit">
         </div>
     </form>
-    <input type="hidden" name="txtjenis" id="txtjenis" value="{{$status_pegawai->status}}">
+    
+    <input type="text" name="txtjenis" id="txtjenis" value="{{$status_pegawai->status}}">
 
     <form action="{{ url('Kurir/updateStatKirim') }}" method="post" enctype="multipart/form-data">
         @csrf
@@ -114,6 +115,7 @@
     $(document).ready(function() {
         setInterval(updateTabel, 1000);
         setInterval(checkdisplayupload, 1000);
+        document.getElementById("txtjenis").value = "";
     });
 
     function updateTabel() {
