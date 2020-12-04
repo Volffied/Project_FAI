@@ -80,20 +80,6 @@
             });
         });
 
-        $(".notif-item").mouseenter(function(e){
-            gsap.to($(this),{
-                x:'10%',
-                duration:0.5
-            });
-        });
-
-        $(".notif-item").mouseleave(function(){
-            gsap.to($(this),{
-                x:0,
-                duration:0.5
-            });
-        });
-
         $("#searchButton").mouseenter(function(){
             gsap.to('#searchButton svg',{
                 rotation:15,
