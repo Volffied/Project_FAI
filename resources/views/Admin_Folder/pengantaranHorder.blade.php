@@ -91,7 +91,6 @@
                                         </tr>
                                     </thead>
                                     <tbody class="tabelKurir">
-
                                     </tbody>
                                 </table>
                             </div>
