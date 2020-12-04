@@ -44,4 +44,10 @@ class HorderModel extends Model
                             ->get();
         return $query;
     }
+
+    public function getDataForReport()
+    {
+        $query = HorderModel::select(["horder.*","customer.nama as nama_cust",'customer.alamat as alamat_cust'])
+                            ->join("customer","id","kode_customer")
+    }
 }

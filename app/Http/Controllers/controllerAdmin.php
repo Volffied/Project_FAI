@@ -67,12 +67,12 @@ class controllerAdmin extends Controller
 
     public function HalPagemLaporanPenjualan()
     {
+        
         return view('Admin_Folder.laporanjual');
     }
 
     public function HalPagemLaporanBarangLaris()
     {
-        $booleanMasuk = false;
         $dataCountBarang = [];
         $dorder = new DorderModel();
         $dataBarang = $dorder->getAllDataForReport();
@@ -86,14 +86,16 @@ class controllerAdmin extends Controller
                 array_push($dataCountBarang,$data);
             }else if($dataCountBarang != null){
                 foreach ($dataCountBarang as $keys => $value) {
-                    if($dataCountBarang[$keys]["nama_barang"] === $key->nama_barang){
+                    $booleanMasuk = false;
+                    if($dataCountBarang[$keys]["nama_barang"] == $key->nama_barang && !$booleanMasuk){
                         $dataCountBarang[$keys]["count"] = $dataCountBarang[$keys]["count"] + $key->qty;
-                        break;
-                    }else if($dataCountBarang[$keys]["nama_barang"] !== $key->nama_barang){
                         $booleanMasuk = true;
+                        break;
+                    }else if($dataCountBarang[$keys]["nama_barang"] != $key->nama_barang && !$booleanMasuk){
+                        $booleanMasuk = false;
                     }
                 }
-                if($booleanMasuk){
+                if(!$booleanMasuk){
                     $data = [
                         "nama_barang" => $key->nama_barang,
                         "harga_barang" => $key->harga_barang,

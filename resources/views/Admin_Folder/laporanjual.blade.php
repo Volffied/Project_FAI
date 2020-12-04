@@ -51,6 +51,7 @@
                                             <th scope="col" style="width: 2%">ID</th>
                                             <th scope="col" style="width: 10%">Nama Customer</th>
                                             <th scope="col" style="width: 10%">Alamat</th>
+                                            <th scope="col" style="width: 10%">Tanggal Transaksi</th>
                                             <th scope="col" style="width: 8%">Grandtotal</th>
                                             <th scope="col" style="width: 10%">Status</th>
                                         </tr>
@@ -62,7 +63,8 @@
                                             <th scope="row">{{ $item->id_horder }}</th>
                                             <td>{{ $item->nama_cust }}</td>
                                             <td>{{ $item->alamat_cust }}</td>
-                                            <td>{{ $item->grandtotal }}</td>
+                                            <td>{{ $item->tanggal_trans }}</td>
+                                            <td>Rp. {{ $item->grandtotal }},00</td>
                                             @if ($item->status_order == 1)
                                             <td>Menunggu Konfirmasi</td>
                                             @elseif($item->status_order == 2)
