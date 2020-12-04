@@ -510,7 +510,8 @@ class controllerAdmin extends Controller
             $namaImage  =  $request->file("imgupload")->getClientOriginalName();
             $path = $request->file("imgupload")->storeAs("images", $namaImage, "local");
             HorderModel::where("id_horder", $idHorder)->update([
-                "invoice"    => $path,
+                "invoice"           => $path,
+                "status_order"      => 3,
             ]);
             PegawaiModel::where("id", $dataadmin->id)->update(["status" => 1]);
             return redirect("Kurir/changeAntarHorder");
