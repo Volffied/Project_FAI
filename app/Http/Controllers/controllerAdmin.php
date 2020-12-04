@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\BarangModel;
 use App\Model\BrandModel;
 use App\Model\DchatModel;
+use App\Model\DorderModel;
 use App\Model\HchatModel;
 use App\Model\HorderModel;
 use App\Model\JenisMemberModel;
@@ -71,7 +72,42 @@ class controllerAdmin extends Controller
 
     public function HalPagemLaporanBarangLaris()
     {
-        return view('Admin_Folder.laporanbaranglaris');
+        $booleanMasuk = false;
+        $dataCountBarang = [];
+        $dorder = new DorderModel();
+        $dataBarang = $dorder->getAllDataForReport();
+        foreach ($dataBarang as $key) {
+            if($dataCountBarang ==  null){
+                $data = [
+                    "nama_barang" => $key->nama_barang,
+                    "harga_barang" => $key->harga_barang,
+                    "count" => $key->qty
+                ];
+                array_push($dataCountBarang,$data);
+            }else if($dataCountBarang != null){
+                foreach ($dataCountBarang as $keys => $value) {
+                    if($dataCountBarang[$keys]["nama_barang"] === $key->nama_barang){
+                        $dataCountBarang[$keys]["count"] = $dataCountBarang[$keys]["count"] + $key->qty;
+                        break;
+                    }else if($dataCountBarang[$keys]["nama_barang"] !== $key->nama_barang){
+                        $booleanMasuk = true;
+                    }
+                }
+                if($booleanMasuk){
+                    $data = [
+                        "nama_barang" => $key->nama_barang,
+                        "harga_barang" => $key->harga_barang,
+                        "count" => $key->qty
+                    ];
+                    array_push($dataCountBarang,$data);
+                }
+            }
+        }
+        // foreach ($dataCountBarang as $keys => $value) {
+        //     usort($dataCountBarang, fn($a, $b) => $a->count - $b->count);
+        // }
+       //dd($dataCountBarang);
+        return view('Admin_Folder.laporanbaranglaris',['daftarBarang'=>$dataCountBarang]);
     }
 
     public function HalPagemPromo()

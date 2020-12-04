@@ -1,4 +1,4 @@
-@extends("Admin_Folder.BlueprintKurir")
+@extends("Admin_Folder.BlueprintMaster")
 @section('container-body-page')
 
 @endsection
@@ -32,6 +32,9 @@
                             <div class="card-header">
                                 <h3 class="card-title">Daftar Penjualan</h3>
                             </div>
+                            @php
+                                $ctr = 1;
+                            @endphp
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-striped">
@@ -58,11 +61,14 @@
                                     <tbody>
                                         @foreach ($daftarBarang as $item)
                                         <tr>
-                                            <th scope="row">{{ $item->id_horder }}</th>
-                                            <td>{{ $item->tanggal_trans }}</td>
-                                            <td>{{ $item->tanggal_pengiriman }}</td>
-                                            <td>{{ $item->subtotal }}</td>
+                                            <td style="font-weight: bold;">{{ $ctr }}</td>
+                                            <td>{{ $item["nama_barang"] }}</td>
+                                            <td>Rp. {{ $item["harga_barang"] }},00</td>
+                                            <td>{{ $item["count"] }}</td>
                                         </tr>
+                                        @php
+                                            $ctr = $ctr + 1;
+                                        @endphp
                                         @endforeach
                                     </tbody>
                                     @endisset

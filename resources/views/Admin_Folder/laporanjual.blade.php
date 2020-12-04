@@ -1,4 +1,4 @@
-@extends("Admin_Folder.BlueprintKurir")
+@extends("Admin_Folder.BlueprintMaster")
 @section('container-body-page')
 
 @endsection
