@@ -5,12 +5,14 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class CustomerModel extends Authenticatable
 {
     use SoftDeletes;
+    use Notifiable;
     public $table           = "customer";
     public $primaryKey      = "id";
     public $incrementing    = true;
@@ -69,5 +71,9 @@ class CustomerModel extends Authenticatable
     public function getDataEmailByid($id){
         $query = CustomerModel::where("id",$id)->first();
         return $query;
+    }
+
+    public function routeNotificationForEmail(){
+        return $this->email;
     }
 }
