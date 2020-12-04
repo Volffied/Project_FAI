@@ -9,6 +9,7 @@ use App\Model\DorderModel;
 use App\Model\HorderModel;
 use App\Model\PegawaiModel;
 use App\Model\PromoModel;
+use App\Notifications\OrderNotification;
 use Illuminate\Http\Request;
 use Midtrans\Config;
 use Midtrans\Snap;
@@ -161,8 +162,8 @@ class midtransController extends Controller
         CustomerModel::find($dataorder["kode_customer"])->update(['poin'=>$poin+$dataorder["grandtotal"]*0.0005/100]);
         $databarang = $databarang->barang;
         $datatmp = array();
+        $id_Data = HorderModel::all();
         foreach ($databarang as $key => $value) {
-            $id_Data = HorderModel::all();
             $total = $value->cart->qty * $value->harga;
             $datadorder = array(
                 "kode_horder"   =>count($id_Data),
@@ -176,6 +177,10 @@ class midtransController extends Controller
         DorderModel::insert($datatmp);
         CartModel::where('kode_user',$dataorder["kode_customer"])->delete();
         session()->forget('dataMidtrans');
+
+        $penerima = CustomerModel::find($dataorder["kode_customer"]);
+        $penerima->notify(new OrderNotification($datasession["order_id"]." - Your order has been placed!"));
+
         return redirect('/cart?msg=success');
     }
     public function insertOrder(){

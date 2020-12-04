@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\CustomerModel;
 use App\Model\DchatModel;
 use App\Model\HchatModel;
+use App\Notifications\OrderNotification;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -27,6 +28,7 @@ class Controller extends BaseController
             $depanSender = explode(' ',trim($sender));
             $depanSender = $depanSender[0];
             $pesan = $pesan."<br>- <i>".$depanSender."<i>";
+            $datanama->notify(new OrderNotification("You got a Message"));
         }
         $kode_hchat = HchatModel::where("kode_customer",$id_cust)->first();
         $param = new DchatModel;

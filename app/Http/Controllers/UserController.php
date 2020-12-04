@@ -14,6 +14,7 @@ use App\Model\KategoriModel;
 use App\Model\PegawaiModel;
 use App\Model\PromoModel;
 use App\Model\UserModel;
+use App\Notifications\OrderNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
@@ -33,8 +34,13 @@ class UserController extends Controller
             $param['chat'] = $chat->getDataMessage(session()->get('userLogin')->id);
         }
         // dd($param['brand']);
+        //dd(auth()->user()->unreadNotifications);
 
-
+        foreach (auth()->user()->unreadNotifications as $key => $item) {
+            //session()->put('notif',$item->data["chat_isi"]);
+            //$item->markAsRead(); //biar notifnya jdi read
+            //dd($item->data["chat_isi"]);
+        }
         return view('Common_Folder.home',['data' => $param]);
     }
 
@@ -42,6 +48,7 @@ class UserController extends Controller
     {
         session()->forget('userLogin');
         session()->forget('authUser');
+        session()->forget('notif');
         return view('Common_Folder.login');
     }
 
@@ -130,6 +137,13 @@ class UserController extends Controller
             $user  = new CustomerModel();
             $user->checkLogin($email,$pass);
             if(session()->has('userLogin')){
+                $array=[];
+                foreach (auth()->user()->unreadNotifications as $key => $item) {
+                    array_push($array,$item);
+                    //$item->markAsRead(); //biar notifnya jdi read
+                    //dd($item->data["chat_isi"]);
+                }
+                session()->put('notif',$array);
                 return redirect("/");
             }
             else{
