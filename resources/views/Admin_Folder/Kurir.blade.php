@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('Kurir') }}">Home</a></li>
                     <li class="breadcrumb-item active">Kurir</li>
                     </ol>
                 </div>
@@ -52,9 +52,11 @@
                                             <th scope="col" style="width: 10%">Tanggal Transaksi</th>
                                             <th scope="col" style="width: 10%">Nama Customer</th>
                                             <th scope="col" style="width: 10%">Alamat</th>
-                                            <th scope="col" style="width: 8%">Grandtotal</th>
+                                            <th scope="col" style="width: 10%">Grandtotal</th>
                                             <th scope="col" style="width: 5%">Estimasi</th>
                                             <th scope="col" style="width: 10%">Tanggal Pengiriman</th>
+                                            <th scope="col" style="width: 10%">Nama Pegawai</th>
+                                            <th scope="col" style="width: 10%">Nama Promo</th>
                                             <th scope="col" style="width: 10%">Status</th>
                                         </tr>
                                     </thead>
@@ -66,17 +68,23 @@
                                             <td>{{ $item->tanggal_trans }}</td>
                                             <td>{{ $item->nama_cust }}</td>
                                             <td>{{ $item->alamat_cust }}</td>
-                                            <td>{{ $item->grandtotal }}</td>
+                                            <td>Rp. {{ $item->grandtotal }},00</td>
                                             @if ($item->estimasi_waktu == null)
                                             <td><i>NONE</i></td>
                                             @else
-                                            <td>{{ $item->estimasi_waktu }}</td>
+                                            <td>{{ $item->estimasi_waktu }} Hari</td>
                                             @endif
                                             @if ($item->tanggal_pengiriman == null)
                                             <td><i>NONE</i></td>
                                             @else
                                             <td>{{ $item->tanggal_pengiriman }}</td>
                                             @endif
+                                            @if ($item->kode_pegawai == null)
+                                            <td><i>NONE</i></td>
+                                            @else
+                                            <td>{{ $item->nama_pegawai }}</td>
+                                            @endif
+                                            <td>{{ $item->nama_promo }}</td>
                                             @if ($item->status_order == 1)
                                             <td>Menunggu Konfirmasi</td>
                                             @elseif($item->status_order == 2)

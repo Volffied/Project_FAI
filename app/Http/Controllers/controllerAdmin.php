@@ -49,7 +49,9 @@ class controllerAdmin extends Controller
 
     public function HalPageKurir()
     {
-        return view('Admin_Folder.Kurir');
+        $horder = new HorderModel();
+        $dataHorder = $horder->getDataForHomePageKurir();
+        return view('Admin_Folder.Kurir',['daftarPenjualan'=>$dataHorder]);
     }
 
     public function HalPagemPegawai()

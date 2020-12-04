@@ -62,4 +62,14 @@ class HorderModel extends Model
         // $query = HorderModel::select(["horder.*", "customer.nama as nama_cust", 'customer.alamat as alamat_cust'])
         //     ->join("customer", "id", "kode_customer");
     }
+
+    public function getDataForHomePageKurir()
+    {
+        $query = HorderModel::select(["horder.*", "customer.nama as nama_cust", 'customer.alamat as alamat_cust',"pegawai.nama as nama_pegawai","promo.nama as nama_promo"])
+            ->leftJoin("customer", "customer.id", "horder.kode_customer")
+            ->leftJoin("pegawai", "pegawai.id", "horder.kode_pegawai")
+            ->leftJoin("promo", "promo.id_promo", "horder.kode_promo")
+            ->get();
+        return $query;
+    }
 }
