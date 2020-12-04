@@ -67,7 +67,7 @@ class controllerAdmin extends Controller
 
     public function HalPagemLaporanPenjualan()
     {
-        
+
         return view('Admin_Folder.laporanjual');
     }
 
@@ -77,39 +77,39 @@ class controllerAdmin extends Controller
         $dorder = new DorderModel();
         $dataBarang = $dorder->getAllDataForReport();
         foreach ($dataBarang as $key) {
-            if($dataCountBarang ==  null){
+            if ($dataCountBarang ==  null) {
                 $data = [
                     "nama_barang" => $key->nama_barang,
                     "harga_barang" => $key->harga_barang,
                     "count" => $key->qty
                 ];
-                array_push($dataCountBarang,$data);
-            }else if($dataCountBarang != null){
+                array_push($dataCountBarang, $data);
+            } else if ($dataCountBarang != null) {
                 foreach ($dataCountBarang as $keys => $value) {
                     $booleanMasuk = false;
-                    if($dataCountBarang[$keys]["nama_barang"] == $key->nama_barang && !$booleanMasuk){
+                    if ($dataCountBarang[$keys]["nama_barang"] == $key->nama_barang && !$booleanMasuk) {
                         $dataCountBarang[$keys]["count"] = $dataCountBarang[$keys]["count"] + $key->qty;
                         $booleanMasuk = true;
                         break;
-                    }else if($dataCountBarang[$keys]["nama_barang"] != $key->nama_barang && !$booleanMasuk){
+                    } else if ($dataCountBarang[$keys]["nama_barang"] != $key->nama_barang && !$booleanMasuk) {
                         $booleanMasuk = false;
                     }
                 }
-                if(!$booleanMasuk){
+                if (!$booleanMasuk) {
                     $data = [
                         "nama_barang" => $key->nama_barang,
                         "harga_barang" => $key->harga_barang,
                         "count" => $key->qty
                     ];
-                    array_push($dataCountBarang,$data);
+                    array_push($dataCountBarang, $data);
                 }
             }
         }
         // foreach ($dataCountBarang as $keys => $value) {
         //     usort($dataCountBarang, fn($a, $b) => $a->count - $b->count);
         // }
-       //dd($dataCountBarang);
-        return view('Admin_Folder.laporanbaranglaris',['daftarBarang'=>$dataCountBarang]);
+        //dd($dataCountBarang);
+        return view('Admin_Folder.laporanbaranglaris', ['daftarBarang' => $dataCountBarang]);
     }
 
     public function HalPagemPromo()
@@ -453,14 +453,15 @@ class controllerAdmin extends Controller
     public function UpdateTabelKurir()
     {
         $dataPegawaiMasuk = session()->get('adminLog');
-
-        if ($dataPegawaiMasuk->status == 1) {
+        $status = PegawaiModel::find($dataPegawaiMasuk->id);
+        if ($status->status == 1) {
             $dHorder = new HorderModel();
             $dataHorder = $dHorder->getDataForKurir();
             $datapegawai = PegawaiModel::find($dataPegawaiMasuk->id);
         } else {
             $dHorder = new HorderModel();
             $dataHorder = $dHorder->getDataForKurirs($dataPegawaiMasuk->id);
+            //dd($dataHorder);
             $datapegawai = PegawaiModel::find($dataPegawaiMasuk->id);
         }
         return view('Admin_Folder.tabelKurirAjax', ['daftarPenjualan' => $dataHorder, 'status_pegawai' => $datapegawai]);
@@ -468,53 +469,49 @@ class controllerAdmin extends Controller
 
     public function UpdateStatusKirim(Request $request)
     {
-        $rules_input = [
+        $rules = [
             "txtwaktu" => "required|numeric",
         ];
-        $message_input = [
+        $message = [
             "txtwaktu.required"     => "Estimasi Waktu harus diisi!",
             "txtwaktu.numeric"     => "Harus berupa angka!"
         ];
-        $rules = [
-            "imgupload" => "required|mimes:png,jpg,jpeg|max:2048"      // max 2mb
-        ];
-        $message = [
-            "imgupload.mimes"       => "format image png | jpg | jpeg ",
-            "imgupload.required"    => "harus di isi",
-            "imgupload.max"         => "ukuran maximal 2mb",
-        ];
+
         $dataadmin = session()->get("adminLog");
         $status = PegawaiModel::find($dataadmin->id);
+        $idHorder = $request->txtIdsimpan;
         if ($status->status == 1) {
-            if ($request->validate($rules_input, $message_input)) {
+            if ($request->validate($rules, $message)) {
                 $dateNow = Carbon::now();
-                $idHorder = $request->txtIdsimpan;
                 $estimasiWaktu = $request->txtwaktu;
                 //=================================
                 HorderModel::where("id_horder", $idHorder)->update([
                     "tanggal_pengiriman"    => $dateNow,
                     "estimasi_waktu"        => $estimasiWaktu,
-                    "status_order"          => 2
+                    "status_order"          => 2,
+                    "kode_pegawai"          => $dataadmin->id
                 ]);
                 //=================================
                 PegawaiModel::where("id", $dataadmin->id)->update(["status" => 0]);
+
                 $param["status_pegawai"] = PegawaiModel::find($dataadmin->id);
+                $param["idhorder"]       = $idHorder;
                 return view('Admin_Folder.pengantaranHorder')->with($param);
             } else {
                 return redirect("Kurir/changeAntarHorder");
             }
         } else if ($status->status == 0) {
-            //     //  bisa di lihat di storage/app/images
-            //     //  getClientOriginalExtension    -> untuk mendapatkan format photo yang diupload
-            //     //  getClientOriginalName         -> untuk mendapatkan nama photo yang diupload
-            //     //  untuk akses path             ->"images/mask_cyborg_robot_142919_1920x1080.jpg" dd($path);
-            if ($request->validate($rules, $message)) {
-                $namaImage =  $request->file("imgupload")->getClientOriginalName();
-                $path = $request->file("imgupload")->storeAs("images", $namaImage, "local");
-                return redirect("Kurir/changeAntarHorder");
-            } else {
-                return redirect("Kurir/changeAntarHorder");
-            }
+            //  bisa di lihat di storage/app/images
+            //  getClientOriginalExtension    -> untuk mendapatkan format photo yang diupload
+            //  getClientOriginalName         -> untuk mendapatkan nama photo yang diupload
+            //  untuk akses path             ->"images/mask_cyborg_robot_142919_1920x1080.jpg" dd($path);
+            $namaImage  =  $request->file("imgupload")->getClientOriginalName();
+            $path = $request->file("imgupload")->storeAs("images", $namaImage, "local");
+            HorderModel::where("id_horder", $idHorder)->update([
+                "invoice"    => $path,
+            ]);
+            PegawaiModel::where("id", $dataadmin->id)->update(["status" => 1]);
+            return redirect("Kurir/changeAntarHorder");
         }
     }
 

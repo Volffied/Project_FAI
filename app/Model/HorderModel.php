@@ -11,43 +11,45 @@ class HorderModel extends Model
     public $primaryKey      = "id_horder";
     public $incrementing    = true;
     public $timestamps      = true;
-    protected $fillable     = ['tanggal_trans','subtotal','grandtotal','metode_pembayaran','kode_customer','kode_promo','order_id'];
+    protected $fillable     = ['tanggal_trans', 'subtotal', 'grandtotal', 'metode_pembayaran', 'kode_customer', 'kode_promo', 'order_id'];
 
-    public function getAllDataBy($id){
-        $query = HorderModel::select(["horder.*","dorder.*"])
-                            ->join("dorder","kode_horder","id_horder")
-                            ->where("horder.kode_customer",$id)
-                            ->get();
+    public function getAllDataBy($id)
+    {
+        $query = HorderModel::select(["horder.*", "dorder.*"])
+            ->join("dorder", "kode_horder", "id_horder")
+            ->where("horder.kode_customer", $id)
+            ->get();
         return $query;
     }
-    public function history(){
-        return $this->belongsToMany(BarangModel::class,'dorder','kode_horder','kode_barang')
-                    ->withPivot("qty","total")
-                    ->as("dorder");
+    public function history()
+    {
+        return $this->belongsToMany(BarangModel::class, 'dorder', 'kode_horder', 'kode_barang')
+            ->withPivot("qty", "total")
+            ->as("dorder");
     }
 
     public function getDataForKurir()
     {
-        $query = HorderModel::select(["horder.*","customer.nama as nama_cust",'customer.alamat as alamat_cust'])
-                            ->join("customer","id","kode_customer")
-                            ->where("horder.status_order",1)
-                            ->get();
+        $query = HorderModel::select(["horder.*", "customer.nama as nama_cust", 'customer.alamat as alamat_cust'])
+            ->join("customer", "id", "kode_customer")
+            ->where("horder.status_order", 1)
+            ->get();
         return $query;
     }
 
     public function getDataForKurirs($id)
     {
-        $query = HorderModel::select(["horder.*","customer.nama as nama_cust",'customer.alamat as alamat_cust'])
-                            ->join("customer","id","kode_customer")
-                            ->where("horder.status_order",2)
-                            ->where("horder.kode_pegawai",$id)
-                            ->get();
+        $query = HorderModel::select(["horder.*", "customer.nama as nama_cust", 'customer.alamat as alamat_cust'])
+            ->join("customer", "id", "kode_customer")
+            ->where("horder.status_order", 2)
+            ->where("horder.kode_pegawai", $id)
+            ->get();
         return $query;
     }
 
     public function getDataForReport()
     {
-        $query = HorderModel::select(["horder.*","customer.nama as nama_cust",'customer.alamat as alamat_cust'])
-                            ->join("customer","id","kode_customer")
+        $query = HorderModel::select(["horder.*", "customer.nama as nama_cust", 'customer.alamat as alamat_cust'])
+            ->join("customer", "id", "kode_customer");
     }
 }

@@ -1,13 +1,18 @@
 @extends("Admin_Folder.BlueprintKurir")
 @section('container-body-page')
 <div class="container-form-input-admin-barang" id="inputBarang">
-    <form action="{{ url('Kurir/updateStatKirim') }}" method="post">
-        @csrf
+    <form action="{{ url('Kurir/updateStatKirim') }}" method="post" enctype="multipart/form-data">
         <div class="form-row">
+            @csrf
+            <input type="hidden" class="form-control" id="txtIdsimpan" name="txtIdsimpan" value="
+                <?php if (isset($idhorder)) {
+                    echo $idhorder;
+                } ?>
+            " placeholder="ID">
+            @if($status_pegawai->status == "1")
             <div class="form-group col-md-6">
                 <label for="txtId">ID</label>
                 <input type="text" class="form-control" id="txtId" name="txtId" placeholder="ID" disabled>
-                <input type="hidden" class="form-control" id="txtIdsimpan" name="txtIdsimpan" value="" placeholder="ID">
             </div>
             <div class="form-group col-md-6">
                 <label for="txtwaktu">Estimasi Waktu</label>
@@ -16,34 +21,20 @@
                 <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror
             </div>
-        </div>
-        <!-- <div class="form-row" style="float: left;"> -->
-        <div class="form-row" style="float: right;">
-            <input type="submit" class="btn btn-primary" id="btnupdhorder" name="btnupd" value="Submit">
-        </div>
-    </form>
-    
-    <input type="text" name="txtjenis" id="txtjenis" value="{{$status_pegawai->status}}">
-
-    <form action="{{ url('Kurir/updateStatKirim') }}" method="post" enctype="multipart/form-data">
-        @csrf
-        <div class="input-group">
-            <img id="previewHolder" src="{{ asset('images/invoice_png_kurir.png') }}" alt="Uploaded Image Preview Holder" width="200px" height="200px">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+            @else
+            <div class="card col-md-4">
+                <div class="imgWrap">
+                    <img src="{{asset('images/invoice_png_kurir.png')}}" id="imgView" width="200px" height="200px">
                 </div>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01" name="imgupload" aria-describedby="inputGroupFileAddon01">
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                </div>
+                <input type="file" id="inputFile" name="imgupload" accept="image/x-png,image/jpg,image/jpeg" onchange="preview()">
                 @error('imgupload')
                 <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror
             </div>
-            <div class="input-group">
-                <input type="submit" class="btn btn-primary" name="btnupload" value="Upload">
-            </div>
+            @endif
+        </div>
+        <div class="form-row" style="float: right;">
+            <input type="submit" class="btn btn-primary" id="btnupdhorder" name="btnupd" value="Submit">
         </div>
     </form>
 </div>
@@ -112,10 +103,14 @@
     </div>
 </div>
 <script>
+    var defaultImg = "";
     $(document).ready(function() {
         setInterval(updateTabel, 1000);
-        setInterval(checkdisplayupload, 1000);
-        document.getElementById("txtjenis").value = "";
+        defaultImg = $("#imgView").attr("src");
+        if ($("#inputFile").length) {
+            $("#btnupdhorder").prop("disabled", true);
+        }
+
     });
 
     function updateTabel() {
@@ -124,37 +119,27 @@
             type: "GET",
             data: {},
             success: function(response) {
+                console.log(response);
                 $(".tabelKurir").html(response);
+            },
+            error: function(response) {
+                console.log(response);
             }
         })
     }
 
-    function checkdisplayupload() {
-        var status = document.getElementById("txtjenis").value;
-        if (status == 1) {
-            $('input:file').filter(function() {
-                return this.files.length == 0
-            }).prop('disabled', true);
-        } else {
-            $('input:file').filter(function() {
-                return this.files.length == 0
-            }).prop('disabled', false);
-        }
-    }
     //preview image
-    function readUrl(input) {
-        if (input.files && input.files[0]) {
-            alert("masuk");
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#previewHolder').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
+    function preview() {
+        var fname = $("#inputFile").val();
+        var exten = fname.slice((Math.max(0, fname.lastIndexOf(".")) || Infinity) + 1);
+        if (exten == 'jpg' || exten == 'png' || exten == 'jpeg') {
+            imgView.src = URL.createObjectURL(event.target.files[0]);
+            $("#btnupdhorder").prop("disabled", false);
+        } else {
+            $("#inputFile").val("");
+            imgView.src = defaultImg;
+            $("#btnupdhorder").prop("disabled", true);
         }
     }
-    $("#inputGroupFile01").change(function() {
-        readUrl(this);
-    });
 </script>
 @endsection
