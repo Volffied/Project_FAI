@@ -21,6 +21,16 @@ class HorderModel extends Model
             ->get();
         return $query;
     }
+    public function countAllOrder($id)
+    {
+        $query = HorderModel::where("kode_customer", $id)->get();
+        return $query;
+    }
+    public function countAllCancelOrder($id)
+    {
+        $query = HorderModel::where("kode_customer", $id)->where('status_order', 4)->get();
+        return $query;
+    }
     public function history()
     {
         return $this->belongsToMany(BarangModel::class, 'dorder', 'kode_horder', 'kode_barang')
@@ -49,7 +59,7 @@ class HorderModel extends Model
 
     public function getDataForReport()
     {
-        $query = HorderModel::select(["horder.*", "customer.nama as nama_cust", 'customer.alamat as alamat_cust'])
-            ->join("customer", "id", "kode_customer");
+        // $query = HorderModel::select(["horder.*", "customer.nama as nama_cust", 'customer.alamat as alamat_cust'])
+        //     ->join("customer", "id", "kode_customer");
     }
 }

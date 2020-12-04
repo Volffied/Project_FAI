@@ -72,16 +72,17 @@ class UserController extends Controller
         // $barang = $barang->getAllDataByAmount(5);
         $potonganMember = new JenisMemberModel;
         $potonganMember = $potonganMember->getPotonganByID(session()->get('userLogin')->kode_member);
+        $param["potongan"] = $potonganMember->potongan;
         $allCart = new CartModel;
-        $datahistory = HorderModel::where("kode_customer",session()->get('userLogin')->id)->orderBy('status_order','asc')->orderBy('id_horder','desc')->get();
+        $param["history"] = HorderModel::where("kode_customer",session()->get('userLogin')->id)->orderBy('status_order','asc')->orderBy('id_horder','desc')->get();
         // foreach ($datahistory as $key => $value) {
         //    foreach ($value->history as $key2 => $data) {
         //         //dd($data);// buat dpet barang
         //         //dd($data->dorder);// buat dpet dorder
         //    }
         // }
-        $allCart = $allCart->getAllCart(session()->get('userLogin')->id);
-        return view('Common_Folder.cart',['barang' => $allCart,'potongan'=>$potonganMember->potongan,'history' => $datahistory]);
+        $param["barang"] = $allCart->getAllCart(session()->get('userLogin')->id);
+        return view('Common_Folder.cart')->with($param);
     }
 
     public function Product($nama)
@@ -111,11 +112,24 @@ class UserController extends Controller
         $datalogin = session()->get('userLogin')->id;
         //$user = CustomerModel::find($datalogin);
         $user = new CustomerModel();
-        $user = $user->getProfile($datalogin);
-        if($kode_member != 5) $nextMember = JenisMemberModel::find($kode_member+1);
-        else $nextMember = JenisMemberModel::find(5);
-        $myMember = JenisMemberModel::find($kode_member);
-        return view('Common_Folder.profile',['nextMember' => $nextMember,'myMember' => $myMember,'user'=>$user]);
+        $horder = new HorderModel();
+        $allhorder = $horder->countAllOrder($datalogin);
+        $allcancelhorder = $horder->countAllCancelOrder($datalogin);
+        $counthorder = 0;
+        $countfailed = 0;
+        if(count($allhorder) >0){
+            $counthorder = count($allhorder);
+        }
+        if(count($allcancelhorder) >0){
+            $countfailed = count($allcancelhorder);
+        }
+        $param["counthorder"] = $counthorder;
+        $param["countfailed"] = $countfailed;
+        $param["user"] = $user->getProfile($datalogin);
+        if($kode_member != 5) $param["nextMember"] = JenisMemberModel::find($kode_member+1);
+        else $param["nextMember"] = JenisMemberModel::find(5);
+        $param["myMember"] = JenisMemberModel::find($kode_member);
+        return view('Common_Folder.profile')->with($param);
     }
 
     /////////////// PROCCESS CONTROLLER ////////////////
