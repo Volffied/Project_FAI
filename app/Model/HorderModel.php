@@ -34,4 +34,14 @@ class HorderModel extends Model
                             ->get();
         return $query;
     }
+
+    public function getDataForKurirs($id)
+    {
+        $query = HorderModel::select(["horder.*","customer.nama as nama_cust",'customer.alamat as alamat_cust'])
+                            ->join("customer","id","kode_customer")
+                            ->where("horder.status_order",2)
+                            ->where("horder.kode_pegawai",$id)
+                            ->get();
+        return $query;
+    }
 }

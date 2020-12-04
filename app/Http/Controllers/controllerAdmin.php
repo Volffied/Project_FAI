@@ -19,37 +19,49 @@ use Illuminate\Support\Facades\Hash;
 
 class controllerAdmin extends Controller
 {
-    public function HalPageLogin(){return view('Admin_Folder.LoginAdmin');}
+    public function HalPageLogin()
+    {
+        return view('Admin_Folder.LoginAdmin');
+    }
 
-    public function HalPageAdmin(){
+    public function HalPageAdmin()
+    {
         $dataKategori = KategoriModel::all();
         $dataJenisMember = JenisMemberModel::all();
         $dataPromo = PromoModel::all();
         $ambildataBar = new BarangModel();
         $dataBarang = $ambildataBar->getAllDataBarang();
-        return view('Admin_Folder.Admin',['dataKat'=>$dataKategori,'dataBarang'=>$dataBarang,'dataMember'=>$dataJenisMember,'dataPromo'=>$dataPromo]);
+        return view('Admin_Folder.Admin', ['dataKat' => $dataKategori, 'dataBarang' => $dataBarang, 'dataMember' => $dataJenisMember, 'dataPromo' => $dataPromo]);
     }
 
-    public function HalPageMaster(){
-        $dataPegawai = PegawaiModel::where('jenis','<>',0)->get();
-        return view('Admin_Folder.Master',['daftarPegawai'=>$dataPegawai]);
+    public function HalPageMaster()
+    {
+        $dataPegawai = PegawaiModel::where('jenis', '<>', 0)->get();
+        return view('Admin_Folder.Master', ['daftarPegawai' => $dataPegawai]);
     }
 
-    public function HalPageCS(){
+    public function HalPageCS()
+    {
         $namaPeg = session()->get('adminLog');
-        return view('Admin_Folder.CustomerService',['namaPeg'=>$namaPeg]);
+        return view('Admin_Folder.CustomerService', ['namaPeg' => $namaPeg]);
     }
 
-    public function HalPageKurir(){return view('Admin_Folder.Kurir');}
+    public function HalPageKurir()
+    {
+        return view('Admin_Folder.Kurir');
+    }
 
-    public function HalPagemPegawai(){
-        $dataPegawai = PegawaiModel::where('jenis','<>',0)->get();
-        return view('Admin_Folder.pegawai',['daftarPegawai'=>$dataPegawai]);
+    public function HalPagemPegawai()
+    {
+        $dataPegawai = PegawaiModel::where('jenis', '<>', 0)->get();
+        return view('Admin_Folder.pegawai', ['daftarPegawai' => $dataPegawai]);
     }
 
     public function HalPagemAntarHorder()
     {
-        return view('Admin_Folder.pengantaranHorder');
+        $dataPegawaiMasuk = session()->get('adminLog');
+        $datapegawai = PegawaiModel::find($dataPegawaiMasuk->id);
+        return view('Admin_Folder.pengantaranHorder', ["status_pegawai" => $datapegawai]);
     }
 
     public function HalPagemLaporanPenjualan()
@@ -62,32 +74,37 @@ class controllerAdmin extends Controller
         return view('Admin_Folder.laporanbaranglaris');
     }
 
-    public function HalPagemPromo(){
+    public function HalPagemPromo()
+    {
         $dataPromo = PromoModel::withTrashed()->get();
-        return view('Admin_Folder.promo',['dataPromo'=>$dataPromo]);
+        return view('Admin_Folder.promo', ['dataPromo' => $dataPromo]);
     }
 
-    public function HalPagemBarang(){
+    public function HalPagemBarang()
+    {
         $dataKategori = KategoriModel::all();
         $ambildataBar = new BarangModel();
         $dataBarang = $ambildataBar->getAllDataBarang();
         $dataBrand = BrandModel::all();
-        return view('Admin_Folder.barang',['dataKat'=>$dataKategori, 'dataBarang'=>$dataBarang,'dataBrand' => $dataBrand]);
+        return view('Admin_Folder.barang', ['dataKat' => $dataKategori, 'dataBarang' => $dataBarang, 'dataBrand' => $dataBrand]);
     }
 
-    public function HalPagemMember(){
+    public function HalPagemMember()
+    {
         $dataJenisMember = JenisMemberModel::withTrashed()->get();
-        return view('Admin_Folder.Member',['dataMember'=>$dataJenisMember]);
+        return view('Admin_Folder.Member', ['dataMember' => $dataJenisMember]);
     }
 
-    public function HalPagemkategori(){
+    public function HalPagemkategori()
+    {
         $dataKategori = KategoriModel::withTrashed()->get();
-        return view('Admin_Folder.kategori',['dataKat'=>$dataKategori]);
+        return view('Admin_Folder.kategori', ['dataKat' => $dataKategori]);
     }
 
-    public function HalPagemBrand(){
+    public function HalPagemBrand()
+    {
         $dataBrand = BrandModel::withTrashed()->get();
-        return view('Admin_Folder.brand',['dataBrand'=>$dataBrand]);
+        return view('Admin_Folder.brand', ['dataBrand' => $dataBrand]);
     }
 
     public function LogoutAdmin(Request $request)
@@ -96,14 +113,15 @@ class controllerAdmin extends Controller
         return redirect("loginAdmin");
     }
 
-    public function checkAddPromo(Request $request){
-        if($request->btnadd){
+    public function checkAddPromo(Request $request)
+    {
+        if ($request->btnadd) {
             $rules = [
                 "txtnama" => "required",
                 "diskon" => "required",
                 "tglawal" => "required",
-                "tglakhir"=> "required",
-                "txtvoucher"=> "required|max:6"
+                "tglakhir" => "required",
+                "txtvoucher" => "required|max:6"
             ];
             $message = [
                 "txtnama.required" => "Nama harus di isi",
@@ -113,7 +131,7 @@ class controllerAdmin extends Controller
                 "txtvoucher.required" => "Kode Voucher harus di isi",
                 "txtvoucher.max" => "Kode Voucher Max 6 karakter!",
             ];
-            if ($request->validate($rules,$message)) {
+            if ($request->validate($rules, $message)) {
                 $namaPromo = $request->txtnama;
                 $voucherPromo = strtoupper($request->txtvoucher);
                 $dateAw = $request->tglawal;
@@ -123,22 +141,22 @@ class controllerAdmin extends Controller
                 $datetime2 = new DateTime($dateAk);
                 $interval = $datetime1->diff($datetime2);
                 $days = $interval->format('%a');
-                if($datetime1 < $datetime2){
+                if ($datetime1 < $datetime2) {
                     $promo = new PromoModel();
-                    $promo->insertData($namaPromo,$dateAw,$dateAk,$diskonPot,$voucherPromo);
+                    $promo->insertData($namaPromo, $dateAw, $dateAk, $diskonPot, $voucherPromo);
                     return back();
-                }else if($datetime1 > $datetime2){
+                } else if ($datetime1 > $datetime2) {
                     return back();
                 }
-            }else{
+            } else {
                 return back();
             }
-        }else if($request->btnupdates){
+        } else if ($request->btnupdates) {
             $rules = [
                 "txtnama" => "required",
                 "diskon" => "required",
                 "tglawal" => "required",
-                "tglakhir"=> "required"
+                "tglakhir" => "required"
             ];
             $message = [
                 "txtnama.required" => "Nama harus di isi",
@@ -146,7 +164,7 @@ class controllerAdmin extends Controller
                 "diskon.required" => "Diskon harus di isi",
                 "tglakhir.required" => "Tanggal Akhir harus di isi",
             ];
-            if ($request->validate($rules,$message)) {
+            if ($request->validate($rules, $message)) {
                 $idPromo = $request->id_promo;
                 $namaPromo = $request->txtnama;
                 $voucherPromo = strtoupper($request->txtvoucher);
@@ -157,7 +175,7 @@ class controllerAdmin extends Controller
                 $datetime2 = new DateTime($dateAk);
                 $interval = $datetime1->diff($datetime2);
                 $days = $interval->format('%a');
-                if($datetime1 < $datetime2){
+                if ($datetime1 < $datetime2) {
                     $updatePromo = PromoModel::find($idPromo);
                     $updatePromo->nama             = $namaPromo;
                     $updatePromo->tanggal_awal     = $dateAw;
@@ -166,10 +184,10 @@ class controllerAdmin extends Controller
                     $updatePromo->voucher         = $voucherPromo;
                     $updatePromo->save();
                     return back();
-                }else if($datetime1 > $datetime2){
+                } else if ($datetime1 > $datetime2) {
                     return back();
                 }
-            }else{
+            } else {
                 return back();
             }
         }
@@ -177,7 +195,7 @@ class controllerAdmin extends Controller
 
     public function addJenisMember(Request $request)
     {
-        if($request->btnadd){
+        if ($request->btnadd) {
             $rules = [
                 'txtnama' => 'required|max:50',
                 'txtpoin' => 'required|numeric',
@@ -190,14 +208,14 @@ class controllerAdmin extends Controller
                 'max' => 'Maksimal Karakter adalah 50 Karakter!',
                 'numeric' => 'Inputan Harus berupa angka!'
             ];
-            $this->validate($request,$rules,$customError);
+            $this->validate($request, $rules, $customError);
             $namaJenis = $request->txtnama;
             $poinMinJenis = $request->txtpoin;
             $potonganJenis = $request->txtpotongan;
             $inputJenisMember = new JenisMemberModel();
-            $inputJenisMember->insertData($namaJenis,$poinMinJenis,$potonganJenis);
+            $inputJenisMember->insertData($namaJenis, $poinMinJenis, $potonganJenis);
             return back();
-        }else if($request->btnupdate){
+        } else if ($request->btnupdate) {
             $rules = [
                 'txtnama' => 'required|max:50',
                 'txtpoin' => 'required|numeric',
@@ -210,7 +228,7 @@ class controllerAdmin extends Controller
                 'max' => 'Maksimal Karakter adalah 50 Karakter!',
                 'numeric' => 'Inputan Harus berupa angka!'
             ];
-            $this->validate($request,$rules,$customError);
+            $this->validate($request, $rules, $customError);
             $idjenmember = $request->id_jenis_member;
             $namaJenis = $request->txtnama;
             $poinMinJenis = $request->txtpoin;
@@ -222,12 +240,11 @@ class controllerAdmin extends Controller
             $updateMember->save();
             return back();
         }
-
     }
 
     public function addBarang(Request $request)
     {
-        if($request->btnadd){
+        if ($request->btnadd) {
             $rules = [
                 'txtnama' => 'required|max:50',
                 'txtharga' => 'required|numeric',
@@ -243,7 +260,7 @@ class controllerAdmin extends Controller
                 'min' => 'Tidak boleh dibawah 0!',
                 'numeric' => ':attribute harus berisikan angka!'
             ];
-            $this->validate($request,$rules,$customError);
+            $this->validate($request, $rules, $customError);
             $namabarang = $request->txtnama;
             $gambarbarang = $request->txtgambar;
             $hargabarang = $request->txtharga;
@@ -252,9 +269,9 @@ class controllerAdmin extends Controller
             $kategoriBarang = $request->cbpilihkategori;
             $kode_brand = $request->cbpilihbrand;
             $inputBarang = new BarangModel();
-            $inputBarang->simpanData($namabarang,$hargabarang,$stokbarang,$statusBarang,$kategoriBarang,$gambarbarang,$kode_brand);
+            $inputBarang->simpanData($namabarang, $hargabarang, $stokbarang, $statusBarang, $kategoriBarang, $gambarbarang, $kode_brand);
             return back();
-        }else if($request->btnupdate){
+        } else if ($request->btnupdate) {
             $rules = [
                 'txtnama' => 'required|max:50',
                 'txtharga' => 'required|numeric',
@@ -270,7 +287,7 @@ class controllerAdmin extends Controller
                 'min' => 'Tidak boleh dibawah 0!',
                 'numeric' => ':attribute harus berisikan angka!'
             ];
-            $this->validate($request,$rules,$customError);
+            $this->validate($request, $rules, $customError);
             $idbarang = $request->id_barang;
             $namabarang = $request->txtnama;
             $gambarbarang = $request->txtgambar;
@@ -284,7 +301,7 @@ class controllerAdmin extends Controller
             $updateBarang->stok             = $stokbarang;
             $updateBarang->gambar           = $gambarbarang;
             $updateBarang->kode_kategori    = $kategoriBarang;
-            if($kode_brand != 0) $updateBarang->kode_brand       = $kode_brand;
+            if ($kode_brand != 0) $updateBarang->kode_brand       = $kode_brand;
             $updateBarang->save();
             return back();
         }
@@ -292,11 +309,11 @@ class controllerAdmin extends Controller
 
     public function DeletePromo(Request $request)
     {
-        if($request->btnDel == "Recover"){
+        if ($request->btnDel == "Recover") {
             $idpromoDel = $request->idpromohid;
-            $delPromo = PromoModel::withTrashed()->where('id_promo',$idpromoDel)->restore();
+            $delPromo = PromoModel::withTrashed()->where('id_promo', $idpromoDel)->restore();
             return back();
-        }else if($request->btnDel == "Delete"){
+        } else if ($request->btnDel == "Delete") {
             $idpromoDel = $request->idpromohid;
             $delPromo = PromoModel::find($idpromoDel)->delete();
             return back();
@@ -305,11 +322,11 @@ class controllerAdmin extends Controller
 
     public function DeleteJenisMember(Request $request)
     {
-        if($request->btnDel == "Recover"){
+        if ($request->btnDel == "Recover") {
             $idmemberDel = $request->idmemberhid;
-            $delMember = JenisMemberModel::withTrashed()->where('id_member',$idmemberDel)->restore();
+            $delMember = JenisMemberModel::withTrashed()->where('id_member', $idmemberDel)->restore();
             return back();
-        }else if($request->btnDel == "Delete"){
+        } else if ($request->btnDel == "Delete") {
             $idmemberDel = $request->idmemberhid;
             $delMember = JenisMemberModel::find($idmemberDel)->delete();
             return back();
@@ -318,11 +335,11 @@ class controllerAdmin extends Controller
 
     public function DeleteBarang(Request $request)
     {
-        if($request->btnDel == "Recover"){
+        if ($request->btnDel == "Recover") {
             $idbarangDel = $request->idbaranghid;
-            $delBarang = BarangModel::withTrashed()->where('id',$idbarangDel)->restore();
+            $delBarang = BarangModel::withTrashed()->where('id', $idbarangDel)->restore();
             return back();
-        }else if($request->btnDel == "Delete"){
+        } else if ($request->btnDel == "Delete") {
             $idbarangDel = $request->idbaranghid;
             $delBarang = BarangModel::find($idbarangDel)->delete();
             return back();
@@ -331,11 +348,11 @@ class controllerAdmin extends Controller
 
     public function DeleteKategori(Request $request)
     {
-        if($request->btnDel == "Recover"){
+        if ($request->btnDel == "Recover") {
             $idkategoriDel = $request->idkategorihid;
-            $delKategori = KategoriModel::withTrashed()->where('id_kat',$idkategoriDel)->restore();
+            $delKategori = KategoriModel::withTrashed()->where('id_kat', $idkategoriDel)->restore();
             return back();
-        }else if($request->btnDel == "Delete"){
+        } else if ($request->btnDel == "Delete") {
             $idkategoriDel = $request->idkategorihid;
             $delKategori = KategoriModel::find($idkategoriDel)->delete();
             return back();
@@ -344,11 +361,11 @@ class controllerAdmin extends Controller
 
     public function DeleteBrand(Request $request)
     {
-        if($request->btnDel == "Recover"){
+        if ($request->btnDel == "Recover") {
             $idbrandDel = $request->idbrandhid;
-            $delBrand = BrandModel::withTrashed()->where('id_brand',$idbrandDel)->restore();
+            $delBrand = BrandModel::withTrashed()->where('id_brand', $idbrandDel)->restore();
             return back();
-        }else if($request->btnDel == "Delete"){
+        } else if ($request->btnDel == "Delete") {
             $idbrandDel = $request->idbrandhid;
             $delBrand = BrandModel::find($idbrandDel)->delete();
             return back();
@@ -357,7 +374,7 @@ class controllerAdmin extends Controller
 
     public function addKategori(Request $request)
     {
-        if($request->btnadd){
+        if ($request->btnadd) {
             $rules = [
                 'txtnama' => 'required|max:50'
             ];
@@ -365,12 +382,12 @@ class controllerAdmin extends Controller
                 'txtnama.required' => 'Nama harus diisi!',
                 'max' => 'Maksimal Karakter adalah 50 Karakter!'
             ];
-            $this->validate($request,$rules,$customError);
+            $this->validate($request, $rules, $customError);
             $namaKat = $request->txtnama;
             $inputKategori = new KategoriModel();
             $inputKategori->insertData($namaKat);
             return back();
-        }else if($request->btnupdate){
+        } else if ($request->btnupdate) {
             $rules = [
                 'txtnama' => 'required|max:50'
             ];
@@ -378,7 +395,7 @@ class controllerAdmin extends Controller
                 'txtnama.required' => 'Nama harus diisi!',
                 'max' => 'Maksimal Karakter adalah 50 Karakter!'
             ];
-            $this->validate($request,$rules,$customError);
+            $this->validate($request, $rules, $customError);
             $namaKat = $request->txtnama;
             $idKategori = $request->id_kategori;
             $updateKategori = KategoriModel::find($idKategori);
@@ -392,56 +409,82 @@ class controllerAdmin extends Controller
     {
         $dataHChat = new HchatModel();
         $dataChat = $dataHChat->getCountMessage();
-        return view('Admin_Folder.tabelChatAjax',['dataChat'=>$dataChat]);
+        return view('Admin_Folder.tabelChatAjax', ['dataChat' => $dataChat]);
     }
 
     public function UpdateTabelKurir()
     {
         $dataPegawaiMasuk = session()->get('adminLog');
-        if($dataPegawaiMasuk->status == 1){
+
+        if ($dataPegawaiMasuk->status == 1) {
             $dHorder = new HorderModel();
             $dataHorder = $dHorder->getDataForKurir();
-        }else{
-            $dataHorder = HorderModel::where('kode_pegawai',$dataPegawaiMasuk->id)->where('status_order',1)->get();
+            $datapegawai = PegawaiModel::find($dataPegawaiMasuk->id);
+        } else {
+            $dHorder = new HorderModel();
+            $dataHorder = $dHorder->getDataForKurirs($dataPegawaiMasuk->id);
         }
-        return view('Admin_Folder.tabelKurirAjax',['daftarPenjualan'=>$dataHorder]);
+        return view('Admin_Folder.tabelKurirAjax', ['daftarPenjualan' => $dataHorder, 'status_pegawai' => $datapegawai]);
     }
 
     public function UpdateStatusKirim(Request $request)
     {
+        //
+
+        $rules_input = [
+            "txtwaktu" => "required|numeric",
+        ];
+        $message_input = [
+            "txtwaktu.required"     => "Estimasi Waktu harus diisi!",
+            "txtwaktu.numeric"     => "Harus berupa angka!"
+        ];
         $rules = [
-            "txtwaktu"=>"required|numeric",
             "imgupload" => "required|mimes:png,jpg,jpeg|max:2048"      // max 2mb
         ];
         $message = [
             "imgupload.mimes"       => "format image png | jpg | jpeg ",
             "imgupload.required"    => "harus di isi",
             "imgupload.max"         => "ukuran maximal 2mb",
-            "txtwaktu.required"     => "Estimasi Waktu harus diisi!",
-            "txtwaktu.numeric"     => "Harus berupa angka!"
         ];
-
-        if ($request->validate($rules,$message)) {
-            //  bisa di lihat di storage/app/images
-            //  getClientOriginalExtension    -> untuk mendapatkan format photo yang diupload
-            //  getClientOriginalName         -> untuk mendapatkan nama photo yang diupload
-            //  untuk akses path             ->"images/mask_cyborg_robot_142919_1920x1080.jpg" dd($path);
-            $namaImage =  $request->file("imgupload")->getClientOriginalName();
-            $path = $request->file("imgupload")->storeAs("images",$namaImage,"local");
-            $dateNow = Carbon::now();
-            $idHorder = $request->txtId;
-            $estimasiWaktu = $request->txtwaktu;
-
-            return redirect("Kurir/changeAntarHorder");
-        }
-        else{
-            return redirect("Kurir/changeAntarHorder");
+        $dataadmin = session()->get("adminLog");
+        $status = PegawaiModel::find($dataadmin->id);
+        if ($status->status == 1) {
+            if ($request->validate($rules_input, $message_input)) {
+                $dateNow = Carbon::now();
+                $idHorder = $request->txtIdsimpan;
+                $estimasiWaktu = $request->txtwaktu;
+                //=================================
+                HorderModel::where("id_horder", $idHorder)->update([
+                    "tanggal_pengiriman"    => $dateNow,
+                    "estimasi_waktu"        => $estimasiWaktu,
+                    "status_order"          => 2
+                ]);
+                //=================================
+                PegawaiModel::where("id", $dataadmin->id)->update(["status" => 0]);
+                $param["status_pegawai"] = PegawaiModel::find($dataadmin->id);
+                return view("Kurir/changeAntarHorder")->with($param);
+                // return redirect("Kurir/changeAntarHorder");
+            } else {
+                return redirect("Kurir/changeAntarHorder");
+            }
+        } else if ($status->status == 0) {
+            //     //  bisa di lihat di storage/app/images
+            //     //  getClientOriginalExtension    -> untuk mendapatkan format photo yang diupload
+            //     //  getClientOriginalName         -> untuk mendapatkan nama photo yang diupload
+            //     //  untuk akses path             ->"images/mask_cyborg_robot_142919_1920x1080.jpg" dd($path);
+            if ($request->validate($rules, $message)) {
+                $namaImage =  $request->file("imgupload")->getClientOriginalName();
+                $path = $request->file("imgupload")->storeAs("images", $namaImage, "local");
+                return redirect("Kurir/changeAntarHorder");
+            } else {
+                return redirect("Kurir/changeAntarHorder");
+            }
         }
     }
 
     public function addBrand(Request $request)
     {
-        if($request->btnadd){
+        if ($request->btnadd) {
             $rules = [
                 'txtnama' => 'required|max:50',
                 'txtgambar' => 'required',
@@ -453,11 +496,11 @@ class controllerAdmin extends Controller
                 'txtdesc.required' => 'Deskripsi harus diisi!',
                 'max' => 'Maksimal Karakter adalah 50 Karakter!'
             ];
-            $this->validate($request,$rules,$customError);
+            $this->validate($request, $rules, $customError);
             $inputBrand = new BrandModel();
-            $inputBrand->simpanData($request->txtnama,$request->txtgambar,$request->txtdesc);
+            $inputBrand->simpanData($request->txtnama, $request->txtgambar, $request->txtdesc);
             return back();
-        }else if($request->btnupdate){
+        } else if ($request->btnupdate) {
             $rules = [
                 'txtnama' => 'required|max:50',
                 'txtgambar' => 'required',
@@ -469,7 +512,7 @@ class controllerAdmin extends Controller
                 'txtdesc.required' => 'Deskripsi harus diisi!',
                 'max' => 'Maksimal Karakter adalah 50 Karakter!'
             ];
-            $this->validate($request,$rules,$customError);
+            $this->validate($request, $rules, $customError);
             $idbrand = $request->id_brand;
             $updateBrand = BrandModel::find($idbrand);
             $updateBrand->nama_brand        = $request->txtnama;
@@ -478,14 +521,13 @@ class controllerAdmin extends Controller
             $updateBrand->save();
             return back();
         }
-
     }
 
     public function addPegawai(Request $request)
     {
         $rules = [
             'txtnama' => 'required|max:50',
-            'txtemail' => ['required','email:rfc,dns',new cekEmail],
+            'txtemail' => ['required', 'email:rfc,dns', new cekEmail],
             'txtpass' => 'required|max:50',
             'txtpass_confirmation' => 'required|same:txtpass',
             'txtphone' => 'required|numeric'
@@ -501,14 +543,14 @@ class controllerAdmin extends Controller
             'same' => 'Confirm Password tidak sama dengan password',
             'numeric' => ':attribute harus berisikan angka!'
         ];
-        $this->validate($request,$rules,$customError);
+        $this->validate($request, $rules, $customError);
         $namaPeg = $request->txtnama;
         $emailPeg = $request->txtemail;
         $passPeg = Hash::make($request->txtpass);
         $phonePeg = $request->txtphone;
         $jenisPeg = $request->cbpilijenispegawai;
         $inputPegawai = new PegawaiModel();
-        $inputPegawai->insertData($namaPeg,$emailPeg,$passPeg,$phonePeg,$jenisPeg);
+        $inputPegawai->insertData($namaPeg, $emailPeg, $passPeg, $phonePeg, $jenisPeg);
         return back();
     }
 
@@ -521,21 +563,21 @@ class controllerAdmin extends Controller
         $customError = [
             'required' => ':attribute harus diisi!',
         ];
-        $this->validate($request,$rules,$customError);
+        $this->validate($request, $rules, $customError);
         $emailLog = $request->email;
         $passwordLog = $request->password;
-        $userAvail = PegawaiModel::where('email',$emailLog)->first();
-        if(Hash::check($passwordLog, $userAvail->password)){
-            if($userAvail->jenis === 0){
+        $userAvail = PegawaiModel::where('email', $emailLog)->first();
+        if (Hash::check($passwordLog, $userAvail->password)) {
+            if ($userAvail->jenis === 0) {
                 $request->session()->put('adminLog', $userAvail);
                 return redirect("Master");
-            }else if($userAvail->jenis === 1){
+            } else if ($userAvail->jenis === 1) {
                 $request->session()->put('adminLog', $userAvail);
                 return redirect("Admin");
-            }else if($userAvail->jenis === 2){
+            } else if ($userAvail->jenis === 2) {
                 $request->session()->put('adminLog', $userAvail);
                 return redirect("Kurir");
-            }else if($userAvail->jenis === 3){
+            } else if ($userAvail->jenis === 3) {
                 $request->session()->put('adminLog', $userAvail);
                 return redirect("CustomerService");
             }
