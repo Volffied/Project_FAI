@@ -43,10 +43,24 @@
            <svg aria-hidden="true" focusable="false" data-prefix="fas" style="margin-right:3%;display:none;" data-icon="bars" class="svg-nav svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="30"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
         </div>
         <div class="container-notif">
-            <div class="notif-item">
-                <p class="notif-title">One of your order got accepted</p>
-            </div>
-            <div class="notif-item">
+            <?php
+                $notif =[];
+                if(session()->has('notif')){
+                    $notif = session()->get('notif');
+                    //dd($notif);
+                }
+            ?>
+            @isset($notif)
+                @foreach ($notif as $item)
+                <?php
+                    $item->markAsRead();
+                ?>
+                <div class="notif-item">
+                    <p class="notif-title">{{ $item->data["chat_isi"] }}</p>
+                </div>
+                @endforeach
+            @endisset
+            {{-- <div class="notif-item">
                 <p class="notif-title">Order placed successfully</p>
             </div>
             <div class="notif-item">
@@ -54,7 +68,7 @@
             </div>
             <div class="notif-item">
                 <p class="notif-title">You got a message</p>
-            </div>
+            </div> --}}
             <div class="notif-item">
                 <a class="notif-title">See all Notifications</a>
             </div>

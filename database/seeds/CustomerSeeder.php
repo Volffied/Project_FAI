@@ -44,7 +44,7 @@ class CustomerSeeder extends Seeder
         CustomerModel::insert([
             'nama' => 'William',
             'poin' => 150,
-            'email' => 'william@gmail.com',
+            'email' => 'robertwilliamt@yahoo.com',
             'password' => Hash::make('123'),
             'notlp' => '081231894694',
             'alamat' => 'Jl Raya',

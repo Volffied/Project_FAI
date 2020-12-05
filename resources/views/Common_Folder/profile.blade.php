@@ -75,15 +75,15 @@
             <div class="container-subprofile" style="right: 0;">
                 <div class="container-orderCount">
                     <div class="order">
-                        <h1 class="number">12</h1>
+                        <h1 class="number">{{ $counthorder }}</h1>
                         <p>Ordered</p>
                     </div>
                     <div class="order">
-                        <h1 class="number">12</h1>
+                        <h1 class="number">0</h1>
                         <p>Finished</p>
                     </div>
                     <div class="order">
-                        <h1 class="number">12</h1>
+                        <h1 class="number">{{ $countfailed }}</h1>
                         <p>Failed</p>
                     </div>
                 </div>

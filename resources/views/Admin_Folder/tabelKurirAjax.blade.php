@@ -50,6 +50,7 @@
                 msg += " ";
                 document.getElementById("txtId").value = rowSelected.cells[0].innerHTML;
                 document.getElementById("txtIdsimpan").value = rowSelected.cells[0].innerHTML;
+                document.getElementById("txtidhorder").value = rowSelected.cells[0].innerHTML;
             }
         }
     }
