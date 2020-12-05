@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\BarangModel;
 use App\Model\BrandModel;
+use App\Model\CustomerModel;
 use App\Model\DchatModel;
 use App\Model\DorderModel;
 use App\Model\HchatModel;
@@ -12,6 +13,7 @@ use App\Model\JenisMemberModel;
 use App\Model\KategoriModel;
 use App\Model\PegawaiModel;
 use App\Model\PromoModel;
+use App\Notifications\OrderNotification;
 use App\Rules\cekEmail;
 use App\Rules\cekEmailUpdate;
 use Carbon\Carbon;
@@ -522,6 +524,11 @@ class controllerAdmin extends Controller
 
                 $param["status_pegawai"] = PegawaiModel::find($dataadmin->id);
                 $param["idhorder"]       = $idHorder;
+
+                $datahorder = HorderModel::find("id_horder", $idHorder);
+                $id_cust = $datahorder->kode_customer;
+                $penerima = CustomerModel::find($id_cust);
+                $penerima->notify(new OrderNotification($datahorder->order_id." - Your order is on the way to you!"));
                 return view('Admin_Folder.pengantaranHorder')->with($param);
             } else {
                 return redirect("Kurir/changeAntarHorder");
@@ -538,6 +545,10 @@ class controllerAdmin extends Controller
                 "status_order"      => 3,
             ]);
             PegawaiModel::where("id", $dataadmin->id)->update(["status" => 1]);
+            $datahorder = HorderModel::find("id_horder", $idHorder);
+            $id_cust = $datahorder->kode_customer;
+            $penerima = CustomerModel::find($id_cust);
+            $penerima->notify(new OrderNotification($datahorder->order_id." - Order Finish !"));
             return redirect("Kurir/changeAntarHorder");
         }
     }

@@ -24,12 +24,6 @@ class midtransController extends Controller
         $kode_promo = $request->kode_promo;
         $potongan_member = $request->potongan_member;
 
-        //$datacart = CartModel::where('kode_customer',$kode_customer)->get();
-        // $databarang = CartModel::select('cart.*','barang.nama_barang as nama_barang','barang.harga as harga_barang')
-        //                     ->join('barang','id','kode_barang')
-        //                     ->where('kode_user',$kode_customer)
-        //                     ->get();
-
         $databarang = CustomerModel::find($kode_customer);
         $databarang = $databarang->barang;
 
@@ -43,15 +37,7 @@ class midtransController extends Controller
             'gross_amount' => $grandtotal, // no decimal allowed for creditcard // total agar
         );
         $datatmp     = array();
-        // foreach ($databarang as $key => $value) {
-        //     array_push($datatmp,array(
-        //             "id"        => $value->id,
-        //             "price"     => $value->harga_barang,
-        //             "quantity"  => $value->qty,
-        //             "name"      => $value->nama_barang,
-        //         )
-        //     );
-        // }
+
         foreach ($databarang as $key => $value) {
             array_push($datatmp,array(
                     "id"        => $value->id,
@@ -62,12 +48,6 @@ class midtransController extends Controller
             );
         }
 
-        // $potongan = 0;
-        // // CHECK POTONGAN JENIS MEMBER
-        // $new_var = members::find($jenis_mem);
-        // if ($new_var){
-        //     $potongan = $new_var->potongan;
-        // }
         $potongan = 0;
         $promo = PromoModel::find($kode_promo);
         if($promo){
@@ -75,13 +55,7 @@ class midtransController extends Controller
         }
         $potongan = ($subtotal*$potongan/100) * -1;
 
-        // array_push($datatmp,array(
-        //     "id"        => 67,
-        //     "price"     => $subtotal,
-        //     "quantity"  => 1,
-        //     "name"      => "Subtotal",
-        //     )
-        // );
+
         if($potongan != 0){
             array_push($datatmp,array(
                 "id"        => 67,
