@@ -135,6 +135,7 @@
     font: 700 1.3em "Montserrat";
     color: #fff;
     margin: 0 !important;
+    transition: color 0.3s;
 }
 
 .notifikasi-item p {
@@ -206,4 +207,8 @@
     font: 600 2em "Source Sans Pro";
     text-align: center;
     margin-top: 13%;
+}
+
+.selected h1 {
+    color: #f1353b;
 }
