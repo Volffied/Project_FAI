@@ -1,0 +1,30 @@
+body {
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #261830;
+    opacity: 1;
+}
+
+h5 {
+    -webkit-text-stroke: 1px #ff151d7e;
+    font-size: 2em;
+    color: transparent;
+}
+
+h1 {
+    font: 800 8em "Montserrat";
+    color: transparent;
+    -webkit-text-stroke: 1px #ff151d7e;
+}
+
+a {
+    color: #ff151b;
+    font: 500 1.5em "Source Sans Pro";
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

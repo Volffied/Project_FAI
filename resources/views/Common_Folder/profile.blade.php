@@ -79,7 +79,7 @@
                         <p>Ordered</p>
                     </div>
                     <div class="order">
-                        <h1 class="number">0</h1>
+                        <h1 class="number">{{$countsuccess}}</h1>
                         <p>Finished</p>
                     </div>
                     <div class="order">

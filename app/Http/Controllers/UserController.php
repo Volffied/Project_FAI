@@ -118,16 +118,13 @@ class UserController extends Controller
         $horder = new HorderModel();
         $allhorder = $horder->countAllOrder($datalogin);
         $allcancelhorder = $horder->countAllCancelOrder($datalogin);
-        $counthorder = 0;
-        $countfailed = 0;
-        if(count($allhorder) >0){
-            $counthorder = count($allhorder);
-        }
-        if(count($allcancelhorder) >0){
-            $countfailed = count($allcancelhorder);
-        }
+        $allsuccesshorder = HorderModel::where('kode_customer',session()->get('userLogin')->id)->where('status_order',3)->get();
+        $countsuccess = count($allsuccesshorder);
+        $counthorder = count($allhorder);
+        $countfailed = count($allcancelhorder);
         $param["counthorder"] = $counthorder;
         $param["countfailed"] = $countfailed;
+        $param["countsuccess"] = $countsuccess;
         $param["user"] = $user->getProfile($datalogin);
         if($kode_member != 5) $param["nextMember"] = JenisMemberModel::find($kode_member+1);
         else $param["nextMember"] = JenisMemberModel::find(5);

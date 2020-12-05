@@ -74,6 +74,10 @@ Route::get('/home',function(){
     return redirect('/');
 });
 
+Route::get('/404',function(){
+    return view('error404');
+});
+
 //midtrans
 Route::post('dataPayment', 'midtransController@dataPayment');
 Route::post('saveData', 'midtransController@saveData');
