@@ -250,6 +250,15 @@ class UserController extends Controller
         return back();
     }
 
+    public function forgotPassword(Request $request)
+    {
+        $cust = CustomerModel::where('email',$request->email)->first();
+        $cust->password = Hash::make($request->password);
+        $cust->save();
+        session()->flash('message','Password has been successfully changed');
+        return redirect('/login');
+    }
+
     //////////////// AJAX CONTROLLER /////////////////////
 
     public function addToCart($id,$qty){
@@ -320,5 +329,20 @@ class UserController extends Controller
             $cart->save();
             return "Product Updated";
         }
+    }
+
+    public function checkEmail(Request $request)
+    {
+        $cust = CustomerModel::where('email',$request->email)->first();
+        if($cust!=null){
+            if($cust->status == 1) return "lolos";
+            else return "This account haven't verify its email";
+        }else return "Email doesn't exists";
+    }
+
+    public function checkSessionForgot()
+    {
+        if(session()->has('forgotPassword')) return "buka";
+        else return "tutup";
     }
 }

@@ -99,6 +99,10 @@ Route::get('/404',function(){
     return view('error404');
 });
 
+Route::get('/forgotPassword',function(){
+    return view('forgotPassword');
+});
+
 //midtrans
 Route::post('dataPayment', 'midtransController@dataPayment');
 Route::post('saveData', 'midtransController@saveData');
@@ -107,6 +111,9 @@ Route::get('updateStatus/{id}_{jenis}', 'midtransController@updateStatus');
 Route::get("updateEmail/{id}","controllerEmail@updateEmail");
 Route::get("verifikasiEmail/{id}","controllerEmail@updatedataEmail");
 Route::post("chatsend",'Controller@checkChat');
+Route::post("/checkEmail",'UserController@checkEmail');
+Route::post("/forgot",'UserController@forgotPassword');
+Route::get("/checkSessionForgot",'UserController@checkSessionForgot');
 Route::post("updateProfile",'UserController@updateProfile');
 Route::get("getChat/{jenis?}",'Controller@getChat');
 Route::get("getNotifChat/{jenis?}",'Controller@getNotifChat');

@@ -48,6 +48,10 @@
 
     @yield('content')
     <div class="container-msg">
+        @if (session()->has('message'))
+            {{session()->get('message')}}
+            <input type="hidden" name="errors" id="errors" value="1">
+        @endif
         @if (count($errors)>0)
         @foreach ($errors->all() as $error)
             -{{ $error }}<br>
