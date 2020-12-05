@@ -14,10 +14,12 @@ use App\Model\KategoriModel;
 use App\Model\PegawaiModel;
 use App\Model\PromoModel;
 use App\Model\UserModel;
+use App\Rules\PasswordCheckerRule;
 use App\Notifications\OrderNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -28,6 +30,7 @@ class UserController extends Controller
         $barang = new BarangModel();
         $brand = new BrandModel();
         $chat = new HchatModel();
+        $user = new CustomerModel();
         $param['barang'] = $barang->getAllDataBarangPaginate(16,'barang.deleted_at',null);
         $param['brand'] = $brand->getAllDataBrandWithCount();
         if(session()->has('userLogin')){
@@ -132,17 +135,24 @@ class UserController extends Controller
         return view('Common_Folder.profile')->with($param);
     }
 
+    public function editProfile()
+    {
+        $customer = CustomerModel::find(session()->get('userLogin')->id);
+        return view('Common_Folder.editProfile',['customer' => $customer]);
+    }
+
     /////////////// PROCCESS CONTROLLER ////////////////
 
     public function prosesLogin(Request $request)
     {
         $rules = [
-            'email' => ['required', 'email:rfc,dns'],
-            'password' => ['required']
+            'email' => ['required', 'email:rfc,dns','exists:customer'],
+            'password' => ['required',new PasswordCheckerRule($request->email)]
         ];
 
         $customError = [
             'email.required' => 'Email is still empty',
+            'email.exists'      => "Email doesn't exists",
             'password.required' => 'Password is still empty',
         ];
         if ($request->validate($rules,$customError)) {
@@ -208,6 +218,39 @@ class UserController extends Controller
             ]);
             return redirect("/register");
         }
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $rules = [
+            "oldPass"   => ['nullable',new PasswordCheckerRule(),'different:newPass'],
+            "newPass"   => ['required_with:oldPass'],
+            "nama"      => "required",
+            "alamat"    => "required",
+            "notlp"     => "required"
+        ];
+
+        $message = [
+            "nama.required"          => "Name is still empty",
+            "notlp.required"         => "Phone Number is still empty",
+            "alamat.required"        => "Address is still empty",
+            "newPass.required_with"  => "New Password is still empty",
+            "oldPass.different"      => "New Password is still the same as old password"
+        ];
+        $request->validate($rules,$message);
+        $customer = CustomerModel::find(session()->get('userLogin')->id);
+        $customer->nama = $request->nama;
+        $customer->alamat = $request->alamat;
+        $customer->notlp = $request->notlp;
+        if($request->gambar != null){
+            Storage::disk('public')->delete('images/'.$customer->gambar);
+            $customer->gambar = $request->gambar->hashName();
+            $request->gambar->store('images','public');
+        }
+        if($request->oldPass != "") $customer->password = Hash::make($request->newPass);
+        $customer->save();
+        session()->put('userLogin',$customer);
+        return back();
     }
 
     //////////////// AJAX CONTROLLER /////////////////////

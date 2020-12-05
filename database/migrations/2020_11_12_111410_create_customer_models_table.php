@@ -21,6 +21,7 @@ class CreateCustomerModelsTable extends Migration
             $table->string('password',255);
             $table->string('notlp',25);
             $table->string('alamat',100);
+            $table->text('gambar')->nullable();
             $table->smallInteger('status')->default(0)->comment('0: Belum, 1:Verified');
             $table->bigInteger('kode_member')->default(1)->comment('1(Newborn),2(Knight),3(Sorcerer),4(King),5(Demigod)');
             $table->dateTime('deleted_at')->nullable();

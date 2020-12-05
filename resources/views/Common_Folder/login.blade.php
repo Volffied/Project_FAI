@@ -12,6 +12,9 @@
 @endsection
 
 @section('content')
+    {{-- @php
+        dd($errors);
+    @endphp --}}
     <div class="container-login">
         <svg id="logo" title="Back to home" xmlns="http://www.w3.org/2000/svg" width="30%" viewBox="0 0 204.25 204.25">
             <g id="Layer_2" data-name="Layer 2">
@@ -39,15 +42,6 @@
             <p> or </p>
             <a href="/register">CREATE MY ACCOUNT</a>
         </form>
-    </div>
-    <div class="container-message">
-        @if($errors->has('email') && $errors->has('password'))
-            <p>- {{$errors->first('email')}}<br>- {{$errors->first('password')}}</p>
-        @elseif($errors->has('email'))
-            <p>- {{$errors->first('email')}}</p>
-        @elseif($errors->has('password'))
-            <p>- {{$errors->first('password')}}</p>
-        @endif
     </div>
     <input type="hidden" id="image1" value="{{asset('images/bg01.jpg')}}">
     <input type="hidden" id="image2" value="{{asset('images/bg02.jpg')}}">

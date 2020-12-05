@@ -99,14 +99,9 @@
                 </div>
             </div>
             <div class="vertical-divider"></div>
-        </div>
-    </div>
-
-    <div class="outer-container">
-
-        <h1 class="page-title notif">Notifications</h1>
-        <div class="container-profile">
-            <h1>NOTIFICATIONS</h1>
+            <a href="/profile/editProfile">
+                <button class="buttonEditProfile">Edit Profile</button>
+            </a>
         </div>
     </div>
 @endsection

@@ -1,0 +1,92 @@
+.outer-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-editProfile {
+    width: 30%;
+    height: 94%;
+    border-radius: 15px;
+    background-color: #160d1c;
+    position: relative;
+    padding: 2% 0;
+}
+
+.form-profile {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.pagetitle-left {
+    font: 800 10em "Montserrat";
+    color: transparent;
+    -webkit-text-stroke: 1px #ff151d62;
+    position: absolute;
+    left: -65%;
+    top: 2%;
+    z-index: -99;
+}
+
+.pagetitle-right {
+    font: 800 10em "Montserrat";
+    color: transparent;
+    -webkit-text-stroke: 1px #ff151d62;
+    position: absolute;
+    right: -105%;
+    bottom: 2%;
+    z-index: -99;
+}
+
+.profile-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-img img {
+    width: 180px;
+    margin: auto;
+}
+
+.profile-img:hover {
+    cursor: pointer;
+}
+
+.profile-input {
+    width: 100%;
+    position: relative;
+    margin: 1% 0;
+}
+
+.profile-input p {
+    position: absolute;
+    right: 5%;
+    top: 24%;
+    opacity: 0.5;
+}
+
+.hr-line {
+    width: 100%;
+    margin: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hr-line p {
+    margin: 0 !important;
+}
+
+.hr {
+    width: 30%;
+    height: 1px;
+    background-color: #ff151b;
+}

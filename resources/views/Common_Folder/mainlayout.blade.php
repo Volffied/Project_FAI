@@ -47,14 +47,27 @@
     @endif
 
     @yield('content')
-    <div class="container-msg">Please Verify Your Email</div>
+    <div class="container-msg">
+        @if (count($errors)>0)
+        @foreach ($errors->all() as $error)
+            -{{ $error }}<br>
+        @endforeach
+        <input type="hidden" name="errors" id="errors" value="1">
+        @else
+            <input type="hidden" name="errors" id="errors" value="0">
+        @endif
+    </div>
     @yield('footer')
     <script>
         gsap.registerPlugin(ScrollTrigger);
-        formatChat();
-        var chatPop = 0;
-        var timer1;
-        var timer2 = setInterval(updateNotifChat,1000);
+        var url = window.location.href;
+        url = url.substr(url.lastIndexOf('/') + 1);
+        if( !(url == 'login' || url == 'register')){
+            formatChat();
+            var chatPop = 0;
+            var timer1;
+            var timer2 = setInterval(updateNotifChat,1000);
+        }
         $(".button-toggle").click(function(){
             if(chatPop == 0){
                 gsap.to('.container-chat',{
@@ -108,8 +121,15 @@
         });
 
         $(document).ready(function(){
-            lazyLoading();
-            updateNotifChat();
+            if(!(url == 'login' || url == 'register')){
+                lazyLoading();
+                updateNotifChat();
+                updateChat();
+            }
+            if($("#errors").val() == 1){
+                message();
+                console.log($("#errors").val());
+            }
             gsap.to('body',{
                 opacity:1,
                 duration:1.5
@@ -137,7 +157,6 @@
                 y:'80vh',
                 duration:0
             });
-            updateChat();
         });
 
         $(document).on({
@@ -258,8 +277,10 @@
 
 
 
-        function message(msg) {
-            $('.container-msg').html(msg);
+        function message(msg = null) {
+            if(msg != null){
+                $('.container-msg').html(msg);
+            }
             gsap.to('.container-msg',{
                 y:-120,
                 duration:0.8
