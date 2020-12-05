@@ -28,7 +28,6 @@ class Controller extends BaseController
             $depanSender = explode(' ',trim($sender));
             $depanSender = $depanSender[0];
             $pesan = $pesan."<br>- <i>".$depanSender."<i>";
-            $datanama->notify(new OrderNotification("You got a Message"));
         }
         $kode_hchat = HchatModel::where("kode_customer",$id_cust)->first();
         $param = new DchatModel;

@@ -153,7 +153,7 @@ class midtransController extends Controller
         session()->forget('dataMidtrans');
 
         $penerima = CustomerModel::find($dataorder["kode_customer"]);
-        $penerima->notify(new OrderNotification($datasession["order_id"]." - Your order has been placed!"));
+        $penerima->notify(new OrderNotification($datasession["order_id"]." - Your order has been placed!",count($id_Data)));
 
         return redirect('/cart?msg=success');
     }
