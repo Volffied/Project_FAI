@@ -40,7 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -67,10 +70,13 @@ return [
 
     'providers' => [
         'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Model\CustomerModel::class,
+            'driver'    => 'eloquent',
+            'model'     => App\Model\CustomerModel::class,
         ],
-
+        'admin' => [
+            'driver'    => 'eloquent',
+            'model'     => App\Model\PegawaiModel::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

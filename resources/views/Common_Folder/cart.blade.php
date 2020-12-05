@@ -82,12 +82,6 @@
                         <tbody>
                             @foreach ($history as $key => $item)
                                 @php
-                                    $tgl_kirim = 'N/A';
-                                    $estimasi = 'N/A';
-                                    $metode = 'N/A';
-                                    if($item->tanggal_pengiriman != null) $tgl_kirim = $item->tanggal_pengiriman;
-                                    if($item->estimasi_waktu != null) $estimasi = $item->estimasi_waktu;
-                                    if($item->metode_pembayaran != null) $metode = $item->metode_pembayaran;
                                     $status = "Waiting for payment";
                                     if($item->status_order == 4) $status = "Cancelled";
                                     else if($item->status_order == 1) $status = "Waiting for confirmation";
@@ -97,9 +91,17 @@
                                 <tr class="tr-horder" id="horder-{{$key}}">
                                     <th scope="row">{{$key+1}}</th>
                                     <td>{{date('d/m/Y H:i T',strtotime($item->created_at))}}</td>
-                                    <td>{{$tgl_kirim}}</td>
-                                    <td>{{$estimasi}}</td>
-                                    <td>{{$metode}}</td>
+                                    @if ($item->tanggal_pengiriman != null)
+                                        <td>{{date('d/m/Y H:i T',strtotime($item->tanggal_pengiriman))}}</td>
+                                    @else
+                                        <td>N/A</td>
+                                    @endif
+                                    @if ($item->estimasi_waktu != null)
+                                        <td>{{$item->estimasi_waktu}} minutes</td>
+                                    @else
+                                        <td>N/A</td>
+                                    @endif
+                                    <td>{{$item->metode_pembayaran}}</td>
                                     <td class="price">{{$item->grandtotal}}</td>
                                     <td class="status status_{{$item->status_order}}">{{$status}}</td>
                                     <td colspan="2">

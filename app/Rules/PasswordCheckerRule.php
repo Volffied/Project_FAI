@@ -13,7 +13,7 @@ class PasswordCheckerRule implements Rule
      *
      * @return void
      */
-    public function __construct($email)
+    public function __construct($email = null)
     {
         $this->email = $email;
     }

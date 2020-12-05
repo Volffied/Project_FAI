@@ -354,3 +354,18 @@ span a:hover {
     color: #da141a;
     text-decoration: none;
 }
+
+.col-promo {
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+}
+
+.col-promo h1 {
+    font: 700 1.5em "Montserrat";
+    margin: 0;
+}
+
+.col-promo .desc {
+    font: 500 1.2em "Source Sans Pro";
+}

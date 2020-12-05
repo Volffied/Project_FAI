@@ -72,7 +72,7 @@ class controllerAdmin extends Controller
     {
         $horder = new HorderModel();
         $dataHorder = $horder->getDataForReport(null);
-        return view('Admin_Folder.laporanjual',['daftarPenjualan'=>$dataHorder]);
+        return view('Admin_Folder.laporanjual', ['daftarPenjualan' => $dataHorder]);
     }
 
     public function HalPagemLaporanPenjualanWithMonth($bulan)
@@ -668,22 +668,26 @@ class controllerAdmin extends Controller
         $this->validate($request, $rules, $customError);
         $emailLog = $request->email;
         $passwordLog = $request->password;
-        $userAvail = PegawaiModel::where('email', $emailLog)->first();
-        if (Hash::check($passwordLog, $userAvail->password)) {
-            if ($userAvail->jenis === 0) {
-                $request->session()->put('adminLog', $userAvail);
-                return redirect("Master");
-            } else if ($userAvail->jenis === 1) {
-                $request->session()->put('adminLog', $userAvail);
-                return redirect("Admin");
-            } else if ($userAvail->jenis === 2) {
-                $request->session()->put('adminLog', $userAvail);
-                return redirect("Kurir");
-            } else if ($userAvail->jenis === 3) {
-                $request->session()->put('adminLog', $userAvail);
-                return redirect("CustomerService");
+        $pegawai    = new PegawaiModel();
+        $login = $pegawai->checkLogin($emailLog, $passwordLog);
+        if ($login) {
+            $userAvail = PegawaiModel::where('email', $emailLog)->first();
+            if (Hash::check($passwordLog, $userAvail->password)) {
+                if ($userAvail->jenis === 0) {
+                    $request->session()->put('adminLog', $userAvail);
+                    return redirect("Master");
+                } else if ($userAvail->jenis === 1) {
+                    $request->session()->put('adminLog', $userAvail);
+                    return redirect("Admin");
+                } else if ($userAvail->jenis === 2) {
+                    $request->session()->put('adminLog', $userAvail);
+                    return redirect("Kurir");
+                } else if ($userAvail->jenis === 3) {
+                    $request->session()->put('adminLog', $userAvail);
+                    return redirect("CustomerService");
+                }
             }
-        }else{
+        } else {
             return redirect("loginAdmin");
         }
     }

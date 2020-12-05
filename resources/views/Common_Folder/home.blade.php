@@ -75,8 +75,8 @@
     </div>
     {{-- Promo --}}
     <div class="container-promo">
-        <h1>Category</h1>
-        <p class="subtitle"></span></p>
+        <h1>Promo</h1>
+        <p class="subtitle">All Available Promos</p>
         <div class="item-wrapper">
             {{-- Carousel Promo --}}
             <div id="carousel-1" class="carousel slide" data-interval="false" data-ride="carousel" style="height: 100%">
@@ -84,12 +84,15 @@
                   <div class="carousel-item active" style="height: 100%; flex-direction:column; align-items:center;">
                     <style>
                         .col-promo{
-                            background-color: #f00;
+                            background-color: #ff151d91;
                             margin: 1%;
                         }
                     </style>
                     <div class="row" style="width: 100%; height:50%;">
-                        <div class="col col-promo"></div>
+                        <div class="col col-promo">
+                            <h1>Nama Promo</h1>
+                            <p class="desc">Ini adalah deskripsi dari promo</p>
+                        </div>
                         <div class="col col-promo"></div>
                         <div class="col col-promo"></div>
                     </div>
