@@ -57,10 +57,26 @@ class HorderModel extends Model
         return $query;
     }
 
-    public function getDataForReport()
+    public function getDataForReport($bulan)
     {
-        // $query = HorderModel::select(["horder.*", "customer.nama as nama_cust", 'customer.alamat as alamat_cust'])
-        //     ->join("customer", "id", "kode_customer");
+        if($bulan == null){
+            $query = HorderModel::select(["horder.*", "customer.nama as nama_cust", 'customer.alamat as alamat_cust',"pegawai.nama as nama_pegawai","promo.nama as nama_promo"])
+                ->leftJoin("customer", "id", "kode_customer")
+                ->leftJoin("pegawai", "pegawai.id", "horder.kode_pegawai")
+                ->leftJoin("promo", "promo.id_promo", "horder.kode_promo")
+                ->where("horder.status_order", 2)
+                ->get();
+        }else if($bulan != null){
+            $query = HorderModel::select(["horder.*", "customer.nama as nama_cust", 'customer.alamat as alamat_cust',"pegawai.nama as nama_pegawai","promo.nama as nama_promo"])
+                ->leftJoin("customer", "id", "kode_customer")
+                ->leftJoin("pegawai", "pegawai.id", "horder.kode_pegawai")
+                ->leftJoin("promo", "promo.id_promo", "horder.kode_promo")
+                ->where("horder.status_order", 2)
+                ->whereMonth('tanggal_trans',$bulan)
+                ->get();
+        }
+
+        return $query;
     }
 
     public function getDataForHomePageKurir()

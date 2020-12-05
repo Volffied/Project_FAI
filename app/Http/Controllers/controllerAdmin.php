@@ -69,8 +69,9 @@ class controllerAdmin extends Controller
 
     public function HalPagemLaporanPenjualan()
     {
-
-        return view('Admin_Folder.laporanjual');
+        $horder = new HorderModel();
+        $dataHorder = $horder->getDataForReport(null);
+        return view('Admin_Folder.laporanjual',['daftarPenjualan'=>$dataHorder]);
     }
 
     public function HalPagemLaporanBarangLaris()
@@ -617,6 +618,8 @@ class controllerAdmin extends Controller
                 $request->session()->put('adminLog', $userAvail);
                 return redirect("CustomerService");
             }
+        }else{
+            return redirect("loginAdmin");
         }
     }
 }
