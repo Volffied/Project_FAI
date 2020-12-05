@@ -80,11 +80,11 @@
                                                         @csrf
                                                         <input class="idbaranghidden" type="hidden" name="idbaranghid" value="{{ $item->id }}">
                                                         @if ($item->deleted_at != null)
-                                                            <input class="btn btn-primary" type="submit" value="Recover" name="btnDel"></td>
+                                                            <input class="btn btn-primary" style="background-color: #6CBEED;" type="submit" value="Recover" name="btnDel"></td>
                                                         @else
                                                             <input class="btn btn-danger" type="submit" value="Delete" name="btnDel"></td>
                                                         @endif
-                                                     </form>
+                                                    </form>
                                             </tr>
                                             <?php
                                                 $ctr = $ctr + 1;
@@ -104,7 +104,18 @@
 @endsection
 
 @section('container-body-page')
-    <div class="container-form-input-admin-barang" id="inputBarang">
+    <div class="container-form-input-admin-barang" id="inputBarang" style="padding: 0 20%;">
+        <style>
+            .btn{
+                margin-top: 10px;
+                background-color: #8F192F;
+                color: white;
+            }
+            .btn:hover{
+                background-color: #da2c38;
+                font-weight: bold;
+            }
+        </style>
         <form action="{{ url('Admin/tambahBarang') }}" method="post">
             @csrf
             <div class="form-row">
@@ -163,8 +174,8 @@
                 <input type="hidden" name="id_barang" id="idbarang">
             </div>
             <div class="form-row" style="float: right;">
-                <input type="submit" class="btn btn-primary" id="btnupdBarang" name="btnupdate" value="Update">
-                <input type="submit" class="btn btn-primary" id="btnaddBarang" name="btnadd" value="Submit">
+                <input type="submit" class="btn" id="btnupdBarang" name="btnupdate" value="Update">
+                <input type="submit" class="btn" id="btnaddBarang" name="btnadd" value="Submit">
             </div>
         </form>
     </div>
@@ -197,8 +208,8 @@
                     document.getElementById("btnupdBarang").style.visibility = "visible";
                     document.getElementById("txtgambar").value    = rowSelected.cells[1].childNodes[0].getAttribute("src");
                     document.getElementById("txtnama").value   = rowSelected.cells[2].innerHTML;
-                    document.getElementById("cbpilihkategori").value   = 1;
-                    document.getElementById("cbpilihbrand").value   = 1;
+                    document.getElementById("cbpilihkategori").value   = rowSelected.cells[3].innerHTML.substring(0,rowSelected.cells[3].innerHTML.indexOf(" "));
+                    document.getElementById("cbpilihbrand").value   = rowSelected.cells[4].innerHTML.substring(0,rowSelected.cells[4].innerHTML.indexOf(" "));
                     document.getElementById("txtharga").value   = rowSelected.cells[5].innerHTML.substring(3,rowSelected.cells[5].innerHTML.indexOf(","));
                     document.getElementById("txtstok").value   = rowSelected.cells[6].innerHTML;
                     document.getElementById("idbarang").value   = rowSelected.cells[0].innerHTML;

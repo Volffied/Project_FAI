@@ -1,7 +1,18 @@
 @extends("Admin_Folder.BlueprintAdmin")
 
 @section('container-body-page')
-<div class="container-form-input-admin-kategori" id="inputKategori">
+<div class="container-form-input-admin-kategori" id="inputKategori" style="padding: 0 20%;">
+    <style>
+        .btn{
+            margin-top: 10px;
+            background-color: #8F192F;
+            color: white;
+        }
+        .btn:hover{
+            background-color: #da2c38;
+            font-weight: bold;
+        }
+    </style>
     <form action="{{ url('Admin/tambahKategori') }}" method="post">
         @csrf
         <div class="form-row">
@@ -15,8 +26,8 @@
         </div>
         <div class="form-row" style="float: right;">
             <input type="hidden" name="id_kategori" id="idkategori">
-            <input type="submit" class="btn btn-primary" id="btnupdKategori" name="btnupdate" value="Update" style="visibility: hidden;">
-            <input type="submit" class="btn btn-primary" name="btnadd" id="btnaddKategori" value="Submit">
+            <input type="submit" class="btn" id="btnupdKategori" name="btnupdate" value="Update" style="visibility: hidden;">
+            <input type="submit" class="btn" name="btnadd" id="btnaddKategori" value="Submit">
         </div>
     </form>
 </div>
@@ -92,7 +103,7 @@
                                                         @csrf
                                                         <input class="idkategorihidden" type="hidden" name="idkategorihid" value="{{ $item->id_kat }}">
                                                         @if ($item->deleted_at != null)
-                                                            <input class="btn btn-primary" type="submit" value="Recover" name="btnDel"></td>
+                                                            <input class="btn btn-primary" style="background-color: #6CBEED;" type="submit" value="Recover" name="btnDel"></td>
                                                         @else
                                                             <input class="btn btn-danger" type="submit" value="Delete" name="btnDel"></td>
                                                         @endif

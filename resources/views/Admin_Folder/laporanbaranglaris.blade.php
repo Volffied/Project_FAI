@@ -37,6 +37,24 @@
                             @endphp
                             <!-- /.card-header -->
                             <div class="card-body">
+                                <label for="cbpilihbulan">Laporan Barang Terlaris :</label>
+                                <form action="{{ url('Master/reportBarangTerlaris') }}" method="post">
+                                    <style>
+                                        .btn{
+                                            margin-top: 10px;
+                                            background-color: #8F192F;
+                                            color: white;
+                                        }
+                                        .btn:hover{
+                                            background-color: #da2c38;
+                                            font-weight: bold;
+                                        }
+                                    </style>
+                                    @csrf
+                                    <div class="form-row" style="display: flex; flex-direction: row;">
+                                        <input type="submit" class="btn" id="btnReport" name="btnreport" value="Report" >
+                                    </div>
+                                </form>
                                 <table id="example2" class="table table-striped">
                                     <style>
                                         .thead{

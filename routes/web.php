@@ -25,8 +25,12 @@ Route::get('logoutAdmin', 'ControllerAdmin@LogoutAdmin');
 Route::group(['prefix' => 'Master'], function () {
     Route::get('pegawai','controllerAdmin@HalPagemPegawai');
     Route::post('tambahPegawai', 'controllerAdmin@addPegawai');
+    Route::post('delPegawai', 'controllerAdmin@DeletePegawai');
     Route::get('laporanPenjualan', 'controllerAdmin@HalPagemLaporanPenjualan');
+    Route::get('laporanPenjualanWM/{bulan}', 'controllerAdmin@HalPagemLaporanPenjualanWithMonth');
     Route::get('laporanBarangLaris', 'controllerAdmin@HalPagemLaporanBarangLaris');
+    Route::post('updateTabelReport', 'controllerAdmin@UpdateTabelForReport');
+    Route::post('reportBarangTerlaris', 'controllerAdmin@ReportBarangTerlaris');
 });
 Route::group(['prefix' => 'Kurir'], function () {
     Route::get('changeAntarHorder', 'controllerAdmin@HalPagemAntarHorder');

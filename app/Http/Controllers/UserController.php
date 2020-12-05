@@ -39,11 +39,11 @@ class UserController extends Controller
         // dd($param['brand']);
         //dd(auth()->user()->unreadNotifications);
 
-        foreach (auth()->user()->unreadNotifications as $key => $item) {
+        //foreach (auth()->user()->unreadNotifications as $key => $item) {
             //session()->put('notif',$item->data["chat_isi"]);
             //$item->markAsRead(); //biar notifnya jdi read
             //dd($item->data["chat_isi"]);
-        }
+        //}
         return view('Common_Folder.home',['data' => $param]);
     }
 
