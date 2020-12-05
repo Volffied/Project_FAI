@@ -525,7 +525,7 @@ class controllerAdmin extends Controller
                 $param["status_pegawai"] = PegawaiModel::find($dataadmin->id);
                 $param["idhorder"]       = $idHorder;
 
-                $datahorder = HorderModel::find("id_horder", $idHorder);
+                $datahorder = HorderModel::where("id_horder", $idHorder)->first();
                 $id_cust = $datahorder->kode_customer;
                 $penerima = CustomerModel::find($id_cust);
                 $penerima->notify(new OrderNotification($datahorder->order_id." - Your order is on the way to you!"));
@@ -545,7 +545,7 @@ class controllerAdmin extends Controller
                 "status_order"      => 3,
             ]);
             PegawaiModel::where("id", $dataadmin->id)->update(["status" => 1]);
-            $datahorder = HorderModel::find("id_horder", $idHorder);
+            $datahorder = HorderModel::where("id_horder", $idHorder)->first();
             $id_cust = $datahorder->kode_customer;
             $penerima = CustomerModel::find($id_cust);
             $penerima->notify(new OrderNotification($datahorder->order_id." - Order Finish !"));

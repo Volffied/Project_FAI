@@ -193,9 +193,9 @@ img {
 }
 
 .container-notif {
-    width: 12%;
+    width: 15%;
     position: absolute;
-    right: 0;
+    right: -7%;
     top: 100%;
     display: none;
 }
