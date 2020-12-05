@@ -16,9 +16,10 @@ class OrderNotification extends Notification
      *
      * @return void
      */
-    public function __construct($chat_isi)
+    public function __construct($chat_isi,$kode_horder)
     {
         $this->chat_isi = $chat_isi;
+        $this->kode_horder = $kode_horder;
     }
 
     /**
@@ -50,7 +51,8 @@ class OrderNotification extends Notification
     {
         //dicatat di database
         return [
-            'chat_isi'=> $this->chat_isi
+            'chat_isi'=> $this->chat_isi,
+            'kode_horder'=> $this->kode_horder
         ];
     }
 

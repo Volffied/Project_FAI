@@ -63,7 +63,7 @@
     </div>
     @yield('footer')
     <script>
-        gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollTrigger);         // harus di daftarkan
         var url = window.location.href;
         url = url.substr(url.lastIndexOf('/') + 1);
         if( !(url == 'login' || url == 'register')){
@@ -72,6 +72,7 @@
             var timer1;
             var timer2 = setInterval(updateNotifChat,1000);
         }
+        //gsap.to,gsap.from
         $(".button-toggle").click(function(){
             if(chatPop == 0){
                 gsap.to('.container-chat',{

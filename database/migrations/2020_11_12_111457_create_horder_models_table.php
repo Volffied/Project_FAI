@@ -15,8 +15,8 @@ class CreateHorderModelsTable extends Migration
     {
         Schema::create('horder', function (Blueprint $table) {
             $table->bigIncrements('id_horder');
-            $table->date('tanggal_trans');
-            $table->date('tanggal_pengiriman')->nullable();
+            $table->dateTime('tanggal_trans');
+            $table->dateTime('tanggal_pengiriman')->nullable();
             $table->bigInteger('subtotal')->comment('Harga Bersih');
             $table->bigInteger('grandtotal');
             $table->smallInteger('estimasi_waktu')->nullable()->comment('Dalam Detik');

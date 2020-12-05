@@ -75,20 +75,20 @@ Route::group(['middleware' => ['isAdmin']], function () {
 });
 
 Route::group(['middleware' => ['isUser']], function () {
-    Route::get('/', 'UserController@HalAwal');
     Route::get('/cart', 'UserController@Cart');
+    Route::get('/profile/editProfile', 'UserController@EditProfile');
+    Route::get('/profile', 'UserController@Profile');
+    Route::get('/addToCart/{id}_{qty}', 'UserController@addToCart');
+    Route::get('/updateCart/{id_user}_{id_barang}_{qty?}', 'UserController@updateCart');
+    Route::get('/checkPromo/{checkBy}_{value}', 'UserController@checkPromo');
 });
+Route::get('/', 'UserController@HalAwal');
 
 Route::get('/register', 'UserController@Register');
-Route::get('/addToCart/{id}_{qty}', 'UserController@addToCart');
-Route::get('/updateCart/{id_user}_{id_barang}_{qty?}', 'UserController@updateCart');
-Route::get('/checkPromo/{checkBy}_{value}', 'UserController@checkPromo');
 Route::get('/login', 'UserController@Login');
 Route::get('/brand/{nama}', 'UserController@Brand');
-Route::get('/profile/editProfile', 'UserController@EditProfile');
 
 Route::get('/search', 'UserController@Search');
-Route::get('/profile', 'UserController@Profile');
 Route::get('/product/{nama}', 'UserController@Product');
 Route::post('/prosesLogin', 'UserController@prosesLogin');
 Route::post('/prosesRegister', 'UserController@prosesRegister');
@@ -105,6 +105,10 @@ Route::get('/home', function () {
 
 Route::get('/404', function () {
     return view('error404');
+});
+
+Route::get('/notifications', function () {
+    return view('Common_Folder.notifications');
 });
 
 Route::get('/forgotPassword', function () {

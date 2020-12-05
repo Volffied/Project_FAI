@@ -8,12 +8,12 @@ Login
 Register
 Cart -> list barang yg ditambah (sudah login)
 Chat (sudah login)
-Detail barang -> input review, comment 
+Detail barang -> input review, comment
 Profile -> detail profile user
 	-> history pembelian  (sudah login)
 	(Dikasi SideNavbar)
 News
-Member -> sistem Poin ( semakin tinggi poin, status member 
+Member -> sistem Poin ( semakin tinggi poin, status member
 semakin naik( silver, gold, platinum, diamond))
 Footer -> contact us
 
@@ -28,3 +28,7 @@ notifikasi ( chat dri user)
 
 Kurir:
 prosesUpdateOrder -> list barang yang diantar oleh kurir
+
+Notification:
+- php artisan make:notification 'namanotif'
+- php artisan notifications:table // buat tabel
