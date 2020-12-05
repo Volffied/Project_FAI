@@ -23,79 +23,83 @@ Route::get('loginAdmin', 'controllerAdmin@HalPageLogin');
 Route::post('prosesloginAdmin', 'controllerAdmin@LoginAdmin');
 Route::get('logoutAdmin', 'ControllerAdmin@LogoutAdmin');
 
-Route::group(['middleware' => ['isMaster']], function () {
-    Route::get('Master', 'controllerAdmin@HalPageMaster');
-    Route::group(['prefix' => 'Master'], function () {
-        Route::get('pegawai','controllerAdmin@HalPagemPegawai');
-        Route::post('tambahPegawai', 'controllerAdmin@addPegawai');
-        Route::get('laporanPenjualan', 'controllerAdmin@HalPagemLaporanPenjualan');
-        Route::get('laporanBarangLaris', 'controllerAdmin@HalPagemLaporanBarangLaris');
-    });
+//Route::group(['middleware' => ['isMaster']], function () {
+Route::get('Master', 'controllerAdmin@HalPageMaster');
+Route::group(['prefix' => 'Master'], function () {
+    Route::get('pegawai', 'controllerAdmin@HalPagemPegawai');
+    Route::post('tambahPegawai', 'controllerAdmin@addPegawai');
+    Route::post('delPegawai', 'controllerAdmin@DeletePegawai');
+    Route::get('laporanPenjualan', 'controllerAdmin@HalPagemLaporanPenjualan');
+    Route::get('laporanPenjualanWM/{bulan}', 'controllerAdmin@HalPagemLaporanPenjualanWithMonth');
+    Route::get('laporanBarangLaris', 'controllerAdmin@HalPagemLaporanBarangLaris');
+    Route::post('updateTabelReport', 'controllerAdmin@UpdateTabelForReport');
+    Route::post('reportBarangTerlaris', 'controllerAdmin@ReportBarangTerlaris');
 });
+//});
 
-Route::group(['middleware' => ['isKurir']], function () {
-    Route::get('Kurir', 'controllerAdmin@HalPageKurir');
-    Route::group(['prefix' => 'Kurir'], function () {
-        Route::get('changeAntarHorder', 'controllerAdmin@HalPagemAntarHorder');
-        Route::get('updateTabelKurir', 'controllerAdmin@UpdateTabelKurir');
-        Route::post('updateStatKirim', 'controllerAdmin@UpdateStatusKirim');
-    });
+//Route::group(['middleware' => ['isKurir']], function () {
+Route::get('Kurir', 'controllerAdmin@HalPageKurir');
+Route::group(['prefix' => 'Kurir'], function () {
+    Route::get('changeAntarHorder', 'controllerAdmin@HalPagemAntarHorder');
+    Route::get('updateTabelKurir', 'controllerAdmin@UpdateTabelKurir');
+    Route::post('updateStatKirim', 'controllerAdmin@UpdateStatusKirim');
 });
+//});
 
-Route::group(['middleware' => ['isCustomerService']], function () {
-    Route::get('CustomerService', 'controllerAdmin@HalPageCS');
-    Route::group(['prefix' => 'Cservice'], function () {
-        Route::get('updateTabelCS', 'controllerAdmin@UpdateTabelCS');
-    });
+//Route::group(['middleware' => ['isCustomerService']], function () {
+Route::get('CustomerService', 'controllerAdmin@HalPageCS');
+Route::group(['prefix' => 'Cservice'], function () {
+    Route::get('updateTabelCS', 'controllerAdmin@UpdateTabelCS');
 });
+//});
 
-Route::group(['middleware' => ['isAdmin']], function () {
-    Route::get('Admin', 'controllerAdmin@HalPageAdmin');
-    Route::group(['prefix' => 'Admin'], function () {
-        Route::post('tambahKategori', 'controllerAdmin@addKategori');
-        Route::post('tambahBarang', 'controllerAdmin@addBarang');
-        Route::post('delBarang', 'controllerAdmin@DeleteBarang');
-        Route::post('delMember', 'controllerAdmin@DeleteJenisMember');
-        Route::post('delBrand', 'controllerAdmin@DeleteBrand');
-        Route::post('delKategori', 'controllerAdmin@DeleteKategori');
-        Route::post('delPromo', 'controllerAdmin@DeletePromo');
-        Route::post('tambahJenisMember', 'controllerAdmin@addJenisMember');
-        Route::post('tambahBrand', 'controllerAdmin@addBrand');
-        Route::get('barang','controllerAdmin@HalPagemBarang');
-        Route::get('promo','controllerAdmin@HalPagemPromo');
-        Route::get('member','controllerAdmin@HalPagemMember');
-        Route::get('kategori','controllerAdmin@HalPagemkategori');
-        Route::get('brand','controllerAdmin@HalPagemBrand');
-        Route::post('promoRoute','controllerAdmin@checkAddPromo');
-    });
+//Route::group(['middleware' => ['isAdmin']], function () {
+Route::get('Admin', 'controllerAdmin@HalPageAdmin');
+Route::group(['prefix' => 'Admin'], function () {
+    Route::post('tambahKategori', 'controllerAdmin@addKategori');
+    Route::post('tambahBarang', 'controllerAdmin@addBarang');
+    Route::post('delBarang', 'controllerAdmin@DeleteBarang');
+    Route::post('delMember', 'controllerAdmin@DeleteJenisMember');
+    Route::post('delBrand', 'controllerAdmin@DeleteBrand');
+    Route::post('delKategori', 'controllerAdmin@DeleteKategori');
+    Route::post('delPromo', 'controllerAdmin@DeletePromo');
+    Route::post('tambahJenisMember', 'controllerAdmin@addJenisMember');
+    Route::post('tambahBrand', 'controllerAdmin@addBrand');
+    Route::get('barang', 'controllerAdmin@HalPagemBarang');
+    Route::get('promo', 'controllerAdmin@HalPagemPromo');
+    Route::get('member', 'controllerAdmin@HalPagemMember');
+    Route::get('kategori', 'controllerAdmin@HalPagemkategori');
+    Route::get('brand', 'controllerAdmin@HalPagemBrand');
+    Route::post('promoRoute', 'controllerAdmin@checkAddPromo');
 });
+//});
 
 Route::group(['middleware' => ['isUser']], function () {
-    Route::get('/','UserController@HalAwal');
-    Route::get('/cart','UserController@Cart');
+    Route::get('/', 'UserController@HalAwal');
+    Route::get('/cart', 'UserController@Cart');
 });
 
-Route::get('/register','UserController@Register');
-Route::get('/addToCart/{id}_{qty}','UserController@addToCart');
-Route::get('/updateCart/{id_user}_{id_barang}_{qty?}','UserController@updateCart');
-Route::get('/checkPromo/{checkBy}_{value}','UserController@checkPromo');
-Route::get('/login','UserController@Login');
-Route::get('/brand/{nama}','UserController@Brand');
-Route::get('/profile/editProfile','UserController@EditProfile');
+Route::get('/register', 'UserController@Register');
+Route::get('/addToCart/{id}_{qty}', 'UserController@addToCart');
+Route::get('/updateCart/{id_user}_{id_barang}_{qty?}', 'UserController@updateCart');
+Route::get('/checkPromo/{checkBy}_{value}', 'UserController@checkPromo');
+Route::get('/login', 'UserController@Login');
+Route::get('/brand/{nama}', 'UserController@Brand');
+Route::get('/profile/editProfile', 'UserController@EditProfile');
 
-Route::get('/search','UserController@Search');
-Route::get('/profile','UserController@Profile');
-Route::get('/product/{nama}','UserController@Product');
-Route::post('/prosesLogin','UserController@prosesLogin');
-Route::post('/prosesRegister','UserController@prosesRegister');
-Route::get('/index',function(){
+Route::get('/search', 'UserController@Search');
+Route::get('/profile', 'UserController@Profile');
+Route::get('/product/{nama}', 'UserController@Product');
+Route::post('/prosesLogin', 'UserController@prosesLogin');
+Route::post('/prosesRegister', 'UserController@prosesRegister');
+Route::get('/index', function () {
     return redirect('/');
 });
-Route::get('/home',function(){
+Route::get('/home', function () {
     return redirect('/');
 });
 
-Route::get('/404',function(){
+Route::get('/404', function () {
     return view('error404');
 });
 

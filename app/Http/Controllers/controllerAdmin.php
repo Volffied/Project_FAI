@@ -13,6 +13,7 @@ use App\Model\KategoriModel;
 use App\Model\PegawaiModel;
 use App\Model\PromoModel;
 use App\Rules\cekEmail;
+use App\Rules\cekEmailUpdate;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
@@ -56,7 +57,7 @@ class controllerAdmin extends Controller
 
     public function HalPagemPegawai()
     {
-        $dataPegawai = PegawaiModel::where('jenis', '<>', 0)->get();
+        $dataPegawai = PegawaiModel::withTrashed()->where('jenis', '<>', 0)->get();
         return view('Admin_Folder.pegawai', ['daftarPegawai' => $dataPegawai]);
     }
 
@@ -71,6 +72,13 @@ class controllerAdmin extends Controller
     {
         $horder = new HorderModel();
         $dataHorder = $horder->getDataForReport(null);
+        return view('Admin_Folder.laporanjual', ['daftarPenjualan' => $dataHorder]);
+    }
+
+    public function HalPagemLaporanPenjualanWithMonth($bulan)
+    {
+        $horder = new HorderModel();
+        $dataHorder = $horder->getDataForReport($bulan);
         return view('Admin_Folder.laporanjual',['daftarPenjualan'=>$dataHorder]);
     }
 
@@ -152,6 +160,21 @@ class controllerAdmin extends Controller
     {
         $request->session()->forget('adminLog');
         return redirect("loginAdmin");
+    }
+
+    public function UpdateTabelForReport(Request $request)
+    {
+        if($request->btnshowall){
+            return redirect("Master/laporanPenjualan");
+        }else if($request->btnshow){
+            $bulanPilih = $request->cbpilihbulan;
+            return redirect("Master/laporanPenjualanWM/$bulanPilih");
+        }
+    }
+
+    public function ReportBarangTerlaris(Request $request)
+    {
+
     }
 
     public function checkAddPromo(Request $request)
@@ -562,33 +585,75 @@ class controllerAdmin extends Controller
 
     public function addPegawai(Request $request)
     {
-        $rules = [
-            'txtnama' => 'required|max:50',
-            'txtemail' => ['required', 'email:rfc,dns', new cekEmail],
-            'txtpass' => 'required|max:50',
-            'txtpass_confirmation' => 'required|same:txtpass',
-            'txtphone' => 'required|numeric'
-        ];
-        $customError = [
-            'txtnama.required' => 'Nama harus diisi!',
-            'txtemail.required' => 'Email harus diisi!',
-            'txtpass.required' => 'Password harus diisi!',
-            'txtpass_confirmation.required' => 'Confirm Password harus diisi!',
-            'txtphone.required' => 'Phone harus diisi!',
-            'max' => 'Maksimal Karakter adalah 50 Karakter!',
-            'email' => 'Format :attribute salah!',
-            'same' => 'Confirm Password tidak sama dengan password',
-            'numeric' => ':attribute harus berisikan angka!'
-        ];
-        $this->validate($request, $rules, $customError);
-        $namaPeg = $request->txtnama;
-        $emailPeg = $request->txtemail;
-        $passPeg = Hash::make($request->txtpass);
-        $phonePeg = $request->txtphone;
-        $jenisPeg = $request->cbpilijenispegawai;
-        $inputPegawai = new PegawaiModel();
-        $inputPegawai->insertData($namaPeg, $emailPeg, $passPeg, $phonePeg, $jenisPeg);
-        return back();
+        if($request->btnadd){
+            $rules = [
+                'txtnama' => 'required|max:50',
+                'txtemail' => ['required', 'email:rfc,dns', new cekEmail],
+                'txtpass' => 'required|max:50',
+                'txtpass_confirmation' => 'required|same:txtpass',
+                'txtphone' => 'required|numeric'
+            ];
+            $customError = [
+                'txtnama.required' => 'Nama harus diisi!',
+                'txtemail.required' => 'Email harus diisi!',
+                'txtpass.required' => 'Password harus diisi!',
+                'txtpass_confirmation.required' => 'Confirm Password harus diisi!',
+                'txtphone.required' => 'Phone harus diisi!',
+                'max' => 'Maksimal Karakter adalah 50 Karakter!',
+                'email' => 'Format :attribute salah!',
+                'same' => 'Confirm Password tidak sama dengan password',
+                'numeric' => ':attribute harus berisikan angka!'
+            ];
+            $this->validate($request, $rules, $customError);
+            $namaPeg = $request->txtnama;
+            $emailPeg = $request->txtemail;
+            $passPeg = Hash::make($request->txtpass);
+            $phonePeg = $request->txtphone;
+            $jenisPeg = $request->cbpilijenispegawai;
+            $inputPegawai = new PegawaiModel();
+            $inputPegawai->insertData($namaPeg, $emailPeg, $passPeg, $phonePeg, $jenisPeg);
+            return back();
+        }else if($request->btnupdate){
+            $rules = [
+                'txtnama' => 'required|max:50',
+                'txtemail' => ['required', 'email:rfc,dns', new cekEmailUpdate($request->id_pegawai)],
+                'txtphone' => 'required|numeric'
+            ];
+            $customError = [
+                'txtnama.required' => 'Nama harus diisi!',
+                'txtemail.required' => 'Email harus diisi!',
+                'txtphone.required' => 'Phone harus diisi!',
+                'max' => 'Maksimal Karakter adalah 50 Karakter!',
+                'email' => 'Format :attribute salah!',
+                'numeric' => ':attribute harus berisikan angka!'
+            ];
+            $this->validate($request, $rules, $customError);
+            $idpeg = $request->id_pegawai;
+            $namaPeg = $request->txtnama;
+            $emailPeg = $request->txtemail;
+            $phonePeg = $request->txtphone;
+            $jenisPeg = $request->cbpilijenispegawai;
+            $inputPegawai = PegawaiModel::withTrashed()->find($idpeg);
+            $inputPegawai->nama = $namaPeg;
+            $inputPegawai->email = $emailPeg;
+            $inputPegawai->notlp = $phonePeg;
+            $inputPegawai->jenis = $jenisPeg;
+            $inputPegawai->save();
+            return back();
+        }
+    }
+
+    public function DeletePegawai(Request $request)
+    {
+        if ($request->btnDel == "Unbanned") {
+            $idpegawaiDel = $request->idpegawaihid;
+            $delBrand = PegawaiModel::withTrashed()->where('id', $idpegawaiDel)->restore();
+            return back();
+        } else if ($request->btnDel == "Banned") {
+            $idpegawaiDel = $request->idpegawaihid;
+            $delBrand = PegawaiModel::find($idpegawaiDel)->delete();
+            return back();
+        }
     }
 
     public function LoginAdmin(Request $request)
@@ -603,22 +668,26 @@ class controllerAdmin extends Controller
         $this->validate($request, $rules, $customError);
         $emailLog = $request->email;
         $passwordLog = $request->password;
-        $userAvail = PegawaiModel::where('email', $emailLog)->first();
-        if (Hash::check($passwordLog, $userAvail->password)) {
-            if ($userAvail->jenis === 0) {
-                $request->session()->put('adminLog', $userAvail);
-                return redirect("Master");
-            } else if ($userAvail->jenis === 1) {
-                $request->session()->put('adminLog', $userAvail);
-                return redirect("Admin");
-            } else if ($userAvail->jenis === 2) {
-                $request->session()->put('adminLog', $userAvail);
-                return redirect("Kurir");
-            } else if ($userAvail->jenis === 3) {
-                $request->session()->put('adminLog', $userAvail);
-                return redirect("CustomerService");
+        $pegawai    = new PegawaiModel();
+        $login = $pegawai->checkLogin($emailLog, $passwordLog);
+        if ($login) {
+            $userAvail = PegawaiModel::where('email', $emailLog)->first();
+            if (Hash::check($passwordLog, $userAvail->password)) {
+                if ($userAvail->jenis === 0) {
+                    $request->session()->put('adminLog', $userAvail);
+                    return redirect("Master");
+                } else if ($userAvail->jenis === 1) {
+                    $request->session()->put('adminLog', $userAvail);
+                    return redirect("Admin");
+                } else if ($userAvail->jenis === 2) {
+                    $request->session()->put('adminLog', $userAvail);
+                    return redirect("Kurir");
+                } else if ($userAvail->jenis === 3) {
+                    $request->session()->put('adminLog', $userAvail);
+                    return redirect("CustomerService");
+                }
             }
-        }else{
+        } else {
             return redirect("loginAdmin");
         }
     }

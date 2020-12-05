@@ -1,6 +1,17 @@
 @extends("Admin_Folder.BlueprintMaster")
 @section('container-body-page')
-<div class="container-form-input-admin-pegawai">
+<div class="container-form-input-admin-pegawai" style="padding: 0 20%;">
+    <style>
+        .btn{
+            margin-top: 10px;
+            background-color: #8F192F;
+            color: white;
+        }
+        .btn:hover{
+            background-color: #da2c38;
+            font-weight: bold;
+        }
+    </style>
     <form action="{{ url('Master/tambahPegawai') }}" method="post">
         @csrf
         <div class="form-row">
@@ -24,7 +35,7 @@
                 <label for="txtpass">Password</label>
                 <input type="password" class="form-control" id="txtpass" name="txtpass" placeholder="Password">
                 @error('txtpass')
-                    <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
+                <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror
             </div>
             <div class="form-group col-md-6">
@@ -54,8 +65,8 @@
         </div>
         <div class="form-row" style="float: right;">
             <input type="hidden" name="id_pegawai" id="idpegawai">
-            <input type="submit" class="btn btn-primary" id="btnupdPegawai" name="btnupdate" value="Update" style="visibility: hidden;">
-            <input type="submit" class="btn btn-primary" name="btnadd" id="btnaddPegawai" value="Submit">
+            <input type="submit" class="btn" id="btnupdPegawai" name="btnupdate" value="Update" style="visibility: hidden;">
+            <input type="submit" class="btn" name="btnadd" id="btnaddPegawai" value="Submit">
         </div>
     </form>
 </div>
@@ -136,7 +147,7 @@
                                                 @csrf
                                                 <input class="idpegawaihidden" type="hidden" name="idpegawaihid" value="{{ $item->id }}">
                                                 @if ($item->deleted_at != null)
-                                                    <input class="btn btn-primary" type="submit" value="Unbanned" name="btnDel"></td>
+                                                    <input class="btn" style="background-color: #6CBEED;" type="submit" value="Unbanned" name="btnDel"></td>
                                                 @else
                                                     <input class="btn btn-danger" type="submit" value="Banned" name="btnDel"></td>
                                                 @endif
@@ -184,6 +195,8 @@
                 msg += " ";
                 document.getElementById("btnaddPegawai").style.visibility = "hidden";
                 document.getElementById("btnupdPegawai").style.visibility = "visible";
+                document.getElementById("txtpass").disabled = true;
+                document.getElementById("txtconpass").disabled = true;
                 document.getElementById("txtemail").value    = rowSelected.cells[2].innerHTML;
                 document.getElementById("txtnama").value   = rowSelected.cells[1].innerHTML.substring(0,rowSelected.cells[1].innerHTML.indexOf("-"));
                 document.getElementById("txtphone").value   = rowSelected.cells[3].innerHTML;
@@ -194,7 +207,7 @@
                 }else if(rowSelected.cells[4].innerHTML == "Customer Service"){
                     document.getElementById("cbpilijenispegawai").value   =  3;
                 }
-                document.getElementById("idpegawai").value   = rowSelected.cells[1].innerHTML.substring(rowSelected.cells[1].innerHTML.indexOf("-"),rowSelected.cells[1].length);
+                document.getElementById("idpegawai").value   = rowSelected.cells[1].innerHTML.substring(rowSelected.cells[1].innerHTML.indexOf("-")+1,rowSelected.cells[1].length);
             }
         }
     }

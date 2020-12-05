@@ -1,6 +1,17 @@
 @extends("Admin_Folder.BlueprintAdmin")
 @section('container-body-page')
-<div class="container-form-input-admin-member" id="inputMember">
+<div class="container-form-input-admin-member" id="inputMember" style="padding: 0 20%;">
+    <style>
+        .btn{
+            margin-top: 10px;
+            background-color: #8F192F;
+            color: white;
+        }
+        .btn:hover{
+            background-color: #da2c38;
+            font-weight: bold;
+        }
+    </style>
     <form action="{{ url('Admin/tambahJenisMember') }}" method="post">
         @csrf
         <div class="form-row">
@@ -20,7 +31,7 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
                 <label for="txtpotongan">Potongan</label>
                 <input type="number" class="form-control" id="txtpotongan" name="txtpotongan" placeholder="Potongan">
                 @error('txtpotongan')
@@ -30,8 +41,8 @@
         </div>
         <div class="form-row" style="float: right;">
             <input type="hidden" name="id_jenis_member" id="idjenismember">
-            <input type="submit" class="btn btn-primary" id="btnupdMember" name="btnupdate" value="Update" style="visibility: hidden;">
-            <input type="submit" class="btn btn-primary" name="btnadd" id="btnaddMember" value="Submit">
+            <input type="submit" class="btn" id="btnupdMember" name="btnupdate" value="Update" style="visibility: hidden;">
+            <input type="submit" class="btn" name="btnadd" id="btnaddMember" value="Submit">
         </div>
     </form>
 </div>
@@ -111,7 +122,7 @@
                                                     @csrf
                                                     <input class="idmemberhidden" type="hidden" name="idmemberhid" value="{{ $item->id_member }}">
                                                     @if ($item->deleted_at != null)
-                                                        <input class="btn btn-primary" type="submit" value="Recover" name="btnDel"></td>
+                                                        <input class="btn btn-primary" style="background-color: #6CBEED;" type="submit" value="Recover" name="btnDel"></td>
                                                     @else
                                                         <input class="btn btn-danger" type="submit" value="Delete" name="btnDel"></td>
                                                     @endif

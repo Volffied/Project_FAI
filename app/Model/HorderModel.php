@@ -64,14 +64,14 @@ class HorderModel extends Model
                 ->leftJoin("customer", "id", "kode_customer")
                 ->leftJoin("pegawai", "pegawai.id", "horder.kode_pegawai")
                 ->leftJoin("promo", "promo.id_promo", "horder.kode_promo")
-                ->where("horder.status_order", 2)
+                ->where("horder.status_order", 3)
                 ->get();
         }else if($bulan != null){
             $query = HorderModel::select(["horder.*", "customer.nama as nama_cust", 'customer.alamat as alamat_cust',"pegawai.nama as nama_pegawai","promo.nama as nama_promo"])
                 ->leftJoin("customer", "id", "kode_customer")
                 ->leftJoin("pegawai", "pegawai.id", "horder.kode_pegawai")
                 ->leftJoin("promo", "promo.id_promo", "horder.kode_promo")
-                ->where("horder.status_order", 2)
+                ->where("horder.status_order", 3)
                 ->whereMonth('tanggal_trans',$bulan)
                 ->get();
         }
