@@ -13,6 +13,11 @@
 <body>
     <h5>404</h5>
     <h1>PAGE NOT FOUND</h1>
-    <a href="/home">Back to Home</a>
+    <a href="javascript:goBack()">Back to Home</a>
+    <script>
+        function goBack() {
+          window.history.back();
+        }
+    </script>
 </body>
 </html>
