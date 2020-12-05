@@ -60,6 +60,7 @@ Route::get('/updateCart/{id_user}_{id_barang}_{qty?}','UserController@updateCart
 Route::get('/checkPromo/{checkBy}_{value}','UserController@checkPromo');
 Route::get('/login','UserController@Login');
 Route::get('/brand/{nama}','UserController@Brand');
+Route::get('/profile/editProfile','UserController@EditProfile');
 Route::get('/cart','UserController@Cart');
 Route::get('/search','UserController@Search');
 Route::get('/profile','UserController@Profile');
@@ -81,5 +82,6 @@ Route::get('updateStatus/{id}_{jenis}', 'midtransController@updateStatus');
 Route::get("updateEmail/{id}","controllerEmail@updateEmail");
 Route::get("verifikasiEmail/{id}","controllerEmail@updatedataEmail");
 Route::post("chatsend",'Controller@checkChat');
+Route::post("updateProfile",'UserController@updateProfile');
 Route::get("getChat/{jenis?}",'Controller@getChat');
 Route::get("getNotifChat/{jenis?}",'Controller@getNotifChat');

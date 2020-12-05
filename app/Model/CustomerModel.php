@@ -15,7 +15,7 @@ class CustomerModel extends Authenticatable
     public $primaryKey      = "id";
     public $incrementing    = true;
     public $timestamps      = true;
-    protected $fillable     = ['id','nama','email','password','poin','notlp','alamat','status','kode_member'];
+    protected $fillable     = ['id','nama','email','password','poin','notlp','alamat','status','kode_member','gambar'];
 
     public function barang(){
         return $this->belongsToMany(BarangModel::class,'cart','kode_user','kode_barang')
