@@ -1,6 +1,17 @@
 @extends("Admin_Folder.BlueprintKurir")
 @section('container-body-page')
-<div class="container-form-input-admin-barang" id="inputBarang">
+<div class="container-form-input-admin-barang" id="inputBarang" style="padding: 0 20%;">
+    <style>
+        .btn{
+            margin-top: 10px;
+            background-color: #8F192F;
+            color: white;
+        }
+        .btn:hover{
+            background-color: #da2c38;
+            font-weight: bold;
+        }
+    </style>
     <form action="{{ url('Kurir/updateStatKirim') }}" method="post" enctype="multipart/form-data">
         <div class="form-row">
             @csrf
@@ -34,7 +45,7 @@
             @endif
         </div>
         <div class="form-row" style="float: right;">
-            <input type="submit" class="btn btn-primary" id="btnupdhorder" name="btnupd" value="Submit">
+            <input type="submit" class="btn" id="btnupdhorder" name="btnupd" value="Submit">
         </div>
     </form>
 </div>
