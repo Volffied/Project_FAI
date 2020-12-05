@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="shortcut icon" href="{{asset('images/logo.svg')}}" type="image/x-icon">
     <meta charset="UTF-8">
@@ -9,14 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/input.css')}}" />
     <link rel="stylesheet" href="{{asset('css/forgotPass.css')}}" />
-    <script
-        src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
     <title>Forgot Password | GameBox</title>
 </head>
+
 <body>
     <div class="top-section"></div>
     <div class="container-forgot">
@@ -42,26 +41,27 @@
     <div class="bottom-section"></div>
     <div class="container-msg"></div>
     <script>
-        $(document).ready(function(){
-            $("#password").prop('disabled',true);
-            $("#submit").prop('disabled',true);
-            gsap.to('body',{
-                opacity:1,
-                duration:1.5
+        $(document).ready(function() {
+            $("#password").prop('disabled', true);
+            $("#submit").prop('disabled', true);
+            gsap.to('body', {
+                opacity: 1,
+                duration: 1.5
             });
-            gsap.from('.left',{
-                y:50,
-                duration:1
+            gsap.from('.left', {
+                y: 50,
+                duration: 1
             });
-            gsap.from('.right',{
-                y:-50,
-                duration:1
+            gsap.from('.right', {
+                y: -50,
+                duration: 1
             });
-            gsap.from('.container-forgot',{
-                opacity:0,
-                duration:1
+            gsap.from('.container-forgot', {
+                opacity: 0,
+                duration: 1
             });
         });
+
         function runScript(e) {
             if (e.key === "Enter") {
                 e.preventDefault();
@@ -69,87 +69,90 @@
                 $(".next").trigger('click');
             }
         }
-        $(".next").click(function(){
+        $(".next").click(function() {
             var email = $("#email").val();
-            if(email == ""){
+            if (email == "") {
                 message('Email is still empty');
-            }else{
+            } else {
                 message('We have sent the email to you');
                 var _token = $("input[name=_token]").val();
                 $.ajax({
-                    url:"/checkEmail",
+                    url: "/checkEmail",
                     type: "POST",
-                    data:{
-                        email       : email,
-                        _token      : _token
+                    data: {
+                        email: email,
+                        _token: _token
                     },
                     success: function(response) {
-                        if(response == "lolos"){
-                            gsap.to('.container-email',{
-                                y:'-100%',
-                                duration:1
+                        if (response == "lolos") {
+                            gsap.to('.container-email', {
+                                y: '-100%',
+                                duration: 1
                             });
-                            gsap.to('.container-password',{
-                                y:'-100%',
-                                duration:1
+                            gsap.to('.container-password', {
+                                y: '-100%',
+                                duration: 1
                             });
-                            timer = setInterval(ajaxNewPassword,1000);
-                        }else{
+                            timer = setInterval(ajaxNewPassword, 1000);
+                        } else {
                             message(response);
                         }
                     },
-                    error:function(response){
+                    error: function(response) {
                         console.log((response.responseJSON.errors));
                     }
                 });
             }
         });
+
         function message(msg = null) {
-            if(msg != null){
+            if (msg != null) {
                 $('.container-msg').html(msg);
             }
-            gsap.to('.container-msg',{
-                y:-120,
-                duration:0.8
+            gsap.to('.container-msg', {
+                y: -120,
+                duration: 0.8
             });
-            gsap.to('.container-msg',{
-                y:100,
-                delay:5,
-                duration:0.8
+            gsap.to('.container-msg', {
+                y: 100,
+                delay: 5,
+                duration: 0.8
             });
         }
 
         var timer;
 
         function ajaxNewPassword() {
+            var email = $("#email").val();
             $.ajax({
-                url:"/checkSessionForgot",
+                url: "/checkSessionForgot/" + email,
                 type: "GET",
-                data:{},
+                data: {},
                 success: function(response) {
-                    if(response == "buka"){
-                        $("#password").prop('disabled',false);
-                        $("#submit").prop('disabled',false);
+                    if (response == "buka") {
+                        $("#password").prop('disabled', false);
+                        $("#submit").prop('disabled', false);
                         clearInterval(timer);
                     }
                 },
-                error:function(response){
+                error: function(response) {
                     console.log(response.responseJSON.errors);
                 }
             });
         }
 
-        $(".back").click(function(){
-            gsap.to('.container-email',{
-                y:0,
-                duration:1
+        $(".back").click(function() {
+            gsap.to('.container-email', {
+                y: 0,
+                duration: 1
             });
-            gsap.to('.container-password',{
-                y:0,
-                duration:1
+            gsap.to('.container-password', {
+                y: 0,
+                duration: 1
             });
             clearInterval(timer);
         });
     </script>
 </body>
+
 </html>

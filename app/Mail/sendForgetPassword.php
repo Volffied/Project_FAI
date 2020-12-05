@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Model\CustomerModel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,9 +17,10 @@ class sendForgetPassword extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $email;
+    public function __construct($email)
     {
-        //
+        $this->email = $email;
     }
 
     /**
@@ -28,6 +30,9 @@ class sendForgetPassword extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        $iduser = CustomerModel::where("email", $this->email)->first();
+        return $this->subject('Game Box')
+            ->view('Common_Folder.emailForget', ["id" => $iduser->id]);
+        session()->forget("iduser");
     }
 }

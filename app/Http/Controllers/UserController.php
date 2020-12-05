@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\sendForgetPassword;
 use App\Model\BarangModel;
 use App\Model\BrandModel;
 use App\Model\CartModel;
@@ -19,6 +20,7 @@ use App\Notifications\OrderNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -31,20 +33,20 @@ class UserController extends Controller
         $brand = new BrandModel();
         $chat = new HchatModel();
         $user = new CustomerModel();
-        $param['barang'] = $barang->getAllDataBarangPaginate(16,'barang.deleted_at',null);
+        $param['barang'] = $barang->getAllDataBarangPaginate(16, 'barang.deleted_at', null);
         $param['brand'] = $brand->getAllDataBrandWithCount();
-        if(session()->has('userLogin')){
+        if (session()->has('userLogin')) {
             $param['chat'] = $chat->getDataMessage(session()->get('userLogin')->id);
         }
         // dd($param['brand']);
         //dd(auth()->user()->unreadNotifications);
 
         //foreach (auth()->user()->unreadNotifications as $key => $item) {
-            //session()->put('notif',$item->data["chat_isi"]);
-            //$item->markAsRead(); //biar notifnya jdi read
-            //dd($item->data["chat_isi"]);
+        //session()->put('notif',$item->data["chat_isi"]);
+        //$item->markAsRead(); //biar notifnya jdi read
+        //dd($item->data["chat_isi"]);
         //}
-        return view('Common_Folder.home',['data' => $param]);
+        return view('Common_Folder.home', ['data' => $param]);
     }
 
     public function Login()
@@ -64,9 +66,9 @@ class UserController extends Controller
     {
         $brand = new BrandModel();
         $barang = new BarangModel();
-        $brand = $brand->where('nama_brand',$nama)->first();
+        $brand = $brand->where('nama_brand', $nama)->first();
         $barang = $barang->getAllDatabyBrand($brand->id_brand);
-        return view('Common_Folder.brands',['brand' => $brand,'barang'=>$barang]);
+        return view('Common_Folder.brands', ['brand' => $brand, 'barang' => $barang]);
     }
 
     public function Cart()
@@ -77,7 +79,7 @@ class UserController extends Controller
         $potonganMember = $potonganMember->getPotonganByID(session()->get('userLogin')->kode_member);
         $param["potongan"] = $potonganMember->potongan;
         $allCart = new CartModel;
-        $param["history"] = HorderModel::where("kode_customer",session()->get('userLogin')->id)->orderBy('status_order','asc')->orderBy('id_horder','desc')->get();
+        $param["history"] = HorderModel::where("kode_customer", session()->get('userLogin')->id)->orderBy('status_order', 'asc')->orderBy('id_horder', 'desc')->get();
         // foreach ($datahistory as $key => $value) {
         //    foreach ($value->history as $key2 => $data) {
         //         //dd($data);// buat dpet barang
@@ -90,23 +92,23 @@ class UserController extends Controller
 
     public function Product($nama)
     {
-        $nama = str_replace('-',' ',$nama);
+        $nama = str_replace('-', ' ', $nama);
         $barang = new BarangModel();
-        $barang = $barang->getAllDataByColumn('barang.nama_barang',$nama)->first();
+        $barang = $barang->getAllDataByColumn('barang.nama_barang', $nama)->first();
         $listBarang = new BarangModel;
         $listBarang = $listBarang->getAllDatabyBrand($barang->nama_brand);
         $listKatBarang = new BarangModel;
-        $listKatBarang = $listKatBarang->getAllDataByColumn('kategori.id_kat',$barang->kode_kategori)->get();
-        return view('Common_Folder.product',['barang' => $barang,'listBarang' => $listBarang,'listKat' =>$listKatBarang]);
+        $listKatBarang = $listKatBarang->getAllDataByColumn('kategori.id_kat', $barang->kode_kategori)->get();
+        return view('Common_Folder.product', ['barang' => $barang, 'listBarang' => $listBarang, 'listKat' => $listKatBarang]);
     }
 
     public function Search(Request $request)
     {
         $barang = new BarangModel;
-        $barang['barang'] = $barang->getAllDataBarangPaginateArray(48,$request->all());
+        $barang['barang'] = $barang->getAllDataBarangPaginateArray(48, $request->all());
         $barang['kategori'] = KategoriModel::all();
         $barang['brand'] = BrandModel::all();
-        return view('Common_Folder.search',['data'=>$barang]);
+        return view('Common_Folder.search', ['data' => $barang]);
     }
 
     public function Profile()
@@ -118,7 +120,7 @@ class UserController extends Controller
         $horder = new HorderModel();
         $allhorder = $horder->countAllOrder($datalogin);
         $allcancelhorder = $horder->countAllCancelOrder($datalogin);
-        $allsuccesshorder = HorderModel::where('kode_customer',session()->get('userLogin')->id)->where('status_order',3)->get();
+        $allsuccesshorder = HorderModel::where('kode_customer', session()->get('userLogin')->id)->where('status_order', 3)->get();
         $countsuccess = count($allsuccesshorder);
         $counthorder = count($allhorder);
         $countfailed = count($allcancelhorder);
@@ -126,7 +128,7 @@ class UserController extends Controller
         $param["countfailed"] = $countfailed;
         $param["countsuccess"] = $countsuccess;
         $param["user"] = $user->getProfile($datalogin);
-        if($kode_member != 5) $param["nextMember"] = JenisMemberModel::find($kode_member+1);
+        if ($kode_member != 5) $param["nextMember"] = JenisMemberModel::find($kode_member + 1);
         else $param["nextMember"] = JenisMemberModel::find(5);
         $param["myMember"] = JenisMemberModel::find($kode_member);
         return view('Common_Folder.profile')->with($param);
@@ -135,7 +137,7 @@ class UserController extends Controller
     public function editProfile()
     {
         $customer = CustomerModel::find(session()->get('userLogin')->id);
-        return view('Common_Folder.editProfile',['customer' => $customer]);
+        return view('Common_Folder.editProfile', ['customer' => $customer]);
     }
 
     /////////////// PROCCESS CONTROLLER ////////////////
@@ -143,8 +145,8 @@ class UserController extends Controller
     public function prosesLogin(Request $request)
     {
         $rules = [
-            'email' => ['required', 'email:rfc,dns','exists:customer'],
-            'password' => ['required',new PasswordCheckerRule($request->email)]
+            'email' => ['required', 'email:rfc,dns', 'exists:customer'],
+            'password' => ['required', new PasswordCheckerRule($request->email)]
         ];
 
         $customError = [
@@ -152,27 +154,27 @@ class UserController extends Controller
             'email.exists'      => "Email doesn't exists",
             'password.required' => 'Password is still empty',
         ];
-        if ($request->validate($rules,$customError)) {
+        if ($request->validate($rules, $customError)) {
             $email = $request->email;
             $pass  = $request->password;
             $user  = new CustomerModel();
-            $user->checkLogin($email,$pass);
-            if(session()->has('userLogin')){
-                $array=[];
+            $user->checkLogin($email, $pass);
+            if (session()->has('userLogin')) {
+                $array = [];
                 foreach (auth()->user()->unreadNotifications as $key => $item) {
-                    array_push($array,$item);
+                    array_push($array, $item);
                     //$item->markAsRead(); //biar notifnya jdi read
                     //dd($item->data["chat_isi"]);
                 }
-                session()->put('notif',$array);
+                session()->put('notif', $array);
                 return redirect("/");
-            }
-            else{
+            } else {
                 return redirect("/login");
             }
         }
     }
-    public function prosesRegister(Request $req){
+    public function prosesRegister(Request $req)
+    {
         $rules = [
             "email"     => "required|email:rfc,dns",
             "password"  => "required|min:8",
@@ -189,25 +191,25 @@ class UserController extends Controller
             "name.required"         => "Name is still empty",
             "alamat.required"      => "Address is still empty",
         ];
-        if ($req->validate($rules,$message)) {
+        if ($req->validate($rules, $message)) {
             $email  = $req->email;
             $pass   = Hash::make($req->password);
             $nama   = $req->name;
             $alamat = $req->alamat;
             $notlp  = $req->notelp;
             $user   = new CustomerModel();
-            $user->insertData($email,$pass,$nama,$alamat,$notlp);
+            $user->insertData($email, $pass, $nama, $alamat, $notlp);
             //========================================
-            $paramdata = CustomerModel::where("email",$email)->first();
+            $paramdata = CustomerModel::where("email", $email)->first();
             HchatModel::insert([
                 "kode_customer" =>  $paramdata->id,
                 "created_at"    => Carbon::now()
             ]);
             //========================================
-            $kode_hchat = HchatModel::where("kode_customer",$paramdata->id)->first();
+            $kode_hchat = HchatModel::where("kode_customer", $paramdata->id)->first();
             DchatModel::insert([
                 "kode_hchat"    => $kode_hchat->id_hchat,
-                "pesan"         => "Halo, ".ucwords(strtolower($nama))."!<br>Ada yang bisa kami bantu?",
+                "pesan"         => "Halo, " . ucwords(strtolower($nama)) . "!<br>Ada yang bisa kami bantu?",
                 "sender"        => "Admin",
                 "jenis"         => 1,
                 "status"        => 0,
@@ -220,7 +222,7 @@ class UserController extends Controller
     public function updateProfile(Request $request)
     {
         $rules = [
-            "oldPass"   => ['nullable',new PasswordCheckerRule(),'different:newPass'],
+            "oldPass"   => ['nullable', new PasswordCheckerRule(), 'different:newPass'],
             "newPass"   => ['required_with:oldPass'],
             "nama"      => "required",
             "alamat"    => "required",
@@ -234,79 +236,80 @@ class UserController extends Controller
             "newPass.required_with"  => "New Password is still empty",
             "oldPass.different"      => "New Password is still the same as old password"
         ];
-        $request->validate($rules,$message);
+        $request->validate($rules, $message);
         $customer = CustomerModel::find(session()->get('userLogin')->id);
         $customer->nama = $request->nama;
         $customer->alamat = $request->alamat;
         $customer->notlp = $request->notlp;
-        if($request->gambar != null){
-            Storage::disk('public')->delete('images/'.$customer->gambar);
+        if ($request->gambar != null) {
+            Storage::disk('public')->delete('images/' . $customer->gambar);
             $customer->gambar = $request->gambar->hashName();
-            $request->gambar->store('images','public');
+            $request->gambar->store('images', 'public');
         }
-        if($request->oldPass != "") $customer->password = Hash::make($request->newPass);
+        if ($request->oldPass != "") $customer->password = Hash::make($request->newPass);
         $customer->save();
-        session()->put('userLogin',$customer);
+        session()->put('userLogin', $customer);
         return back();
     }
 
     public function forgotPassword(Request $request)
     {
-        $cust = CustomerModel::where('email',$request->email)->first();
+        $cust = CustomerModel::where('email', $request->email)->first();
         $cust->password = Hash::make($request->password);
         $cust->save();
-        session()->flash('message','Password has been successfully changed');
+        session()->flash('message', 'Password has been successfully changed');
+        session()->forget("forgotPassword");
         return redirect('/login');
     }
 
     //////////////// AJAX CONTROLLER /////////////////////
 
-    public function addToCart($id,$qty){
-        $id_user =session()->get("userLogin")->id;
+    public function addToCart($id, $qty)
+    {
+        $id_user = session()->get("userLogin")->id;
         $response = [];
-        if($id != -1){
+        if ($id != -1) {
             $databarang = new BarangModel;
-            $databarang = $databarang->getAllDataByColumn("id",$id)->first();
+            $databarang = $databarang->getAllDataByColumn("id", $id)->first();
             $datacart = new CartModel;
             $cartinsert = new CartModel;
 
-            $datacart = $datacart->getData($databarang->id,$id_user);
-            if($datacart == null){
-                $cartinsert->insertData($databarang->id,$id_user,$databarang->nama_kat,$qty);
+            $datacart = $datacart->getData($databarang->id, $id_user);
+            if ($datacart == null) {
+                $cartinsert->insertData($databarang->id, $id_user, $databarang->nama_kat, $qty);
                 $response['msg'] = "Added To Your Cart";
-            }
-            else{
-                $datacart->qty+=$qty;
+            } else {
+                $datacart->qty += $qty;
                 $datacart->save();
                 $response['msg'] = "Quantity Updated";
             }
         }
         $cart = new CartModel;
         $cart = $cart->getAllCart($id_user);
-        if($cart == null){
+        if ($cart == null) {
             $cart = [];
         }
         $response['data'] = count($cart);
         return json_encode($response);
     }
 
-    public function checkPromo($checkBy,$value)
+    public function checkPromo($checkBy, $value)
     {
-        if($checkBy == "kode"){
+        if ($checkBy == "kode") {
             $dataPromo = new PromoModel;
             $dataPromo = $dataPromo->getDataByCode($value);
             $response = [];
             $response['message'] = "Invalid Code";
             $response['potongan'] = null;
             $response['status'] = false;
-            if($dataPromo != null){
+            if ($dataPromo != null) {
                 $response['potongan'] = $dataPromo->potongan;
-                $response['message'] = "Discount ".$dataPromo->potongan."%";
+                $response['message'] = "Discount " . $dataPromo->potongan . "%";
                 $response['status'] = true;
                 $response['kodepotongan'] = $dataPromo->id_promo;
             }
             return json_encode($response);
-        }else if($checkBy == "member"){
+        } else if ($checkBy == "member") {
             $dataPromo = new JenisMemberModel;
             $dataPromo = $dataPromo->getPotonganByID($value);
             // $dataPromo = $dataPromo->getMemberFromSucceededPoint($value);
@@ -317,14 +320,14 @@ class UserController extends Controller
         }
     }
 
-    public function updateCart($id_user,$id_barang,$qty=null)
+    public function updateCart($id_user, $id_barang, $qty = null)
     {
-        if($qty==null){
-            CartModel::where('kode_user',$id_user)->where('kode_barang',$id_barang)->delete();
+        if ($qty == null) {
+            CartModel::where('kode_user', $id_user)->where('kode_barang', $id_barang)->delete();
             return "Product removed";
-        }else{
+        } else {
             $cart = new CartModel;
-            $cart = $cart->getData($id_barang,$id_user);
+            $cart = $cart->getData($id_barang, $id_user);
             $cart->qty = $qty;
             $cart->save();
             return "Product Updated";
@@ -333,16 +336,19 @@ class UserController extends Controller
 
     public function checkEmail(Request $request)
     {
-        $cust = CustomerModel::where('email',$request->email)->first();
-        if($cust!=null){
-            if($cust->status == 1) return "lolos";
-            else return "This account haven't verify its email";
-        }else return "Email doesn't exists";
+        $cust = CustomerModel::where('email', $request->email)->first();
+        if ($cust != null) {
+            if ($cust->status == 1) {
+                Mail::to($cust->email)->send(new sendForgetPassword($request->email));
+                return "lolos";
+            } else return "This account haven't verify its email";
+        } else return "Email doesn't exists";
     }
 
-    public function checkSessionForgot()
+    public function checkSessionForgot($email)
     {
-        if(session()->has('forgotPassword')) return "buka";
+        $cust = CustomerModel::where("email", $email)->first();
+        if (session()->has('forgotPassword') && $cust->id == session()->get("forgotPassword")) return "buka";
         else return "tutup";
     }
 }

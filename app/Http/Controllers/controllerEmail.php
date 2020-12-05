@@ -10,22 +10,30 @@ use Illuminate\Support\Facades\Mail;
 
 class controllerEmail extends Controller
 {
-    public function updateEmail($id){
+    public function updateEmail($id)
+    {
         $user = new CustomerModel();
-        $param= $user->getDataEmailByid($id);
+        $param = $user->getDataEmailByid($id);
         $email = $param->email;
         $status = $param->status;
-        session()->put("iduser",$id);
+        session()->put("iduser", $id);
         Mail::to($email)->send(new sendEmailVerification());
         return $status;
     }
-    public function updatedataEmail($id){
+    public function updatedataEmail($id)
+    {
         $userUpdate = CustomerModel::find($id);
         $userUpdate->status = 1;
         $userUpdate->save();
-        $userBaru= CustomerModel::find($id);
-        session()->put('userLogin',$userBaru);
-        session()->flash('berhasil','Test');
+        $userBaru = CustomerModel::find($id);
+        session()->put('userLogin', $userBaru);
+        session()->flash('berhasil', 'Test');
         return redirect("/profile");
+    }
+
+    public function updatepassword($id)
+    {
+        session()->put("forgotPassword", $id);
+        return view("viewForgotEmail");
     }
 }

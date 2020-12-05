@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css" />
     <!--<![endif]-->
     <style type="text/css">
         body {
@@ -36,6 +35,10 @@
         a[x-apple-data-detectors=true] {
             color: inherit !important;
             text-decoration: none !important;
+        }
+
+        .buttons:hover {
+            cursor: pointer !important;
         }
     </style>
     <style id="media-query" type="text/css">
@@ -149,9 +152,9 @@
                                         <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:35px; padding-bottom:0px; padding-right: 0px; padding-left: 0px;">
                                             <!--<![endif]-->
                                             <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 20px; padding-left: 20px; padding-top: 0px; padding-bottom: 20px; font-family: Arial, sans-serif"><![endif]-->
-                                            <div style="color:#2e5cd2;font-family:Oswald, Arial, Helvetica Neue, Helvetica, sans-serif;line-height:1.5;padding-top:0px;padding-right:20px;padding-bottom:20px;padding-left:20px;">
-                                                <div style="line-height: 1.5; font-size: 12px; color: #2e5cd2; font-family: Oswald, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 18px;">
-                                                    <p style="font-size: 14px; line-height: 1.5; word-break: break-word; text-align: center; mso-line-height-alt: 21px; margin: 0;"><span style="color: #ffffff; background-color: #ff151b;"><em><strong><span style="font-size: 50px; background-color: #ff151b;"> WELCOME  <br /> NEWBORN !  </span></strong></em></span></p>
+                                            <div style="color:#393d47;font-family:Oswald, Arial, Helvetica Neue, Helvetica, sans-serif;line-height:1.5;padding-top:0px;padding-right:20px;padding-bottom:20px;padding-left:20px;">
+                                                <div style="line-height: 1.5; font-size: 12px; color: #393d47; font-family: Oswald, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 18px;">
+                                                    <p style="font-size: 14px; line-height: 1.5; word-break: break-word; text-align: center; mso-line-height-alt: 21px; margin: 0;"><span style="color: #ffffff; background-color: #151515;"><em><strong><span style="font-size: 50px; background-color: #151515;"> RESET  <br /> PASSWORD  </span></strong></em></span></p>
                                                 </div>
                                             </div>
                                             <!--[if mso]></td></tr></table><![endif]-->
@@ -170,11 +173,11 @@
                             </div>
                         </div>
                     </div>
-                    <div style="background-color:#261830;">
-                        <div class="block-grid mixed-two-up" style="min-width: 320px; max-width: 655px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: #0a060d;">
-                            <div style="border-collapse: collapse;display: table;width: 100%;background-color:#0a060d;background-image:url('');background-position:top center;background-repeat:no-repeat">
-                                <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#261830;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:655px"><tr class="layout-full-width" style="background-color:#0a060d"><![endif]-->
-                                <!--[if (mso)|(IE)]><td align="center" width="545" style="background-color:#0a060d;width:545px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 30px; padding-left: 0px; padding-top:10px; padding-bottom:0px;"><![endif]-->
+                    <div style="background-image:url('');background-position:top left;background-repeat:repeat;background-color:#261830;">
+                        <div class="block-grid mixed-two-up" style="min-width: 320px; max-width: 655px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: #151515;">
+                            <div style="border-collapse: collapse;display: table;width: 100%;background-color:#151515;">
+                                <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-image:url('');background-position:top left;background-repeat:repeat;background-color:#261830;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:655px"><tr class="layout-full-width" style="background-color:#151515"><![endif]-->
+                                <!--[if (mso)|(IE)]><td align="center" width="545" style="background-color:#151515;width:545px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 30px; padding-left: 0px; padding-top:10px; padding-bottom:0px;"><![endif]-->
                                 <div class="col num10" style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 540px; width: 545px;">
                                     <div class="col_cont" style="width:100% !important;">
                                         <!--[if (!mso)&(!IE)]><!-->
@@ -183,7 +186,7 @@
                                             <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 40px; padding-left: 40px; padding-top: 5px; padding-bottom: 20px; font-family: Arial, sans-serif"><![endif]-->
                                             <div style="color:#393d47;font-family:'Oswald', Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:1.2;padding-top:5px;padding-right:40px;padding-bottom:20px;padding-left:40px;">
                                                 <div style="line-height: 1.2; font-size: 12px; font-family: 'Oswald', Arial, 'Helvetica Neue', Helvetica, sans-serif; color: #393d47; mso-line-height-alt: 14px;">
-                                                    <p style="font-size: 38px; line-height: 1.2; word-break: break-word; font-family: Oswald, Arial, 'Helvetica Neue', Helvetica, sans-serif; mso-line-height-alt: 46px; margin: 0;"><span style="color: #ffffff; font-size: 38px;"><strong>VERIFY YOUR MIGHTY EMAIL</strong></span></p>
+                                                    <p style="font-size: 46px; line-height: 1.2; word-break: break-word; font-family: Oswald, Arial, 'Helvetica Neue', Helvetica, sans-serif; mso-line-height-alt: 55px; margin: 0;"><span style="color: #ffffff; font-size: 46px;"><strong>Forgot your password?</strong></span></p>
                                                 </div>
                                             </div>
                                             <!--[if mso]></td></tr></table><![endif]-->
@@ -205,13 +208,13 @@
                                             <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 40px; padding-left: 40px; padding-top: 5px; padding-bottom: 40px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
                                             <div style="color:#e8e8e8;font-family:'Roboto', Tahoma, Verdana, Segoe, sans-serif;line-height:1.8;padding-top:5px;padding-right:40px;padding-bottom:40px;padding-left:40px;">
                                                 <div style="line-height: 1.8; font-size: 12px; font-family: 'Roboto', Tahoma, Verdana, Segoe, sans-serif; color: #e8e8e8; mso-line-height-alt: 22px;">
-                                                    <p style="font-size: 14px; line-height: 1.8; word-break: break-word; font-family: Roboto, Tahoma, Verdana, Segoe, sans-serif; mso-line-height-alt: 25px; margin: 0;">We want to make sure your email is mighty enough for security reason about your account. Please press the button below to allow us review your mighty email.</p>
+                                                    <p style="font-size: 14px; line-height: 1.8; word-break: break-word; font-family: Roboto, Tahoma, Verdana, Segoe, sans-serif; mso-line-height-alt: 25px; margin: 0;">If you forgot your password, please press the button below to enable input for new password.</p>
                                                 </div>
                                             </div>
                                             <!--[if mso]></td></tr></table><![endif]-->
                                             <div align="left" class="button-container" style="padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:40px;">
-                                                <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 40px" align="left"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:37.5pt; width:224.25pt; v-text-anchor:middle;" arcsize="0%" stroke="false" fillcolor="#ff151b"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#151515; font-family:'Trebuchet MS', Tahoma, sans-serif; font-size:20px"><![endif]-->
-                                                <div style="text-decoration:none;display:inline-block;color:#151515;background-color:#ff151b;border-radius:0px;-webkit-border-radius:0px;-moz-border-radius:0px;width:auto; width:auto;;border-top:0px solid #8a3b8f;border-right:0px solid #8a3b8f;border-bottom:0px solid #8a3b8f;border-left:0px solid #8a3b8f;padding-top:5px;padding-bottom:5px;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;"><span style="padding-left:30px;padding-right:30px;font-size:20px;display:inline-block;"><span style="font-size: 16px; line-height: 2; word-break: break-word; font-family: Montserrat, 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; mso-line-height-alt: 32px;"><span data-mce-style="font-size: 20px; line-height: 40px;" style="font-size: 20px; line-height: 40px;"><a href="{{ URL::to('verifikasiEmail') }}/{{$id}}" style="text-decoration: none; color: #261830;"><strong>VERIFY MY EMAIL</strong></a></span></span></span></div>
+                                                <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 40px" align="left"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:37.5pt; width:222pt; v-text-anchor:middle;" arcsize="0%" stroke="false" fillcolor="#ff151b"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#151515; font-family:Arial, sans-serif; font-size:20px"><![endif]-->
+                                                <div class="buttons" style="text-decoration:none;display:inline-block;color:#151515;background-color:#ff151b;border-radius:0px;-webkit-border-radius:0px;-moz-border-radius:0px;width:auto; width:auto;;border-top:0px solid #8a3b8f;border-right:0px solid #8a3b8f;border-bottom:0px solid #8a3b8f;border-left:0px solid #8a3b8f;padding-top:5px;padding-bottom:5px;font-family:'Oswald', Arial, 'Helvetica Neue', Helvetica, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;"><span style="padding-left:30px;padding-right:30px;font-size:20px;display:inline-block;"><span style="font-size: 16px; line-height: 2; word-break: break-word; font-family: Oswald, Arial, 'Helvetica Neue', Helvetica, sans-serif; mso-line-height-alt: 32px;"><span data-mce-style="font-size: 20px; line-height: 40px;" style="font-size: 20px; line-height: 40px;"><a href="{{ URL::to('verifikasiPassword') }}/{{$id}}" style="text-decoration: none; color: #261830;"><strong>I FORGOT MY PASSWORD</strong></a></span></span></span></div>
                                                 <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                                             </div>
                                             <!--[if (!mso)&(!IE)]><!-->
@@ -220,7 +223,7 @@
                                     </div>
                                 </div>
                                 <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-                                <!--[if (mso)|(IE)]></td><td align="center" width="109" style="background-color:#0a060d;width:109px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
+                                <!--[if (mso)|(IE)]></td><td align="center" width="109" style="background-color:#151515;width:109px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
                                 <div class="col num2" style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 108px; width: 109px;">
                                     <div class="col_cont" style="width:100% !important;">
                                         <!--[if (!mso)&(!IE)]><!-->
@@ -252,10 +255,10 @@
                         </div>
                     </div>
                     <div style="background-color:#261830;">
-                        <div class="block-grid" style="min-width: 320px; max-width: 655px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: #0a060d;">
-                            <div style="border-collapse: collapse;display: table;width: 100%;background-color:#0a060d;">
-                                <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#261830;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:655px"><tr class="layout-full-width" style="background-color:#0a060d"><![endif]-->
-                                <!--[if (mso)|(IE)]><td align="center" width="655" style="background-color:#0a060d;width:655px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
+                        <div class="block-grid" style="min-width: 320px; max-width: 655px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: #151515;">
+                            <div style="border-collapse: collapse;display: table;width: 100%;background-color:#151515;">
+                                <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#261830;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:655px"><tr class="layout-full-width" style="background-color:#151515"><![endif]-->
+                                <!--[if (mso)|(IE)]><td align="center" width="655" style="background-color:#151515;width:655px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
                                 <div class="col num12" style="min-width: 320px; max-width: 655px; display: table-cell; vertical-align: top; width: 655px;">
                                     <div class="col_cont" style="width:100% !important;">
                                         <!--[if (!mso)&(!IE)]><!-->
@@ -287,10 +290,10 @@
                         </div>
                     </div>
                     <div style="background-color:#261830;">
-                        <div class="block-grid two-up" style="min-width: 320px; max-width: 655px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: #0a060d;">
-                            <div style="border-collapse: collapse;display: table;width: 100%;background-color:#0a060d;">
-                                <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#261830;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:655px"><tr class="layout-full-width" style="background-color:#0a060d"><![endif]-->
-                                <!--[if (mso)|(IE)]><td align="center" width="327" style="background-color:#0a060d;width:327px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 25px; padding-top:5px; padding-bottom:5px;"><![endif]-->
+                        <div class="block-grid two-up" style="min-width: 320px; max-width: 655px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: #151515;">
+                            <div style="border-collapse: collapse;display: table;width: 100%;background-color:#151515;">
+                                <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#261830;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:655px"><tr class="layout-full-width" style="background-color:#151515"><![endif]-->
+                                <!--[if (mso)|(IE)]><td align="center" width="327" style="background-color:#151515;width:327px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 25px; padding-top:5px; padding-bottom:5px;"><![endif]-->
                                 <div class="col num6" style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 324px; width: 327px;">
                                     <div class="col_cont" style="width:100% !important;">
                                         <!--[if (!mso)&(!IE)]><!-->
@@ -306,21 +309,13 @@
                                             <div style="font-size:16px;text-align:center;font-family:Oswald, Arial, Helvetica Neue, Helvetica, sans-serif">
                                                 <div style="height:20px;"> </div>
                                             </div>
-                                            <table cellpadding="0" cellspacing="0" class="social_icons" role="presentation" style="table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" valign="top" width="100%">
-                                                <tbody>
-                                                    <tr style="vertical-align: top;" valign="top">
-                                                        <td style="word-break: break-word; vertical-align: top; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px;" valign="top">
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
                                             <!--[if (!mso)&(!IE)]><!-->
                                         </div>
                                         <!--<![endif]-->
                                     </div>
                                 </div>
                                 <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-                                <!--[if (mso)|(IE)]></td><td align="center" width="327" style="background-color:#0a060d;width:327px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 25px; padding-top:5px; padding-bottom:5px;"><![endif]-->
+                                <!--[if (mso)|(IE)]></td><td align="center" width="327" style="background-color:#151515;width:327px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 25px; padding-top:5px; padding-bottom:5px;"><![endif]-->
                                 <div class="col num6" style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 324px; width: 327px;">
                                     <div class="col_cont" style="width:100% !important;">
                                         <!--[if (!mso)&(!IE)]><!-->
@@ -336,7 +331,7 @@
                                             <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
                                             <div style="color:#C0C0C0;font-family:Oswald, Arial, Helvetica Neue, Helvetica, sans-serif;line-height:1.5;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
                                                 <div style="line-height: 1.5; font-size: 12px; font-family: Oswald, Arial, Helvetica Neue, Helvetica, sans-serif; color: #C0C0C0; mso-line-height-alt: 18px;">
-                                                    <p style="font-size: 14px; line-height: 1.5; text-align: left; word-break: break-word; font-family: Oswald, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 21px; margin: 0;">If this email was not requested by you, Please ignore.</p>
+                                                    <p style="font-size: 14px; line-height: 1.5; text-align: left; word-break: break-word; font-family: Oswald, Arial, Helvetica Neue, Helvetica, sans-serif; mso-line-height-alt: 21px; margin: 0;">If you didn't request this email, please ignore.</p>
                                                 </div>
                                             </div>
                                             <!--[if mso]></td></tr></table><![endif]-->
