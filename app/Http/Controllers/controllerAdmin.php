@@ -51,7 +51,7 @@ class controllerAdmin extends Controller
     {
         $horder = new HorderModel();
         $dataHorder = $horder->getDataForHomePageKurir();
-        return view('Admin_Folder.Kurir',['daftarPenjualan'=>$dataHorder]);
+        return view('Admin_Folder.Kurir', ['daftarPenjualan' => $dataHorder]);
     }
 
     public function HalPagemPegawai()
@@ -508,7 +508,7 @@ class controllerAdmin extends Controller
             //  getClientOriginalName         -> untuk mendapatkan nama photo yang diupload
             //  untuk akses path             ->"images/mask_cyborg_robot_142919_1920x1080.jpg" dd($path);
             $namaImage  =  $request->file("imgupload")->getClientOriginalName();
-            $path = $request->file("imgupload")->storeAs("images", $namaImage, "local");
+            $path = $request->file("imgupload")->storeAs("bukti", $namaImage, "public");
             HorderModel::where("id_horder", $idHorder)->update([
                 "invoice"           => $path,
                 "status_order"      => 3,
