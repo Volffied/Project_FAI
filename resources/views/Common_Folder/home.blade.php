@@ -90,7 +90,7 @@
                     </style>
                     <div class="row" style="width: 100%; height:50%;">
                         <div class="col col-promo">
-                            <h1>Nama Promo</h1>
+                            <h1 class="test">Nama Promo</h1>
                             <p class="desc">Ini adalah deskripsi dari promo</p>
                         </div>
                         <div class="col col-promo"></div>

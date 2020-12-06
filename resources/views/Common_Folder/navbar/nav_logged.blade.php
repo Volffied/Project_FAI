@@ -52,11 +52,8 @@
             ?>
             @isset($notif)
                 @foreach ($notif as $item)
-                <?php
-                    $item->markAsRead();
-                ?>
                 <div class="notif-item">
-                    <p class="notif-title">{{ $item->data["chat_isi"] }}</p>
+                    <a href="notifications?id={{$item->id}}" class="notif-title">{{ $item->data["chat_isi"] }}</a>
                 </div>
                 @endforeach
             @endisset

@@ -52,7 +52,7 @@
                                     </style>
                                     @csrf
                                     <div class="form-row" style="display: flex; flex-direction: row;">
-                                        <input type="submit" class="btn" id="btnReport" name="btnreport" value="Report" >
+                                        <div class="btn" id="btnReport" name="btnreport">Print</div>
                                     </div>
                                 </form>
                                 <table id="example2" class="table table-striped">
@@ -68,7 +68,7 @@
                                         }
                                     </style>
                                     <thead class="thead">
-                                      <tr>
+                                      <tr class="row-header">
                                         <th scope="col">ID</th>
                                         <th scope="col">Nama Barang</th>
                                         <th scope="col">Harga Barang</th>
@@ -81,7 +81,7 @@
                                         <tr>
                                             <td style="font-weight: bold;">{{ $ctr }}</td>
                                             <td>{{ $item["nama_barang"] }}</td>
-                                            <td>Rp. {{ $item["harga_barang"] }},00</td>
+                                            <td class="price">{{ $item["harga_barang"] }}</td>
                                             <td>{{ $item["count"] }}</td>
                                         </tr>
                                         @php
@@ -99,4 +99,49 @@
         </section>
     </div>
 </div>
+<script>
+    $("#btnReport").click(function(){
+        $("#example2_filter").hide();
+        $("form").hide();
+        $(".dataTables_info").hide();
+        $(".row-header").hide();
+        $("tbody").prepend(
+            '<tr class="row-header-fake">'+
+                '<th scope="col" style="width: 2%">ID</th>'+
+                '<th scope="col">Nama Barang</th>'+
+                '<th scope="col">Harga Barang</th>'+
+                '<th scope="col">Total Terjual</th>'+
+            '</tr>'
+        );
+        window.print();
+    });
+    (function() {
+
+    var beforePrint = function() {
+    };
+
+    var afterPrint = function() {
+        $("#example2_filter").show();
+        $("form").show();
+        $(".dataTables_info").show();
+        $(".row-header").show();
+        $(".row-header-fake").remove();
+    };
+
+    if (window.matchMedia) {
+        var mediaQueryList = window.matchMedia('print');
+        mediaQueryList.addListener(function(mql) {
+            if (mql.matches) {
+                beforePrint();
+            } else {
+                afterPrint();
+            }
+        });
+    }
+
+    window.onbeforeprint = beforePrint;
+    window.onafterprint = afterPrint;
+
+    }());
+</script>
 @endsection

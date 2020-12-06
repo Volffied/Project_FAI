@@ -112,7 +112,7 @@
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.5s;
-    padding: 10% 2%;
+    padding: 10% 8%;
 }
 
 .backButton {
@@ -131,7 +131,7 @@
 }
 
 .backButton p {
-    font: 700 2em "Montserrat";
+    font: 700 1.5em "Montserrat";
     color: #261830;
     margin: 0 !important;
 }

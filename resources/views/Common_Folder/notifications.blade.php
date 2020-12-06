@@ -19,7 +19,7 @@
             <div class="list-notif">
                 <div class="backButton">
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="long-arrow-alt-left" class="svg-inline--fa fa-long-arrow-alt-left fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#261830" d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"></path></svg>
-                    <p>BACK</p>
+                    <p>BACK TO HOME</p>
                 </div>
                 @isset($notif)
                     @foreach ($notif as $item)
@@ -32,6 +32,11 @@
                                 unread
                             @endif
                         " name="{{ $item->id }}">
+                            @isset($_GET['id'])
+                                @if ($_GET['id'] == $item->id)
+                                    <input type="hidden" id="active" value="1">
+                                @endif
+                            @endisset
                             <h1>{{ $judul }}</h1>
                             <p><i>{{ $item->created_at }}</i></p>
                             <input type="hidden" name="" class="item_notif" value="{{ $item->id }}">
@@ -53,6 +58,9 @@
 
     <script>
         //function click_div(clicked_id){
+        $(document).ready(function(){
+            if($("#active").length) $("#active").parent().trigger('click');
+        });
         $(document).on('click',".notifikasi-item",function(){
             $(this).removeClass('unread');
             $('.notifikasi-item').removeClass('selected');
@@ -67,7 +75,7 @@
                         setTimeout(function(){
                             $(".details-notifikasi").removeClass('no-data');
                             $('.msg-nodata').remove();
-                        },1000);
+                        },500);
                     }
                     gsap.to(".details-notifikasi",{
                         opacity:0,
@@ -78,7 +86,7 @@
                     },500);
                     gsap.to(".details-notifikasi",{
                         opacity:1,
-                        delay:0.5,
+                        delay:1,
                         duration:0.5
                     });
                     setTimeout(function(){
@@ -104,7 +112,7 @@
             });
         });
         $(".backButton").click(function(){
-            window.history.back();
+            window.location.href = "/";
         });
     </script>
 

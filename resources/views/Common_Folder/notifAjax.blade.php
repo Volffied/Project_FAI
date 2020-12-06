@@ -1,8 +1,12 @@
 @php
-    //buat if if status masukin textnya di $status
+    $pesan = "WAITING FOR PAYMENT";
+    if($status == 1) $pesan = "WAITING FOR CONFIRMATION";
+    else if($status == 2) $pesan = "ON THE WAY";
+    else if($status == 3) $pesan = "SUCCESS";
+    else if($status == 4) $pesan = "CANCELLED";
 @endphp
 <p class="label-title"><i>Transaction Status</i></p>
-<h1 class="title status_2">{{strtoupper($status)}}</h1>
+<h1 class="title status_{{$status}}">{{$pesan}}</h1>
 <div class="container-horder">
     <table class="table table-borderless table-horder">
         <thead>
@@ -15,10 +19,14 @@
         </thead>
         <tbody>
             <tr>
-                <td scope="row">10/12/2020</td>
-                <td>10/12/2020</td>
-                <td>20 Minutes</td>
-                <td>bank_transfer</td>
+                <td scope="row">{{$datahorder->created_at}}</td>
+                @if ($datahorder->tanggal_pengiriman == null)
+                    <td><i>N/A</i></td>
+                @else
+                    <td>{{$datahorder->tanggal_pengiriman}}</td>
+                @endif
+                <td>{{$datahorder->estimasi_waktu}} Days</td>
+                <td>{{$datahorder->metode_pembayaran}}</td>
             </tr>
         </tbody>
     </table>
@@ -40,12 +48,12 @@
             </div>
         </div>
     @endforeach
-    {{-- <div class="subtotal">
+    <div class="subtotal">
         <p class="label-subtotal">Subtotal : </p>
-        <p class="harga price status_4">{{$horder->subtotal}}</p>
+        <p class="harga price status_4">{{$datahorder->subtotal}}</p>
     </div>
     <div class="grandtotal">
         <p class="label-grandtotal">Grandtotal : </p>
-        <p class="harga price status_3">{{$horder->grandtotal}}</p>
-    </div> --}}
+        <p class="harga price status_3">{{$datahorder->grandtotal}}</p>
+    </div>
 </div>

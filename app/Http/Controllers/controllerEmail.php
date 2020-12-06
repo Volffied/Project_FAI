@@ -25,7 +25,8 @@ class controllerEmail extends Controller
         $userUpdate = CustomerModel::find($id);
         $userUpdate->status = 1;
         $userUpdate->save();
-        $userBaru = CustomerModel::find($id);
+        $userBaru = new CustomerModel;
+        $userBaru = $userBaru->getProfile($id);
         session()->put('userLogin', $userBaru);
         session()->flash('berhasil', 'Test');
         return redirect("/profile");

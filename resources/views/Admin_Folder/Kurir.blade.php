@@ -52,7 +52,7 @@
                                             <th scope="col" style="width: 10%">Tanggal Transaksi</th>
                                             <th scope="col" style="width: 10%">Nama Customer</th>
                                             <th scope="col" style="width: 10%">Alamat</th>
-                                            <th scope="col" style="width: 10%">Grandtotal</th>
+                                            <th scope="col" class="price" style="width: 10%">Grandtotal</th>
                                             <th scope="col" style="width: 5%">Estimasi</th>
                                             <th scope="col" style="width: 10%">Tanggal Pengiriman</th>
                                             <th scope="col" style="width: 10%">Nama Pegawai</th>

@@ -74,7 +74,7 @@
                                                 <td><img src="{{ $item->gambar }}" alt="" style="width: 80px; height: 80px;"></td>
                                                 <td>{{ $item->nama_barang }}</td>
                                                 <td>{{ $item->nama_kat }}</td>
-                                                <td>Rp. {{ $item->harga }},00</td>
+                                                <td class="price">{{ $item->harga }}</td>
                                                 <td>{{ $item->stok }}</td>
                                             </tr>
                                             <?php

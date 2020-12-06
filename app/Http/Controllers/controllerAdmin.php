@@ -81,7 +81,7 @@ class controllerAdmin extends Controller
     {
         $horder = new HorderModel();
         $dataHorder = $horder->getDataForReport($bulan);
-        return view('Admin_Folder.laporanjual',['daftarPenjualan'=>$dataHorder]);
+        return view('Admin_Folder.laporanjual',['daftarPenjualan'=>$dataHorder,'bulan'=>$bulan]);
     }
 
     public function HalPagemLaporanBarangLaris()
