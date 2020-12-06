@@ -151,9 +151,10 @@ class midtransController extends Controller
         DorderModel::insert($datatmp);
         CartModel::where('kode_user',$dataorder["kode_customer"])->delete();
         session()->forget('dataMidtrans');
-
+        $status = HorderModel::find(count($id_Data));
+        $status = $status->status_order;
         $penerima = CustomerModel::find($dataorder["kode_customer"]);
-        $penerima->notify(new OrderNotification($datasession["order_id"]." - Your order has been placed!",count($id_Data)));
+        $penerima->notify(new OrderNotification($datasession["order_id"]." - Your order has been placed!",count($id_Data),$status));
 
         return redirect('/cart?msg=success');
     }

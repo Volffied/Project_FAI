@@ -189,8 +189,9 @@ class UserController extends Controller
                 $item->markAsRead();
             }
         }
-        $horder = HorderModel::find($horder_id);
-        return json_encode($horder);
+        $horder = new HorderModel();
+        $horder = $horder->dataNotif($horder_id);
+        return view('Common_Folder.notifAjax',['databarang'=>$horder]);
     }
 
     public function prosesRegister(Request $req)

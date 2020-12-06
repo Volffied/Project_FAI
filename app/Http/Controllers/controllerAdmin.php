@@ -528,7 +528,7 @@ class controllerAdmin extends Controller
                 $datahorder = HorderModel::where("id_horder", $idHorder)->first();
                 $id_cust = $datahorder->kode_customer;
                 $penerima = CustomerModel::find($id_cust);
-                $penerima->notify(new OrderNotification($datahorder->order_id." - Your order is on the way to you!",$idHorder));
+                $penerima->notify(new OrderNotification($datahorder->order_id." - Your order is on the way to you!",$idHorder,2));
                 return view('Admin_Folder.pengantaranHorder')->with($param);
             } else {
                 return redirect("Kurir/changeAntarHorder");
@@ -548,7 +548,7 @@ class controllerAdmin extends Controller
             $datahorder = HorderModel::where("id_horder", $idHorder)->first();
             $id_cust = $datahorder->kode_customer;
             $penerima = CustomerModel::find($id_cust);
-            $penerima->notify(new OrderNotification($datahorder->order_id." - Order Finish !",$idHorder));
+            $penerima->notify(new OrderNotification($datahorder->order_id." - Order Finish !",$idHorder,3));
             return redirect("Kurir/changeAntarHorder");
         }
     }

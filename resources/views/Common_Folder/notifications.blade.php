@@ -28,7 +28,7 @@
             <div class="list-notif">
                 @isset($notif)
                     @foreach ($notif as $item)
-                        <div class="notifikasi-item unread" name="{{ $item->id }}">
+                        <div class="notifikasi-item unread">
                             <h1>{{ $item->data["chat_isi"] }}</h1>
                             <p><i>{{ $item->created_at }}</i></p>
                             <input type="hidden" name="" class="item_notif" value="{{ $item->id }}">
@@ -76,7 +76,7 @@
                 type:"GET",
                 data:{},
                 success:function(res){
-                    console.log(res);
+
                 },
                 error:function(res){
                     alert("error :"+res);

@@ -21,6 +21,17 @@ class HorderModel extends Model
             ->get();
         return $query;
     }
+    public function dataNotif($id)
+    {
+        $query = HorderModel::select(["horder.*","dorder.total","brand.nama_brand","barang.nama_barang","barang.gambar","kategori.nama_kategori"])
+            ->join("dorder", "dorder.kode_horder", "id_horder")
+            ->join("barang", "barang.id", "dorder.kode_barang")
+            ->join("kategori", "kategori.id_kat", "barang.kode_kategori")
+            ->join("brand", "brand.id_brand", "barang.kode_brand")
+            ->where("id_horder", $id)
+            ->get();
+        return $query;
+    }
     public function countAllOrder($id)
     {
         $query = HorderModel::where("kode_customer", $id)->get();
