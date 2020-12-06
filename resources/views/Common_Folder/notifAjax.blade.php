@@ -2,7 +2,7 @@
     //buat if if status masukin textnya di $status
 @endphp
 <p class="label-title"><i>Transaction Status</i></p>
-{{-- <h1 class="title status_2">{{strtoupper($status)}}</h1> --}}
+<h1 class="title status_2">{{strtoupper($status)}}</h1>
 <div class="container-horder">
     <table class="table table-borderless table-horder">
         <thead>

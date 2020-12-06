@@ -183,15 +183,18 @@ class UserController extends Controller
         // $item = auth()->user()->Notifications->where('id',$id);
         // $item->markAsRead();
         $horder_id = 0;
+        $status = 0;
         foreach (auth()->user()->Notifications as $key => $item) {
             if($item->id == $id){
                 $horder_id = $item->data["kode_horder"];
+                $status = $item->data["status"];
                 $item->markAsRead();
             }
         }
         $horder = new HorderModel();
+        $datahorder = HorderModel::find($horder_id);
         $horder = $horder->dataNotif($horder_id);
-        return view('Common_Folder.notifAjax',['databarang'=>$horder]);
+        return view('Common_Folder.notifAjax',['databarang'=>$horder,'datahorder'=>$datahorder,'status'=>$status]);
     }
 
     public function prosesRegister(Request $req)
