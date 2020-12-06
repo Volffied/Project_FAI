@@ -121,14 +121,14 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="txtnama">Nama</label>
-                    <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="nama">
+                    <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="nama" value="{{ old('txtnama') }}">
                     @error('txtnama')
                         <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                     @enderror
                 </div>
                 <div class="form-group col-md-6">
                     <label for="txtharga">Harga</label>
-                    <input type="text" class="form-control" id="txtharga" name="txtharga" placeholder="Harga">
+                    <input type="text" class="form-control" id="txtharga" name="txtharga" placeholder="Harga" value="{{ old('txtharga') }}">
                     @error('txtharga')
                         <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                     @enderror
@@ -137,14 +137,14 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="txtstok">Stok</label>
-                    <input type="text" class="form-control" id="txtstok" name="txtstok" placeholder="stok">
+                    <input type="text" class="form-control" id="txtstok" name="txtstok" placeholder="stok" value="{{ old('txtstok') }}">
                     @error('txtstok')
                         <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                     @enderror
                 </div>
                 <div class="form-group col-md-6">
                     <label for="txtgambar">Link Gambar</label>
-                    <input type="text" class="form-control" id="txtgambar" name="txtgambar" placeholder="Gambar">
+                    <input type="text" class="form-control" id="txtgambar" name="txtgambar" placeholder="Gambar" value="{{ old('txtgambar') }}">
                     @error('txtgambar')
                         <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                     @enderror

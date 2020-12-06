@@ -17,14 +17,14 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="txtnama">Nama</label>
-            <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="Nama">
+            <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="Nama" value="{{ old('txtnama') }}">
             @error('txtnama')
                 <label class="alertmessage" style="color: red;">{{$message}}</label>
             @enderror
         </div>
         <div class="form-group col-md-6">
             <label for="txtnama">Potongan</label>
-            <input type="number" class="form-control" id="diskon" name="diskon" placeholder="Potongan">
+            <input type="number" class="form-control" id="diskon" name="diskon" placeholder="Potongan" value="{{ old('diskon') }}">
             @error('diskon')
                 <label class="alertmessage" style="color: red;">{{$message}}</label>
             @enderror
@@ -33,14 +33,14 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="tglawal">Tanggal Awal</label>
-            <input type="date" class="form-control" id="tglawal" name="tglawal" placeholder="Tanggal Awal">
+            <input type="date" class="form-control" id="tglawal" name="tglawal" placeholder="Tanggal Awal" value="{{ old('tglawal') }}">
             @error('tglawal')
                 <label class="alertmessage" style="color: red;">{{$message}}</label>
             @enderror
         </div>
         <div class="form-group col-md-6">
             <label for="txtpotongan">Tanggal Akhir</label>
-            <input type="date" class="form-control" id="tglakhir" name="tglakhir" placeholder="Tanggal Expired">
+            <input type="date" class="form-control" id="tglakhir" name="tglakhir" placeholder="Tanggal Expired" value="{{ old('tglakhir') }}">
             @error('tglakhir')
                 <label class="alertmessage" style="color: red;">{{$message}}</label>
             @enderror
@@ -49,7 +49,7 @@
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="txtnama">Kode Voucher</label>
-            <input type="text" class="form-control" id="txtvoucher" name="txtvoucher" placeholder="Kode Voucher">
+            <input type="text" class="form-control" id="txtvoucher" name="txtvoucher" placeholder="Kode Voucher" value="{{ old('txtvoucher') }}">
             @error('txtvoucher')
                 <label class="alertmessage" style="color: red;">{{$message}}</label>
             @enderror

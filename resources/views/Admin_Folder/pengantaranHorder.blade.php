@@ -27,7 +27,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="txtwaktu">Estimasi Waktu</label>
-                <input type="number" class="form-control" id="txtwaktu" name="txtwaktu" placeholder="Estimasi Waktu">
+                <input type="number" class="form-control" id="txtwaktu" name="txtwaktu" placeholder="Estimasi Waktu" value="{{ old('txtwaktu') }}">
                 @error('txtwaktu')
                 <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror

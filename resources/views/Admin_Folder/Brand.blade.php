@@ -18,14 +18,14 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="txtnama">Nama</label>
-                <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="Nama Brand">
+                <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="Nama Brand" value="{{ old('txtnama') }}">
                 @error('txtnama')
                     <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror
             </div>
             <div class="form-group col-md-6">
                 <label for="txtgambar">Gambar</label>
-                <input type="text" class="form-control" id="txtgambar" name="txtgambar" placeholder="Link Gambar">
+                <input type="text" class="form-control" id="txtgambar" name="txtgambar" placeholder="Link Gambar" value="{{ old('txtgambar') }}">
                 @error('txtgambar')
                     <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror
@@ -34,7 +34,7 @@
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="txtdesc">Deskripsi</label>
-                <textarea class="form-control" id="txtdesc" name="txtdesc" placeholder="Deskripsi Brand"></textarea>
+                <textarea class="form-control" id="txtdesc" name="txtdesc" placeholder="Deskripsi Brand" value="{{ old('txtdesc') }}"></textarea>
                 @error('txtdesc')
                     <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror

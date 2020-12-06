@@ -17,14 +17,14 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="txtnama">Nama</label>
-                <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="Nama">
+                <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="Nama" value="{{ old('txtnama') }}">
                 @error('txtnama')
                     <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror
             </div>
             <div class="form-group col-md-6">
                 <label for="txtpoin">Minimal Poin</label>
-                <input type="number" class="form-control" id="txtpoin" name="txtpoin" placeholder="Poin">
+                <input type="number" class="form-control" id="txtpoin" name="txtpoin" placeholder="Poin" value="{{ old('txtpoin') }}">
                 @error('txtpoin')
                     <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror
@@ -33,7 +33,7 @@
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="txtpotongan">Potongan</label>
-                <input type="number" class="form-control" id="txtpotongan" name="txtpotongan" placeholder="Potongan">
+                <input type="number" class="form-control" id="txtpotongan" name="txtpotongan" placeholder="Potongan" value="{{ old('txtpotongan') }}">
                 @error('txtpotongan')
                     <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror

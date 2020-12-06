@@ -17,14 +17,14 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="txtnama">Nama</label>
-                <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="Nama">
+                <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="Nama" value="{{ old('txtnama') }}">
                 @error('txtnama')
                     <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror
             </div>
             <div class="form-group col-md-6">
                 <label for="txtemail">Email</label>
-                <input type="email" class="form-control" id="txtemail" name="txtemail" placeholder="Email">
+                <input type="email" class="form-control" id="txtemail" name="txtemail" placeholder="Email" value="{{ old('txtemail') }}">
                 @error('txtemail')
                     <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror
@@ -33,14 +33,14 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="txtpass">Password</label>
-                <input type="password" class="form-control" id="txtpass" name="txtpass" placeholder="Password">
+                <input type="password" class="form-control" id="txtpass" name="txtpass" placeholder="Password" value="{{ old('txtpass') }}">
                 @error('txtpass')
                 <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror
             </div>
             <div class="form-group col-md-6">
                 <label for="txtconpass">Confirm Password</label>
-                <input type="password" class="form-control" id="txtconpass" name="txtpass_confirmation" placeholder="Confirm Password">
+                <input type="password" class="form-control" id="txtconpass" name="txtpass_confirmation" placeholder="Confirm Password" value="{{ old('txtpass_confirmation') }}">
                 @error('txtpass_confirmation')
                     <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror
@@ -49,7 +49,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="txtphone">No Telepon</label>
-                <input type="text" class="form-control" id="txtphone" name="txtphone" placeholder="nomer telepon">
+                <input type="text" class="form-control" id="txtphone" name="txtphone" placeholder="nomer telepon" value="{{ old('txtphone') }}">
                 @error('txtphone')
                     <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror

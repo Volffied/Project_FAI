@@ -18,7 +18,7 @@
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="txtnama">Nama</label>
-                <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="Nama Kategori">
+                <input type="text" class="form-control" id="txtnama" name="txtnama" placeholder="Nama Kategori" value="{{ old('txtnama') }}">
                 @error('txtnama')
                     <span class="helper-text" style="color:red; font-weight:bold"> {{$message}}</span>
                 @enderror

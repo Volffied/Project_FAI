@@ -41,11 +41,11 @@
                 <h1>LOGIN</h1>
                 <div class="form-group">
                   <label for="InputUsername">Email</label>
-                  <input type="text" class="form-control" name="email" placeholder="Input Email">
+                  <input type="text" class="form-control" name="email" placeholder="Input Email" value="{{ old('email') }}">
                 </div>
                 <div class="form-group">
                   <label for="formGroupExampleInput2">Password</label>
-                  <input type="password" class="form-control" name="password" placeholder="Input Password">
+                  <input type="password" class="form-control" name="password" placeholder="Input Password" value="{{ old('password') }}">
                 </div>
                 <div class="form-group">
                     <input class="btn btn-dark" type="submit" value="Login" name="btnLogin">
