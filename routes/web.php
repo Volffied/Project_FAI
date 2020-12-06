@@ -129,3 +129,4 @@ Route::get("/checkSessionForgot/{email}", 'UserController@checkSessionForgot');
 Route::post("updateProfile", 'UserController@updateProfile');
 Route::get("getChat/{jenis?}", 'Controller@getChat');
 Route::get("getNotifChat/{jenis?}", 'Controller@getNotifChat');
+Route::get("getNotifNav", 'UserController@ajaxNotifNav');

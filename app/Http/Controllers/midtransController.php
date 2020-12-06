@@ -155,7 +155,11 @@ class midtransController extends Controller
         $status = $status->status_order;
         $penerima = CustomerModel::find($dataorder["kode_customer"]);
         $penerima->notify(new OrderNotification($datasession["order_id"]." - Your order has been placed!",count($id_Data),$status));
-
+        $array = [];
+        foreach (auth()->user()->unreadNotifications as $key => $item) {
+            array_push($array, $item);
+        }
+        session()->put('notif', $array);
         return redirect('/cart?msg=success');
     }
     public function insertOrder(){
@@ -171,7 +175,11 @@ class midtransController extends Controller
     public function updateStatus($id,$jenis)
     {
         $horder = HorderModel::find($id);
-        if($jenis == "cancel") $horder->status_order = 4;
+        if($jenis == "cancel"){
+            $horder->status_order = 4;
+            $penerima = CustomerModel::find($horder->kode_customer);
+            $penerima->notify(new OrderNotification($horder->order_id." - Your order successfully cancelled!",$id,4));
+        }
         else if($jenis == "bayar") $horder->status_order = 1;
         $horder->save();
         return true;

@@ -13,44 +13,32 @@
     <title>Notifications | GameBox</title>
 @endsection
 
-@section('header')
-{{-- kalo udh login --}}
-    @if (session()->has('userLogin'))
-        @include('Common_Folder.navbar.nav_logged')
-    @else
-        @include('Common_Folder.navbar.nav_normal')
-    @endif
-@endsection
-
 @section('content')
     <div class="container-luarnotif">
         <div class="container-notifikasi">
             <div class="list-notif">
+                <div class="backButton">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="long-arrow-alt-left" class="svg-inline--fa fa-long-arrow-alt-left fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#261830" d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"></path></svg>
+                    <p>BACK</p>
+                </div>
                 @isset($notif)
                     @foreach ($notif as $item)
-                        <div class="notifikasi-item unread">
-                            <h1>{{ $item->data["chat_isi"] }}</h1>
+                        @php
+                            $judul = $item->data["chat_isi"];
+                            $judul = substr($judul,strpos($judul,'-')+2);
+                        @endphp
+                        <div class="notifikasi-item
+                            @if ($item->read_at == null)
+                                unread
+                            @endif
+                        " name="{{ $item->id }}">
+                            <h1>{{ $judul }}</h1>
                             <p><i>{{ $item->created_at }}</i></p>
                             <input type="hidden" name="" class="item_notif" value="{{ $item->id }}">
                         </div>
+                        <div class="divider"></div>
                     @endforeach
                 @endisset
-                <div class="divider"></div>
-                <div class="notifikasi-item">
-                    <h1>Judul Notifikasi</h1>
-                    <p><i>Tanggal</i></p>
-                </div>
-                <div class="divider"></div>
-                <div class="notifikasi-item">
-                    <h1>Judul Notifikasi</h1>
-                    <p><i>Tanggal</i></p>
-                </div>
-                <div class="divider"></div>
-                <div class="notifikasi-item">
-                    <h1>Judul Notifikasi</h1>
-                    <p><i>Tanggal</i></p>
-                </div>
-                <div class="divider"></div>
             </div>
             <div class="wrapper-notifikasi">
                 <div class="details-notifikasi no-data">
@@ -64,7 +52,6 @@
 @push('script')
 
     <script>
-        reformatPrice();
         //function click_div(clicked_id){
         $(document).on('click',".notifikasi-item",function(){
             $(this).removeClass('unread');
@@ -91,13 +78,33 @@
                     },500);
                     gsap.to(".details-notifikasi",{
                         opacity:1,
+                        delay:0.5,
                         duration:0.5
                     });
+                    setTimeout(function(){
+                        lazyLoading();
+                        reformatPrice();
+                    },500);
                 },
                 error:function(res){
                     console.log("error :"+res);
                 }
             });
+        });
+        $(".backButton").mouseenter(function(){
+            gsap.to('.backButton svg',{
+                width:'2em',
+                duration:0.5
+            });
+        });
+        $(".backButton").mouseleave(function(){
+            gsap.to('.backButton svg',{
+                width:'0',
+                duration:0.5
+            });
+        });
+        $(".backButton").click(function(){
+            window.history.back();
         });
     </script>
 

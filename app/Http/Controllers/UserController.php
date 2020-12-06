@@ -29,6 +29,11 @@ class UserController extends Controller
 
     public function HalAwal()
     {
+        $array = [];
+        foreach (auth()->user()->unreadNotifications as $key => $item) {
+            array_push($array, $item);
+        }
+        session()->put('notif', $array);
         $barang = new BarangModel();
         $brand = new BrandModel();
         $chat = new HchatModel();
@@ -64,6 +69,11 @@ class UserController extends Controller
 
     public function Brand($nama)
     {
+        $array = [];
+        foreach (auth()->user()->unreadNotifications as $key => $item) {
+            array_push($array, $item);
+        }
+        session()->put('notif', $array);
         $brand = new BrandModel();
         $barang = new BarangModel();
         $brand = $brand->where('nama_brand', $nama)->first();
@@ -92,6 +102,11 @@ class UserController extends Controller
 
     public function Product($nama)
     {
+        $array = [];
+        foreach (auth()->user()->unreadNotifications as $key => $item) {
+            array_push($array, $item);
+        }
+        session()->put('notif', $array);
         $nama = str_replace('-', ' ', $nama);
         $barang = new BarangModel();
         $barang = $barang->getAllDataByColumn('barang.nama_barang', $nama)->first();
@@ -104,6 +119,11 @@ class UserController extends Controller
 
     public function Search(Request $request)
     {
+        $array = [];
+        foreach (auth()->user()->unreadNotifications as $key => $item) {
+            array_push($array, $item);
+        }
+        session()->put('notif', $array);
         $barang = new BarangModel;
         $barang['barang'] = $barang->getAllDataBarangPaginateArray(48, $request->all());
         $barang['kategori'] = KategoriModel::all();
@@ -113,6 +133,11 @@ class UserController extends Controller
 
     public function Profile()
     {
+        $array = [];
+        foreach (auth()->user()->unreadNotifications as $key => $item) {
+            array_push($array, $item);
+        }
+        session()->put('notif', $array);
         $kode_member = session()->get('userLogin')->kode_member;
         $datalogin = session()->get('userLogin')->id;
         //$user = CustomerModel::find($datalogin);

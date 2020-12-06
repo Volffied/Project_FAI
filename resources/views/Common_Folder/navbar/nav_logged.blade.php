@@ -60,15 +60,6 @@
                 </div>
                 @endforeach
             @endisset
-            {{-- <div class="notif-item">
-                <p class="notif-title">Order placed successfully</p>
-            </div>
-            <div class="notif-item">
-                <p class="notif-title">You got a message</p>
-            </div>
-            <div class="notif-item">
-                <p class="notif-title">You got a message</p>
-            </div> --}}
             <div class="notif-item">
                 <a href="notifications" class="notif-title">See all Notifications</a>
             </div>
