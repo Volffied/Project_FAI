@@ -31,7 +31,7 @@
                         <div class="notifikasi-item unread" name="{{ $item->id }}">
                             <h1>{{ $item->data["chat_isi"] }}</h1>
                             <p><i>{{ $item->created_at }}</i></p>
-                            <input type="text" name="" id="item_notif" value="{{ $item->id }}">
+                            <input type="hidden" name="" class="item_notif" value="{{ $item->id }}">
                         </div>
                     @endforeach
                 @endisset
@@ -70,8 +70,7 @@
             $(this).removeClass('unread');
             $('.notifikasi-item').removeClass('selected');
             $(this).addClass('selected');
-            var id = $("#item_notif").val();
-            alert(id);
+            var id = $(this).children('.item_notif').val();
             $.ajax({
                 url:"/notif/"+id,
                 type:"GET",
@@ -83,6 +82,7 @@
                     alert("error :"+res);
                 }
             });
+
             //isi ajax
             // gsap.to(".details-notifikasi",{
             //     opacity:0,
