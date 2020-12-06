@@ -569,7 +569,7 @@
                 data:{},
                 success:function(){
                     $('#'+id).parent().siblings('.status').html('Cancelled');
-                    $('#'+id).parent().siblings('.status').attr('class','status status_-1');
+                    $('#'+id).parent().siblings('.status').attr('class','status status_4');
                     $('#'+id).prop('disabled',true);
                     $('#'+id).attr('class','disabled');
                 }
