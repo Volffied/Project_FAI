@@ -76,31 +76,28 @@
                 type:"GET",
                 data:{},
                 success:function(res){
-
+                    if($('.details-notifikasi').hasClass('no-data')){
+                        setTimeout(function(){
+                            $(".details-notifikasi").removeClass('no-data');
+                            $('.msg-nodata').remove();
+                        },1000);
+                    }
+                    gsap.to(".details-notifikasi",{
+                        opacity:0,
+                        duration:0.5
+                    });
+                    setTimeout(function(){
+                        $(".details-notifikasi").html(res);
+                    },500);
+                    gsap.to(".details-notifikasi",{
+                        opacity:1,
+                        duration:0.5
+                    });
                 },
                 error:function(res){
-                    alert("error :"+res);
+                    console.log("error :"+res);
                 }
             });
-
-            //isi ajax
-            // gsap.to(".details-notifikasi",{
-            //     opacity:0,
-            //     duration:0.5
-            // });
-            // setTimeout(function(){
-            //     $(".details-notifikasi").html(response);
-            // },500);
-            // gsap.to(".details-notifikasi",{
-            //     opacity:1,
-            //     duration:0.5
-            // });
-            // if($('.details-notifikasi').hasClass('no-data')){
-            //     setTimeout(function(){
-            //         $(".details-notifikasi").removeClass('no-data');
-            //         $('.msg-nodata').remove();
-            //     },1000);
-            // }
         });
     </script>
 
