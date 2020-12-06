@@ -242,7 +242,7 @@ class controllerAdmin extends Controller
                 $interval = $datetime1->diff($datetime2);
                 $days = $interval->format('%a');
                 if ($datetime1 < $datetime2) {
-                    $updatePromo = PromoModel::find($idPromo);
+                    $updatePromo = PromoModel::withTrashed()->find($idPromo);
                     $updatePromo->nama             = $namaPromo;
                     $updatePromo->tanggal_awal     = $dateAw;
                     $updatePromo->tanggal_akhir    = $dateAk;
@@ -299,7 +299,7 @@ class controllerAdmin extends Controller
             $namaJenis = $request->txtnama;
             $poinMinJenis = $request->txtpoin;
             $potonganJenis = $request->txtpotongan;
-            $updateMember = JenisMemberModel::find($idjenmember);
+            $updateMember = JenisMemberModel::withTrashed()->find($idjenmember);
             $updateMember->nama             = $namaJenis;
             $updateMember->minimal_poin     = $poinMinJenis;
             $updateMember->potongan         = $potonganJenis;
@@ -361,7 +361,7 @@ class controllerAdmin extends Controller
             $stokbarang = $request->txtstok;
             $kategoriBarang = $request->cbpilihkategori;
             $kode_brand = $request->cbpilihbrand;
-            $updateBarang = BarangModel::find($idbarang);
+            $updateBarang = BarangModel::withTrashed()->find($idbarang);
             $updateBarang->nama_barang      = $namabarang;
             $updateBarang->harga            = $hargabarang;
             $updateBarang->stok             = $stokbarang;
@@ -464,7 +464,7 @@ class controllerAdmin extends Controller
             $this->validate($request, $rules, $customError);
             $namaKat = $request->txtnama;
             $idKategori = $request->id_kategori;
-            $updateKategori = KategoriModel::find($idKategori);
+            $updateKategori = KategoriModel::withTrashed()->find($idKategori);
             $updateKategori->nama_kategori = $namaKat;
             $updateKategori->save();
             return back();
@@ -585,7 +585,7 @@ class controllerAdmin extends Controller
             ];
             $this->validate($request, $rules, $customError);
             $idbrand = $request->id_brand;
-            $updateBrand = BrandModel::find($idbrand);
+            $updateBrand = BrandModel::withTrashed()->find($idbrand);
             $updateBrand->nama_brand        = $request->txtnama;
             $updateBrand->gambar            = $request->txtgambar;
             $updateBrand->desc              = $request->txtdesc;
