@@ -26,20 +26,15 @@
     <div class="container-luarnotif">
         <div class="container-notifikasi">
             <div class="list-notif">
-                <div class="notifikasi-item unread">
-                    <h1>Judul Notifikasi</h1>
-                    <p><i>Tanggal</i></p>
-                </div>
-                <div class="divider"></div>
-                <div class="notifikasi-item unread">
-                    <h1>Judul Notifikasi</h1>
-                    <p><i>Tanggal</i></p>
-                </div>
-                <div class="divider"></div>
-                <div class="notifikasi-item unread">
-                    <h1>Judul Notifikasi</h1>
-                    <p><i>Tanggal</i></p>
-                </div>
+                @isset($notif)
+                    @foreach ($notif as $item)
+                        <div class="notifikasi-item unread" name="{{ $item->id }}">
+                            <h1>{{ $item->data["chat_isi"] }}</h1>
+                            <p><i>{{ $item->created_at }}</i></p>
+                            <input type="text" name="" id="item_notif" value="{{ $item->id }}">
+                        </div>
+                    @endforeach
+                @endisset
                 <div class="divider"></div>
                 <div class="notifikasi-item">
                     <h1>Judul Notifikasi</h1>
@@ -70,10 +65,24 @@
 
     <script>
         reformatPrice();
+        //function click_div(clicked_id){
         $(document).on('click',".notifikasi-item",function(){
             $(this).removeClass('unread');
             $('.notifikasi-item').removeClass('selected');
             $(this).addClass('selected');
+            var id = $("#item_notif").val();
+            alert(id);
+            $.ajax({
+                url:"/notif/"+id,
+                type:"GET",
+                data:{},
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(res){
+                    alert("error :"+res);
+                }
+            });
             //isi ajax
             // gsap.to(".details-notifikasi",{
             //     opacity:0,

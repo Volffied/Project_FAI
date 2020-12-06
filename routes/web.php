@@ -107,9 +107,8 @@ Route::get('/404', function () {
     return view('error404');
 });
 
-Route::get('/notifications', function () {
-    return view('Common_Folder.notifications');
-});
+Route::get('/notifications', 'UserController@notifications');
+Route::get('/notif/{id}', 'UserController@notif');
 
 Route::get('/forgotPassword', function () {
     return view('forgotPassword');

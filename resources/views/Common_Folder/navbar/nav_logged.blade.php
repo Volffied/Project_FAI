@@ -70,7 +70,7 @@
                 <p class="notif-title">You got a message</p>
             </div> --}}
             <div class="notif-item">
-                <a class="notif-title">See all Notifications</a>
+                <a href="notifications" class="notif-title">See all Notifications</a>
             </div>
         </div>
     </div>

@@ -173,6 +173,26 @@ class UserController extends Controller
             }
         }
     }
+    public function notifications(Request $request){
+
+        //dd(auth()->user()->Notifications);
+        $param['notif']=auth()->user()->Notifications;
+        return view('Common_Folder.notifications')->with($param);
+    }
+    public function notif($id){
+        // $item = auth()->user()->Notifications->where('id',$id);
+        // $item->markAsRead();
+        $horder_id = 0;
+        foreach (auth()->user()->Notifications as $key => $item) {
+            if($item->id == $id){
+                $horder_id = $item->data["kode_horder"];
+                $item->markAsRead();
+            }
+        }
+        $horder = HorderModel::find($horder_id);
+        return json_encode($horder);
+    }
+
     public function prosesRegister(Request $req)
     {
         $rules = [
