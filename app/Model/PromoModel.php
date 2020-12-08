@@ -4,6 +4,8 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 
 class PromoModel extends Model
 {
@@ -37,6 +39,18 @@ class PromoModel extends Model
         $query = PromoModel::where('nama',$jenisMember)
                             ->first();
         return $query;
+    }
+
+    public function updatePromo()
+    {
+        $query = PromoModel::all();
+        foreach ($query as $key => $value) {
+            $range = CarbonPeriod::create($value->tanggal_awal,$value->tanggal_akhir);
+            if(!$range->contains(Carbon::now())){
+                $value->delete();
+            }
+        }
+        $query->save();
     }
 
 

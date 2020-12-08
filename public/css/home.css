@@ -356,16 +356,41 @@ span a:hover {
 }
 
 .col-promo {
+    background-color: #160d1c;
+    margin: 1%;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
-    padding: 1%;
+    justify-content: center;
+    align-items: center;
 }
 
 .col-promo h1 {
-    font: 700 1.5em "Montserrat";
-    margin: 0;
+    font: 800 1.5em "Montserrat";
+    margin: 0 !important;
 }
 
 .col-promo .desc {
-    font: 500 1.2em "Source Sans Pro";
+    font: 600 1.2em "Source Sans Pro";
+    margin: 0 !important;
+}
+
+.col-promo .code {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2% 0;
+}
+
+.col-promo .line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: #ff151b;
+    margin: 0 3%;
+}
+
+.col-promo .expired {
+    font: 500 1em "Source Sans Pro";
+    margin: 0 !important;
 }

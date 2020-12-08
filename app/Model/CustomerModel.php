@@ -35,22 +35,6 @@ class CustomerModel extends Authenticatable
         $data->notlp            = $notlp;
         $data->save();
     }
-    public function checkLogin($email,$pass){
-        // $query = CustomerModel::where("email",$email)->where("password",$pass)->get();
-        // return $query;
-        $dataUser = [
-            'email' => $email,
-            'password' => $pass,
-        ];
-
-        if (Auth::guard('web')->attempt($dataUser)){
-            $user = new CustomerModel;
-            $user = $user->getUser($dataUser['email']);
-            session()->put('userLogin', $user);
-            session()->put('authUser', Auth::user());
-            Auth::login(Auth::user());
-        }
-    }
 
     public function getUser($email)
     {
@@ -75,5 +59,10 @@ class CustomerModel extends Authenticatable
 
     public function routeNotificationForEmail(){
         return $this->email;
+    }
+
+    public function Member()
+    {
+        return $this->hasOne(JenisMemberModel::class,'id_member','kode_member');
     }
 }

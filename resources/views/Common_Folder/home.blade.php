@@ -53,13 +53,13 @@
               <div class="carousel-item" style="height: 100%">
                 <div class="banner2">
                     <img class="banner-img" src="{{asset('images/banner2.jpg')}}" alt="image">
-                    <div class="cta-home"><p>SHOP NOW</p><svg aria-hidden="true" focusable="false" width="20" data-prefix="fas" data-icon="arrow-right" class="svg-arrow svg-inline--fa fa-arrow-right fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#fff" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg></div>
+                    <div class="cta-home steelseries"><p>SHOP NOW</p><svg aria-hidden="true" focusable="false" width="20" data-prefix="fas" data-icon="arrow-right" class="svg-arrow svg-inline--fa fa-arrow-right fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#fff" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg></div>
                 </div>
               </div>
               <div class="carousel-item" style="height: 100%">
                 <div class="banner">
                     <img class="banner-img" src="{{asset('images/banner3.jpg')}}" alt="image">
-                    <div class="cta-home"><p>SHOP NOW</p><svg aria-hidden="true" focusable="false" width="20" data-prefix="fas" data-icon="arrow-right" class="svg-arrow svg-inline--fa fa-arrow-right fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#fff" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg></div>
+                    <div class="cta-home intel-core"><p>SHOP NOW</p><svg aria-hidden="true" focusable="false" width="20" data-prefix="fas" data-icon="arrow-right" class="svg-arrow svg-inline--fa fa-arrow-right fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#fff" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg></div>
                 </div>
               </div>
             </div>
@@ -81,20 +81,54 @@
             {{-- Carousel Promo --}}
             <div id="carousel-1" class="carousel slide" data-interval="false" data-ride="carousel" style="height: 100%">
                 <div class="carousel-inner" style="height: 100%">
-                  <div class="carousel-item active" style="height: 100%; flex-direction:column; align-items:center;">
-                    <style>
-                        .col-promo{
-                            background-color: #ff151d91;
-                            margin: 1%;
-                        }
-                    </style>
+                    @php
+                        $count = count($data['promo']);
+                        $ctr = 0;
+                    @endphp
+                    @for ($i = 0; $ctr < $count; $i++)
+                        @if ($i==0)
+                            <div class="carousel-item active" style="height: 100%; flex-direction:column; align-items:center;">
+                        @else
+                            <div class="carousel-item" style="height: 100%">
+                        @endif
+
+                        @for ($j = 0; $j < 2 && $ctr < $count; $j++)
+                            <div class="row" style="width: 100%; height:50%;">
+                                @for ($k = $ctr; $k < $ctr+2 && $ctr < $count && $k < $count; $k++)
+                                    <div class="col col-promo">
+                                        <div class="col col-promo">
+                                            <h1>{{$data['promo'][$k]->nama}}</h1>
+                                            <div class="code">
+                                                <div class="line"></div>
+                                                <p class="desc">{{$data['promo'][$k]->voucher}}</p>
+                                                <div class="line"></div>
+                                            </div>
+                                            <p class="expired"><i>Until {{date('d/m/Y',strtotime($data['promo'][$k]->created_at))}}</i></p>
+                                        </div>
+                                    </div>
+                                    @if ($k == $count - 1 && $k%2 == 0)
+                                        <div class="col col-promo"></div>
+                                    @endif
+                                @endfor
+
+                                @php
+                                    $ctr+=2;
+                                @endphp
+                            </div>
+                        @endfor
+                        </div>
+                    @endfor
+                  {{-- <div class="carousel-item active" style="height: 100%; flex-direction:column; align-items:center;">
                     <div class="row" style="width: 100%; height:50%;">
                         <div class="col col-promo">
-                            <h1 class="test">Nama Promo</h1>
-                            <p class="desc">Ini adalah deskripsi dari promo</p>
+                            <h1>Christmas Discount</h1>
+                            <div class="code">
+                                <div class="line"></div>
+                                <p class="desc">NYXMAS</p>
+                                <div class="line"></div>
+                            </div>
+                            <p class="expired"><i>Until 01/01/2021</i></p>
                         </div>
-                        <div class="col col-promo"></div>
-                        <div class="col col-promo"></div>
                     </div>
                     <div class="row" style="width: 100%; height:50%;">
                         <div class="col col-promo"></div>
@@ -107,7 +141,7 @@
                   </div>
                   <div class="carousel-item" style="height: 100%">
 
-                  </div>
+                  </div> --}}
                 </div>
                 <a class="carousel-control-prev" style="width:5%;height: 5%; top:47.5%; left:-5%" href="#carousel-1" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
@@ -272,6 +306,12 @@
             var nama = $(this).children('input').val();
             nama = nama.toLowerCase();
             window.location.href = "/brand/"+nama;
+        });
+        $(".cta-home").click(function(){
+            if($(this).hasClass('steelseries'))
+            window.location.href = "/search?brand=STEELSERIES";
+            else if($(this).hasClass('intel-core'))
+            window.location.href = "/product/core%E2%84%A2-i9-10980xe-extreme-edition-processor";
         });
     </script>
 @endpush

@@ -17,9 +17,12 @@ use App\Model\PromoModel;
 use App\Model\UserModel;
 use App\Rules\PasswordCheckerRule;
 use App\Notifications\OrderNotification;
+use App\Rules\EmailChecker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
@@ -29,36 +32,29 @@ class UserController extends Controller
 
     public function HalAwal()
     {
-        $array = [];
-        foreach (auth()->user()->unreadNotifications as $key => $item) {
-            array_push($array, $item);
+        if(Auth::check()){
+            $array = [];
+            foreach (auth()->user()->unreadNotifications as $key => $item) {
+                array_push($array, $item);
+            }
+            session()->put('notif', $array);
         }
-        session()->put('notif', $array);
         $barang = new BarangModel();
         $brand = new BrandModel();
         $chat = new HchatModel();
-        $user = new CustomerModel();
+        $promo = PromoModel::where('tanggal_akhir','>',Carbon::now())->get();
         $param['barang'] = $barang->getAllDataBarangPaginate(16, 'barang.deleted_at', null);
         $param['brand'] = $brand->getAllDataBrandWithCount();
-        if (session()->has('userLogin')) {
-            $param['chat'] = $chat->getDataMessage(session()->get('userLogin')->id);
+        $param['promo'] = $promo;
+        if (Auth::check()) {
+            $param['chat'] = $chat->getDataMessage(Auth::user()->id);
         }
-        // dd($param['brand']);
-        //dd(auth()->user()->unreadNotifications);
-
-        //foreach (auth()->user()->unreadNotifications as $key => $item) {
-        //session()->put('notif',$item->data["chat_isi"]);
-        //$item->markAsRead(); //biar notifnya jdi read
-        //dd($item->data["chat_isi"]);
-        //}
         return view('Common_Folder.home', ['data' => $param]);
     }
 
     public function Login()
     {
-        session()->forget('userLogin');
-        session()->forget('authUser');
-        session()->forget('notif');
+        Auth::logout();
         return view('Common_Folder.login');
     }
 
@@ -69,11 +65,13 @@ class UserController extends Controller
 
     public function Brand($nama)
     {
-        $array = [];
-        foreach (auth()->user()->unreadNotifications as $key => $item) {
-            array_push($array, $item);
+        if(Auth::check()){
+            $array = [];
+            foreach (auth()->user()->unreadNotifications as $key => $item) {
+                array_push($array, $item);
+            }
+            session()->put('notif', $array);
         }
-        session()->put('notif', $array);
         $brand = new BrandModel();
         $barang = new BarangModel();
         $brand = $brand->where('nama_brand', $nama)->first();
@@ -86,27 +84,29 @@ class UserController extends Controller
         // $barang = new BarangModel();
         // $barang = $barang->getAllDataByAmount(5);
         $potonganMember = new JenisMemberModel;
-        $potonganMember = $potonganMember->getPotonganByID(session()->get('userLogin')->kode_member);
+        $potonganMember = $potonganMember->getPotonganByID(Auth::user()->kode_member);
         $param["potongan"] = $potonganMember->potongan;
         $allCart = new CartModel;
-        $param["history"] = HorderModel::where("kode_customer", session()->get('userLogin')->id)->orderBy('status_order', 'asc')->orderBy('id_horder', 'desc')->get();
+        $param["history"] = HorderModel::where("kode_customer", Auth::user()->id)->orderBy('status_order', 'asc')->orderBy('id_horder', 'desc')->get();
         // foreach ($datahistory as $key => $value) {
         //    foreach ($value->history as $key2 => $data) {
         //         //dd($data);// buat dpet barang
         //         //dd($data->dorder);// buat dpet dorder
         //    }
         // }
-        $param["barang"] = $allCart->getAllCart(session()->get('userLogin')->id);
+        $param["barang"] = $allCart->getAllCart(Auth::user()->id);
         return view('Common_Folder.cart')->with($param);
     }
 
     public function Product($nama)
     {
-        $array = [];
-        foreach (auth()->user()->unreadNotifications as $key => $item) {
-            array_push($array, $item);
+        if(Auth::check()){
+            $array = [];
+            foreach (auth()->user()->unreadNotifications as $key => $item) {
+                array_push($array, $item);
+            }
+            session()->put('notif', $array);
         }
-        session()->put('notif', $array);
         $nama = str_replace('-', ' ', $nama);
         $barang = new BarangModel();
         $barang = $barang->getAllDataByColumn('barang.nama_barang', $nama)->first();
@@ -119,11 +119,13 @@ class UserController extends Controller
 
     public function Search(Request $request)
     {
-        $array = [];
-        foreach (auth()->user()->unreadNotifications as $key => $item) {
-            array_push($array, $item);
+        if(Auth::check()){
+            $array = [];
+            foreach (auth()->user()->unreadNotifications as $key => $item) {
+                array_push($array, $item);
+            }
+            session()->put('notif', $array);
         }
-        session()->put('notif', $array);
         $barang = new BarangModel;
         $barang['barang'] = $barang->getAllDataBarangPaginateArray(48, $request->all());
         $barang['kategori'] = KategoriModel::all();
@@ -133,26 +135,28 @@ class UserController extends Controller
 
     public function Profile()
     {
-        $array = [];
-        foreach (auth()->user()->unreadNotifications as $key => $item) {
-            array_push($array, $item);
+        if(Auth::check()){
+            $array = [];
+            foreach (auth()->user()->unreadNotifications as $key => $item) {
+                array_push($array, $item);
+            }
+            session()->put('notif', $array);
         }
-        session()->put('notif', $array);
-        $kode_member = session()->get('userLogin')->kode_member;
-        $datalogin = session()->get('userLogin')->id;
+        $kode_member = Auth::user()->kode_member;
+        $datalogin = Auth::user()->id;
         //$user = CustomerModel::find($datalogin);
         $user = new CustomerModel();
         $horder = new HorderModel();
         $allhorder = $horder->countAllOrder($datalogin);
         $allcancelhorder = $horder->countAllCancelOrder($datalogin);
-        $allsuccesshorder = HorderModel::where('kode_customer', session()->get('userLogin')->id)->where('status_order', 3)->get();
+        $allsuccesshorder = HorderModel::where('kode_customer', Auth::user()->id)->where('status_order', 3)->get();
         $countsuccess = count($allsuccesshorder);
         $counthorder = count($allhorder);
         $countfailed = count($allcancelhorder);
         $param["counthorder"] = $counthorder;
         $param["countfailed"] = $countfailed;
         $param["countsuccess"] = $countsuccess;
-        $param["user"] = $user->getProfile($datalogin);
+        $param["user"] = Auth::user();
         if ($kode_member != 5) $param["nextMember"] = JenisMemberModel::find($kode_member + 1);
         else $param["nextMember"] = JenisMemberModel::find(5);
         $param["myMember"] = JenisMemberModel::find($kode_member);
@@ -161,7 +165,7 @@ class UserController extends Controller
 
     public function editProfile()
     {
-        $customer = CustomerModel::find(session()->get('userLogin')->id);
+        $customer = CustomerModel::find(Auth::user()->id);
         return view('Common_Folder.editProfile', ['customer' => $customer]);
     }
 
@@ -170,32 +174,36 @@ class UserController extends Controller
     public function prosesLogin(Request $request)
     {
         $rules = [
-            'email' => ['required', 'email:rfc,dns', 'exists:customer'],
+            'email' => ['required', 'email:rfc,dns', new EmailChecker],
             'password' => ['required', new PasswordCheckerRule($request->email)]
         ];
 
         $customError = [
             'email.required' => 'Email is still empty',
-            'email.exists'      => "Email doesn't exists",
             'password.required' => 'Password is still empty',
         ];
-        if ($request->validate($rules, $customError)) {
-            $email = $request->email;
-            $pass  = $request->password;
-            $user  = new CustomerModel();
-            $user->checkLogin($email, $pass);
-            if (session()->has('userLogin')) {
-                $array = [];
-                foreach (auth()->user()->unreadNotifications as $key => $item) {
-                    array_push($array, $item);
-                    //$item->markAsRead(); //biar notifnya jdi read
-                    //dd($item->data["chat_isi"]);
-                }
-                session()->put('notif', $array);
-                return redirect("/");
-            } else {
-                return redirect("/login");
+        $this->validate($request,$rules,$customError);
+        $email = $request->email;
+        $pass  = $request->password;
+        $user  = new CustomerModel();
+        $user->checkLogin($email, $pass);
+        $credentials = [
+            'email' => $email,
+            'password' => $pass,
+        ];
+
+        if (Auth::guard('web')->attempt($credentials)){
+            $array = [];
+            foreach (auth()->user()->unreadNotifications as $key => $item) {
+                array_push($array, $item);
+                //$item->markAsRead(); //biar notifnya jdi read
+                //dd($item->data["chat_isi"]);
             }
+            session()->put('notif', $array);
+            return redirect('/');
+        }
+        else {
+            return redirect("/login");
         }
     }
     public function notifications(Request $request){
@@ -286,7 +294,7 @@ class UserController extends Controller
             "oldPass.different"      => "New Password is still the same as old password"
         ];
         $request->validate($rules, $message);
-        $customer = CustomerModel::find(session()->get('userLogin')->id);
+        $customer = Auth::user();
         $customer->nama = $request->nama;
         $customer->alamat = $request->alamat;
         $customer->notlp = $request->notlp;
@@ -297,7 +305,6 @@ class UserController extends Controller
         }
         if ($request->oldPass != "") $customer->password = Hash::make($request->newPass);
         $customer->save();
-        session()->put('userLogin', $customer);
         return back();
     }
 
@@ -315,7 +322,7 @@ class UserController extends Controller
 
     public function addToCart($id, $qty)
     {
-        $id_user = session()->get("userLogin")->id;
+        $id_user = Auth::user()->id;
         $response = [];
         if ($id != -1) {
             $databarang = new BarangModel;

@@ -4,18 +4,17 @@ namespace App\Rules;
 
 use App\Model\CustomerModel;
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Facades\Hash;
 
-class PasswordCheckerRule implements Rule
+class EmailChecker implements Rule
 {
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($email = null)
+    public function __construct()
     {
-        $this->email = $email;
+        //
     }
 
     /**
@@ -27,10 +26,12 @@ class PasswordCheckerRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        if(session()->has('userLogin'))
-            $cust = CustomerModel::find(session()->get('userLogin')->id);
-        else $cust = CustomerModel::where('email',$this->email)->first();
-        if($cust != null) if(Hash::check($value,$cust->password)) return true;
+        $customer = CustomerModel::all();
+        foreach ($customer as $key => $item) {
+            if($item->email == $value){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -41,6 +42,6 @@ class PasswordCheckerRule implements Rule
      */
     public function message()
     {
-        return 'Wrong Password';
+        return "Email doesn't exist.";
     }
 }

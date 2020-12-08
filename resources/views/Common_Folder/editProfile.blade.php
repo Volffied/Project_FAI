@@ -20,10 +20,10 @@
             <form action="/updateProfile" method="post" class="form-profile" enctype="multipart/form-data">
                 @csrf
                 <div class="profile-img">
-                    @if (session()->get('userLogin')->gambar != null)
-                        <img src="{{asset('storage/images/'.session()->get('userLogin')->gambar)}}" alt="IMG">
+                    @if (Auth::user()->gambar != null)
+                        <img src="{{asset('storage/images/'.Auth::user()->gambar)}}" alt="IMG">
                     @else
-                        <img src="{{{asset('images/Member/'.session()->get('userLogin')->nama_member.'.svg')}}}" alt="IMG">
+                        <img src="{{{asset('images/Member/'.Auth::user()->Member->nama.'.svg')}}}" alt="IMG">
                     @endif
                 </div>
                 <p><i>250 x 250</i></p>
