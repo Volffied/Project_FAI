@@ -183,11 +183,7 @@ class midtransController extends Controller
         else if($jenis == "bayar"){
             $horder->status_order = 1;
             $poin = auth()->user()->poin;
-            $member = JenisMemberModel::find(auth()->user()->kode_member+1);
             CustomerModel::find(auth()->user()->id)->update(['poin'=>$poin+$horder->grandtotal*0.0005/100]);
-            if($member != null && auth()->user()->poin >= $member->minimal_poin){
-                CustomerModel::find(auth()->user()->id)->update(['kode_member'=>$member->id_member]);
-            }
         }
         $horder->save();
         return true;

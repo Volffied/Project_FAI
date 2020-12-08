@@ -72,6 +72,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="container-filter-items">
+                    <a style="color: #fff;">Price Range</a>
+                    <input type="text" name="harga-min" id="harga-min" placeholder="Minimum Price" style="margin: 5% 0;" value="{{isset($_GET['min']) ? $_GET['min'] : ''}}">
+                    <p style="width:100%; text-align:center;">to</p>
+                    <input type="text" name="harga-max" id="harga-max" placeholder="Maximum Price" style="margin-bottom: 5%;" value="{{isset($_GET['max']) ? $_GET['max'] : ''}}">
+                </div>
             </div>
         </div>
         <div class="container-items">
@@ -122,6 +128,20 @@
 
     <script>
         reformatPrice();
+        $(document).ready(function(){
+            var min =$('#harga-min').val();
+            min = formatRupiah(min,'Rp. ');
+            var max =$('#harga-max').val();
+            max = formatRupiah(max,'Rp. ');
+            $("#harga-min").val(min);
+            $("#harga-max").val(max);
+            $("#harga-max").inputFilter(function(value) {
+                return /^\d*$/.test(value);
+            });
+            $("#harga-min").inputFilter(function(value) {
+                return /^\d*$/.test(value);
+            });
+        });
         function addOrUpdateUrlParam(name, value=null)
         {
             if(value != null){
@@ -171,6 +191,19 @@
                 addOrUpdateUrlParam(value['0']);
             }else{
                 addOrUpdateUrlParam(value[0],value[1]);
+            }
+        });
+        $("input").blur(function(){
+            if($(this).val() != ''){
+                if($(this).attr('id') == "harga-min")
+                    addOrUpdateUrlParam('min',$(this).val());
+                else if($(this).attr('id') == "harga-max")
+                    addOrUpdateUrlParam('max',$(this).val());
+            }else{
+                if($(this).attr('id') == "harga-min")
+                    addOrUpdateUrlParam('min');
+                else if($(this).attr('id') == "harga-max")
+                    addOrUpdateUrlParam('max');
             }
         });
     </script>

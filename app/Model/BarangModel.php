@@ -52,12 +52,16 @@ class BarangModel extends Model
         $value = "";
         foreach ($array as $key => $value) {
             $column_value = '%'.$value.'%';
-            if($key != 'page' && $key != 'barang'){
+            if($key != 'page' && $key != 'barang' && $key != 'min' && $key != 'max'){
                 $result = $result->where('nama_'.$key,'like',$column_value);
                 $ctr++;
             }if($key == 'barang'){
                 $value = $column_value;
                 $barang = true;
+            }if($key == 'min'){
+                $result = $result->where('harga','>=',$value);
+            }if($key == 'max'){
+                $result = $result->where('harga','<=',$value);
             }
         }
         if($barang){

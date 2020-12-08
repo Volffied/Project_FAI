@@ -11,6 +11,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 
 class Controller extends BaseController
 {
@@ -19,8 +20,8 @@ class Controller extends BaseController
     public function checkChat(Request $req){
         $pesan  = $req->pesan;
         if($req->jenis == 0){
-            $sender = session()->get('userLogin')->nama;
-            $id_cust = session()->get('userLogin')->id;
+            $sender = Auth::user()->nama;
+            $id_cust = Auth::user()->id;
         }else{
             $datanama = CustomerModel::where('nama',$req->namacust)->first();
             $id_cust= $datanama->id;
@@ -44,10 +45,10 @@ class Controller extends BaseController
     {
         $chat = new HchatModel();
         if($jenis == null){
-            $updateHchat = HchatModel::where('kode_customer',session()->get('userLogin')->id)->first();
+            $updateHchat = HchatModel::where('kode_customer',Auth::user()->id)->first();
             $updateHchat->occupied = 0;
             $updateHchat->save();
-            $chats = $chat->getDataMessage(session()->get('userLogin')->id);
+            $chats = $chat->getDataMessage(Auth::user()->id);
             return view('Common_Folder.chat',['chats'=>$chats]);
         }
         else{
@@ -64,7 +65,7 @@ class Controller extends BaseController
 
     public function getNotifChat($jenis=null)
     {
-        $updateHchat = HchatModel::where('kode_customer',session()->get('userLogin')->id)->first();
+        $updateHchat = HchatModel::where('kode_customer',Auth::user()->id)->first();
         if($jenis=="update"){
             DchatModel::where('kode_hchat',$updateHchat->id_hchat)->where('jenis',1)->update(['status'=>1]);
         }

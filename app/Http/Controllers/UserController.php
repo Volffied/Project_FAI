@@ -39,6 +39,12 @@ class UserController extends Controller
             }
             session()->put('notif', $array);
         }
+        $member = JenisMemberModel::find(auth()->user()->kode_member+1);
+        if($member != null && auth()->user()->poin >= $member->minimal_poin){
+            $cust = CustomerModel::find(auth()->user()->id);
+            $cust->kode_member = $cust->kode_member+1;
+            $cust->save();
+        }
         $barang = new BarangModel();
         $brand = new BrandModel();
         $chat = new HchatModel();
@@ -94,6 +100,12 @@ class UserController extends Controller
         //         //dd($data->dorder);// buat dpet dorder
         //    }
         // }
+        $member = JenisMemberModel::find(auth()->user()->kode_member+1);
+        if($member != null && auth()->user()->poin >= $member->minimal_poin){
+            $cust = CustomerModel::find(auth()->user()->id);
+            $cust->kode_member = $cust->kode_member+1;
+            $cust->save();
+        }
         $param["barang"] = $allCart->getAllCart(Auth::user()->id);
         return view('Common_Folder.cart')->with($param);
     }

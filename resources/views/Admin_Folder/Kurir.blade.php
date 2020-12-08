@@ -52,7 +52,7 @@
                                             <th scope="col" style="width: 10%">Tanggal Transaksi</th>
                                             <th scope="col" style="width: 10%">Nama Customer</th>
                                             <th scope="col" style="width: 10%">Alamat</th>
-                                            <th scope="col" class="price" style="width: 10%">Grandtotal</th>
+                                            <th scope="col" style="width: 10%">Grandtotal</th>
                                             <th scope="col" style="width: 5%">Estimasi</th>
                                             <th scope="col" style="width: 10%">Tanggal Pengiriman</th>
                                             <th scope="col" style="width: 10%">Nama Pegawai</th>
@@ -65,10 +65,10 @@
                                         @foreach ($daftarPenjualan as $item)
                                         <tr>
                                             <th scope="row">{{ $item->id_horder }}</th>
-                                            <td>{{ $item->tanggal_trans }}</td>
+                                            <td>{{ $item->created_at }}</td>
                                             <td>{{ $item->nama_cust }}</td>
                                             <td>{{ $item->alamat_cust }}</td>
-                                            <td>Rp. {{ $item->grandtotal }},00</td>
+                                            <td class="price">{{ $item->grandtotal }}</td>
                                             @if ($item->estimasi_waktu == null)
                                             <td><i>NONE</i></td>
                                             @else

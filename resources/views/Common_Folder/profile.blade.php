@@ -33,7 +33,7 @@
                 <img style="filter:none;opacity:1;" src="{{{asset('images/Member/'.$user->Member->nama.'.svg')}}}" alt="">
                 {{-- <img style="filter:none;" class="bg-img" src="{{{asset('images/Member/'.$user->nama_member.'.svg')}}}" alt=""> --}}
                 <h1 class="{{$user->Member->nama}}">{{strtoupper($user->Member->nama)}}</h1>
-                <p>+{{$user->potongan}}% Discount</p>
+                <p>+{{$user->Member->potongan}}% Discount</p>
             </div>
             <div class="container-subprofile" style="left: 0;">
                 <div class="slider-poin {{$user->Member->nama}}-border">
@@ -53,7 +53,7 @@
                     @else
                         <p>MAXED OUT</p>
                     @endif
-                    <div class="fill-poin {{$user->nama_member}}-bg" style="width: {{$percent}}%;"></div>
+                    <div class="fill-poin {{$user->Member->nama}}-bg" style="width: {{$percent}}%;"></div>
                 </div>
                 <div class="container-bio">
                     <div class="bio">

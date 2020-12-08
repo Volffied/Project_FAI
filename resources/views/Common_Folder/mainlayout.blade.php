@@ -364,7 +364,7 @@
                     success:function(response){
                         $('.notif-chat').html(response);
                     }
-                });
+            });
             }
         }
 
@@ -398,6 +398,22 @@
                 duration:0.2
             });
         });
+        (function($) {
+            $.fn.inputFilter = function(inputFilter) {
+                return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+                if (inputFilter(this.value)) {
+                    this.oldValue = this.value;
+                    this.oldSelectionStart = this.selectionStart;
+                    this.oldSelectionEnd = this.selectionEnd;
+                } else if (this.hasOwnProperty("oldValue")) {
+                    this.value = this.oldValue;
+                    this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                } else {
+                    this.value = "";
+                }
+                });
+            };
+        }(jQuery));
     </script>
     @stack('script')
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-7TpgxSciwX7rsj1A"></script>

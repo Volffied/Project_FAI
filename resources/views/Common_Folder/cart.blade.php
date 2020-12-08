@@ -97,7 +97,7 @@
                                         <td>N/A</td>
                                     @endif
                                     @if ($item->estimasi_waktu != null)
-                                        <td>{{$item->estimasi_waktu}} minutes</td>
+                                        <td>{{$item->estimasi_waktu}} Days</td>
                                     @else
                                         <td>N/A</td>
                                     @endif
@@ -207,9 +207,10 @@
                 success:function(response){
                     console.log(response);
                     paymentku(response);
+                    $(".button-main").css('background-color','#961317');
                 },
                 error:function(response){
-                    alert(response);
+                    message('Please choose any items')
                 },
             });
         });

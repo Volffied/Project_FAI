@@ -2,10 +2,10 @@
 @foreach ($daftarPenjualan as $item)
 <tr>
     <th scope="row">{{ $item->id_horder }}</th>
-    <td>{{ $item->tanggal_trans }}</td>
+    <td>{{ $item->created_at }}</td>
     <td>{{ $item->nama_cust }}</td>
     <td>{{ $item->alamat_cust }}</td>
-    <td>{{ $item->grandtotal }}</td>
+    <td class="price">{{ $item->grandtotal }}</td>
     @if ($item->estimasi_waktu == null)
     <td><i>NONE</i></td>
     @else
@@ -53,5 +53,28 @@
                 document.getElementById("txtidhorder").value = rowSelected.cells[0].innerHTML;
             }
         }
+    }
+
+    reformatPrice();
+    function formatRupiah(angka, prefix){
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split   		= number_string.split(','),
+            sisa     		= split[0].length % 3,
+            rupiah     		= split[0].substr(0, sisa),
+            ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+            if(ribuan){
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
+    function reformatPrice() {
+        $('.price').each(function(){
+            var harga = $(this).text();
+            $(this).text(formatRupiah(harga,'Rp. '));
+        });
     }
 </script>

@@ -96,6 +96,7 @@ class HorderModel extends Model
             ->leftJoin("customer", "customer.id", "horder.kode_customer")
             ->leftJoin("pegawai", "pegawai.id", "horder.kode_pegawai")
             ->leftJoin("promo", "promo.id_promo", "horder.kode_promo")
+            ->where('status_order','<>',4)
             ->get();
         return $query;
     }
