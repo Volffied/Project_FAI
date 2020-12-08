@@ -185,8 +185,6 @@ class UserController extends Controller
         $this->validate($request,$rules,$customError);
         $email = $request->email;
         $pass  = $request->password;
-        $user  = new CustomerModel();
-        $user->checkLogin($email, $pass);
         $credentials = [
             'email' => $email,
             'password' => $pass,

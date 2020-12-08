@@ -27,8 +27,8 @@
         date_default_timezone_set('Asia/Jakarta');
     @endphp
     @yield('header')
-    @if (session()->has('userLogin'))
-        <input type="hidden" name="id_user" id="id_user" value="{{session()->get('userLogin')->id}}">
+    @if (Auth::check())
+        <input type="hidden" name="id_user" id="id_user" value="{{auth()->user()->id}}">
         <div class="container-chat">
             <div class="button-toggle">
                 <div class="notif-chat">0</div>

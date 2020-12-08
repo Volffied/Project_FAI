@@ -11,7 +11,7 @@
             </g>
         </svg>
         <div class="link-wrapper">
-            {{-- <p>Hello, {{session()->get('userLogin')->nama}}</p> --}}
+            {{-- <p>Hello, {{auth()->user()->nama}}</p> --}}
             <a id="searchButton" style="margin-top: 0 !important; width:5%;">
                 <svg aria-hidden="true" focusable="false" data-prefix="fas" width="25" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#261830" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg>
             </a>
@@ -23,13 +23,13 @@
             <a class="cart-nav" href="/cart">CART
                 <div class="container-notifCart"></div>
             </a>
-            <a class="profile-link" href="/profile" title="{{session()->get('userLogin')->nama}}" style="width:5%;">
+            <a class="profile-link" href="/profile" title="{{auth()->user()->nama}}" style="width:5%;">
                 <div class="container-icon">
                     <div class="img-icon">
-                        @if (session()->get('userLogin')->gambar != null)
-                            <img src="{{asset('storage/images/'.session()->get('userLogin')->gambar)}}" style="width: 100%" alt="PROFILE">
+                        @if (auth()->user()->gambar != null)
+                            <img src="{{asset('storage/images/'.auth()->user()->gambar)}}" style="width: 100%" alt="PROFILE">
                         @else
-                            <img style="filter:none;opacity:1; width:50%;" src="{{{asset('images/Member/'.session()->get('userLogin')->nama_member.'.svg')}}}" alt="">
+                            <img style="filter:none;opacity:1; width:50%;" src="{{{asset('images/Member/'.auth()->user()->Member->nama.'.svg')}}}" alt="">
                         @endif
                     </div>
                 </div>

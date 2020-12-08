@@ -14,7 +14,7 @@
 
 @section('header')
 {{-- kalo udh login --}}
-    @if (session()->has('userLogin'))
+    @if (Auth::check())
         @include('Common_Folder.navbar.nav_logged')
     @else
         @include('Common_Folder.navbar.nav_normal')

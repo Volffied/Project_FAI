@@ -15,7 +15,7 @@
 @section('content')
 <form id="ajaxcart">
     @csrf
-    <input type="hidden" name="id_user" id="id_user" value="{{session()->get('userLogin')->id}}">
+    <input type="hidden" name="id_user" id="id_user" value="{{auth()->user()->id}}">
     <input type="hidden" name="backUrl" id="backUrl" value="{{url()->previous()}}">
     <div class="container-backNav">
         <div class="navbar-wrapper">

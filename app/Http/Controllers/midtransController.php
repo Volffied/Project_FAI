@@ -7,6 +7,7 @@ use App\Model\CartModel;
 use App\Model\CustomerModel;
 use App\Model\DorderModel;
 use App\Model\HorderModel;
+use App\Model\JenisMemberModel;
 use App\Model\PegawaiModel;
 use App\Model\PromoModel;
 use App\Notifications\OrderNotification;
@@ -132,8 +133,7 @@ class midtransController extends Controller
             //'kode_pegawai' => $pegawaiNganggur->id_pegawai
         ]);
         $databarang = CustomerModel::find($dataorder["kode_customer"]);
-        $poin = $databarang->poin;
-        CustomerModel::find($dataorder["kode_customer"])->update(['poin'=>$poin+$dataorder["grandtotal"]*0.0005/100]);
+
         $databarang = $databarang->barang;
         $datatmp = array();
         $id_Data = HorderModel::all();
@@ -180,7 +180,15 @@ class midtransController extends Controller
             $penerima = CustomerModel::find($horder->kode_customer);
             $penerima->notify(new OrderNotification($horder->order_id." - Your order successfully cancelled!",$id,4));
         }
-        else if($jenis == "bayar") $horder->status_order = 1;
+        else if($jenis == "bayar"){
+            $horder->status_order = 1;
+            $poin = auth()->user()->poin;
+            $member = JenisMemberModel::find(auth()->user()->kode_member+1);
+            CustomerModel::find(auth()->user()->id)->update(['poin'=>$poin+$horder->grandtotal*0.0005/100]);
+            if($member != null && auth()->user()->poin >= $member->minimal_poin){
+                CustomerModel::find(auth()->user()->id)->update(['kode_member'=>$member->id_member]);
+            }
+        }
         $horder->save();
         return true;
     }
