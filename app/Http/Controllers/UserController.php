@@ -38,17 +38,19 @@ class UserController extends Controller
                 array_push($array, $item);
             }
             session()->put('notif', $array);
+            $member = JenisMemberModel::find(auth()->user()->kode_member+1);
+            if($member != null && auth()->user()->poin >= $member->minimal_poin){
+                $cust = CustomerModel::find(auth()->user()->id);
+                $cust->kode_member = $cust->kode_member+1;
+                $cust->save();
+            }
         }
-        $member = JenisMemberModel::find(auth()->user()->kode_member+1);
-        if($member != null && auth()->user()->poin >= $member->minimal_poin){
-            $cust = CustomerModel::find(auth()->user()->id);
-            $cust->kode_member = $cust->kode_member+1;
-            $cust->save();
-        }
+        $updatePromo = new PromoModel;
+        $updatePromo->updatePromo();
         $barang = new BarangModel();
         $brand = new BrandModel();
         $chat = new HchatModel();
-        $promo = PromoModel::where('tanggal_akhir','>',Carbon::now())->get();
+        $promo = PromoModel::all();
         $param['barang'] = $barang->getAllDataBarangPaginate(16, 'barang.deleted_at', null);
         $param['brand'] = $brand->getAllDataBrandWithCount();
         $param['promo'] = $promo;
@@ -77,6 +79,12 @@ class UserController extends Controller
                 array_push($array, $item);
             }
             session()->put('notif', $array);
+            $member = JenisMemberModel::find(auth()->user()->kode_member+1);
+            if($member != null && auth()->user()->poin >= $member->minimal_poin){
+                $cust = CustomerModel::find(auth()->user()->id);
+                $cust->kode_member = $cust->kode_member+1;
+                $cust->save();
+            }
         }
         $brand = new BrandModel();
         $barang = new BarangModel();
@@ -89,6 +97,8 @@ class UserController extends Controller
     {
         // $barang = new BarangModel();
         // $barang = $barang->getAllDataByAmount(5);
+        $updatePromo = new PromoModel;
+        $updatePromo->updatePromo();
         $potonganMember = new JenisMemberModel;
         $potonganMember = $potonganMember->getPotonganByID(Auth::user()->kode_member);
         $param["potongan"] = $potonganMember->potongan;
@@ -118,6 +128,12 @@ class UserController extends Controller
                 array_push($array, $item);
             }
             session()->put('notif', $array);
+            $member = JenisMemberModel::find(auth()->user()->kode_member+1);
+            if($member != null && auth()->user()->poin >= $member->minimal_poin){
+                $cust = CustomerModel::find(auth()->user()->id);
+                $cust->kode_member = $cust->kode_member+1;
+                $cust->save();
+            }
         }
         $nama = str_replace('-', ' ', $nama);
         $barang = new BarangModel();
@@ -137,6 +153,12 @@ class UserController extends Controller
                 array_push($array, $item);
             }
             session()->put('notif', $array);
+            $member = JenisMemberModel::find(auth()->user()->kode_member+1);
+            if($member != null && auth()->user()->poin >= $member->minimal_poin){
+                $cust = CustomerModel::find(auth()->user()->id);
+                $cust->kode_member = $cust->kode_member+1;
+                $cust->save();
+            }
         }
         $barang = new BarangModel;
         $barang['barang'] = $barang->getAllDataBarangPaginateArray(48, $request->all());
@@ -153,6 +175,12 @@ class UserController extends Controller
                 array_push($array, $item);
             }
             session()->put('notif', $array);
+            $member = JenisMemberModel::find(auth()->user()->kode_member+1);
+            if($member != null && auth()->user()->poin >= $member->minimal_poin){
+                $cust = CustomerModel::find(auth()->user()->id);
+                $cust->kode_member = $cust->kode_member+1;
+                $cust->save();
+            }
         }
         $kode_member = Auth::user()->kode_member;
         $datalogin = Auth::user()->id;
@@ -257,6 +285,7 @@ class UserController extends Controller
             "conf_pass.required"    => "Confirm password is still empty",
             "name.required"         => "Name is still empty",
             "alamat.required"      => "Address is still empty",
+            "notelp.required"      => "Phone Number is still empty",
         ];
         if ($req->validate($rules, $message)) {
             $email  = $req->email;

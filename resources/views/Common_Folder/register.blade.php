@@ -104,11 +104,6 @@
             <a href="/login">LOGIN TO MY ACCOUNT</a>
         </form>
     </div>
-    <div class="container-message">
-        @foreach ($errors->all() as $error)
-            <p>- {{$error}}</p><br/>
-        @endforeach
-    </div>
     <input type="hidden" id="image1" value="{{asset('images/bg01.jpg')}}">
     <input type="hidden" id="image2" value="{{asset('images/bg02.jpg')}}">
     <input type="hidden" id="image3" value="{{asset('images/bg03.jpg')}}">

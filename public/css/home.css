@@ -394,3 +394,8 @@ span a:hover {
     font: 500 1em "Source Sans Pro";
     margin: 0 !important;
 }
+
+.potongan {
+    font: 500 1em "Montserrat" !important;
+    color: #d3a13b !important;
+}

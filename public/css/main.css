@@ -166,15 +166,15 @@ img {
     min-height: 10vh;
     background-color: #ff151b;
     position: fixed;
-    right: 2%;
+    right: 7%;
     bottom: -100px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 5%;
-    font: 700 1.3em "Montserrat";
+    padding: 1% 3%;
+    font: 700 1em "Montserrat";
     color: #160d1c;
     z-index: 99999;
 }

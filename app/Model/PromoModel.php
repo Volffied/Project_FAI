@@ -50,7 +50,6 @@ class PromoModel extends Model
                 $value->delete();
             }
         }
-        $query->save();
     }
 
 

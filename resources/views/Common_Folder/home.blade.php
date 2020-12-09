@@ -103,11 +103,12 @@
                                                 <p class="desc">{{$data['promo'][$k]->voucher}}</p>
                                                 <div class="line"></div>
                                             </div>
-                                            <p class="expired"><i>Until {{date('d/m/Y',strtotime($data['promo'][$k]->created_at))}}</i></p>
+                                            <p class="potongan">{{$data['promo'][$k]->potongan}}% Discount</p>
+                                            <p class="expired"><i>Until {{date('d F Y',strtotime($data['promo'][$k]->tanggal_akhir))}}</i></p>
                                         </div>
                                     </div>
                                     @if ($k == $count - 1 && $k%2 == 0)
-                                        <div class="col col-promo"></div>
+                                        <div class="col"></div>
                                     @endif
                                 @endfor
 
@@ -118,30 +119,6 @@
                         @endfor
                         </div>
                     @endfor
-                  {{-- <div class="carousel-item active" style="height: 100%; flex-direction:column; align-items:center;">
-                    <div class="row" style="width: 100%; height:50%;">
-                        <div class="col col-promo">
-                            <h1>Christmas Discount</h1>
-                            <div class="code">
-                                <div class="line"></div>
-                                <p class="desc">NYXMAS</p>
-                                <div class="line"></div>
-                            </div>
-                            <p class="expired"><i>Until 01/01/2021</i></p>
-                        </div>
-                    </div>
-                    <div class="row" style="width: 100%; height:50%;">
-                        <div class="col col-promo"></div>
-                        <div class="col col-promo"></div>
-                        <div class="col col-promo"></div>
-                    </div>
-                  </div>
-                  <div class="carousel-item" style="height: 100%">
-
-                  </div>
-                  <div class="carousel-item" style="height: 100%">
-
-                  </div> --}}
                 </div>
                 <a class="carousel-control-prev" style="width:5%;height: 5%; top:47.5%; left:-5%" href="#carousel-1" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
