@@ -100,7 +100,7 @@
                                             <h1>{{$data['promo'][$k]->nama}}</h1>
                                             <div class="code">
                                                 <div class="line"></div>
-                                                <p class="desc">{{$data['promo'][$k]->voucher}}</p>
+                                                <p class="desc"><span style="font-weight:500;">CODE: </span>{{$data['promo'][$k]->voucher}}</p>
                                                 <div class="line"></div>
                                             </div>
                                             <p class="potongan">{{$data['promo'][$k]->potongan}}% Discount</p>

@@ -65,7 +65,7 @@ class Controller extends BaseController
 
     public function getNotifChat($jenis=null)
     {
-        $updateHchat = HchatModel::where('kode_customer',Auth::user()->id)->first();
+        $updateHchat = HchatModel::where('kode_customer',Auth::guard('web')->user()->id)->first();
         if($jenis=="update"){
             DchatModel::where('kode_hchat',$updateHchat->id_hchat)->where('jenis',1)->update(['status'=>1]);
         }

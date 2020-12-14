@@ -49,6 +49,7 @@
     height: 180px;
     border-radius: 50%;
     overflow: hidden;
+    position: relative;
 }
 
 .profile-img img {
@@ -89,4 +90,26 @@
     width: 30%;
     height: 1px;
     background-color: #ff151b;
+}
+
+.container-edit {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.438);
+    opacity: 0;
+    color: #fff;
+    font: 600 1em "Montserrat";
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.5s;
+}
+
+.profile-img:hover .container-edit {
+    opacity: 1;
 }

@@ -311,7 +311,8 @@ class UserController extends Controller
                 "status"        => 0,
                 "created_at"    => Carbon::now()
             ]);
-            return redirect("/register");
+            session()->flash('message','Registered Successfully');
+            return redirect("/login");
         }
     }
 
@@ -344,6 +345,7 @@ class UserController extends Controller
         }
         if ($request->oldPass != "") $customer->password = Hash::make($request->newPass);
         $customer->save();
+        session()->flash('message','Profile Updated Successfully');
         return back();
     }
 

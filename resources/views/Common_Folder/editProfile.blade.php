@@ -25,6 +25,7 @@
                     @else
                         <img src="{{{asset('images/Member/'.Auth::user()->Member->nama.'.svg')}}}" alt="IMG">
                     @endif
+                    <div class="container-edit">Click to edit image</div>
                 </div>
                 <p><i>250 x 250</i></p>
                 <div class="profile-input">

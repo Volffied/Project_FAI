@@ -73,7 +73,7 @@ class BarangModel extends Model
                 $result = $result->Where('nama_barang','like',$column_value);
             }
         }
-        $result = $result->orderBy('id','ASC')->paginate($range);
+        $result = $result->orderBy('harga','ASC')->paginate($range);
         return $result;
     }
 
