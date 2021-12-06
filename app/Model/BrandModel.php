@@ -35,7 +35,8 @@ class BrandModel extends Model
     public function getAllDataBrandWithCount(){
         $query = BarangModel::select(DB::raw('count(id) as jumlah_barang'),'brand.nama_brand as nama','brand.gambar as gambar','brand.id_brand as id')->distinct()
                                     ->join('brand','brand.id_brand','barang.kode_brand')
-                                    ->groupBy('kode_brand','brand.nama_brand','brand.gambar','brand.id_brand')->orderBy('kode_brand','ASC')->get();
+                                    ->groupBy('kode_brand','brand.nama_brand','brand.gambar','brand.id_brand')->get();
+                                    // ->groupBy('kode_brand','brand.nama_brand','brand.gambar','brand.id_brand')->orderBy('kode_brand','ASC')->get();
         return $query;
     }
 }
