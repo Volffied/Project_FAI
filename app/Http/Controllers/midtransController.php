@@ -55,7 +55,13 @@ class midtransController extends Controller
             $potongan = $promo->potongan;
         }
         $potongan = ($subtotal*$potongan/100) * -1;
-
+        array_push($datatmp,array(
+            "id"        => 66,
+            "price"     => 10000,
+            "quantity"  => 1,
+            "name"      => "Shipping",
+            )
+        );
 
         if($potongan != 0){
             array_push($datatmp,array(

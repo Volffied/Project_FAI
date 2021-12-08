@@ -99,6 +99,10 @@ Route::get('/home', function () {
     return redirect('/');
 });
 
+//login with google
+Route::get('/authgoogle', 'UserController@authGoogle');
+Route::get('/auth/callback', 'UserController@authGoogleCallback');
+
 // Route::get('/index', function () {
 //     return redirect('/');
 // });

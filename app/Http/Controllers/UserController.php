@@ -25,6 +25,7 @@ use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
 {
@@ -244,6 +245,38 @@ class UserController extends Controller
             return redirect("/login");
         }
     }
+
+    public function authGoogle(Request $request){
+        return Socialite::driver('google')->redirect();
+    }
+    public function authGoogleCallback(Request $request){
+        $user = Socialite::driver('google')->user();
+        $terdaftar = CustomerModel::where("google_id", $user->getId())->first();
+        if(!$terdaftar){
+            $pass = Hash::make($user->getId());
+            $customer   = new CustomerModel();
+            $customer->insertData($user->getEmail(), $pass, $user->getName(), "default", "default",$user->getId());
+        }
+        $credentials = [
+            'email' => $user->getEmail(),
+            'password' => $user->getId(),
+        ];
+
+        if (Auth::guard('web')->attempt($credentials)){
+            $array = [];
+            foreach (auth()->user()->unreadNotifications as $key => $item) {
+                array_push($array, $item);
+                //$item->markAsRead(); //biar notifnya jdi read
+                //dd($item->data["chat_isi"]);
+            }
+            session()->put('notif', $array);
+            return redirect('/');
+        }
+        else {
+            return redirect("/login");
+        }
+    }
+
     public function notifications(Request $request){
 
         //dd(auth()->user()->Notifications);

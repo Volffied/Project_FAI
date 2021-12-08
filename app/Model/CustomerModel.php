@@ -17,7 +17,7 @@ class CustomerModel extends Authenticatable
     public $primaryKey      = "id";
     public $incrementing    = true;
     public $timestamps      = true;
-    protected $fillable     = ['id','nama','email','password','poin','notlp','alamat','status','kode_member','gambar'];
+    protected $fillable     = ['id','nama','email','password','poin','notlp','alamat','status','kode_member','gambar','google_id'];
 
     public function barang(){
         return $this->belongsToMany(BarangModel::class,'cart','kode_user','kode_barang')
@@ -25,7 +25,7 @@ class CustomerModel extends Authenticatable
                     ->as("cart");
     }
 
-    public function insertData($email,$pass,$nama,$alamat,$notlp){
+    public function insertData($email,$pass,$nama,$alamat,$notlp, $google_id = null){
         $data   = new CustomerModel();
         $data->id               = null;
         $data->nama             = $nama;
@@ -33,6 +33,7 @@ class CustomerModel extends Authenticatable
         $data->password         = $pass;
         $data->alamat           = $alamat;
         $data->notlp            = $notlp;
+        $data->google_id            = $google_id;
         $data->save();
     }
 
