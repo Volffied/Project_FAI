@@ -32,6 +32,7 @@ Route::group(['middleware' => ['isMaster']], function () {
         Route::get('laporanPenjualan', 'controllerAdmin@HalPagemLaporanPenjualan');
         Route::get('laporanPenjualanWM/{bulan}', 'controllerAdmin@HalPagemLaporanPenjualanWithMonth');
         Route::get('laporanBarangLaris', 'controllerAdmin@HalPagemLaporanBarangLaris');
+        Route::get('laporanBarangLarisWB/{brand}', 'controllerAdmin@HalPagemLaporanBarangLarisWithBrand');
         Route::post('updateTabelReport', 'controllerAdmin@UpdateTabelForReport');
         Route::post('reportBarangTerlaris', 'controllerAdmin@ReportBarangTerlaris');
     });

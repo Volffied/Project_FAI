@@ -93,6 +93,7 @@ class controllerAdmin extends Controller
             if ($dataCountBarang ==  null) {
                 $data = [
                     "nama_barang" => $key->nama_barang,
+                    "brand" => $key->brand,
                     "harga_barang" => $key->harga_barang,
                     "count" => $key->qty
                 ];
@@ -111,6 +112,7 @@ class controllerAdmin extends Controller
                 if (!$booleanMasuk) {
                     $data = [
                         "nama_barang" => $key->nama_barang,
+                        "brand" => $key->brand,
                         "harga_barang" => $key->harga_barang,
                         "count" => $key->qty
                     ];
@@ -118,11 +120,50 @@ class controllerAdmin extends Controller
                 }
             }
         }
-        // foreach ($dataCountBarang as $keys => $value) {
-        //     usort($dataCountBarang, fn($a, $b) => $a->count - $b->count);
-        // }
-        //dd($dataCountBarang);
-        return view('Admin_Folder.laporanbaranglaris', ['daftarBarang' => $dataCountBarang]);
+        $brand = new BrandModel();
+        $dataBrand = $brand->getAllDataBrand();
+        return view('Admin_Folder.laporanbaranglaris', ['daftarBarang' => $dataCountBarang, 'brand' => $dataBrand]);
+    }
+
+    public function HalPagemLaporanBarangLarisWithBrand($brand)
+    {
+        $dataCountBarang = [];
+        $dorder = new DorderModel();
+        $dataBarang = $dorder->getAllDataForReportWithBrand($brand);
+        foreach ($dataBarang as $key) {
+            if ($dataCountBarang ==  null) {
+                $data = [
+                    "nama_barang" => $key->nama_barang,
+                    "brand" => $key->brand,
+                    "harga_barang" => $key->harga_barang,
+                    "count" => $key->qty
+                ];
+                array_push($dataCountBarang, $data);
+            } else if ($dataCountBarang != null) {
+                foreach ($dataCountBarang as $keys => $value) {
+                    $booleanMasuk = false;
+                    if ($dataCountBarang[$keys]["nama_barang"] == $key->nama_barang && !$booleanMasuk) {
+                        $dataCountBarang[$keys]["count"] = $dataCountBarang[$keys]["count"] + $key->qty;
+                        $booleanMasuk = true;
+                        break;
+                    } else if ($dataCountBarang[$keys]["nama_barang"] != $key->nama_barang && !$booleanMasuk) {
+                        $booleanMasuk = false;
+                    }
+                }
+                if (!$booleanMasuk) {
+                    $data = [
+                        "nama_barang" => $key->nama_barang,
+                        "brand" => $key->brand,
+                        "harga_barang" => $key->harga_barang,
+                        "count" => $key->qty
+                    ];
+                    array_push($dataCountBarang, $data);
+                }
+            }
+        }
+        $brand = new BrandModel();
+        $dataBrand = $brand->getAllDataBrand();
+        return view('Admin_Folder.laporanbaranglaris', ['daftarBarang' => $dataCountBarang, 'brand' => $dataBrand]);
     }
 
     public function HalPagemPromo()
@@ -176,7 +217,12 @@ class controllerAdmin extends Controller
 
     public function ReportBarangTerlaris(Request $request)
     {
-
+        if($request->btnshowall){
+            return redirect("Master/laporanBarangLaris");
+        }else if($request->btnshow){
+            $brand = $request->cbpilihbrand;
+            return redirect("Master/laporanBarangLarisWB/$brand");
+        }
     }
 
     public function checkAddPromo(Request $request)

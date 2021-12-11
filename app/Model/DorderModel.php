@@ -14,9 +14,22 @@ class DorderModel extends Model
 
     public function getAllDataForReport()
     {
-        $query = DorderModel::select(["dorder.*","barang.nama_barang","barang.harga as harga_barang"])
+        $query = DorderModel::select(["dorder.*","barang.nama_barang", "brand.nama_brand as brand","barang.harga as harga_barang"])
                             ->leftJoin('barang','barang.id','dorder.kode_barang')
+                            ->leftJoin('brand','brand.id_brand','barang.kode_brand')
                             ->Where('qty','>',0)
+                            ->get();
+
+        return $query;
+    }
+
+    public function getAllDataForReportWithBrand($brand)
+    {
+        $query = DorderModel::select(["dorder.*","barang.nama_barang", "brand.nama_brand as brand","barang.harga as harga_barang"])
+                            ->leftJoin('barang','barang.id','dorder.kode_barang')
+                            ->leftJoin('brand','brand.id_brand','barang.kode_brand')
+                            ->Where('qty','>',0)
+                            ->where('brand.id_brand',$brand)
                             ->get();
 
         return $query;

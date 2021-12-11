@@ -51,8 +51,20 @@
                                         }
                                     </style>
                                     @csrf
+                                    <label for="cbpilihbulan">Brand :</label>
                                     <div class="form-row" style="display: flex; flex-direction: row;">
-                                        <div class="btn" id="btnReport" name="btnreport">Print</div>
+                                        <div class="form-group col-md-4" >
+                                            <select name="cbpilihbrand" id="cbpilihbrand" class="form-control">
+                                                @isset($brand)
+                                                    @foreach ($brand as $item)
+                                                        <option value="{{ $item->id_brand }}" >{{ $item->nama_brand }}</option>
+                                                    @endforeach
+                                                @endisset
+                                            </select>
+                                            <input type="submit" class="btn" id="btnShow" name="btnshow" value="Show" >
+                                            <input type="submit" class="btn" id="btnShowAll" name="btnshowall" value="Show All" >
+                                            <div class="btn" id="btnReport" name="btnreport">Print</div>
+                                        </div>
                                     </div>
                                 </form>
                                 <table id="example2" class="table table-striped">
@@ -71,6 +83,7 @@
                                       <tr class="row-header">
                                         <th scope="col">ID</th>
                                         <th scope="col">Nama Barang</th>
+                                        <th scope="col">Brand</th>
                                         <th scope="col">Harga Barang</th>
                                         <th scope="col">Total Terjual</th>
                                       </tr>
@@ -81,6 +94,7 @@
                                         <tr>
                                             <td style="font-weight: bold;">{{ $ctr }}</td>
                                             <td>{{ $item["nama_barang"] }}</td>
+                                            <td>{{ $item["brand"] }}</td>
                                             <td class="price">{{ $item["harga_barang"] }}</td>
                                             <td>{{ $item["count"] }}</td>
                                         </tr>
