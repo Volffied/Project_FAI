@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="{{asset('css/animation.css')}}" />
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
     <link rel="stylesheet" href="{{asset('css/home.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/footer.css')}}" />
+    <script
+      src="https://kit.fontawesome.com/e392953f01.js"
+      crossorigin="anonymous"
+    ></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
@@ -252,6 +257,54 @@
             {{$data['barang']->links()}}
         </div>
     </div>
+@endsection
+
+@section('footer')
+    <footer class="footer">
+    <section>
+      <img src="images/logo.svg" alt="" />
+      <ul>
+        <li class="title">company</li>
+        <li>about us</li>
+        <li>contact us</li>
+        <li>partner with GameBox</li>
+      </ul>
+      <ul>
+        <li class="title">resources</li>
+        <li>help</li>
+        <li>contact support</li>
+        <li>report abuse</li>
+      </ul>
+      <ul>
+        <p>
+          "so easy to use and makes it <br /> possible for a small business to
+          get up and running"
+        </p>
+        <li class="title">
+          -anne marie, mullingar, county westmeath, ireland
+        </li>
+        <li>
+            <div class="icon-pack">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-whatsapp"></i>
+              </div>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <div>
+        <span class="copyright">
+          copyright 2021 GameBox inc. all rights reserved.
+        </span>
+        &nbsp;
+        <span>privacy policy</span> | <span>terms of use</span> |
+        <span>data processing</span>
+      </div>
+
+    </section>
+  </footer>
 @endsection
 
 @push('script')
