@@ -51,81 +51,191 @@
                                     <div class="form-row" style="display: flex; flex-direction: row;">
                                         <div class="form-group col-md-4" >
                                             <select name="cbpilihbulan" id="cbpilihbulan" class="form-control">
-                                                @if (isset($bulan) && $bulan == 1)
-                                                    <option value="1" selected>Januari</option>
-                                                    <input type="hidden" id="judul" value="Laporan Penjualan Bulan Januari">
-                                                @else
-                                                    <option value="1">Januari</option>
-                                                @endif
-                                                @if (isset($bulan) && $bulan == 2)
-                                                    <option value="2" selected>Februari</option>
-                                                    <input type="hidden" id="judul" value="Laporan Penjualan Bulan Februari">
-
-                                                @else
-                                                    <option value="2">Februari</option>
-                                                @endif
-                                                @if (isset($bulan) && $bulan == 3)
-                                                    <option value="3" selected>Maret</option>
-                                                    <input type="hidden" id="judul" value="Laporan Penjualan Bulan Maret">
-                                                @else
-                                                    <option value="3">Maret</option>
-                                                @endif
-                                                @if (isset($bulan) && $bulan == 4)
-                                                    <option value="4" selected>April</option>
-                                                    <input type="hidden" id="judul" value="Laporan Penjualan Bulan April">
-                                                @else
-                                                    <option value="4">April</option>
-                                                @endif
-                                                @if (isset($bulan) && $bulan == 5)
-                                                    <option value="5" selected>Mei</option>
-                                                    <input type="hidden" id="judul" value="Laporan Penjualan Bulan Mei">
-                                                @else
-                                                    <option value="5">Mei</option>
-                                                @endif
-                                                @if (isset($bulan) && $bulan == 6)
-                                                    <option value="6" selected>Juni</option>
-                                                    <input type="hidden" id="judul" value="Laporan Penjualan Bulan Juni">
-                                                @else
-                                                    <option value="6">Juni</option>
-                                                @endif
-                                                @if (isset($bulan) && $bulan == 7)
-                                                    <option value="7" selected>Juli</option>
-                                                    <input type="hidden" id="judul" value="Laporan Penjualan Bulan Juli">
-                                                @else
-                                                    <option value="7">Juli</option>
-                                                @endif
-                                                @if (isset($bulan) && $bulan == 8)
-                                                    <option value="8" selected>Agustus</option>
-                                                    <input type="hidden" id="judul" value="Laporan Penjualan Bulan Agustus">
-                                                @else
-                                                    <option value="8">Agustus</option>
-                                                @endif
-                                                @if (isset($bulan) && $bulan == 9)
-                                                    <option value="9" selected>September</option>
-                                                    <input type="hidden" id="judul" value="Laporan Penjualan Bulan September">
-                                                @else
-                                                    <option value="9">September</option>
-                                                @endif
-                                                @if (isset($bulan) && $bulan == 10)
-                                                    <option value="10" selected>Oktober</option>
-                                                    <input type="hidden" id="judul" value="Laporan Penjualan Bulan Oktober">
-                                                @else
-                                                    <option value="10">Oktober</option>
-                                                @endif
-                                                @if (isset($bulan) && $bulan == 11)
-                                                    <option value="11" selected>November</option>
-                                                    <input type="hidden" id="judul" value="Laporan Penjualan Bulan November">
-                                                @else
-                                                    <option value="11">November</option>
-                                                @endif
-                                                @if (isset($bulan) && $bulan == 12)
-                                                    <option value="12" selected>Desember</option>
-                                                    <input type="hidden" id="judul" value="Laporan Penjualan Bulan Desember">
-                                                @else
-                                                    <option value="12">Desember</option>
-                                                @endif
+                                                @isset($bulan)
+                                                    @if ($bulan == 1)
+                                                        <option value="1" selected>Januari</option>
+                                                        <option value="2" >Februari</option>
+                                                        <option value="3" >Maret</option>
+                                                        <option value="4" >April</option>
+                                                        <option value="5" >Mei</option>
+                                                        <option value="6" >Juni</option>
+                                                        <option value="7" >Juli</option>
+                                                        <option value="8" >Agustus</option>
+                                                        <option value="9" >September</option>
+                                                        <option value="10" >Oktober</option>
+                                                        <option value="11" >November</option>
+                                                        <option value="12" >Desember</option>
+                                                        <input type="hidden" id="judul" value="Laporan Penjualan Bulan Januari">
+                                                    @elseif ($bulan == 2)
+                                                        <option value="1" >Januari</option>
+                                                        <option value="2" selected>Februari</option>
+                                                        <option value="3" >Maret</option>
+                                                        <option value="4" >April</option>
+                                                        <option value="5" >Mei</option>
+                                                        <option value="6" >Juni</option>
+                                                        <option value="7" >Juli</option>
+                                                        <option value="8" >Agustus</option>
+                                                        <option value="9" >September</option>
+                                                        <option value="10" >Oktober</option>
+                                                        <option value="11" >November</option>
+                                                        <option value="12" >Desember</option>
+                                                        <input type="hidden" id="judul" value="Laporan Penjualan Bulan Februari">
+                                                    @elseif ($bulan == 3)
+                                                        <option value="1" >Januari</option>
+                                                        <option value="2" >Februari</option>
+                                                        <option value="3" selected>Maret</option>
+                                                        <option value="4" >April</option>
+                                                        <option value="5" >Mei</option>
+                                                        <option value="6" >Juni</option>
+                                                        <option value="7" >Juli</option>
+                                                        <option value="8" >Agustus</option>
+                                                        <option value="9" >September</option>
+                                                        <option value="10" >Oktober</option>
+                                                        <option value="11" >November</option>
+                                                        <option value="12" >Desember</option>
+                                                        <input type="hidden" id="judul" value="Laporan Penjualan Bulan Maret">
+                                                    @elseif ($bulan == 4)
+                                                        <option value="1" >Januari</option>
+                                                        <option value="2" >Februari</option>
+                                                        <option value="3" >Maret</option>
+                                                        <option value="4" selected>April</option>
+                                                        <option value="5" >Mei</option>
+                                                        <option value="6" >Juni</option>
+                                                        <option value="7" >Juli</option>
+                                                        <option value="8" >Agustus</option>
+                                                        <option value="9" >September</option>
+                                                        <option value="10" >Oktober</option>
+                                                        <option value="11" >November</option>
+                                                        <option value="12" >Desember</option>
+                                                        <input type="hidden" id="judul" value="Laporan Penjualan Bulan April">
+                                                    @elseif ($bulan == 5)
+                                                        <option value="1" >Januari</option>
+                                                        <option value="2" >Februari</option>
+                                                        <option value="3" >Maret</option>
+                                                        <option value="4" >April</option>
+                                                        <option value="5" selected>Mei</option>
+                                                        <option value="6" >Juni</option>
+                                                        <option value="7" >Juli</option>
+                                                        <option value="8" >Agustus</option>
+                                                        <option value="9" >September</option>
+                                                        <option value="10" >Oktober</option>
+                                                        <option value="11" >November</option>
+                                                        <option value="12" >Desember</option>
+                                                        <input type="hidden" id="judul" value="Laporan Penjualan Bulan Mei">
+                                                    @elseif ($bulan == 6)
+                                                        <option value="1" >Januari</option>
+                                                        <option value="2" >Februari</option>
+                                                        <option value="3" >Maret</option>
+                                                        <option value="4" >April</option>
+                                                        <option value="5" >Mei</option>
+                                                        <option value="6" selected>Juni</option>
+                                                        <option value="7" >Juli</option>
+                                                        <option value="8" >Agustus</option>
+                                                        <option value="9" >September</option>
+                                                        <option value="10" >Oktober</option>
+                                                        <option value="11" >November</option>
+                                                        <option value="12" >Desember</option>
+                                                        <input type="hidden" id="judul" value="Laporan Penjualan Bulan Juni">
+                                                    @elseif ($bulan == 7)
+                                                        <option value="1" >Januari</option>
+                                                        <option value="2" >Februari</option>
+                                                        <option value="3" >Maret</option>
+                                                        <option value="4" >April</option>
+                                                        <option value="5" >Mei</option>
+                                                        <option value="6" >Juni</option>
+                                                        <option value="7" selected>Juli</option>
+                                                        <option value="8" >Agustus</option>
+                                                        <option value="9" >September</option>
+                                                        <option value="10" >Oktober</option>
+                                                        <option value="11" >November</option>
+                                                        <option value="12" >Desember</option>
+                                                        <input type="hidden" id="judul" value="Laporan Penjualan Bulan Juli">
+                                                    @elseif ($bulan == 8)
+                                                        <option value="1" >Januari</option>
+                                                        <option value="2" >Februari</option>
+                                                        <option value="3" >Maret</option>
+                                                        <option value="4" >April</option>
+                                                        <option value="5" >Mei</option>
+                                                        <option value="6" >Juni</option>
+                                                        <option value="7" >Juli</option>
+                                                        <option value="8" selected>Agustus</option>
+                                                        <option value="9" >September</option>
+                                                        <option value="10" >Oktober</option>
+                                                        <option value="11" >November</option>
+                                                        <option value="12" >Desember</option>
+                                                        <input type="hidden" id="judul" value="Laporan Penjualan Bulan Agustus">
+                                                    @elseif ($bulan == 9)
+                                                        <option value="1" >Januari</option>
+                                                        <option value="2" >Februari</option>
+                                                        <option value="3" >Maret</option>
+                                                        <option value="4" >April</option>
+                                                        <option value="5" >Mei</option>
+                                                        <option value="6" >Juni</option>
+                                                        <option value="7" >Juli</option>
+                                                        <option value="8" >Agustus</option>
+                                                        <option value="9" selected>September</option>
+                                                        <option value="10" >Oktober</option>
+                                                        <option value="11" >November</option>
+                                                        <option value="12" >Desember</option>
+                                                        <input type="hidden" id="judul" value="Laporan Penjualan Bulan September">
+                                                    @elseif ($bulan == 10)
+                                                        <option value="1" >Januari</option>
+                                                        <option value="2" >Februari</option>
+                                                        <option value="3" >Maret</option>
+                                                        <option value="4" >April</option>
+                                                        <option value="5" >Mei</option>
+                                                        <option value="6" >Juni</option>
+                                                        <option value="7" >Juli</option>
+                                                        <option value="8" >Agustus</option>
+                                                        <option value="9" >September</option>
+                                                        <option value="10" selected>Oktober</option>
+                                                        <option value="11" >November</option>
+                                                        <option value="12" >Desember</option>
+                                                        <input type="hidden" id="judul" value="Laporan Penjualan Bulan Oktober">
+                                                    @elseif ($bulan == 11)
+                                                        <option value="1" >Januari</option>
+                                                        <option value="2" >Februari</option>
+                                                        <option value="3" >Maret</option>
+                                                        <option value="4" >April</option>
+                                                        <option value="5" >Mei</option>
+                                                        <option value="6" >Juni</option>
+                                                        <option value="7" >Juli</option>
+                                                        <option value="8" >Agustus</option>
+                                                        <option value="9" >September</option>
+                                                        <option value="10" >Oktober</option>
+                                                        <option value="11" selected>November</option>
+                                                        <option value="12" >Desember</option>
+                                                        <input type="hidden" id="judul" value="Laporan Penjualan Bulan November">
+                                                    @elseif ($bulan == 12)
+                                                        <option value="1" >Januari</option>
+                                                        <option value="2" >Februari</option>
+                                                        <option value="3" >Maret</option>
+                                                        <option value="4" >April</option>
+                                                        <option value="5" >Mei</option>
+                                                        <option value="6" >Juni</option>
+                                                        <option value="7" >Juli</option>
+                                                        <option value="8" >Agustus</option>
+                                                        <option value="9" >September</option>
+                                                        <option value="10" >Oktober</option>
+                                                        <option value="11" >November</option>
+                                                        <option value="12" selected>Desember</option>
+                                                        <input type="hidden" id="judul" value="Laporan Penjualan Bulan Desember">
+                                                    @endif
+                                                @endisset
                                                 @if (!isset($bulan))
-                                                    <input type="hidden" id="judul" value="Laporan Penjualan">
+                                                    <option value="1" >Januari</option>
+                                                    <option value="2" >Februari</option>
+                                                    <option value="3" >Maret</option>
+                                                    <option value="4" >April</option>
+                                                    <option value="5" >Mei</option>
+                                                    <option value="6" >Juni</option>
+                                                    <option value="7" >Juli</option>
+                                                    <option value="8" >Agustus</option>
+                                                    <option value="9" >September</option>
+                                                    <option value="10" >Oktober</option>
+                                                    <option value="11" >November</option>
+                                                    <option value="12" >Desember</option>
+                                                    <input type="hidden" id="judul" value="">
                                                 @endif
                                             </select>
                                             <input type="submit" class="btn" id="btnShow" name="btnshow" value="Show" >
