@@ -255,7 +255,7 @@ class UserController extends Controller
         if(!$terdaftar){
             $pass = Hash::make($user->getId());
             $customer   = new CustomerModel();
-            $customer->insertData($user->getEmail(), $pass, $user->getName(), "default", "default",$user->getId());
+            $customer->insertData($user->getEmail(), $pass, $user->getName(), "default", "default",$user->getId(),1);
         }
         $credentials = [
             'email' => $user->getEmail(),

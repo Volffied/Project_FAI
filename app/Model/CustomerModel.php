@@ -25,7 +25,7 @@ class CustomerModel extends Authenticatable
                     ->as("cart");
     }
 
-    public function insertData($email,$pass,$nama,$alamat,$notlp, $google_id = null){
+    public function insertData($email,$pass,$nama,$alamat,$notlp, $google_id = null, $status = 0){
         $data   = new CustomerModel();
         $data->id               = null;
         $data->nama             = $nama;
@@ -33,7 +33,8 @@ class CustomerModel extends Authenticatable
         $data->password         = $pass;
         $data->alamat           = $alamat;
         $data->notlp            = $notlp;
-        $data->google_id            = $google_id;
+        $data->google_id        = $google_id;
+        $data->status           = $status;
         $data->save();
     }
 
